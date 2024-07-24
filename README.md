@@ -1,38 +1,13 @@
-# create-svelte
+# Melvor Map Maker
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+![Issues](https://img.shields.io/github/issues/Draedon123/Melvor-Map-Maker)
+![License](https://img.shields.io/github/license/Draedon123/Melvor-Map-Maker)
+![Version](https://img.shields.io/github/package-json/v/draedon123/Melvor-Map-Maker)
 
-## Creating a project
+## Description
 
-If you're seeing this, you've probably already done this step. Congrats!
+The Melvor Map Maker is an interactive tool designed to take the heavy lifting of creating a new map for the Cartography skill in Melvor Idle off your shoulders. You can go try it out [here](https://draedon123.github.io/Melvor-Map-Maker/). This tool takes care of many things for you, from creating supercompressed .basis files from your image files, to bundling everything up in a zip file ready for uploading to mod.io. Seasoned mod developers can even take the exported zip file and add their own custom changes to it, or even incorporate it into their own larger mod.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Disclaimer
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+As of the present, the Melvor Map Maker is an **unofficial** tool and is **not** endorsed by Melvor Idle or Games by Malcs in any way, shape or form
