@@ -29,7 +29,9 @@ class HashManager {
 
     if (this.contains(key)) {
       this.hash = this.hash.replace(
-        new RegExp(`${encodeURIComponent(key)}=.+?,`),
+        new RegExp(
+          `(${encodeURIComponent(key)}=.+?,)|(${encodeURIComponent(key)}=.+?$)`
+        ),
         `${hashString},`
       );
     } else {
