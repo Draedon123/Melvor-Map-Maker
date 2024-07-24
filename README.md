@@ -14,18 +14,6 @@ As of the present, the Melvor Map Maker is an **unofficial** tool and is **not**
 
 ## Icons Used
 
-| Icon                             | Author  | Link                                              |
-| -------------------------------- | ------- | ------------------------------------------------- |
-| <img src="static/preview.png" /> | Freepik | https://www.flaticon.com/free-icon/preview_143594 |
-
-<style>
-  img{
-    width: 2em;
-    height: 2em;
-  }
-
-  h3{
-    display: flex;
-    align-items: center;
-  }
-</style>
+| Icon                                                              | Author  | Link                                              |
+| ----------------------------------------------------------------- | ------- | ------------------------------------------------- |
+| <img src="static/preview.png" style="width: 2em; height: 2em;" /> | Freepik | https://www.flaticon.com/free-icon/preview_143594 |
