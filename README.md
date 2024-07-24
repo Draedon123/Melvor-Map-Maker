@@ -11,3 +11,21 @@ The Melvor Map Maker is an interactive tool designed to take the heavy lifting o
 ## Disclaimer
 
 As of the present, the Melvor Map Maker is an **unofficial** tool and is **not** endorsed by Melvor Idle or Games by Malcs in any way, shape or form
+
+## Icons Used
+
+| Icon                             | Author  | Link                                              |
+| -------------------------------- | ------- | ------------------------------------------------- |
+| <img src="static/preview.png" /> | Freepik | https://www.flaticon.com/free-icon/preview_143594 |
+
+<style>
+  img{
+    width: 2em;
+    height: 2em;
+  }
+
+  h3{
+    display: flex;
+    align-items: center;
+  }
+</style>

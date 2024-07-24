@@ -3,7 +3,7 @@
 </nav>
 
 <style lang="scss">
-  $navigation-bar-height: 3em;
+  @import "/src/globals.scss";
 
   .navigation {
     position: absolute;

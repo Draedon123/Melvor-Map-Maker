@@ -1,6 +1,7 @@
 <script>
   import NavigationBar from "$lib/components/NavigationBar/NavigationBar.svelte";
   import NavigationBarItem from "$lib/components/NavigationBar/NavigationBarItem.svelte";
+  import "../globals.scss";
 </script>
 
 <aside>
@@ -29,8 +30,7 @@
 
 <style lang="scss">
   @use "sass:math";
-
-  $navigation-bar-height: 3em;
+  @import "/src/globals.scss";
 
   main {
     margin-top: $navigation-bar-height;
@@ -54,14 +54,14 @@
       display: flex;
       align-items: center;
     }
-  }
 
-  .navigation-bar-item:last-child {
-    margin-right: 1ch;
-  }
+    &:last-child {
+      margin-right: 1ch;
+    }
 
-  .navigation-bar-item:hover {
-    background-color: #303030;
+    &:hover {
+      background-color: #303030;
+    }
   }
 
   input[type="image"].navigation-bar-icon {

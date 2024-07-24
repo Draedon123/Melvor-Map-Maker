@@ -1,0 +1,183 @@
+<script lang="ts">
+  import { store } from "./+page.svelte";
+
+  let modal: HTMLDialogElement;
+  function previewImageOnClick(): void {
+    if (modal.open) {
+      modal.close();
+    } else {
+      modal.showModal();
+    }
+  }
+
+  function closeDialog(): void {
+    modal.close();
+  }
+</script>
+
+<div class="container">
+  <aside class="toolbar">
+    <div>
+      <input
+        type="image"
+        src="/preview.png"
+        alt="A document and magnifying glass"
+        title="Preview Image"
+        on:click={previewImageOnClick}
+      />
+      <span>Preview Image</span>
+    </div>
+  </aside>
+
+  <div class="fullscreen">
+    <dialog bind:this={modal} class="modal">
+      {#if $store.mapImage !== null}
+        <img src={$store.mapImage.src} alt="Preview" />
+        <br />
+      {:else}
+        <p class="no-image">No image inputted!</p>
+      {/if}
+      <button on:click={closeDialog}>Close</button>
+    </dialog>
+  </div>
+
+  <div class="main">
+    <slot />
+  </div>
+</div>
+
+<style lang="scss">
+  @use "sass:math";
+  @import "/src/globals.scss";
+
+  $toolbar-colour: #1f1f1f;
+  $image-dimensions: 0.9 * $toolbar-width;
+
+  .toolbar {
+    position: absolute;
+    background-color: $toolbar-colour;
+
+    width: max-content;
+    height: calc(100% + 1ch);
+
+    left: calc(-1 * ($toolbar-width + 1ch));
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &:hover div {
+      background-color: #303030;
+      width: 5 * $toolbar-width;
+
+      span {
+        opacity: 1;
+      }
+    }
+
+    div {
+      transition:
+        background-color 0.4s ease,
+        width 0.4s ease-in-out;
+      width: $toolbar-width;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow-x: hidden;
+      cursor: pointer;
+
+      input[type="image"] {
+        width: $image-dimensions;
+        height: $image-dimensions;
+        font-size: medium;
+        user-select: none;
+
+        :focus {
+          outline: none;
+        }
+      }
+
+      span {
+        opacity: 0;
+        color: white;
+        transition: opacity 0.4s;
+        height: $image-dimensions / 2;
+        text-wrap: nowrap;
+      }
+    }
+  }
+
+  .fullscreen {
+    width: calc(100vw - $toolbar-width - 1ch);
+    height: calc(100vh - $navigation-bar-height - 1ch);
+    top: 0;
+    left: 0;
+    z-index: -999;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  dialog.modal {
+    border: none;
+    width: max-content;
+    height: max-content;
+    padding: 0;
+    background-color: transparent;
+    text-align: center;
+
+    img {
+      max-width: 75vw;
+      max-height: 75vh;
+      margin: 0;
+    }
+
+    p.no-image {
+      font-size: xx-large;
+      user-select: none;
+    }
+
+    button {
+      $background-colour: #3333dd;
+      $border-colour: color-mix(in srgb, $background-colour 90%, #000000 10%);
+
+      background-color: $background-colour;
+
+      border: 1px solid;
+      border-color: $border-colour;
+      border-radius: 100px;
+
+      height: 3em;
+      padding: 1em;
+      font-size: large;
+      cursor: pointer;
+
+      color: #ffffff;
+      transition:
+        background-color 0.3s,
+        border-color 0.3s;
+
+      &:hover {
+        background-color: color-mix(
+          in srgb,
+          $background-colour 85%,
+          #000000 15%
+        );
+        border-color: color-mix(in srgb, $border-colour 85%, #000000 15%);
+      }
+    }
+
+    &::backdrop {
+      backdrop-filter: blur(2px);
+    }
+  }
+
+  .container {
+    margin-left: $toolbar-width;
+    margin-right: 0;
+    position: relative;
+    min-height: calc(100vh - $navigation-bar-height - 1ch);
+  }
+</style>

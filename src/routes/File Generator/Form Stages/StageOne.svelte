@@ -87,8 +87,10 @@
     const image = new Image();
     image.onload = () => {
       mapImage = image;
+      if ($store.mapImage !== null) {
+        URL.revokeObjectURL($store.mapImage.src);
+      }
       $store.mapImage = image;
-      URL.revokeObjectURL(blobURL);
       advanceStage("forward");
     };
 
