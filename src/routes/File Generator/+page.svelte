@@ -1,32 +1,13 @@
-<script lang="ts" context="module">
-  import { writable } from "svelte/store";
-
-  type FileGeneratorStore = {
-    mapImage: HTMLImageElement | null;
-  };
-
-  const store = writable<FileGeneratorStore>({
-    mapImage: null,
-  });
-
-  export { type FileGeneratorStore, store };
-</script>
-
 <script lang="ts">
   import clamp from "$lib/functions/clamp";
   import StageOne from "./Form Stages/StageOne.svelte";
   import FormStage from "./FormStage.svelte";
-  import HashManager from "$lib/classes/HashManager";
-  import { browser } from "$app/environment";
   import { onMount } from "svelte";
 
-  const hashManager = HashManager.fromWindow();
   const STAGE_COMPLETION: Record<number, () => true | string> = {};
 
   let form: HTMLFormElement;
-  let activeStage: number = browser
-    ? parseInt(hashManager.get("stage") ?? "1")
-    : 1;
+  let activeStage: number = 1;
   let lastStage: number = 1;
   let stageOne: StageOne;
 
@@ -44,9 +25,6 @@
     );
 
     canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
-
-    hashManager.set("stage", activeStage.toString());
-    hashManager.updateWindowHash();
   }
 
   onMount(() => {

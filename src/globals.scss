@@ -1,2 +1,28 @@
 $navigation-bar-height: 3em;
 $toolbar-width: 3em;
+
+button {
+  $background-colour: #3333dd;
+  $border-colour: color-mix(in srgb, $background-colour 90%, #000000 10%);
+
+  background-color: $background-colour;
+
+  border: 1px solid;
+  border-color: $border-colour;
+  border-radius: 100px;
+
+  height: 3em;
+  padding: 1em;
+  font-size: large;
+  cursor: pointer;
+
+  color: #ffffff;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+
+  &:hover {
+    background-color: color-mix(in srgb, $background-colour 85%, #000000 15%);
+    border-color: color-mix(in srgb, $border-colour 85%, #000000 15%);
+  }
+}

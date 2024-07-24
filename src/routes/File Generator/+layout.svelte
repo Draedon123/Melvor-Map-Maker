@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { store } from "./+page.svelte";
+  import store from "./store";
 
   let modal: HTMLDialogElement;
+
   function previewImageOnClick(): void {
     if (modal.open) {
       modal.close();
@@ -139,39 +140,14 @@
       user-select: none;
     }
 
-    button {
-      $background-colour: #3333dd;
-      $border-colour: color-mix(in srgb, $background-colour 90%, #000000 10%);
-
-      background-color: $background-colour;
-
-      border: 1px solid;
-      border-color: $border-colour;
-      border-radius: 100px;
-
-      height: 3em;
-      padding: 1em;
-      font-size: large;
-      cursor: pointer;
-
-      color: #ffffff;
-      transition:
-        background-color 0.3s,
-        border-color 0.3s;
-
-      &:hover {
-        background-color: color-mix(
-          in srgb,
-          $background-colour 85%,
-          #000000 15%
-        );
-        border-color: color-mix(in srgb, $border-colour 85%, #000000 15%);
-      }
-    }
-
     &::backdrop {
       backdrop-filter: blur(2px);
     }
+
+    &[open] {
+      animation: fly-in-top 0.5s ease-out;
+    }
+    animation: fly-out-top 0.5s ease-in;
   }
 
   .container {
@@ -179,5 +155,29 @@
     margin-right: 0;
     position: relative;
     min-height: calc(100vh - $navigation-bar-height - 1ch);
+  }
+
+  @keyframes fly-in-top {
+    0% {
+      transform: translateY(-100vh);
+      display: none;
+    }
+
+    100% {
+      transform: translateY(0);
+      display: block;
+    }
+  }
+
+  @keyframes fly-out-top {
+    0% {
+      transform: translateY(0);
+      display: block;
+    }
+
+    100% {
+      transform: translateY(-100vh);
+      display: none;
+    }
   }
 </style>

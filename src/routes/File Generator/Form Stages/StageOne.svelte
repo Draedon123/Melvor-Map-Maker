@@ -1,7 +1,7 @@
 <script lang="ts">
   import FormStage from "../FormStage.svelte";
   import { error } from "$lib/functions/log";
-  import { store } from "../+page.svelte";
+  import store from "../store";
 
   export let activeStage: number;
   export let advanceStage: (direction: "forward" | "back") => void;
@@ -99,10 +99,7 @@
 
   const IS_IMAGE_REGEX = /^image\/png$/;
   function isDragEventValid(event: DragEvent): boolean {
-    if (
-      !event.dataTransfer?.items[0].type.match(IS_IMAGE_REGEX) ||
-      event.dataTransfer?.files.length !== 1
-    ) {
+    if (!IS_IMAGE_REGEX.test(event.dataTransfer?.items[0].type ?? "")) {
       return false;
     }
 
@@ -125,7 +122,7 @@
     <input
       class="file-upload-input"
       type="file"
-      accept="image/*"
+      accept="image/png"
       on:change={fileUploadOnChange}
       bind:this={fileUploadInput}
     />
@@ -147,7 +144,8 @@
     justify-content: center;
     cursor: pointer;
     font-size: large;
-    background-color: #ffffff;
+    background-color: transparent;
+    color: #000000;
   }
 
   .file-upload-dragging {
