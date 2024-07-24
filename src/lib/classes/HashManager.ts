@@ -55,7 +55,7 @@ class HashManager {
       return null;
     }
 
-    const value = this.get(key)!;
+    const value = this.get(key);
     this.hash = this.hash
       .replace(new RegExp(`${encodeURIComponent(key)}=.+?,`), ",")
       .replace(/,+/, ",");

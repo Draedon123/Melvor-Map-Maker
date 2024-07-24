@@ -4,6 +4,9 @@
   import { browser } from "$app/environment";
   import HashManager from "$lib/classes/HashManager";
   import FormStage from "./FormStage.svelte";
+  import { error } from "$lib/functions/log";
+
+  const LOG_PREFIX = "File Generator +page";
 
   const enum FILE_UPLOAD_ERROR {
     "NO_ERROR" = -1,
@@ -32,12 +35,11 @@
   let fileUpload: HTMLButtonElement;
   let fileUploadInput: HTMLInputElement;
   let isDragging: boolean = false;
-  let fileUploadError: FILE_UPLOAD_ERROR = FILE_UPLOAD_ERROR.NO_ERROR;
   let mapImage: HTMLImageElement | null = null;
   let canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
 
   function advanceStage(direction: "back" | "forward"): void {
-    if (typeof canGoToNextStage === "string") {
+    if (typeof canGoToNextStage === "string" && import.meta.env.PROD) {
       return;
     }
 
@@ -53,52 +55,67 @@
     hashManager.updateWindowHash();
   }
 
-  function onFileDrop(event: DragEvent) {
+  function onFileDrop(event: DragEvent): void {
+    const PREFIX = `${LOG_PREFIX} | onFileDrop`;
+    if (event.dataTransfer === null) {
+      return error(
+        `${PREFIX}`,
+        'Property "dataTransfer" was not found on event'
+      );
+    }
+
     isDragging = false;
-    const item = event.dataTransfer!.items[0];
+    const item = event.dataTransfer.items[0];
     const file = item.getAsFile();
 
     if (file === null) {
-      fileUploadError = FILE_UPLOAD_ERROR.NOT_A_FILE;
+      error(`${PREFIX}`, "Uploaded file is not an image");
       return;
     }
 
     uploadMapImage(file);
   }
 
-  function onFileDragOver(event: DragEvent) {
+  function onFileDragOver(event: DragEvent): void {
+    const PREFIX = `${LOG_PREFIX} | onFileDragOver`;
+    if (event.dataTransfer === null) {
+      return error(
+        `${PREFIX}`,
+        'Property "dataTransfer" was not found on event'
+      );
+    }
+
     isDragging = true;
     const isDragValid = isDragEventValid(event);
 
-    event.dataTransfer!.dropEffect = isDragValid ? "link" : "none";
+    event.dataTransfer.dropEffect = isDragValid ? "link" : "none";
   }
 
-  function onFileDragEnd() {
+  function onFileDragEnd(): void {
     isDragging = false;
   }
 
-  function onFileUploadClick() {
+  function onFileUploadClick(): void {
     fileUploadInput.click();
   }
 
-  function fileUploadOnChange() {
+  function fileUploadOnChange(): void {
+    const PREFIX = `${LOG_PREFIX} | fileUploadOnChange`;
     const fileList = fileUploadInput.files;
     if (fileList === null) {
-      throw new Error(
-        "[File Generator +page] | File Input is not of type File"
-      );
+      return error(PREFIX, "File Upload input does not have type=file");
     }
 
     const file = fileList.item(0);
     if (file === null) {
-      fileUploadError = FILE_UPLOAD_ERROR.NOT_A_FILE;
+      error(`${PREFIX}`, "Uploaded file is not an image");
       return;
     }
 
     uploadMapImage(file);
   }
 
-  function uploadMapImage(file: File) {
+  function uploadMapImage(file: File): void {
     const blob = new Blob([file]);
     const blobURL = URL.createObjectURL(blob);
 

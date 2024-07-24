@@ -1,7 +1,6 @@
 import js from "@eslint/js";
 import ts from "typescript-eslint";
 import svelte from "eslint-plugin-svelte";
-import prettier from "eslint-config-prettier";
 import globals from "globals";
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
@@ -9,8 +8,6 @@ export default [
   js.configs.recommended,
   ...ts.configs.strict,
   ...svelte.configs["flat/recommended"],
-  prettier,
-  ...svelte.configs["flat/prettier"],
   {
     languageOptions: {
       globals: {
@@ -20,7 +17,7 @@ export default [
     },
   },
   {
-    files: ["**/*.svelte"],
+    files: ["**/*.svelte", "**/*.ts"],
     languageOptions: {
       parserOptions: {
         parser: ts.parser,
@@ -28,6 +25,6 @@ export default [
     },
   },
   {
-    ignores: ["build/", ".svelte-kit/", "dist/"],
+    ignores: ["build/", ".svelte-kit/"],
   },
 ];
