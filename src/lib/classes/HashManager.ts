@@ -2,16 +2,9 @@ import { browser } from "$app/environment";
 
 class HashManager {
   constructor(
-    public hash: string,
+    public hash: string = "",
     public autoUpdateWindowHash: boolean = true
-  ) {
-    if (!hash.endsWith(",") && hash !== "") {
-      this.hash += ",";
-      if (this.autoUpdateWindowHash) {
-        this.updateWindowHash();
-      }
-    }
-  }
+  ) {}
 
   public static fromWindow(): HashManager {
     return new HashManager(browser ? window.location.hash.slice(1) : "");
@@ -40,8 +33,13 @@ class HashManager {
         `${hashString},`
       );
     } else {
-      this.hash += `${hashString},`;
+      if (this.hash !== "") {
+        this.hash += ",";
+      }
+      this.hash += `${hashString}`;
     }
+
+    this.removeLeadingAndTrailingCommas();
 
     if (this.autoUpdateWindowHash) {
       this.updateWindowHash();
@@ -57,8 +55,15 @@ class HashManager {
 
     const value = this.get(key);
     this.hash = this.hash
-      .replace(new RegExp(`${encodeURIComponent(key)}=.+?,`), ",")
+      .replace(
+        new RegExp(
+          `(${encodeURIComponent(key)}=.+?,)|(${encodeURIComponent(key)}=.+?$)`
+        ),
+        ","
+      )
       .replace(/,+/, ",");
+
+    this.removeLeadingAndTrailingCommas();
 
     if (this.autoUpdateWindowHash) {
       this.updateWindowHash();
@@ -68,7 +73,9 @@ class HashManager {
   }
 
   public contains(key: string): boolean {
-    return new RegExp(`${encodeURIComponent(key)}=.+?,`).test(this.hash);
+    return new RegExp(
+      `(${encodeURIComponent(key)}=.+?,)|(${encodeURIComponent(key)}=.+?$)`
+    ).test(this.hash);
   }
 
   public getAllHashes(): Record<string, string> {
@@ -91,6 +98,19 @@ class HashManager {
 
   private getHashString(key: string, value: string): string {
     return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+  }
+
+  private removeLeadingAndTrailingCommas(): string {
+    if (!this.hash.startsWith(",") && !this.hash.endsWith(",")) {
+      return this.hash;
+    }
+
+    const start = this.hash.match(/^,+/)?.[0]?.length ?? 0;
+    const end = -(this.hash.match(/,+$/)?.[0]?.length ?? -this.hash.length);
+
+    this.hash = this.hash.slice(start, end);
+
+    return this.hash;
   }
 }
 

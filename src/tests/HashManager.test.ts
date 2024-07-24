@@ -12,7 +12,7 @@ test("Gets the value of a nonexistent key", () => {
 });
 
 test("Sets a = 2", () => {
-  expect(hashManager.set("a", "2")).toBe("a=2,b=3,");
+  expect(hashManager.set("a", "2")).toBe("a=2,b=3");
 });
 
 test("Gets all hashes", () => {
@@ -24,5 +24,5 @@ test("Gets all hashes", () => {
 
 test("Deletes b", () => {
   hashManager.delete("b");
-  expect(hashManager.hash).toBe("a=2,");
+  expect(hashManager.hash).toBe("a=2");
 });
