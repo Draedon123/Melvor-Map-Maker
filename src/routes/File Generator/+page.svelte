@@ -1,41 +1,35 @@
+<script lang="ts" context="module">
+  import { writable } from "svelte/store";
+
+  type FileGeneratorStore = {
+    mapImage: HTMLImageElement | null;
+  };
+
+  const store = writable<FileGeneratorStore>({
+    mapImage: null,
+  });
+
+  export { type FileGeneratorStore, store };
+</script>
+
 <script lang="ts">
   import clamp from "$lib/functions/clamp";
-  import { onMount } from "svelte";
-  import { browser } from "$app/environment";
-  import HashManager from "$lib/classes/HashManager";
+  import StageOne from "./Form Stages/StageOne.svelte";
   import FormStage from "./FormStage.svelte";
-  import { error } from "$lib/functions/log";
-
-  const LOG_PREFIX = "File Generator +page";
-
-  const enum FILE_UPLOAD_ERROR {
-    "NO_ERROR" = -1,
-    "INVALID_IMAGE",
-    "TOO_MANY_FILES",
-    "NOT_A_FILE",
-  }
+  import HashManager from "$lib/classes/HashManager";
+  import { browser } from "$app/environment";
+  import { onMount } from "svelte";
 
   const hashManager = HashManager.fromWindow();
-  const STAGE_COMPLETION: Record<number, () => true | string> = {
-    1: () => {
-      if (mapImage === null) {
-        return "No uploaded image";
-      }
-
-      return true;
-    },
-  };
+  const STAGE_COMPLETION: Record<number, () => true | string> = {};
 
   let form: HTMLFormElement;
   let activeStage: number = browser
     ? parseInt(hashManager.get("stage") ?? "1")
     : 1;
   let lastStage: number = 1;
+  let stageOne: StageOne;
 
-  let fileUpload: HTMLButtonElement;
-  let fileUploadInput: HTMLInputElement;
-  let isDragging: boolean = false;
-  let mapImage: HTMLImageElement | null = null;
   let canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
 
   function advanceStage(direction: "back" | "forward"): void {
@@ -55,100 +49,11 @@
     hashManager.updateWindowHash();
   }
 
-  function onFileDrop(event: DragEvent): void {
-    const PREFIX = `${LOG_PREFIX} | onFileDrop`;
-    if (event.dataTransfer === null) {
-      return error(
-        `${PREFIX}`,
-        'Property "dataTransfer" was not found on event'
-      );
-    }
-
-    isDragging = false;
-    const item = event.dataTransfer.items[0];
-    const file = item.getAsFile();
-
-    if (file === null) {
-      error(`${PREFIX}`, "Uploaded file is not an image");
-      return;
-    }
-
-    uploadMapImage(file);
-  }
-
-  function onFileDragOver(event: DragEvent): void {
-    const PREFIX = `${LOG_PREFIX} | onFileDragOver`;
-    if (event.dataTransfer === null) {
-      return error(
-        `${PREFIX}`,
-        'Property "dataTransfer" was not found on event'
-      );
-    }
-
-    isDragging = true;
-    const isDragValid = isDragEventValid(event);
-
-    event.dataTransfer.dropEffect = isDragValid ? "link" : "none";
-  }
-
-  function onFileDragEnd(): void {
-    isDragging = false;
-  }
-
-  function onFileUploadClick(): void {
-    fileUploadInput.click();
-  }
-
-  function fileUploadOnChange(): void {
-    const PREFIX = `${LOG_PREFIX} | fileUploadOnChange`;
-    const fileList = fileUploadInput.files;
-    if (fileList === null) {
-      return error(PREFIX, "File Upload input does not have type=file");
-    }
-
-    const file = fileList.item(0);
-    if (file === null) {
-      error(`${PREFIX}`, "Uploaded file is not an image");
-      return;
-    }
-
-    uploadMapImage(file);
-  }
-
-  function uploadMapImage(file: File): void {
-    const blob = new Blob([file]);
-    const blobURL = URL.createObjectURL(blob);
-
-    const image = new Image();
-    image.onload = () => {
-      mapImage = image;
-      canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
-      URL.revokeObjectURL(blobURL);
-      advanceStage("forward");
-    };
-
-    image.src = blobURL;
-  }
-
-  const IS_IMAGE_REGEX = /^image\/png$/;
-  function isDragEventValid(event: DragEvent): FILE_UPLOAD_ERROR {
-    if (!event.dataTransfer?.items[0].type.match(IS_IMAGE_REGEX)) {
-      return FILE_UPLOAD_ERROR.INVALID_IMAGE;
-    }
-
-    if (event.dataTransfer?.files.length !== 1) {
-      return FILE_UPLOAD_ERROR.TOO_MANY_FILES;
-    }
-
-    return FILE_UPLOAD_ERROR.NO_ERROR;
-  }
-
   onMount(() => {
     const formStages = [...form.children].filter(
       (child) => child.getAttribute("data-form-stage") !== null
     );
 
-    // last element is a container for submit buttons
     let lastIndex = formStages.length;
     lastStage = lastIndex;
 
@@ -156,6 +61,9 @@
       const child = formStages[i];
       child.setAttribute("data-stage", i.toString());
     }
+
+    STAGE_COMPLETION[1] = stageOne.isStageComplete;
+    canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
   });
 </script>
 
@@ -170,27 +78,7 @@
     id="fileGeneratorForm"
     bind:this={form}
   >
-    <FormStage stage={1} currentStage={activeStage}>
-      <h1>Step 1: Insert your map image</h1>
-      <button
-        class="file-upload"
-        class:file-upload-dragging={isDragging}
-        on:dragover|preventDefault={onFileDragOver}
-        on:dragleave={onFileDragEnd}
-        on:drop|preventDefault={onFileDrop}
-        on:click={onFileUploadClick}
-        bind:this={fileUpload}
-      >
-        Drag and drop a .png image here, or click to upload a file
-        <input
-          class="file-upload-input"
-          type="file"
-          accept="image/*"
-          on:change={fileUploadOnChange}
-          bind:this={fileUploadInput}
-        />
-      </button>
-    </FormStage>
+    <StageOne bind:this={stageOne} {activeStage} {advanceStage} />
     <FormStage stage={2} currentStage={activeStage}>2</FormStage>
     <FormStage stage={3} currentStage={activeStage}>3</FormStage>
     <div class="submit">
@@ -276,30 +164,5 @@
 
   .error {
     color: red;
-  }
-
-  h1 {
-    margin: 0 0 0.25em 0;
-  }
-
-  .file-upload {
-    width: 100%;
-    height: 50vh;
-    border: 10px dashed #3333dd;
-    border-radius: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: large;
-    background-color: #ffffff;
-  }
-
-  .file-upload-dragging {
-    background-color: #cccccc;
-  }
-
-  .file-upload-input {
-    display: none;
   }
 </style>
