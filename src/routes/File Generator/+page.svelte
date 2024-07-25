@@ -1,6 +1,7 @@
 <script lang="ts">
   import clamp from "$lib/functions/clamp";
   import StageOne from "./Form Stages/StageOne.svelte";
+  import StageTwo from "./Form Stages/StageTwo.svelte";
   import FormStage from "./FormStage.svelte";
   import { onMount } from "svelte";
 
@@ -54,10 +55,11 @@
     class="scrolling-form"
     name="fileGeneratorForm"
     id="fileGeneratorForm"
+    on:submit|preventDefault
     bind:this={form}
   >
     <StageOne bind:this={stageOne} {activeStage} {advanceStage} />
-    <FormStage stage={2} currentStage={activeStage}>2</FormStage>
+    <StageTwo {activeStage} />
     <FormStage stage={3} currentStage={activeStage}>3</FormStage>
     <div class="submit">
       <div class="error">
@@ -114,8 +116,7 @@
 
     input {
       background-color: $input-background-colour;
-      border: 2px solid;
-      border-color: $input-border-colour;
+      border: 2px solid $input-border-colour;
       border-radius: 3em;
 
       width: 10ch;

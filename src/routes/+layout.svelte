@@ -1,7 +1,7 @@
 <script>
   import NavigationBar from "$lib/components/NavigationBar/NavigationBar.svelte";
   import NavigationBarItem from "$lib/components/NavigationBar/NavigationBarItem.svelte";
-  import "../globals.scss";
+  import "/src/styles/globals.scss";
 </script>
 
 <aside>
@@ -30,7 +30,7 @@
 
 <style lang="scss">
   @use "sass:math";
-  @import "/src/globals.scss";
+  @import "/src/styles/globals.scss";
 
   main {
     margin-top: $navigation-bar-height;

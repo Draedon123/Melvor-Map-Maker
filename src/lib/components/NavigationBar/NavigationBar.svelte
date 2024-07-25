@@ -3,7 +3,7 @@
 </nav>
 
 <style lang="scss">
-  @import "/src/globals.scss";
+  @import "/src/styles/globals.scss";
 
   .navigation {
     position: absolute;

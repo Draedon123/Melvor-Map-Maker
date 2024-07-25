@@ -49,7 +49,8 @@
 
 <style lang="scss">
   @use "sass:math";
-  @import "/src/globals.scss";
+  @import "/src/styles/globals.scss";
+  @import "/src/styles/button.scss";
 
   $toolbar-colour: #1f1f1f;
   $image-dimensions: 0.9 * $toolbar-width;
@@ -102,7 +103,7 @@
         opacity: 0;
         color: white;
         transition: opacity 0.4s;
-        height: $image-dimensions / 2;
+        height: math.div($image-dimensions, 2);
         text-wrap: nowrap;
       }
     }
@@ -128,6 +129,7 @@
     padding: 0;
     background-color: transparent;
     text-align: center;
+    animation: fly-out-top 0.5s ease-in;
 
     img {
       max-width: 75vw;
@@ -147,7 +149,6 @@
     &[open] {
       animation: fly-in-top 0.5s ease-out;
     }
-    animation: fly-out-top 0.5s ease-in;
   }
 
   .container {

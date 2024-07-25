@@ -2,6 +2,7 @@
   import FormStage from "../FormStage.svelte";
   import { error } from "$lib/functions/log";
   import store from "../store";
+  import resizeImage from "$lib/functions/imageResize";
 
   export let activeStage: number;
   export let advanceStage: (direction: "forward" | "back") => void;
@@ -61,7 +62,9 @@
   }
 
   function onFileUploadClick(): void {
-    fileUploadInput.click();
+    if (activeStage === 1) {
+      fileUploadInput.click();
+    }
   }
 
   function fileUploadOnChange(): void {
@@ -85,12 +88,25 @@
     const blobURL = URL.createObjectURL(blob);
 
     const image = new Image();
-    image.onload = () => {
-      mapImage = image;
+    image.onload = async () => {
+      const deltaWidth = image.width % 8;
+      const deltaHeight = image.height % 8;
+
+      const resizedImage = await resizeImage(image, {
+        type: "pixel",
+        x: deltaWidth,
+        y: deltaHeight,
+      }).catch((error) => {
+        const errorMessage =
+          error instanceof Error ? error.message : "Unspecified error";
+        return error(`${LOG_PREFIX} | uploadMapImage`, errorMessage);
+      });
+
+      mapImage = resizedImage;
       if ($store.mapImage !== null) {
         URL.revokeObjectURL($store.mapImage.src);
       }
-      $store.mapImage = image;
+      $store.mapImage = resizedImage;
       advanceStage("forward");
     };
 
