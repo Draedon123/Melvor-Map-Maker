@@ -3,6 +3,17 @@
   import store from "../store";
 
   export let activeStage: number;
+  export function isStageComplete(): true | string {
+    if (!isTilesXValid) {
+      return "Tile Width does not produce an integer number of tiles";
+    }
+
+    if (!isTilesYValid) {
+      return "Tile Height does not produce an integer number of tiles";
+    }
+
+    return true;
+  }
 
   function getTileDimensions(imageLength: number): number {
     for (let tileCount = 1; tileCount++; tileCount < imageLength) {

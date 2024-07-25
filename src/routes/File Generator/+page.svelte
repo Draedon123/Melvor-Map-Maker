@@ -11,10 +11,12 @@
   let activeStage: number = 1;
   let lastStage: number = 1;
   let stageOne: StageOne;
+  let stageTwo: StageTwo;
 
   let canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
 
   function advanceStage(direction: "back" | "forward"): void {
+    canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
     if (typeof canGoToNextStage === "string" && import.meta.env.PROD) {
       return;
     }
@@ -42,6 +44,7 @@
     }
 
     STAGE_COMPLETION[1] = stageOne.isStageComplete;
+    STAGE_COMPLETION[2] = stageTwo.isStageComplete;
     canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
   });
 </script>
@@ -59,7 +62,7 @@
     bind:this={form}
   >
     <StageOne bind:this={stageOne} {activeStage} {advanceStage} />
-    <StageTwo {activeStage} />
+    <StageTwo bind:this={stageTwo} {activeStage} />
     <FormStage stage={3} currentStage={activeStage}>3</FormStage>
     <div class="submit">
       <div class="error">

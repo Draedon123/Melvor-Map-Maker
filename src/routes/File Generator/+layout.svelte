@@ -114,8 +114,8 @@
     height: calc(100vh - $navigation-bar-height - 1ch);
     top: 0;
     left: 0;
-    z-index: -999;
     position: absolute;
+    pointer-events: none;
 
     display: flex;
     justify-content: center;
@@ -130,6 +130,7 @@
     background-color: transparent;
     text-align: center;
     animation: fly-out-top 0.5s ease-in;
+    pointer-events: all;
 
     img {
       max-width: 75vw;
