@@ -5,7 +5,8 @@
   import resizeImage from "$lib/functions/imageResize";
 
   export let activeStage: number;
-  export let advanceStage: (direction: "forward" | "back") => void;
+  export let canGoToNextStage: boolean | string;
+  export let disableAdvanceStageButtons: boolean;
   export function isStageComplete(): true | string {
     if (mapImage === null) {
       return "No uploaded image";
@@ -86,28 +87,38 @@
   function uploadMapImage(file: File): void {
     const blob = new Blob([file]);
     const blobURL = URL.createObjectURL(blob);
+    disableAdvanceStageButtons = true;
 
     const image = new Image();
-    image.onload = async () => {
+
+    image.onload = () => {
       const deltaWidth = image.width % 8;
       const deltaHeight = image.height % 8;
 
-      const resizedImage = await resizeImage(image, {
-        type: "pixel",
-        x: deltaWidth,
-        y: deltaHeight,
-      }).catch((error) => {
-        const errorMessage =
-          error instanceof Error ? error.message : "Unspecified error";
-        return error(`${LOG_PREFIX} | uploadMapImage`, errorMessage);
-      });
-
-      mapImage = resizedImage;
-      if ($store.mapImage !== null) {
-        URL.revokeObjectURL($store.mapImage.src);
-      }
-      $store.mapImage = resizedImage;
-      advanceStage("forward");
+      resizeImage(
+        image,
+        {
+          type: "additive",
+          x: deltaWidth,
+          y: deltaHeight,
+        },
+        "image"
+      )
+        .then((image) => {
+          mapImage = image;
+          if ($store.mapImage !== null) {
+            URL.revokeObjectURL($store.mapImage.src);
+          }
+          $store.mapImage = image;
+          disableAdvanceStageButtons = false;
+          canGoToNextStage = isStageComplete();
+        })
+        .catch((error) => {
+          disableAdvanceStageButtons = false;
+          const errorMessage =
+            error instanceof Error ? error.message : "Unspecified error";
+          return error(`${LOG_PREFIX} | uploadMapImage`, errorMessage);
+        });
     };
 
     image.src = blobURL;
@@ -134,7 +145,18 @@
     on:click={onFileUploadClick}
     bind:this={fileUpload}
   >
-    Drag and drop a .png image here, or click to upload a file
+    <p>Drag and drop a .png image here, or click to upload a file.</p>
+    {#if $store.mapImage !== null}
+      <p class="center">
+        To preview your uploaded image, click the
+        <img
+          src="/preview.png"
+          alt="A document and a magnifying glass"
+          style="height: 2em; width: 2em; display: inline; margin-left: 0.7ch;"
+        />
+        icon on the left toolbar
+      </p>
+    {/if}
     <input
       class="file-upload-input"
       type="file"
@@ -156,6 +178,7 @@
     border: 10px dashed #3333dd;
     border-radius: 2em;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -170,5 +193,10 @@
 
   .file-upload-input {
     display: none;
+  }
+
+  .center {
+    display: flex;
+    align-items: center;
   }
 </style>

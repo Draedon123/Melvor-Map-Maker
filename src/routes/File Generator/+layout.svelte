@@ -1,7 +1,10 @@
 <script lang="ts">
+  import resizeImage from "$lib/functions/imageResize";
   import store from "./store";
 
   let modal: HTMLDialogElement;
+  let preview: HTMLImageElement;
+  let previewImageSRC: string = "/black.png";
 
   function previewImageOnClick(): void {
     if (modal.open) {
@@ -11,9 +14,38 @@
     }
   }
 
+  async function getPreviewImageSrc(
+    image: HTMLImageElement | null
+  ): Promise<void> {
+    URL.revokeObjectURL(previewImageSRC);
+    if (image === null) {
+      previewImageSRC = "/black.png";
+      return;
+    }
+
+    const width = document.body.offsetHeight * 0.75 * devicePixelRatio;
+    const height = document.body.offsetHeight * 0.75 * devicePixelRatio;
+
+    const src = await resizeImage(
+      image,
+      {
+        type: "to",
+        x: width,
+        y: height,
+      },
+      "url"
+    );
+
+    previewImageSRC = src;
+  }
+
   function closeDialog(): void {
     modal.close();
   }
+
+  store.subscribe((store) => {
+    getPreviewImageSrc(store.mapImage);
+  });
 </script>
 
 <div class="container">
@@ -30,23 +62,18 @@
     </div>
   </aside>
 
-  <div class="fullscreen">
-    <dialog bind:this={modal} class="modal">
-      {#if $store.mapImage !== null}
-        <img src={$store.mapImage.src} alt="Preview" />
-        <br />
-      {:else}
-        <p class="no-image">No image inputted!</p>
-      {/if}
-      <button on:click={closeDialog}>Close</button>
-    </dialog>
-  </div>
+  <dialog bind:this={modal} class="modal">
+    <img bind:this={preview} src={previewImageSRC} alt="Preview" />
+    <br />
+    <button on:click={closeDialog}>Close</button>
+  </dialog>
 
   <div class="main">
     <slot />
   </div>
 </div>
 
+<!-- svelte-ignore css-unused-selector -->
 <style lang="scss">
   @use "sass:math";
   @import "/src/styles/globals.scss";
@@ -69,8 +96,11 @@
     flex-direction: column;
 
     &:hover div {
-      background-color: #303030;
-      width: 5 * $toolbar-width;
+      width: 4 * $toolbar-width;
+
+      &:hover {
+        background-color: #303030;
+      }
 
       span {
         opacity: 1;
@@ -109,19 +139,6 @@
     }
   }
 
-  .fullscreen {
-    width: calc(100vw - $toolbar-width - 1ch);
-    height: calc(100vh - $navigation-bar-height - 1ch);
-    top: 0;
-    left: 0;
-    position: absolute;
-    pointer-events: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   dialog.modal {
     border: none;
     width: max-content;
@@ -133,18 +150,14 @@
     pointer-events: all;
 
     img {
-      max-width: 75vw;
-      max-height: 75vh;
+      width: 75vh;
+      height: 75vh;
+      background-color: black;
       margin: 0;
     }
 
-    p.no-image {
-      font-size: xx-large;
-      user-select: none;
-    }
-
     &::backdrop {
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(4px);
     }
 
     &[open] {

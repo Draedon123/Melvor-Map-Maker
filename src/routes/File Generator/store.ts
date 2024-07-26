@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
 
 type FileGeneratorStore = {
   mapImage: HTMLImageElement | null;
@@ -12,5 +12,15 @@ const store = writable<FileGeneratorStore>({
   tilesY: 0,
 });
 
+const mapImage = derived(store, ($store) => $store.mapImage);
+
+const tileDimensions = derived(store, ($store) => {
+  return {
+    tilesX: $store.tilesX,
+    tilesY: $store.tilesY,
+  };
+});
+
 export default store;
+export { mapImage, tileDimensions };
 export type { FileGeneratorStore };

@@ -1,15 +1,51 @@
 <script lang="ts">
   import FormStage from "../FormStage.svelte";
-  import store from "../store";
+  import store, { mapImage } from "../store";
 
   export let activeStage: number;
+  export let canGoToNextStage: true | string;
   export function isStageComplete(): true | string {
-    if (!isTilesXValid) {
-      return "Tile Width does not produce an integer number of tiles";
+    return getErrorMessage($mapImage, tileWidth, tileHeight);
+  }
+
+  function getErrorMessage(
+    mapImage: HTMLImageElement | null,
+    tileWidth: number,
+    tileHeight: number
+  ): true | string {
+    if (tileWidth < 1) {
+      return "Tile width must be greater than 1";
     }
 
-    if (!isTilesYValid) {
-      return "Tile Height does not produce an integer number of tiles";
+    if (tileHeight < 1) {
+      return "Tile height must be greater than 1";
+    }
+
+    if (!Number.isInteger(tileWidth)) {
+      console.log(tileWidth);
+      return "Tile width must be an integer";
+    }
+
+    if (!Number.isInteger(tileHeight)) {
+      return "Tile height must be an integer";
+    }
+
+    if (tileWidth > 2000) {
+      return "Tile width must be less than 2000";
+    }
+
+    if (tileHeight > 2000) {
+      return "Tile height must be less than 2000";
+    }
+
+    if (mapImage !== null) {
+      if (!Number.isInteger(mapImage.width / tileWidth)) {
+        return "Tile width does not produce an integer number of tiles";
+      }
+
+      if (!Number.isInteger(mapImage.height / tileHeight)) {
+        return "Tile height does not produce an integer number of tiles";
+      }
     }
 
     return true;
@@ -29,31 +65,34 @@
   let tileWidth = 1;
   let tileHeight = 1;
 
-  $: tilesX = (() => {
-    const tilesX = ($store.mapImage?.width ?? 0) / tileWidth;
+  $: {
+    const tilesX = ($mapImage?.width ?? 0) / tileWidth;
     if (Number.isInteger(tilesX)) {
       $store.tilesX = tilesX;
     }
+  }
 
-    return tilesX;
-  })();
-  $: tilesY = (() => {
-    const tilesY = ($store.mapImage?.height ?? 0) / tileHeight;
+  $: {
+    const tilesY = ($mapImage?.height ?? 0) / tileHeight;
     if (Number.isInteger(tilesY)) {
       $store.tilesY = tilesY;
     }
+  }
 
-    return tilesY;
+  $: errorMessage = (() => {
+    const message = getErrorMessage($mapImage, tileWidth, tileHeight);
+    canGoToNextStage = message;
+    return message;
   })();
 
-  $: isTilesXValid = Number.isInteger(tilesX);
-  $: isTilesYValid = Number.isInteger(tilesY);
-
-  store.subscribe((store) => {
-    tileWidth =
-      store.mapImage === null ? 1 : getTileDimensions(store.mapImage.width);
-    tileHeight =
-      store.mapImage === null ? 1 : getTileDimensions(store.mapImage.height);
+  let oldMapImage: HTMLImageElement | null = null;
+  mapImage.subscribe((mapImage) => {
+    if (oldMapImage === mapImage) {
+      return;
+    }
+    oldMapImage = mapImage;
+    tileWidth = mapImage === null ? 1 : getTileDimensions(mapImage.width);
+    tileHeight = mapImage === null ? 1 : getTileDimensions(mapImage.height);
   });
 </script>
 
@@ -70,7 +109,7 @@
         min="1"
         max="2000"
         step="1"
-        class:invalid={!isTilesXValid}
+        class:invalid={typeof errorMessage === "string"}
         bind:value={tileWidth}
       />
     </label>
@@ -86,20 +125,10 @@
         min="1"
         max="2000"
         step="1"
-        class:invalid={!isTilesYValid}
+        class:invalid={typeof errorMessage === "string"}
         bind:value={tileHeight}
       />
     </label>
-
-    <span class="error">
-      {#if !isTilesXValid}
-        Tile Width does not produce an integer number of tiles
-        <br />
-      {/if}
-      {#if !isTilesYValid}
-        Tile Height does not produce an integer number of tiles
-      {/if}
-    </span>
   </div>
 </FormStage>
 
@@ -116,14 +145,6 @@
     display: inline-flex;
     align-items: center;
     width: max-content;
-  }
-
-  .error {
-    color: #ff0000;
-    font-size: larger;
-    width: 100%;
-    text-align: center;
-    display: block;
   }
 
   input.invalid {

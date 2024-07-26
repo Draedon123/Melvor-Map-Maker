@@ -25,6 +25,6 @@ export default [
     },
   },
   {
-    ignores: ["build/", ".svelte-kit/"],
+    ignores: ["build/", ".svelte-kit/", "static/basis_encoder.js"],
   },
 ];

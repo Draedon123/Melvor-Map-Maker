@@ -1,11 +1,15 @@
-type ResizeBy = Scale | Pixel;
+type ResizeBy = Scale | Additive | Absolute;
 
 type Scale = {
   type: "scale";
 } & Coordinate;
 
-type Pixel = {
-  type: "pixel";
+type Additive = {
+  type: "additive";
+} & Coordinate;
+
+type Absolute = {
+  type: "to";
 } & Coordinate;
 
 type Coordinate = {
@@ -15,9 +19,20 @@ type Coordinate = {
 
 function resizeImage(
   image: HTMLImageElement,
-  resizeBy: ResizeBy
-): Promise<HTMLImageElement> {
-  return new Promise<HTMLImageElement>((resolve, reject) => {
+  resizeBy: ResizeBy,
+  returnValue: "image"
+): Promise<HTMLImageElement>;
+function resizeImage(
+  image: HTMLImageElement,
+  resizeBy: ResizeBy,
+  returnValue: "url"
+): Promise<string>;
+function resizeImage(
+  image: HTMLImageElement,
+  resizeBy: ResizeBy,
+  returnValue: "image" | "url"
+): Promise<HTMLImageElement | string> {
+  return new Promise<HTMLImageElement | string>((resolve, reject) => {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
@@ -31,11 +46,15 @@ function resizeImage(
     const width =
       resizeBy.type === "scale"
         ? image.width * resizeBy.x
-        : image.width + resizeBy.x;
+        : resizeBy.type === "additive"
+          ? image.width + resizeBy.x
+          : resizeBy.x;
     const height =
       resizeBy.type === "scale"
         ? image.height * resizeBy.y
-        : image.height + resizeBy.y;
+        : resizeBy.type === "additive"
+          ? image.height + resizeBy.y
+          : resizeBy.y;
 
     canvas.width = width;
     canvas.height = height;
@@ -48,11 +67,15 @@ function resizeImage(
       }
 
       const url = URL.createObjectURL(blob);
-      const image = new Image();
-      image.onload = () => {
-        resolve(image);
-      };
-      image.src = url;
+      if (returnValue === "image") {
+        const image = new Image();
+        image.onload = () => {
+          resolve(image);
+        };
+        image.src = url;
+      } else {
+        resolve(url);
+      }
     });
   });
 }

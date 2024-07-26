@@ -1,3 +1,12 @@
+# v0.1.0
+
+- Implemented File Generator Stage 3
+- Implemented text directing user to preview image in File Generator Stage 1
+- Fixed File Generator toolbar items from changing colour when not hovered over
+- Updated image resize function to support absolute resizing
+- Updated map image preview modal
+- Updated File Generator Stage 2 error messages
+
 # v0.0.5
 
 - Implemented map image preview modal animations

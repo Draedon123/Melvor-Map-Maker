@@ -1,15 +1,17 @@
 <script lang="ts">
+  import "$lib/workers/cacheDatabase";
+  import { onMount } from "svelte";
   import clamp from "$lib/functions/clamp";
   import StageOne from "./Form Stages/StageOne.svelte";
   import StageTwo from "./Form Stages/StageTwo.svelte";
-  import FormStage from "./FormStage.svelte";
-  import { onMount } from "svelte";
+  import StageThree from "./Form Stages/StageThree.svelte";
 
   const STAGE_COMPLETION: Record<number, () => true | string> = {};
 
   let form: HTMLFormElement;
   let activeStage: number = 1;
   let lastStage: number = 1;
+  let disableAdvanceStageButtons: boolean = false;
   let stageOne: StageOne;
   let stageTwo: StageTwo;
 
@@ -61,9 +63,14 @@
     on:submit|preventDefault
     bind:this={form}
   >
-    <StageOne bind:this={stageOne} {activeStage} {advanceStage} />
-    <StageTwo bind:this={stageTwo} {activeStage} />
-    <FormStage stage={3} currentStage={activeStage}>3</FormStage>
+    <StageOne
+      bind:this={stageOne}
+      {activeStage}
+      bind:canGoToNextStage
+      bind:disableAdvanceStageButtons
+    />
+    <StageTwo bind:this={stageTwo} {activeStage} bind:canGoToNextStage />
+    <StageThree {activeStage} />
     <div class="submit">
       <div class="error">
         {#if typeof canGoToNextStage === "string"}
@@ -75,6 +82,9 @@
           type="submit"
           data-direction="back"
           value="Back"
+          disabled={disableAdvanceStageButtons ||
+            activeStage === 1 ||
+            (typeof canGoToNextStage === "string" && import.meta.env.PROD)}
           on:click|preventDefault={() => {
             advanceStage("back");
           }}
@@ -83,6 +93,9 @@
           type="submit"
           data-direction="forward"
           value="Next"
+          disabled={disableAdvanceStageButtons ||
+            activeStage === lastStage ||
+            (typeof canGoToNextStage === "string" && import.meta.env.PROD)}
           on:click|preventDefault={() => {
             advanceStage("forward");
           }}
@@ -132,15 +145,20 @@
       transition:
         background-color 0.3s,
         border-color 0.3s;
-    }
 
-    & :hover {
-      background-color: color-mix(
-        in srgb,
-        $input-background-colour 85%,
-        #000000 15%
-      );
-      border-color: color-mix(in srgb, $input-border-colour 85%, #000000 15%);
+      &[disabled] {
+        cursor: not-allowed;
+      }
+
+      &:hover:not([disabled]),
+      &[disabled] {
+        background-color: color-mix(
+          in srgb,
+          $input-background-colour 85%,
+          #000000 15%
+        );
+        border-color: color-mix(in srgb, $input-border-colour 85%, #000000 15%);
+      }
     }
   }
 

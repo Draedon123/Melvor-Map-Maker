@@ -17,7 +17,12 @@ button {
     background-color 0.3s,
     border-color 0.3s;
 
-  &:hover {
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &:hover:not([disabled]),
+  &[disabled] {
     background-color: color-mix(in srgb, $background-colour 85%, #000000 15%);
     border-color: color-mix(in srgb, $border-colour 85%, #000000 15%);
   }

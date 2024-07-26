@@ -1,6 +1,6 @@
 {
   "name": "melvor-map-maker",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -33,5 +33,9 @@
     "vite": "^5.0.3",
     "vitest": "^2.0.4"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "client-zip": "^2.4.5",
+    "dexie": "^4.0.8"
+  }
 }
