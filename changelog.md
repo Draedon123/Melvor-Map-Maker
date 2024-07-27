@@ -1,6 +1,10 @@
+# v0.5.2
+
+- Fixed missing semicolon in addRedirects.cjs
+
 # v0.5.1
 
-- Fixed incorrect injected code in addRedirects.js
+- Fixed incorrect injected code in addRedirects.cjs
 
 # v0.5.0
 
