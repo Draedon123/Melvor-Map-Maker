@@ -1,3 +1,9 @@
+# v0.4.1
+
+- Fixed infinite redirect issue
+- Updated .gitattributes
+- Reordered prebuild script
+
 # v0.4.0
 
 - Implemented option for autoUpdateWindowHash when using HashManager.fromWindow();

@@ -1,10 +1,10 @@
 {
   "name": "melvor-map-maker",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "npm run check && npm run lint && npm run format && vitest run",
+    "prebuild": "npm run check && npm run lint && vitest run && npm run format",
     "build": "vite build",
     "postbuild": "node src/scripts/addRedirects.cjs",
     "preview": "vite preview",
