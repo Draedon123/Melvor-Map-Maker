@@ -1,3 +1,7 @@
+# v0.2.4
+
+- Opted out of Jekyll building for GitHub pages
+
 # v0.2.3
 
 - Changed base path to "/Melvor-Map-Maker" when built with production for compatibility with GitHub Pages
