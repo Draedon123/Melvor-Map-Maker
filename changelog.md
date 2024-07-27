@@ -1,3 +1,8 @@
+# v0.3.0
+
+- Implemented redirects for all routes for compatibility with GitHub Pages
+- Changed Svelte base path to always be "/Melvor-Map-Maker", even when in development
+
 # v0.2.6
 
 - Fixed missing base paths before certain image links

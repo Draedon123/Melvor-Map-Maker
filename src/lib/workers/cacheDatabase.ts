@@ -1,5 +1,6 @@
 import Dexie, { type EntityTable } from "dexie";
 import { error } from "$lib/functions/log";
+import { base } from "$app/paths";
 
 type CachedFile = {
   key: string;
@@ -7,7 +8,7 @@ type CachedFile = {
 };
 
 const FILES_TO_CACHE: Record<string, string> = {
-  "basis_encoder.wasm": "/basis_encoder.wasm",
+  "basis_encoder.wasm": "basis_encoder.wasm",
 };
 
 const LOG_PREFIX = "cacheDatabase";
@@ -38,7 +39,15 @@ class FileCache extends Dexie {
 
   public async cacheFile(key: string, fileURL: string): Promise<void> {
     try {
-      const response = await fetch(fileURL);
+      const url = `${base}/${fileURL}`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        error(
+          `${LOG_PREFIX} | cacheFile`,
+          `Could not fetch file to cache.\nURL: ${url}.\nResponse Status: ${response.status}`
+        );
+        return;
+      }
       const fileContents = new Uint8Array(await response.arrayBuffer());
 
       await this.workerCachedFiles.put({

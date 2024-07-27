@@ -11,7 +11,7 @@ const config = {
       fallback: "index.html",
     }),
     paths: {
-      base: process.env.NODE_ENV === "production" ? "/Melvor-Map-Maker" : "",
+      base: "/Melvor-Map-Maker",
     },
   },
 };

@@ -1,11 +1,12 @@
 {
   "name": "melvor-map-maker",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
     "prebuild": "npm run check && npm run lint && npm run format && vitest run",
     "build": "vite build",
+    "postbuild": "node src/scripts/addRedirects.cjs",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",

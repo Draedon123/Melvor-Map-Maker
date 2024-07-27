@@ -3,6 +3,7 @@ import type {
   EncodingMessageFromWorker,
   ErrorMessageFromWorker,
 } from "../workers/basisTypes";
+import { base } from "$app/paths";
 import workerCodeURL from "../workers/basis?worker&url";
 import chunkArray from "./chunkArray";
 import imageToBlob from "./imageToBlob";
@@ -16,7 +17,14 @@ async function convertImagesToBasis(
     totalFiles: number
   ) => void = () => {}
 ): Promise<{ file: Uint8Array; name: string }[]> {
-  const basisEncoderJS = await (await fetch("/basis_encoder.js")).text();
+  const url = `${base}/basis_encoder.js`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(
+      `[convertImagesToBasis] | Could not fetch basis_encoder.js.\nFetched url: ${url}\nResponse Status: ${response.status}`
+    );
+  }
+  const basisEncoderJS = await response.text();
   const filesToConvert = await Promise.all(
     images.map(
       (data) =>
