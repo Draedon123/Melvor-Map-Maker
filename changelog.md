@@ -1,3 +1,8 @@
+# v0.3.1
+
+- Fixed redirects
+- Disabled GitHub language inference from detecting language in build/
+
 # v0.3.0
 
 - Implemented redirects for all routes for compatibility with GitHub Pages

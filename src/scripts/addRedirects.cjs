@@ -18,9 +18,7 @@ if (!existsSync(ROUTES_DIRECTORY)) {
 
 const routes = crawlDirectories(ROUTES_DIRECTORY)
   .filter((directory) => readdirSync(directory).includes("+page.svelte"))
-  .map((directory) =>
-    encodeURIComponent(directory.slice(ROUTES_DIRECTORY.length + 1))
-  );
+  .map((directory) => directory.slice(ROUTES_DIRECTORY.length + 1));
 
 for (const route of routes) {
   if (route === "") {
@@ -33,10 +31,9 @@ for (const route of routes) {
     join(BUILD_DIRECTORY, `${route}.html`),
     `
 <script>
-  const production = window.location.pathname.host === "draedon123.github.io";
-  window.location.pathname = production ? "/Melvor-Map-Maker/" : "/";
+  window.location.pathname = production ? "/Melvor-Map-Maker/";
 </script>
-`
+`.replace(/\n| {2,}/g, "")
   );
 }
 
