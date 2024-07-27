@@ -1,7 +1,11 @@
+# v0.2.6
+
+- Fixed missing base paths before certain image links
+- Updated deploy script to not build the app before deployment
+
 # v0.2.5
 
 - Implemented base paths before every single link
-- Updated deploy script to not build the app before deployment
 
 # v0.2.4
 

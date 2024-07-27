@@ -1,10 +1,11 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import resizeImage from "$lib/functions/imageResize";
   import store from "./store";
 
   let modal: HTMLDialogElement;
   let preview: HTMLImageElement;
-  let previewImageSRC: string = "/black.png";
+  let previewImageSRC: string = `${base}/black.png`;
 
   function previewImageOnClick(): void {
     if (modal.open) {
@@ -19,7 +20,7 @@
   ): Promise<void> {
     URL.revokeObjectURL(previewImageSRC);
     if (image === null) {
-      previewImageSRC = "/black.png";
+      previewImageSRC = `${base}/black.png`;
       return;
     }
 
@@ -53,7 +54,7 @@
     <div>
       <input
         type="image"
-        src="/preview.png"
+        src="{base}/preview.png"
         alt="A document and magnifying glass"
         title="Preview Image"
         on:click={previewImageOnClick}
