@@ -1,17 +1,17 @@
 {
   "name": "melvor-map-maker",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "npm run check && npm run lint && npm run format && npm run test",
+    "prebuild": "npm run check && npm run lint && npm run format && vitest run",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "eslint src",
     "format": "prettier --write .",
-    "test": "vitest run"
+    "test": "vitest"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.2",

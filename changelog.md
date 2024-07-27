@@ -1,3 +1,7 @@
+# v0.2.1
+
+- Added build folder to repository
+
 # v0.2.0
 
 - Implemented error pages
