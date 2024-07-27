@@ -1,3 +1,7 @@
+# v0.2.0
+
+- Implemented error pages
+
 # v0.1.0
 
 - Implemented File Generator Stage 3
