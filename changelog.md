@@ -1,3 +1,9 @@
+# v0.5.0
+
+- Implemented .env files
+- Fixed redirects not redirecting at all
+- Updated .gitattributes
+
 # v0.4.1
 
 - Fixed infinite redirect issue

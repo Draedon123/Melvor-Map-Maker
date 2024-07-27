@@ -2,9 +2,11 @@
   import HashManager from "$lib/classes/HashManager";
   import { base } from "$app/paths";
   import { onMount } from "svelte";
+  import { PUBLIC_VERSION } from "$env/static/public";
 
-  let redirectLink: string = "";
   let redirect: HTMLAnchorElement;
+
+  console.log(`App Version: ${PUBLIC_VERSION}`);
 
   onMount(() => {
     const hashManager = HashManager.fromWindow();
@@ -13,13 +15,13 @@
       return;
     }
 
-    redirectLink = route;
+    redirect.href = `${base}/${route}`;
     redirect.click();
   });
 </script>
 
 <h1>M3</h1>
-<a href="{base}/{redirectLink}" bind:this={redirect}> </a>
+<a href="/" bind:this={redirect}> </a>
 
 <style lang="scss">
   a {
