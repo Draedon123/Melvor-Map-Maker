@@ -1,6 +1,7 @@
 <script lang="ts">
-  import FormStage from "../FormStage.svelte";
   import { error } from "$lib/functions/log";
+  import { base } from "$app/paths";
+  import FormStage from "../FormStage.svelte";
   import store from "../store";
   import resizeImage from "$lib/functions/imageResize";
 
@@ -150,7 +151,7 @@
       <p class="center">
         To preview your uploaded image, click the
         <img
-          src="/preview.png"
+          src="{base}/preview.png"
           alt="A document and a magnifying glass"
           style="height: 2em; width: 2em; display: inline; margin-left: 0.7ch;"
         />

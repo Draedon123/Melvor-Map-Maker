@@ -1,4 +1,5 @@
 <script>
+  import { base } from "$app/paths";
   import NavigationBar from "$lib/components/NavigationBar/NavigationBar.svelte";
   import NavigationBarItem from "$lib/components/NavigationBar/NavigationBarItem.svelte";
   import "/src/styles/globals.scss";
@@ -7,10 +8,10 @@
 <aside>
   <NavigationBar>
     <NavigationBarItem>
-      <a href="/">
+      <a href="{base}/">
         <input
           type="image"
-          src="/favicon.ico"
+          src="{base}/favicon.ico"
           alt="A yellow compass"
           class="navigation-bar-icon navigation-bar-item"
         />
@@ -18,7 +19,7 @@
     </NavigationBarItem>
     <NavigationBarItem>
       <div class="navigation-bar-item">
-        <a href="/File%20Generator">File Generator</a>
+        <a href="{base}/File%20Generator">File Generator</a>
       </div>
     </NavigationBarItem>
   </NavigationBar>

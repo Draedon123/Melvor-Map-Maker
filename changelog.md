@@ -1,3 +1,8 @@
+# v0.2.5
+
+- Implemented base paths before every single link
+- Updated deploy script to not build the app before deployment
+
 # v0.2.4
 
 - Opted out of Jekyll building for GitHub pages
