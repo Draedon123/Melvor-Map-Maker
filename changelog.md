@@ -1,3 +1,8 @@
+# v0.2.2
+
+- Implemented deploy script
+- Changed app.html to index.html for compatibility with GitHub Pages
+
 # v0.2.1
 
 - Added build folder to repository
