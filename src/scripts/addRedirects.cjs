@@ -31,7 +31,8 @@ for (const route of routes) {
     join(BUILD_DIRECTORY, `${route}.html`),
     `
 <script>
-  window.location.pathname = production ? "/Melvor-Map-Maker/";
+  window.location.pathname = "/Melvor-Map-Maker";
+  window.location.hash = "#route=${encodeURIComponent(route)}";
 </script>
 `.replace(/\n| {2,}/g, "")
   );

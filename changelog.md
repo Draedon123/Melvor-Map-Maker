@@ -1,3 +1,10 @@
+# v0.4.0
+
+- Implemented option for autoUpdateWindowHash when using HashManager.fromWindow();
+- Implemented route checking in hash from root path
+- Fixed syntax error in redirects
+- Updated .gitattributes
+
 # v0.3.1
 
 - Fixed redirects

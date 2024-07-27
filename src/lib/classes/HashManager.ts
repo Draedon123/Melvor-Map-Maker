@@ -6,8 +6,11 @@ class HashManager {
     public autoUpdateWindowHash: boolean = true
   ) {}
 
-  public static fromWindow(): HashManager {
-    return new HashManager(browser ? window.location.hash.slice(1) : "");
+  public static fromWindow(autoUpdateWindowHash: boolean = true): HashManager {
+    return new HashManager(
+      browser ? window.location.hash.slice(1) : "",
+      autoUpdateWindowHash
+    );
   }
 
   public updateWindowHash(): string {
