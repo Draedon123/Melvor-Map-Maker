@@ -1,8 +1,12 @@
 <script>
   import { base } from "$app/paths";
+  import { PUBLIC_VERSION } from "$env/static/public";
   import NavigationBar from "$lib/components/NavigationBar/NavigationBar.svelte";
   import NavigationBarItem from "$lib/components/NavigationBar/NavigationBarItem.svelte";
   import "/src/styles/globals.scss";
+
+  console.clear();
+  console.log(`App Version: ${PUBLIC_VERSION}`);
 </script>
 
 <aside>

@@ -2,11 +2,8 @@
   import HashManager from "$lib/classes/HashManager";
   import { base } from "$app/paths";
   import { onMount } from "svelte";
-  import { PUBLIC_VERSION } from "$env/static/public";
 
   let redirect: HTMLAnchorElement;
-
-  console.log(`App Version: ${PUBLIC_VERSION}`);
 
   onMount(() => {
     const hashManager = HashManager.fromWindow();

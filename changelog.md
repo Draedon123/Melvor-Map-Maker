@@ -1,3 +1,7 @@
+# v0.5.3
+
+- Moved logging of app version from +page.svelte into +layout.svelte
+
 # v0.5.2
 
 - Fixed missing semicolon in addRedirects.cjs
