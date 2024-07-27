@@ -1,3 +1,7 @@
+# v0.2.3
+
+- Changed base path to "/Melvor-Map-Maker" when built with production for compatibility with GitHub Pages
+
 # v0.2.2
 
 - Implemented deploy script
