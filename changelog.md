@@ -1,3 +1,8 @@
+# v0.6.0
+
+- Implemented missing fullstops in Readme
+- Temporarily removed License badge in Readme
+
 # v0.5.4
 
 - Actually build the new app...

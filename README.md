@@ -1,7 +1,9 @@
 # Melvor Map Maker
 
 ![Issues](https://img.shields.io/github/issues/Draedon123/Melvor-Map-Maker)
-![License](https://img.shields.io/github/license/Draedon123/Melvor-Map-Maker)
+
+<!-- ![License](https://img.shields.io/github/license/Draedon123/Melvor-Map-Maker) -->
+
 ![Version](https://img.shields.io/github/package-json/v/draedon123/Melvor-Map-Maker)
 
 ## Description
@@ -10,7 +12,7 @@ The Melvor Map Maker is an interactive tool designed to take the heavy lifting o
 
 ## Disclaimer
 
-As of the present, the Melvor Map Maker is an **unofficial** tool and is **not** endorsed by Melvor Idle or Games by Malcs in any way, shape or form
+As of the present, the Melvor Map Maker is an **unofficial** tool and is **not** endorsed by Melvor Idle or Games by Malcs in any way, shape or form.
 
 ## Credits
 
@@ -22,4 +24,4 @@ As of the present, the Melvor Map Maker is an **unofficial** tool and is **not**
 
 ### Basis Universal Supercompressed GPU Texture Codec
 
-Works from [Binomial LLC](https://github.com/BinomialLLC) have been used to create this tool. More specifically, work from their [Basis Universal](https://github.com/BinomialLLC/basis_universal) repository have been used to encode and transcode images to and from .basis files. A copy of their license can be found [here](https://github.com/BinomialLLC/basis_universal/blob/master/LICENSE)
+Works from [Binomial LLC](https://github.com/BinomialLLC) have been used to create this tool. More specifically, work from their [Basis Universal](https://github.com/BinomialLLC/basis_universal) repository have been used to encode and transcode images to and from .basis files. A copy of their license can be found [here](https://github.com/BinomialLLC/basis_universal/blob/master/LICENSE).
