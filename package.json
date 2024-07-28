@@ -4,16 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "node src/scripts/writeEnv.cjs && npm run check && npm run lint && vitest run && npm run format",
+    "prebuild": "npm run writeEnv && npm run check && npm run lint && vitest run && npm run format",
     "build": "vite build",
-    "postbuild": "node src/scripts/addRedirects.cjs",
+    "postbuild": "npm run addRedirects && npm run minify",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "eslint src",
     "format": "prettier --write .",
     "test": "vitest",
-    "deploy": "git subtree push --prefix build origin github-pages"
+    "deploy": "git subtree push --prefix build origin github-pages",
+    "addRedirects": "node src/scripts/addRedirects.cjs",
+    "writeEnv": "node src/scripts/writeEnv.cjs",
+    "minify": "node src/scripts/minify.cjs"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.2",
@@ -24,11 +27,13 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-svelte": "^2.36.0",
     "globals": "^15.0.0",
+    "html-minifier-terser": "^7.2.0",
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "sass": "^1.77.8",
     "svelte": "^4.2.7",
     "svelte-check": "^3.6.0",
+    "terser": "^5.31.3",
     "tslib": "^2.4.1",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.0.0-alpha.20",
@@ -38,6 +43,8 @@
   "type": "module",
   "dependencies": {
     "client-zip": "^2.4.5",
-    "dexie": "^4.0.8"
+    "dexie": "^4.0.8",
+    "pixi-viewport": "^5.0.3",
+    "pixi.js": "^8.2.5"
   }
 }

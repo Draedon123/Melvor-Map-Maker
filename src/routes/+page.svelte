@@ -17,6 +17,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Melvor Map Maker</title>
+</svelte:head>
+
 <h1>M3</h1>
 <a href="/" bind:this={redirect}> </a>
 

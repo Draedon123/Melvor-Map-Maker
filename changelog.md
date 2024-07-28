@@ -1,5 +1,8 @@
 # v0.5.3
 
+- Implemented minification scripts for static files and html files
+- Reorganised package scripts
+- Added HTML Meta tags
 - Moved logging of app version from +page.svelte into +layout.svelte
 
 # v0.5.2
