@@ -1,3 +1,7 @@
+# v0.5.4
+
+- Actually build the new app...
+
 # v0.5.3
 
 - Implemented minification scripts for static files and html files
