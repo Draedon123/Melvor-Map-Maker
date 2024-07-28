@@ -1,5 +1,6 @@
 # v0.6.0
 
+- Implemented aria-label for ProgressBar.svelte to increase accessibility
 - Implemented missing fullstops in Readme
 - Temporarily removed License badge in Readme
 

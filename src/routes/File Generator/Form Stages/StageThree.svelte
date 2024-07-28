@@ -185,7 +185,11 @@
       {status}
     </p>
     <div class="progress-bar">
-      <ProgressBar bind:this={progressBar} bind:value={progress} />
+      <ProgressBar
+        bind:this={progressBar}
+        bind:value={progress}
+        ariaLabel="File Conversion Progress"
+      />
     </div>
     <div>
       <button on:click={convertButtonOnClick}>Convert</button>

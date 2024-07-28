@@ -7,6 +7,7 @@
   export let value: number = 0;
   export let containerStyles: CSSObject = {};
   export let fillStyles: CSSObject = {};
+  export let ariaLabel: string = "";
   export let easingFunction: (time: number) => number = cubicInOut;
 
   export function set(value: number) {
@@ -48,7 +49,12 @@
   $: fillStylesString = objectToCSS(fillStyleObject);
 </script>
 
-<div role="progressbar" class="container" style={containerStylesString}>
+<div
+  role="progressbar"
+  class="container"
+  style={containerStylesString}
+  aria-label={ariaLabel}
+>
   <div class="fill" style={fillStylesString} />
 </div>
 
