@@ -13,9 +13,23 @@
     const resizeTo = document.querySelector(".container") as HTMLElement | null;
     const app = await initialiseApp({
       canvas,
-      appInitialisationOptions: {
+      appOptions: {
         resizeTo: resizeTo ?? undefined,
         resolution: window.devicePixelRatio ?? 1.5,
+      },
+      viewportOptions: {
+        constructorOptions: {
+          passiveWheel: false,
+        },
+        pluginOptions: {
+          decelerateOptions: {
+            minSpeed: 0.3,
+            friction: 0.96,
+          },
+          wheelOptions: {
+            percent: 10,
+          },
+        },
       },
     });
 
@@ -25,7 +39,8 @@
 
     const texture = await Assets.load(`${base}/preview.png`);
     const sprite = Sprite.from(texture);
-    app.stage.addChild(sprite);
+    sprite.label = "Hello World!";
+    app.stage.children[0].addChild(sprite);
   });
 </script>
 
@@ -44,7 +59,7 @@
     height: calc(100vh - $navigation-bar-height);
     top: 0;
     left: 0;
-    z-index: -999;
+    z-index: 1;
     background-color: black;
   }
 </style>
