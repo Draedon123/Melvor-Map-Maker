@@ -2,7 +2,9 @@
 
 - Implemented aria-label for ProgressBar.svelte to increase accessibility
 - Implemented missing fullstops in Readme
+- Refactored Toolbar
 - Temporarily removed License badge in Readme
+- Fixed unnecessary prod check in 404.svelte
 
 # v0.5.4
 

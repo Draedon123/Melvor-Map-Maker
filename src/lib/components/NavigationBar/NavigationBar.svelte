@@ -6,7 +6,7 @@
   @import "/src/styles/globals.scss";
 
   .navigation {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

@@ -29,7 +29,7 @@ for (const route of routes) {
     continue;
   }
 
-  console.log(`[addRedirects] | Creating redirect for route ${route}\n`);
+  console.log(`[addRedirects] | Creating redirect for route ${route}`);
 
   writeFileSync(
     join(BUILD_DIRECTORY, `${route}.html`),

@@ -1,5 +1,7 @@
 <script lang="ts">
   import { base } from "$app/paths";
+  import Toolbar from "$lib/components/Toolbar/Toolbar.svelte";
+  import ToolbarItem from "$lib/components/Toolbar/ToolbarItem.svelte";
   import resizeImage from "$lib/functions/imageResize";
   import store from "./store";
 
@@ -50,18 +52,15 @@
 </script>
 
 <div class="container">
-  <aside class="toolbar">
-    <div>
-      <input
-        type="image"
-        src="{base}/preview.png"
-        alt="A document and magnifying glass"
-        title="Preview Image"
-        on:click={previewImageOnClick}
-      />
-      <span>Preview Image</span>
-    </div>
-  </aside>
+  <Toolbar>
+    <ToolbarItem
+      imageSRC="{base}/preview.png"
+      imageAltText="A document and a magnifying glass"
+      imageOnClick={previewImageOnClick}
+    >
+      Preview Image
+    </ToolbarItem>
+  </Toolbar>
 
   <dialog bind:this={modal} class="modal">
     <img bind:this={preview} src={previewImageSRC} alt="Preview" />
@@ -79,66 +78,6 @@
   @use "sass:math";
   @import "/src/styles/globals.scss";
   @import "/src/styles/button.scss";
-
-  $toolbar-colour: #1f1f1f;
-  $image-dimensions: 0.9 * $toolbar-width;
-
-  .toolbar {
-    position: absolute;
-    background-color: $toolbar-colour;
-
-    width: max-content;
-    height: calc(100% + 1ch);
-
-    left: calc(-1 * ($toolbar-width + 1ch));
-
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    &:hover div {
-      width: 4 * $toolbar-width;
-
-      &:hover {
-        background-color: #303030;
-      }
-
-      span {
-        opacity: 1;
-      }
-    }
-
-    div {
-      transition:
-        background-color 0.4s ease,
-        width 0.4s ease-in-out;
-      width: $toolbar-width;
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow-x: hidden;
-      cursor: pointer;
-
-      input[type="image"] {
-        width: $image-dimensions;
-        height: $image-dimensions;
-        font-size: medium;
-        user-select: none;
-
-        :focus {
-          outline: none;
-        }
-      }
-
-      span {
-        opacity: 0;
-        color: white;
-        transition: opacity 0.4s;
-        height: math.div($image-dimensions, 2);
-        text-wrap: nowrap;
-      }
-    }
-  }
 
   dialog.modal {
     border: none;
@@ -170,7 +109,8 @@
     margin-left: $toolbar-width;
     margin-right: 0;
     position: relative;
-    min-height: calc(100vh - $navigation-bar-height - 1ch);
+    max-width: calc(100vw - $toolbar-width - 1ch);
+    max-height: calc(100vh - $navigation-bar-height - 1ch);
   }
 
   @keyframes fly-in-top {

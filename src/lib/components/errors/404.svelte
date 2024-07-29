@@ -12,10 +12,7 @@
     );
     for (const [regex, redirect] of redirects.entries()) {
       if (regex.test(pathname)) {
-        window.location.pathname =
-          import.meta.env.PROD && window.location.host.includes("github")
-            ? `/Melvor-Map-Maker/${redirect}`
-            : `/${redirect}`;
+        window.location.pathname = `/Melvor-Map-Maker/${redirect}`;
       }
     }
   });

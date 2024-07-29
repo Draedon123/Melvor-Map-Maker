@@ -40,6 +40,12 @@
   <meta property="og:image:height" content="1000" />
   <meta property="og:image:alt" content="The Melvor Idle map" />
   <meta property="og:type" content="website" />
+
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
 </svelte:head>
 
 <aside>
@@ -57,6 +63,11 @@
     <NavigationBarItem>
       <div class="navigation-bar-item">
         <a href="{base}/File%20Generator">File Generator</a>
+      </div>
+    </NavigationBarItem>
+    <NavigationBarItem>
+      <div class="navigation-bar-item">
+        <a href="{base}/Map%20Builder">Map Builder</a>
       </div>
     </NavigationBarItem>
   </NavigationBar>
