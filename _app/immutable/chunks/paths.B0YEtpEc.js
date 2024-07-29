@@ -1,0 +1,1 @@
+var s;const e=(null==(s=globalThis.__sveltekit_inb8q8)?void 0:s.base)??"/Melvor-Map-Maker";var a;const t=(null==(a=globalThis.__sveltekit_inb8q8)?void 0:a.assets)??e;export{t as a,e as b};
