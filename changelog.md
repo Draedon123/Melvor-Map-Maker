@@ -5,6 +5,7 @@
 - Refactored Toolbar
 - Temporarily removed License badge in Readme
 - Fixed unnecessary prod check in 404.svelte
+- Fixed crawl.js bug where it tries to readdirSync a file instead of a directory
 
 # v0.5.4
 
