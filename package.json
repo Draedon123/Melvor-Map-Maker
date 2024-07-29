@@ -19,6 +19,7 @@
     "minify": "node src/scripts/minify.cjs"
   },
   "devDependencies": {
+    "@pixi/devtools": "^2.0.1",
     "@sveltejs/adapter-static": "^3.0.2",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",

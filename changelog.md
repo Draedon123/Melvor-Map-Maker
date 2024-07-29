@@ -2,6 +2,7 @@
 
 - Implemented aria-label for ProgressBar.svelte to increase accessibility
 - Implemented missing fullstops in Readme
+- Implemented time.ts util
 - Refactored Toolbar
 - Temporarily removed License badge in Readme
 - Fixed unnecessary prod check in 404.svelte
