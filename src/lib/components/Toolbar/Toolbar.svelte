@@ -20,6 +20,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    z-index: 10;
   }
 
   :global(.toolbar:hover div) {

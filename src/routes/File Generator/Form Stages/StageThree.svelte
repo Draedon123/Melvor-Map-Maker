@@ -6,7 +6,7 @@
   import ProgressBar from "$lib/components/ProgressBar.svelte";
   import resizeImage from "$lib/functions/imageResize";
   import imageToBlob from "$lib/functions/imageToBlob";
-  import convertImagesToBasis from "$lib/functions/convertImagesToBasis";
+  import imageToBasis from "$lib/functions/imageToBasis";
 
   export let activeStage: number;
 
@@ -82,7 +82,7 @@
     );
 
     status = `Converting full size tiles into .basis files (0 / ${fullSizeTiles.length})`;
-    const fullSizeBasisFiles = await convertImagesToBasis(
+    const fullSizeBasisFiles = await imageToBasis(
       fullSizeTiles.map((tile) => {
         const { x, y, image } = tile;
         return {
@@ -103,7 +103,7 @@
     );
 
     status = `Converting half size tiles into .basis files (0 / ${halfSizeTiles.length})`;
-    const halfSizeBasisFiles = await convertImagesToBasis(
+    const halfSizeBasisFiles = await imageToBasis(
       halfSizeTiles.map((tile) => {
         const { x, y, image } = tile;
         return {

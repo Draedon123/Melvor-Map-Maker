@@ -8,7 +8,7 @@ import workerCodeURL from "../workers/basis?worker&url";
 import chunkArray from "./chunkArray";
 import imageToBlob from "./imageToBlob";
 
-async function convertImagesToBasis(
+async function imageToBasis(
   images: { image: HTMLImageElement; name: string }[],
   workerCount: number,
   onConvert: (
@@ -21,7 +21,7 @@ async function convertImagesToBasis(
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(
-      `[convertImagesToBasis] | Could not fetch basis_encoder.js.\nFetched url: ${url}\nResponse Status: ${response.status}`
+      `[imageToBasis] | Could not fetch basis_encoder.js.\nFetched url: ${url}\nResponse Status: ${response.status}`
     );
   }
   const basisEncoderJS = await response.text();
@@ -101,4 +101,4 @@ async function convertImagesToBasis(
   });
 }
 
-export default convertImagesToBasis;
+export default imageToBasis;

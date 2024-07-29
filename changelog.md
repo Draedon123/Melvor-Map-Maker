@@ -2,6 +2,8 @@
 
 - Implemented aria-label for ProgressBar.svelte to increase accessibility
 - Implemented missing fullstops in Readme
+- Implemteted transcoding of .basis files
+- Increased z-index of navigation bar and toolbar
 - Implemented time.ts util
 - Refactored Toolbar
 - Temporarily removed License badge in Readme
