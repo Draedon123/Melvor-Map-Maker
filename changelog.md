@@ -1,3 +1,7 @@
+# v0.6.1
+
+- Fixed minification issues with basis_encoder.js
+
 # v0.6.0
 
 - Implemented aria-label for ProgressBar.svelte to increase accessibility

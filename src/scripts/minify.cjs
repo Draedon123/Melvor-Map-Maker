@@ -11,12 +11,9 @@ const TERSER_OPTIONS = {
   compress: {
     booleans_as_integers: true,
     ecma: 2020,
+    expression: true,
     keep_fargs: false,
     passes: 2,
-    unsafe: true,
-  },
-  mangle: {
-    reserved: ["BASIS"],
   },
   format: {
     comments: false,
