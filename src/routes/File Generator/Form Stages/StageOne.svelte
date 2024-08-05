@@ -73,12 +73,12 @@
     >
       <p>Drag and drop a .png image here, or click to upload a file.</p>
       {#if $store.mapImage !== null}
-        <p class="center">
+        <p>
           To preview your uploaded image, click the
           <img
             src="{base}/preview.png"
             alt="A document and a magnifying glass"
-            style="height: 2em; width: 2em; display: inline; margin-left: 0.7ch;"
+            style="height: 2em; width: 2em; display: inline; margin-left: 0.7ch; position: relative; top: 0.5em;"
           />
           icon on the left toolbar
         </p>
@@ -94,10 +94,5 @@
 
   .file-upload-container {
     width: 100%;
-  }
-
-  .center {
-    display: flex;
-    align-items: center;
   }
 </style>

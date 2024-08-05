@@ -9,6 +9,8 @@
   let redirect: HTMLAnchorElement;
   let projects = liveQuery(() => database.projects.toArray());
 
+  $: projectCount = $projects?.length ?? 0;
+
   onMount(() => {
     const hashManager = HashManager.fromWindow();
     const route = hashManager.get("route");
@@ -32,14 +34,19 @@
 <div class="projects">
   <h2>Saved Projects</h2>
   <div class="project-container">
-    {#each $projects ?? [] as project (project.id)}
-      <Project {project} />
-    {/each}
+    {#if projectCount > 0}
+      {#each $projects ?? [] as project (project.id)}
+        <Project {project} />
+      {/each}
+    {:else}
+      <h3>Work in progress! Saving projects are not supported yet</h3>
+    {/if}
   </div>
 </div>
 
 <style lang="scss">
-  h1 {
+  h1,
+  h3 {
     text-align: center;
     margin: 0;
   }

@@ -1,3 +1,11 @@
+# v0.7.0
+
+- Implemented noscript tags for that one person who has JavaScript turned off
+- Implemented temporary "No Projects" text on main screen
+- Moved HTML meta tags from +layout.svelte into index.html
+- Fixed weird image positioning in File Generator Stage 1 File Upload
+- Fixed container margins in File Generator
+
 # v0.6.1
 
 - Fixed minification issues with basis_encoder.js

@@ -79,10 +79,10 @@
   }
 
   .container {
-    margin-left: $toolbar-width;
+    margin-left: calc($toolbar-width + 1ch);
     margin-right: 0;
     position: relative;
-    max-width: calc(100vw - $toolbar-width - 1ch);
+    max-width: calc(100vw - $toolbar-width - 2ch);
     max-height: calc(100vh - $navigation-bar-height - 1ch);
   }
 </style>
