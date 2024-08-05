@@ -1,14 +1,18 @@
 # v0.6.0
 
 - Implemented aria-label for ProgressBar.svelte to increase accessibility
-- Implemented missing fullstops in Readme
 - Implemteted transcoding of .basis files
-- Increased z-index of navigation bar and toolbar
 - Implemented time.ts util
+- Implemented home page
+- Implemented script to fetch Melvor schema
+- Increased z-index of navigation bar and toolbar
 - Refactored Toolbar
-- Temporarily removed License badge in Readme
+- Refactored image utils
+- Removed Readme License badge temporarily
+- Renamed database
 - Fixed unnecessary prod check in 404.svelte
 - Fixed crawl.js bug where it tries to readdirSync a file instead of a directory
+- Fixed missing fullstops in Readme
 
 # v0.5.4
 

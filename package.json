@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "npm run writeEnv && npm run check && npm run lint && vitest run && npm run format",
+    "prebuild": "npm run writeEnv && npm run getMelvorSchema && npm run check && npm run lint && vitest run && npm run format",
     "build": "vite build",
     "postbuild": "npm run addRedirects && npm run minify",
     "preview": "vite preview",
@@ -16,7 +16,8 @@
     "deploy": "git subtree push --prefix build origin github-pages",
     "addRedirects": "node src/scripts/addRedirects.cjs",
     "writeEnv": "node src/scripts/writeEnv.cjs",
-    "minify": "node src/scripts/minify.cjs"
+    "minify": "node src/scripts/minify.cjs",
+    "getMelvorSchema": "node src/scripts/getMelvorSchema.cjs"
   },
   "devDependencies": {
     "@pixi/devtools": "^2.0.1",
@@ -29,6 +30,7 @@
     "eslint-plugin-svelte": "^2.36.0",
     "globals": "^15.0.0",
     "html-minifier-terser": "^7.2.0",
+    "json-schema-to-typescript": "^15.0.0",
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "sass": "^1.77.8",

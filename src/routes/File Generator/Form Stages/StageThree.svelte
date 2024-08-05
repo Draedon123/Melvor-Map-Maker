@@ -2,11 +2,8 @@
   import { downloadZip } from "client-zip";
   import store from "../store";
   import FormStage from "../FormStage.svelte";
-  import splitImage from "$lib/functions/splitImage";
-  import ProgressBar from "$lib/components/ProgressBar.svelte";
-  import resizeImage from "$lib/functions/imageResize";
-  import imageToBlob from "$lib/functions/imageToBlob";
-  import imageToBasis from "$lib/functions/imageToBasis";
+  import { toBasis, resize, split, toBlob } from "$lib/functions/imageUtils";
+  import ProgressBar from "$lib/components/Progress Bar/ProgressBar.svelte";
 
   export let activeStage: number;
 
@@ -37,7 +34,7 @@
     }
 
     status = "Resizing map image to half-size";
-    const halfSizeMapImage = await resizeImage(
+    const halfSizeMapImage = await resize(
       $store.mapImage,
       {
         type: "scale",
@@ -50,7 +47,7 @@
     progressBar.set(PROGRESS_BREAKPOINTS.RESIZE);
 
     status = `Splitting full size map into tiles (0 / ${$store.tilesX * $store.tilesY})`;
-    const fullSizeTiles = await splitImage(
+    const fullSizeTiles = await split(
       $store.mapImage,
       $store.tilesX,
       $store.tilesY,
@@ -66,7 +63,7 @@
     );
 
     status = `Splitting half size map into tiles (0 / ${$store.tilesX * $store.tilesY})`;
-    const halfSizeTiles = await splitImage(
+    const halfSizeTiles = await split(
       halfSizeMapImage,
       $store.tilesX,
       $store.tilesY,
@@ -82,7 +79,7 @@
     );
 
     status = `Converting full size tiles into .basis files (0 / ${fullSizeTiles.length})`;
-    const fullSizeBasisFiles = await imageToBasis(
+    const fullSizeBasisFiles = await toBasis(
       fullSizeTiles.map((tile) => {
         const { x, y, image } = tile;
         return {
@@ -103,7 +100,7 @@
     );
 
     status = `Converting half size tiles into .basis files (0 / ${halfSizeTiles.length})`;
-    const halfSizeBasisFiles = await imageToBasis(
+    const halfSizeBasisFiles = await toBasis(
       halfSizeTiles.map((tile) => {
         const { x, y, image } = tile;
         return {
@@ -133,7 +130,7 @@
       await Promise.all(
         fullSizeTiles.map(async ({ x, y, image }) => {
           return {
-            file: await imageToBlob(image),
+            file: await toBlob(image),
             name: `tile_${x}_${y}@1x.png`,
           };
         })

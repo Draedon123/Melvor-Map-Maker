@@ -611,14 +611,11 @@
             ENVIRONMENT_IS_WORKER) /* && typeof fetch === "function" && !isFileURI(wasmBinaryFile)*/
         ) {
           return new Promise((resolve, reject) => {
-            const databaseRequest = indexedDB.open("cacheDB", 10);
+            const databaseRequest = indexedDB.open("melvormapmakerdb", 10);
             databaseRequest.onsuccess = () => {
               const database = databaseRequest.result;
-              const transaction = database.transaction(
-                "workerCachedFiles",
-                "readonly"
-              );
-              const cachedFiles = transaction.objectStore("workerCachedFiles");
+              const transaction = database.transaction("cache", "readonly");
+              const cachedFiles = transaction.objectStore("cache");
               const fileRequest = cachedFiles.get("basis_encoder.wasm");
               fileRequest.onsuccess = () => resolve(fileRequest.result.file);
               fileRequest.onerror = () => reject(fileRequest.error);
@@ -666,15 +663,11 @@
             typeof fetch === "function"
           ) {
             return new Promise((resolve, reject) => {
-              const databaseRequest = indexedDB.open("cacheDB", 10);
+              const databaseRequest = indexedDB.open("melvormapmakerdb", 10);
               databaseRequest.onsuccess = () => {
                 const database = databaseRequest.result;
-                const transaction = database.transaction(
-                  "workerCachedFiles",
-                  "readonly"
-                );
-                const cachedFiles =
-                  transaction.objectStore("workerCachedFiles");
+                const transaction = database.transaction("cache", "readonly");
+                const cachedFiles = transaction.objectStore("cache");
                 const fileRequest = cachedFiles.get("basis_encoder.wasm");
                 fileRequest.onsuccess = () => {
                   if (fileRequest.result === undefined) {

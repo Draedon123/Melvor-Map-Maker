@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "$lib/workers/cacheDatabase";
+  import "$lib/database/database";
   import { onMount } from "svelte";
   import clamp from "$lib/functions/clamp";
   import StageOne from "./Form Stages/StageOne.svelte";

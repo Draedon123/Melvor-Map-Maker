@@ -22,7 +22,6 @@
     }
 
     if (!Number.isInteger(tileWidth)) {
-      console.log(tileWidth);
       return "Tile width must be an integer";
     }
 
