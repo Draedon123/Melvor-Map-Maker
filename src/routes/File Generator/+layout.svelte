@@ -65,11 +65,9 @@
   </div>
 </div>
 
-<!-- svelte-ignore css-unused-selector -->
 <style lang="scss">
   @use "sass:math";
   @import "/src/styles/globals.scss";
-  @import "/src/styles/button.scss";
 
   img.preview {
     width: 75vh;

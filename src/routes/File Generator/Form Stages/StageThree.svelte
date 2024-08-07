@@ -207,6 +207,10 @@
     margin: 0;
   }
 
+  button {
+    @include button;
+  }
+
   .container {
     display: flex;
     flex-direction: column;

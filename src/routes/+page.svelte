@@ -60,6 +60,8 @@
     align-items: center;
     flex-direction: column;
 
+    margin-bottom: 2em;
+
     .project-container {
       border: 1px solid #909090;
       border-radius: 1em;

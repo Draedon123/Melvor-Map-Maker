@@ -1,7 +1,7 @@
-button {
-  $background-colour: #3333dd;
-  $border-colour: color-mix(in srgb, $background-colour 90%, #000000 10%);
-
+@mixin button(
+  $background-colour: #3333dd,
+  $border-colour: color-mix(in srgb, $background-colour 90%, #000000 10%)
+) {
   background-color: $background-colour;
 
   border: 1px solid $border-colour;
@@ -16,6 +16,9 @@ button {
   transition:
     background-color 0.3s,
     border-color 0.3s;
+
+  display: inline-flex;
+  align-items: center;
 
   &[disabled] {
     cursor: not-allowed;

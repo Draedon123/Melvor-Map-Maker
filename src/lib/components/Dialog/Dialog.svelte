@@ -49,6 +49,14 @@
     &[open] {
       animation: fly-in-top 0.5s ease-out;
     }
+
+    &:focus {
+      outline-width: 0;
+    }
+
+    button {
+      @include button;
+    }
   }
 
   @keyframes fly-in-top {

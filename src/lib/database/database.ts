@@ -8,9 +8,8 @@ type CachedFile = {
   file: Uint8Array;
 };
 
-type Project = Nullable<{
+type Project = { id: number } & Nullable<{
   name: string;
-  id: number;
   namespace: string;
   tiles: Tiles;
   worldMapData: WorldMapData;

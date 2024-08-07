@@ -1,3 +1,8 @@
+# v0.8.0
+
+- Changed button.scss to use mixins
+- Fixed typo in Readme icon credits
+
 # v0.7.0
 
 - Implemented noscript tags for that one person who has JavaScript turned off
