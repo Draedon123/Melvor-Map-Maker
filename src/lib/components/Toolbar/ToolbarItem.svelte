@@ -53,7 +53,7 @@
       height: math.div($image-dimensions, 2);
       text-wrap: nowrap;
       position: absolute;
-      left: $image-dimensions;
+      left: calc($image-dimensions + 0.5ch);
     }
   }
 </style>

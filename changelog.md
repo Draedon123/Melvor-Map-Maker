@@ -1,3 +1,8 @@
+# v0.9.0
+
+- Fixed inconsistencies in error messages in imageUtils.ts
+- Changed render strategy for map image (render using tiles instead of 1 image)
+
 # v0.8.0
 
 - Implemented adding projects

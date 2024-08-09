@@ -1,7 +1,7 @@
 <script lang="ts">
   import { base } from "$app/paths";
   import { Sprite } from "pixi.js";
-  import { fromBasis } from "$lib/functions/imageUtils";
+  import { fromBasis, toCanvas } from "$lib/functions/imageUtils";
   import type { PointData } from "$lib/melvor/schema";
   import Dialog from "$lib/components/Dialog/Dialog.svelte";
   import Toolbar from "$lib/components/Toolbar/Toolbar.svelte";
@@ -17,8 +17,14 @@
 
   const VALID_FILENAME_REGEX = /^tile_\d+_\d+@(1|0.5)x\.basis$/;
   async function onFileUpload(files: File[]): Promise<void> {
+    errorContent = "";
+
     if ($store.viewport === null) {
       errorContent = "Error: App is not initialised. This shouldn't happen...";
+      return;
+    }
+
+    if (files.length === 0) {
       return;
     }
 
@@ -57,7 +63,7 @@
         }
       }
 
-      errorContent = `Some tiles are missing. First, do you intend to have ${tilesX}x${tilesY} tiles? If so, then you are missing these tiles: ${missingTiles.map((tile) => JSON.stringify(tile)).join(", ")}`;
+      errorContent = `Some tiles are missing. First, do you intend to have ${tilesX}x${tilesY} tiles? If so, then you are missing these tiles: ${missingTiles.map((tile) => `(${tile.x},${tile.y})`).join(", ")}`;
       return;
     }
 
@@ -74,35 +80,18 @@
       }
     );
 
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
-    if (ctx === null) {
-      throw new Error(
-        "[Map Builder +layout.svelte onFileUpload] | Could not get 2d canvas rendering context"
-      );
-    }
-
-    canvas.width = transcodedFiles.tileWidth * tilesX;
-    canvas.height = transcodedFiles.tileHeight * tilesY;
-
-    for (const tile of transcodedFiles.tiles) {
-      ctx.drawImage(
-        tile.image,
-        tile.x * transcodedFiles.tileWidth,
-        tile.y * transcodedFiles.tileHeight,
-        transcodedFiles.tileWidth,
-        transcodedFiles.tileHeight
-      );
-    }
-
-    const sprite = Sprite.from(canvas);
+    const sprites = transcodedFiles.tiles.map((tile) => {
+      const sprite = Sprite.from(toCanvas(tile.image));
+      sprite.x = tile.x * transcodedFiles.tileWidth;
+      sprite.y = tile.y * transcodedFiles.tileHeight;
+      return sprite;
+    });
 
     $store.viewport.children[0]
       .removeChildren()
       .forEach((child) => child.destroy(true));
 
-    $store.viewport.children[0].addChild(sprite);
+    $store.viewport.children[0].addChild(...sprites);
     $store.viewport.worldWidth = tilesX * transcodedFiles.tileWidth;
     $store.viewport.worldHeight = tilesY * transcodedFiles.tileHeight;
     $store.viewport.centerViewport();
@@ -117,6 +106,9 @@
       imageOnClick={dialog?.toggle}
     >
       Upload Map Images
+    </ToolbarItem>
+    <ToolbarItem imageSRC="{base}/hex_grid.png" imageAltText="A honeycomb">
+      Hexes
     </ToolbarItem>
   </Toolbar>
 

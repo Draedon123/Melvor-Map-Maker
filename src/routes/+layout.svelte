@@ -24,6 +24,7 @@
     });
 
     await project.save();
+    $store.activeProject = project;
 
     newProjectModal.close();
   }
@@ -34,6 +35,7 @@
         event.preventDefault();
 
         if ($store.activeProject === null) {
+          newProjectModal.open();
           return;
         }
 

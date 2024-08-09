@@ -18,11 +18,12 @@ As of the present, the Melvor Map Maker is an **unofficial** tool and is **not**
 
 ### Icons
 
-| Icon                                                               | Author       | Link                                              |
-| ------------------------------------------------------------------ | ------------ | ------------------------------------------------- |
-| <img src="static/preview.png" style="width: 2em; height: 2em;" />  | Freepik      | https://www.flaticon.com/free-icon/preview_143594 |
-| <img src="static/no_image.png" style="width: 2em; height: 2em;" /> | yaicon       | https://www.flaticon.com/free-icon/image_10701484 |
-| <img src="static/upload.png" style="width: 2em; height: 2em;" />   | SeyfDesigner | https://www.flaticon.com/free-icon/image_8191581  |
+| Icon                                                               | Author       | Link                                                |
+| ------------------------------------------------------------------ | ------------ | --------------------------------------------------- |
+| <img src="static/preview.png" style="width: 2em; height: 2em;" />  | Freepik      | https://www.flaticon.com/free-icon/preview_143594   |
+| <img src="static/hex_grid.png" style="width: 2em; height: 2em;" /> | Freepik      | https://www.flaticon.com/free-icon/honeycomb_172591 |
+| <img src="static/no_image.png" style="width: 2em; height: 2em;" /> | yaicon       | https://www.flaticon.com/free-icon/image_10701484   |
+| <img src="static/upload.png" style="width: 2em; height: 2em;" />   | SeyfDesigner | https://www.flaticon.com/free-icon/image_8191581    |
 
 ### Basis Universal Supercompressed GPU Texture Codec
 

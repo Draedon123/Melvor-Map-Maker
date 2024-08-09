@@ -23,7 +23,7 @@ async function toBasis(
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(
-      `[imageToBasis] | Could not fetch basis_encoder.js.\nFetched url: ${url}\nResponse Status: ${response.status}`
+      `[imageUtils | toBasis] | Could not fetch basis_encoder.js.\nFetched url: ${url}\nResponse Status: ${response.status}`
     );
   }
   const basisEncoderJS = await response.text();
@@ -120,7 +120,7 @@ async function fromBasis(
 
   if (!response.ok) {
     throw new Error(
-      `[basisToImage] | Could not fetch basis_encoder.js.\nFetched url: ${basisEncoderJSPath}\nResponse Status: ${response.status}`
+      `[imageUtils | fromBasis] | Could not fetch basis_encoder.js.\nFetched url: ${basisEncoderJSPath}\nResponse Status: ${response.status}`
     );
   }
 
@@ -227,7 +227,9 @@ function resize(
 
     if (ctx === null) {
       reject(
-        new Error("[resizeImage] | Could not get 2D Canvas Rendering Context")
+        new Error(
+          "[imageUtils | resize] | Could not get 2D Canvas Rendering Context"
+        )
       );
       return;
     }
@@ -251,7 +253,9 @@ function resize(
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     canvas.toBlob((blob) => {
       if (blob === null) {
-        reject(new Error("[imageResize] | Could not turn canvas into blob"));
+        reject(
+          new Error("[imageUtils | resize] | Could not turn canvas into blob")
+        );
         return;
       }
 
@@ -279,7 +283,9 @@ function toBlob(image: HTMLImageElement): Promise<Blob> {
 
     canvas.toBlob((blob) => {
       if (blob === null) {
-        reject(new Error("[imageToBlob] | Could not turn canvas into blob"));
+        reject(
+          new Error("[imageUtils | toBlob] | Could not turn canvas into blob")
+        );
         return;
       }
 
@@ -325,7 +331,7 @@ async function split(
 
           if (ctx === null) {
             throw new Error(
-              "[splitImage] | Could not get 2d canvas rendering context"
+              "[imageUtils | split] | Could not get 2d canvas rendering context"
             );
           }
 
@@ -344,7 +350,9 @@ async function split(
           canvas.toBlob((blob) => {
             if (blob === null) {
               reject(
-                new Error("[splitImage] | Could not turn canvas into blob")
+                new Error(
+                  "[imageUtils | split] | Could not turn canvas into blob"
+                )
               );
               return;
             }
@@ -398,7 +406,7 @@ function toCanvas(
 
   if (ctx === null) {
     throw new Error(
-      `[ImageUtils | toCanvas] | Could not get 2d canvas rendering context`
+      `[imageUtils | toCanvas] | Could not get 2d canvas rendering context`
     );
   }
 
