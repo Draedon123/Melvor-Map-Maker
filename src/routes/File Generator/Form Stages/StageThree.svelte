@@ -209,6 +209,7 @@
 
   button {
     @include button;
+    @include button-disabled;
   }
 
   .container {

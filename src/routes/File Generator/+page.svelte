@@ -78,34 +78,32 @@
         {/if}
       </div>
       <div class="submit-button-container">
-        <input
-          type="submit"
+        <button
           data-direction="back"
-          value="Back"
           disabled={disableAdvanceStageButtons ||
             activeStage === 1 ||
             (typeof canGoToNextStage === "string" && import.meta.env.PROD)}
           on:click|preventDefault={() => {
             advanceStage("back");
-          }}
-        />
-        <input
-          type="submit"
+          }}>Back</button
+        >
+        <button
           data-direction="forward"
-          value="Next"
           disabled={disableAdvanceStageButtons ||
             activeStage === lastStage ||
             (typeof canGoToNextStage === "string" && import.meta.env.PROD)}
           on:click|preventDefault={() => {
             advanceStage("forward");
-          }}
-        />
+          }}>Next</button
+        >
       </div>
     </div>
   </form>
 </div>
 
 <style lang="scss">
+  @import "/src/styles/button.scss";
+
   .form-container {
     width: 100%;
     height: 100%;
@@ -123,41 +121,13 @@
     display: flex;
     justify-content: center;
 
-    $input-background-colour: #3333dd;
-    $input-border-colour: color-mix(
-      in srgb,
-      $input-background-colour 90%,
-      #000000 10%
-    );
+    button {
+      @include button;
+      @include button-disabled;
 
-    input {
-      background-color: $input-background-colour;
-      border: 2px solid $input-border-colour;
-      border-radius: 3em;
-
-      width: 10ch;
-      height: 3em;
-      font-size: large;
-
-      margin: 1ch;
-      cursor: pointer;
-      color: #ffffff;
-      transition:
-        background-color 0.3s,
-        border-color 0.3s;
-
-      &[disabled] {
-        cursor: not-allowed;
-      }
-
-      &:hover:not([disabled]),
-      &[disabled] {
-        background-color: color-mix(
-          in srgb,
-          $input-background-colour 85%,
-          #000000 15%
-        );
-        border-color: color-mix(in srgb, $input-border-colour 85%, #000000 15%);
+      & {
+        width: 10ch;
+        margin: 1ch;
       }
     }
   }

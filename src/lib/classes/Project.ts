@@ -15,7 +15,7 @@ type IProject = {
 
 class Project {
   public id: number | null;
-  public name: string | null;
+  public name: string;
   public namespace: string | null;
   public tiles: Tiles | null;
   public worldMapData: WorldMapData | null;
@@ -23,7 +23,7 @@ class Project {
   public thumbnail: HTMLImageElement | null;
   constructor(project: Partial<Nullable<IProject>> = {}) {
     this.id = project.id ?? null;
-    this.name = project.name ?? null;
+    this.name = project.name ?? "Unnamed Project";
     this.namespace = project.namespace ?? null;
     this.tiles = project.tiles ?? null;
     this.worldMapData = project.worldMapData ?? null;

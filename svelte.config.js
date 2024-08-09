@@ -13,6 +13,12 @@ const config = {
     paths: {
       base: "/Melvor-Map-Maker",
     },
+    alias: {
+      $routes: "src/routes",
+      "$routes/*": "src/routes/*",
+      $lib: "src/lib",
+      "$lib/*": "src/lib/*",
+    },
   },
 };
 

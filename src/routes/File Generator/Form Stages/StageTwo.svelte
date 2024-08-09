@@ -132,6 +132,8 @@
 </FormStage>
 
 <style lang="scss">
+  @import "/src/styles/input.scss";
+
   h1 {
     margin: 0;
   }
@@ -152,30 +154,13 @@
   }
 
   label > input {
-    $background-colour: #1f1f1f;
-    $border-colour: color-mix(in srgb, $background-colour 85%, #ffffff 15%);
+    @include input;
 
-    margin: 0.25em 0 0.25em 1ch;
-    height: 2em;
-    width: 10ch;
+    & {
+      margin: 0.25em 0 0.25em 1ch;
 
-    font-size: large;
-    text-indent: 0.5em;
-
-    background-color: $background-colour;
-    color: white;
-    transition:
-      background-color 0.3s,
-      border-color 0.3s;
-
-    border-radius: 100em;
-    border: 3px solid $border-colour;
-
-    outline-color: $border-colour;
-
-    &:hover {
-      background-color: color-mix(in srgb, $background-colour 85%, #ffffff 15%);
-      border-color: color-mix(in srgb, $border-colour 85%, #ffffff 15%);
+      height: 2em;
+      width: 10ch;
     }
   }
 </style>

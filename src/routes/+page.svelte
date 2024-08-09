@@ -9,8 +9,6 @@
   let redirect: HTMLAnchorElement;
   let projects = liveQuery(() => database.projects.toArray());
 
-  $: projectCount = $projects?.length ?? 0;
-
   onMount(() => {
     const hashManager = HashManager.fromWindow();
     const route = hashManager.get("route");
@@ -34,12 +32,19 @@
 <div class="projects">
   <h2>Saved Projects</h2>
   <div class="project-container">
-    {#if projectCount > 0}
-      {#each $projects ?? [] as project (project.id)}
-        <Project {project} />
-      {/each}
+    {#if $projects !== undefined}
+      {#if $projects.length > 0}
+        {#each $projects as project (project.id)}
+          <Project {project} />
+        {/each}
+      {:else}
+        <h3>
+          No existing projects! Create a new project with CTRL + K! An actual
+          interface is coming Soon™️
+        </h3>
+      {/if}
     {:else}
-      <h3>Work in progress! Saving projects are not supported yet</h3>
+      <p>Loading projects...</p>
     {/if}
   </div>
 </div>

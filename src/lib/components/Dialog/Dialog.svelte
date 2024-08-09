@@ -24,7 +24,7 @@
   <slot />
   {#if showDefaultCloseButton}
     <br />
-    <button on:click={close} disabled={false}>Close</button>
+    <button on:click={close}>Close</button>
   {/if}
 </dialog>
 

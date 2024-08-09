@@ -19,14 +19,22 @@
 
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 
-  &[disabled] {
-    cursor: not-allowed;
+  &:hover:not([disabled]) {
+    background-color: color-mix(in srgb, $background-colour 85%, #000000 15%);
+    border-color: color-mix(in srgb, $border-colour 85%, #000000 15%);
   }
+}
 
-  &:hover:not([disabled]),
+@mixin button-disabled(
+  $background-colour: #3333dd,
+  $border-colour: color-mix(in srgb, $background-colour 90%, #000000 10%)
+) {
   &[disabled] {
     background-color: color-mix(in srgb, $background-colour 85%, #000000 15%);
     border-color: color-mix(in srgb, $border-colour 85%, #000000 15%);
+
+    cursor: not-allowed;
   }
 }

@@ -1,12 +1,36 @@
 <script lang="ts">
   import { base } from "$app/paths";
   import { fromArrayBuffer } from "$lib/functions/imageUtils";
-  import type { Project } from "$lib/database/database";
+  import type { Project as IProject } from "$lib/database/database";
   import Dialog from "$lib/components/Dialog/Dialog.svelte";
+  import database from "$lib/database/database";
+  import store from "$routes/store";
+  import Project from "$lib/classes/Project";
 
-  export let project: Project;
+  export let project: IProject;
 
   let dialog: Dialog;
+  let hasAttemptedDelete: boolean = false;
+
+  async function deleteButtonOnClick(): Promise<void> {
+    if (hasAttemptedDelete) {
+      dialog.close();
+      await database.projects.delete(project.id);
+
+      if ($store.activeProject === project) {
+        $store.activeProject = null;
+      }
+
+      return;
+    }
+
+    hasAttemptedDelete = true;
+  }
+
+  async function openButtonOnClick(): Promise<void> {
+    $store.activeProject = await Project.fromDatabaseProject(project);
+    dialog.close();
+  }
 
   $: image = (() => {
     if (project.thumbnail !== null) {
@@ -44,13 +68,21 @@
 <Dialog bind:this={dialog} showDefaultCloseButton={false}>
   <div class="dialog">
     <h1>{project.name ?? "Unnamed Project"}</h1>
-    <button disabled={false} class="delete-button">Delete</button>
+    <button on:click={deleteButtonOnClick} class="delete-button">
+      {!hasAttemptedDelete ? "Delete" : "Are you sure?"}
+    </button>
+    <button on:click={openButtonOnClick}>Open</button>
+    <button on:click={dialog.close}>Close</button>
   </div>
 </Dialog>
 
 <style lang="scss">
   @import "/src/styles/button.scss";
   // $footer-height: 2em;
+
+  button:not(.exclude-global) {
+    @include button;
+  }
 
   .dialog {
     width: max-content;
@@ -61,7 +93,7 @@
     padding: 2ch;
 
     h1 {
-      margin: 0;
+      margin: 0 0 0.5em 0;
     }
 
     .delete-button {
@@ -101,6 +133,7 @@
       justify-content: center;
       border-bottom: 1px solid #909090;
       flex-grow: 1;
+      width: 100%;
     }
 
     .thumbnail {
