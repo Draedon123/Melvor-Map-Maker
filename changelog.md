@@ -1,5 +1,6 @@
 # v0.8.0
 
+- Implemented Apache 2.0 License
 - Implemented meta tags in redirects
 - Changed button.scss to use mixins
 - Fixed typo in Readme icon credits
