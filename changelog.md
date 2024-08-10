@@ -1,5 +1,6 @@
 # v0.9.0
 
+- Implemented Hex Grid into Map Builder
 - Fixed inconsistencies in error messages in imageUtils.ts
 - Changed render strategy for map image (render using tiles instead of 1 image)
 

@@ -4,13 +4,13 @@
   import { PUBLIC_VERSION } from "$env/static/public";
   import store from "./store";
   import Dialog from "$lib/components/Dialog/Dialog.svelte";
+  import Project from "$lib/classes/Project";
   import Toastify from "toastify-js";
   import NavigationBar from "$lib/components/NavigationBar/NavigationBar.svelte";
   import KeyboardShortcut from "$lib/classes/KeyboardShortcut";
   import NavigationBarItem from "$lib/components/NavigationBar/NavigationBarItem.svelte";
   import "/src/styles/globals.scss";
   import "toastify-js/src/toastify.css";
-  import Project from "$lib/classes/Project";
 
   console.clear();
   console.log(`App Version: ${PUBLIC_VERSION}`);
@@ -58,7 +58,6 @@
     new KeyboardShortcut(
       (event) => {
         event.preventDefault();
-        console.log(event);
         projectName = "Unnamed Project";
         newProjectModal.open();
       },

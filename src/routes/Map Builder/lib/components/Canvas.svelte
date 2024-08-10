@@ -1,13 +1,15 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { initialiseApp } from "../store/store";
   import initialisePIXIDevTools from "../canvas/initialisePIXIDevTools";
+  import type { Application } from "pixi.js";
 
   let canvas: HTMLCanvasElement;
+  let app: Application | null = null;
 
   onMount(async () => {
     const resizeTo = document.querySelector(".container") as HTMLElement | null;
-    const app = await initialiseApp({
+    app = await initialiseApp({
       canvas,
       appOptions: {
         resizeTo: resizeTo ?? undefined,
@@ -31,6 +33,23 @@
 
     if (import.meta.env.DEV) {
       initialisePIXIDevTools(app);
+    }
+  });
+
+  onDestroy(() => {
+    if (app !== null) {
+      app.destroy(
+        {
+          removeView: true,
+        },
+        {
+          children: false,
+          context: false,
+          style: true,
+          texture: false,
+          textureSource: false,
+        }
+      );
     }
   });
 </script>

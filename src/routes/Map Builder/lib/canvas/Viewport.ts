@@ -26,6 +26,7 @@ type ViewportOptions = {
 const _Viewport = PIXI_Viewport.Viewport ?? Array;
 
 class Viewport extends _Viewport {
+  public baseScale: number;
   constructor(
     private readonly app: Application,
     private readonly store: Writable<MapBuilderStore>,
@@ -39,7 +40,9 @@ class Viewport extends _Viewport {
     });
 
     this.label = "Viewport";
+    this.baseScale = 1;
     this.addChildAt(get(store).backgroundLayer, 0);
+    this.addChildAt(get(store).hexGridLayer, 1);
 
     this.drag(options.pluginOptions?.dragOptions)
       .decelerate(options.pluginOptions?.decelerateOptions)
@@ -55,7 +58,21 @@ class Viewport extends _Viewport {
     });
 
     this.on("moved", this.updateLastViewport);
-    this.on("zoomed", this.updateLastViewport);
+    this.on("zoomed", () => {
+      this.updateLastViewport();
+      get(store)
+        .hexGridLayer.removeChildren()
+        .forEach((hexGraphic) => {
+          hexGraphic.destroy(true);
+        });
+
+      get(store).hexGridLayer.populate(
+        get(store).mapDimensions,
+        this,
+        get(store).hexesX,
+        get(store).hexesY
+      );
+    });
   }
 
   public moveToLastViewport(): void {
@@ -99,6 +116,8 @@ class Viewport extends _Viewport {
       shortestSide === "width" ? 0 : this.screenWidth / 2 - this.width / 2;
     this.position.y =
       shortestSide === "height" ? 0 : this.screenHeight / 2 - this.height / 2;
+
+    this.baseScale = this.scale.y;
   }
 }
 

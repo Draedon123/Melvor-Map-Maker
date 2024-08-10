@@ -7,14 +7,20 @@ import {
   type ApplicationOptions,
 } from "pixi.js";
 import { writable } from "svelte/store";
-import Viewport from "../canvas/Viewport";
 import type { ViewportOptions } from "../canvas/Viewport";
+import type { PointData } from "$lib/melvor/schema";
+import Viewport from "../canvas/Viewport";
+import HexGridLayer from "../canvas/HexGridLayer";
 
 type MapBuilderStore = {
   app: Application | null;
   viewport: Viewport | null;
   lastViewport: IViewportTransformState | null;
   backgroundLayer: Container<Sprite>;
+  hexGridLayer: HexGridLayer;
+  mapDimensions: PointData;
+  hexesX: number;
+  hexesY: number;
 };
 
 type CanvasIntialisationOptions = {
@@ -28,6 +34,13 @@ const store = writable<MapBuilderStore>({
   viewport: null,
   lastViewport: null,
   backgroundLayer: new Container({ label: "Background Layer" }),
+  hexGridLayer: new HexGridLayer(),
+  mapDimensions: {
+    x: 0,
+    y: 0,
+  },
+  hexesX: 20,
+  hexesY: 20,
 });
 
 async function initialiseApp(
