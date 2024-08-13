@@ -1,5 +1,5 @@
 import * as PIXI_Viewport from "pixi-viewport";
-import { Application } from "pixi.js";
+import { Application, Container, Sprite } from "pixi.js";
 import type {
   IViewportOptions,
   IDragOptions,
@@ -9,6 +9,7 @@ import type {
 } from "pixi-viewport";
 import type { MapBuilderStore } from "../store/store";
 import { get, type Writable } from "svelte/store";
+import HexGridLayer from "./HexGridLayer";
 
 type ViewportOptions = {
   constructorOptions?: Omit<Partial<IViewportOptions>, "events">;
@@ -27,6 +28,8 @@ const _Viewport = PIXI_Viewport.Viewport ?? Array;
 
 class Viewport extends _Viewport {
   public baseScale: number;
+  public readonly backgroundLayer: Container<Sprite>;
+  public readonly hexGridLayer: HexGridLayer;
   constructor(
     private readonly app: Application,
     private readonly store: Writable<MapBuilderStore>,
@@ -41,8 +44,12 @@ class Viewport extends _Viewport {
 
     this.label = "Viewport";
     this.baseScale = 1;
-    this.addChildAt(get(store).backgroundLayer, 0);
-    this.addChildAt(get(store).hexGridLayer, 1);
+
+    this.backgroundLayer = get(store).backgroundLayer;
+    this.hexGridLayer = get(store).hexGridLayer;
+
+    this.addChildAt(this.backgroundLayer, 0);
+    this.addChildAt(this.hexGridLayer, 1);
 
     this.drag(options.pluginOptions?.dragOptions)
       .decelerate(options.pluginOptions?.decelerateOptions)
@@ -58,19 +65,22 @@ class Viewport extends _Viewport {
     });
 
     this.on("moved", this.updateLastViewport);
-    this.on("zoomed", () => {
+    this.on("zoomed-end", () => {
       this.updateLastViewport();
-      get(store)
-        .hexGridLayer.removeChildren()
-        .forEach((hexGraphic) => {
-          hexGraphic.destroy(true);
-        });
+      console.log("updating");
 
-      get(store).hexGridLayer.populate(
-        get(store).mapDimensions,
-        this,
-        get(store).hexesX,
-        get(store).hexesY
+      this.hexGridLayer.updateGraphicsContext(
+        HexGridLayer.getHexGraphicContext(
+          HexGridLayer.getHexVertices(
+            HexGridLayer.getHexScale(
+              get(store).mapDimensions,
+              get(store).hexesX,
+              get(store).hexesY
+            )
+          ),
+          this,
+          get(store).mapDimensions
+        )
       );
     });
   }

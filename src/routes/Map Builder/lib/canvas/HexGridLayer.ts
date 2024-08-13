@@ -9,7 +9,12 @@ const THIRD_PI = Math.PI / 3;
 
 class HexGridLayer extends Container<HexDisplay> {
   constructor() {
-    super({ label: "Hex Grid", zIndex: 1 });
+    super({
+      label: "Hex Grid",
+      zIndex: 1,
+      interactive: false,
+      interactiveChildren: false,
+    });
   }
 
   public static getHexVertices(hexScale: PointData): PointData[] {
@@ -89,6 +94,16 @@ class HexGridLayer extends Container<HexDisplay> {
     this.addChild(...hexDisplays);
 
     return hexDisplays;
+  }
+
+  public updateGraphicsContext(context: SafeGraphicsContext): this {
+    this.children[0].context?.destroy(true);
+
+    for (let i = 0, hexDisplays = this.children.length; i < hexDisplays; i++) {
+      this.children[i].context = context;
+    }
+
+    return this;
   }
 }
 

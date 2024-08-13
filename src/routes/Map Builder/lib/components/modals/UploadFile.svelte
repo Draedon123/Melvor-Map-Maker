@@ -89,8 +89,13 @@
 
     const sprites = transcodedFiles.tiles.map((tile) => {
       const sprite = Sprite.from(toCanvas(tile.image));
+
       sprite.x = tile.x * transcodedFiles.tileWidth;
       sprite.y = tile.y * transcodedFiles.tileHeight;
+
+      sprite.cullable = true;
+      sprite.label = `Tile (${tile.x}, ${tile.y})`;
+
       return sprite;
     });
 

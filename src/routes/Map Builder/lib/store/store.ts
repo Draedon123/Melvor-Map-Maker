@@ -33,7 +33,11 @@ const store = writable<MapBuilderStore>({
   app: null,
   viewport: null,
   lastViewport: null,
-  backgroundLayer: new Container({ label: "Background Layer" }),
+  backgroundLayer: new Container({
+    label: "Background Layer",
+    interactive: false,
+    interactiveChildren: false,
+  }),
   hexGridLayer: new HexGridLayer(),
   mapDimensions: {
     x: 0,

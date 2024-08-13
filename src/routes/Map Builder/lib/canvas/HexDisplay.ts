@@ -1,4 +1,4 @@
-import { Container, Graphics } from "pixi.js";
+import { Graphics } from "pixi.js";
 import type { PointData } from "$lib/melvor/schema";
 import { oddQToAxial } from "$lib/functions/coordinates";
 import SafeGraphicsContext from "./SafeGraphicsContext";
@@ -17,9 +17,7 @@ const FLAT_HEX_ORIENT = {
   // ],
 } as const;
 
-class HexDisplay extends Container {
-  private graphic!: Graphics;
-  private _graphicsContext!: SafeGraphicsContext;
+class HexDisplay extends Graphics {
   private _hexScale!: PointData;
   private _coordinates!: PointData;
   constructor(
@@ -27,15 +25,15 @@ class HexDisplay extends Container {
     hexScale: PointData,
     coordinates: PointData
   ) {
-    super({ cullable: true });
+    super({
+      cullable: true,
+      interactive: false,
+      interactiveChildren: false,
+      context: graphicsContext,
+    });
 
-    this.graphicsContext = graphicsContext;
     this.hexScale = hexScale;
     this.coordinates = coordinates;
-  }
-
-  public get graphicsContext(): SafeGraphicsContext {
-    return this._graphicsContext;
   }
 
   public get hexScale(): PointData {
@@ -51,18 +49,6 @@ class HexDisplay extends Container {
       x: this.hexScale.x,
       y: (this.hexScale.y * SQRT_3) / 2,
     };
-  }
-
-  public set graphicsContext(context: SafeGraphicsContext) {
-    this._graphicsContext = context;
-
-    if (this.graphic) {
-      this.removeChildAt(0);
-      this.graphic.destroy(true);
-    }
-
-    this.graphic = new Graphics({ context, label: "Graphic" });
-    this.addChildAt(this.graphic, 0);
   }
 
   public set hexScale(scale: PointData) {

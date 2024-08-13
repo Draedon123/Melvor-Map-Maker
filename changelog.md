@@ -1,3 +1,12 @@
+# v0.9.1
+
+- Optimised hex grid
+  - Removed wrapper container for Hex Display
+  - Instead of recreating every graphics object, the Graphics Context was swapped instead
+  - Instead of swapping the context on the `zoomed` event, it swaps on the `zoomed-end` event
+  - Implemented `interactive=false` and `interactiveChildren=false` on many elements
+- Added `npm i` to prebuild script to ensure package-lock.json is updated too
+
 # v0.9.0
 
 - Implemented Hex Grid into Map Builder
