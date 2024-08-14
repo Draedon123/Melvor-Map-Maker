@@ -6,6 +6,6 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [sveltekit()],
   test: {
-    dir: "src/tests",
+    dir: "tests",
   },
 });

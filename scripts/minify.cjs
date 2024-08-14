@@ -5,7 +5,7 @@ const { resolve } = require("path");
 const crawl = require("./crawl.cjs");
 const { readFileSync, writeFileSync } = require("fs");
 
-const BUILD_DIRECTORY = resolve(__dirname, "../../build");
+const BUILD_DIRECTORY = resolve(__dirname, "../build");
 /** @type { import("terser").MinifyOptions } */
 const TERSER_OPTIONS = {
   compress: {

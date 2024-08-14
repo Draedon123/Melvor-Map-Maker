@@ -14,10 +14,10 @@
     "format": "prettier --write .",
     "test": "vitest",
     "deploy": "git subtree push --prefix build origin github-pages",
-    "addRedirects": "node src/scripts/addRedirects.cjs",
-    "writeEnv": "node src/scripts/writeEnv.cjs",
-    "minify": "node src/scripts/minify.cjs",
-    "getMelvorSchema": "node src/scripts/getMelvorSchema.cjs"
+    "addRedirects": "node scripts/addRedirects.cjs",
+    "writeEnv": "node scripts/writeEnv.cjs",
+    "minify": "node scripts/minify.cjs",
+    "getMelvorSchema": "node scripts/getMelvorSchema.cjs"
   },
   "devDependencies": {
     "@pixi/devtools": "^2.0.1",

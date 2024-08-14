@@ -6,9 +6,9 @@ const { readdirSync, existsSync, writeFileSync, readFileSync } = require("fs");
 const { JSDOM } = require("jsdom");
 const crawl = require("./crawl.cjs");
 
-const APP_HTML_LOCATION = resolve(__dirname, "../app.html");
-const BUILD_DIRECTORY = resolve(__dirname, "../../build");
-const ROUTES_DIRECTORY = resolve(__dirname, "../routes");
+const APP_HTML_LOCATION = resolve(__dirname, "../src/app.html");
+const BUILD_DIRECTORY = resolve(__dirname, "../build");
+const ROUTES_DIRECTORY = resolve(__dirname, "../src/routes");
 
 if (!existsSync(APP_HTML_LOCATION)) {
   throw new Error(

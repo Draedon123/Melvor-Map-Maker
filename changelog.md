@@ -1,6 +1,7 @@
 # v0.11.0
 
 - Implemented better styling for 404 page
+- Moved scripts and tests directories from src to root directory
 
 # v0.10.0
 

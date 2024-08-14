@@ -7,7 +7,7 @@
   const { compile } = require("json-schema-to-typescript");
 
   const SCHEMA_URL = "https://melvoridle.com/assets/schema/gameData.json";
-  const OUTPUT_DIRECTORY = resolve(__dirname, "../lib/melvor/schema.d.ts");
+  const OUTPUT_DIRECTORY = resolve(__dirname, "../src/lib/melvor/schema.d.ts");
 
   console.log(`[getMelvorSchema] | Fetching schema from ${SCHEMA_URL}`);
   const schemaResponse = await fetch(SCHEMA_URL);
