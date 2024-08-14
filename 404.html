@@ -1,1 +1,104 @@
-<!doctype html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>404</title><style>body{display:flex;flex-direction:column;align-items:center;font-size:large}h1{text-align:center;font-size:8em;max-width:90%;margin-bottom:0}p{margin:.5em auto}a{height:3em;padding:0 .75em;font-size:x-large;text-decoration:none;color:#fff!important;background-color:#1f1f1f;border:3px solid #555;border-radius:999px;cursor:pointer;display:flex;align-items:center;transition:background-color .3s,border-color .3s,scale .3s ease-in-out}a:hover{background-color:#333;border-color:#777;scale:1.3}</style></head><body><h1>404</h1><p>¯\_(ツ)_/¯</p><p>To navigate back to the home page, click the button below!</p><a href=/Melvor-Map-Maker>GO BACK</a><script>(()=>{const e=new Map([[/^file ?generator$/i,"File Generator"],[/^map ?builder$/i,"Map Builder"]]),a=window.location.pathname.slice(18);for(const[o,i]of e)if(o.test(a)){window.location.pathname=`/Melvor-Map-Maker/${i}`;break}})()</script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404</title>
+    <style>
+      :root {
+        --button-background-colour: #3333dd;
+        --button-border-colour: color-mix(
+          in srgb,
+          var(--button-background-colour) 85%,
+          #000000 15%
+        );
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: large;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 8em;
+        max-width: 90%;
+
+        margin-bottom: 0;
+      }
+
+      p {
+        margin: 0.5em auto;
+      }
+
+      a {
+        height: 3em;
+
+        padding: 0 0.75em;
+        margin-top: 0.25em;
+
+        font-size: x-large;
+        text-decoration: none;
+
+        color: white !important;
+        background-color: var(--button-background-colour);
+
+        border: 3px solid var(--button-border-colour);
+        border-radius: 999px;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+
+        transition:
+          background-color 0.3s,
+          border-color 0.3s,
+          scale 0.3s ease-in-out;
+      }
+
+      a:hover {
+        background-color: color-mix(
+          in srgb,
+          var(--button-background-colour) 90%,
+          #000000 10%
+        );
+        border-color: color-mix(
+          in srgb,
+          var(--button-border-colour) 90%,
+          #000000 10%
+        );
+        scale: 1.3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>404</h1>
+
+    <p>¯\_(ツ)_/¯</p>
+    <p>To navigate back to the home page, click the button below!</p>
+
+    <a href="/Melvor-Map-Maker">GO BACK</a>
+
+    <script>
+      (() => {
+        const BASE_PATH = "/Melvor-Map-Maker/";
+        const MANUAL_REDIRECTS = new Map([
+          [/^file ?generator$/i, "File Generator"],
+          [/^map ?builder$/i, "Map Builder"],
+        ]);
+
+        const path = window.location.pathname.slice(BASE_PATH.length);
+
+        for (const [regexp, redirect] of MANUAL_REDIRECTS) {
+          if (regexp.test(path)) {
+            window.location.pathname = `${BASE_PATH}${redirect}`;
+            break;
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
