@@ -1,3 +1,7 @@
+# v0.9.2
+
+- Added Google Site Verification meta tag
+
 # v0.9.1
 
 - Optimised hex grid
