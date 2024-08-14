@@ -1,3 +1,7 @@
+# v0.10.0
+
+- Implemented custom 404 page for GitHub Pages
+
 # v0.9.2
 
 - Added Google Site Verification meta tag

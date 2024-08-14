@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 Error!</title>
+  </head>
+  <body>
+    <h1>404: Page not found!</h1>
+    <p>
+      Click <a href="/Melvor-Map-Maker/">here</a> to go back to the main page
+    </p>
+    <script>
+      (() => {
+        const MANUAL_REDIRECTS = new Map([
+          [/^file ?generator$/i, "File Generator"],
+          [/^map ?builder$/i, "Map Builder"],
+        ]);
+
+        const path = window.location.pathname.slice(
+          "/Melvor-Map-Maker/".length
+        );
+        for (const [regexp, redirect] of MANUAL_REDIRECTS) {
+          if (regexp.test(path)) {
+            window.location.pathname = `/Melvor-Map-Maker/${redirect}`;
+            break;
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
