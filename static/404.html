@@ -3,26 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 Error!</title>
+    <title>404</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: large;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 8em;
+        max-width: 90%;
+
+        margin-bottom: 0;
+      }
+
+      p {
+        margin: 0.5em auto;
+      }
+
+      a {
+        height: 3em;
+        padding: 0 0.75em;
+
+        font-size: x-large;
+        text-decoration: none;
+
+        color: white !important;
+        background-color: #1f1f1f;
+
+        border: 3px solid #555555;
+        border-radius: 999px;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+
+        transition:
+          background-color 0.3s,
+          border-color 0.3s,
+          scale 0.3s ease-in-out;
+      }
+
+      a:hover {
+        background-color: #333333;
+        border-color: #777777;
+        scale: 1.3;
+      }
+    </style>
   </head>
   <body>
-    <h1>404: Page not found!</h1>
-    <p>
-      Click <a href="/Melvor-Map-Maker/">here</a> to go back to the main page
-    </p>
+    <h1>404</h1>
+
+    <p>¯\_(ツ)_/¯</p>
+    <p>To navigate back to the home page, click the button below!</p>
+
+    <a href="/Melvor-Map-Maker">GO BACK</a>
+
     <script>
       (() => {
+        const BASE_PATH = "/Melvor-Map-Maker/";
         const MANUAL_REDIRECTS = new Map([
           [/^file ?generator$/i, "File Generator"],
           [/^map ?builder$/i, "Map Builder"],
         ]);
 
-        const path = window.location.pathname.slice(
-          "/Melvor-Map-Maker/".length
-        );
+        const path = window.location.pathname.slice(BASE_PATH.length);
+
         for (const [regexp, redirect] of MANUAL_REDIRECTS) {
           if (regexp.test(path)) {
-            window.location.pathname = `/Melvor-Map-Maker/${redirect}`;
+            window.location.pathname = `${BASE_PATH}${redirect}`;
             break;
           }
         }

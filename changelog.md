@@ -1,3 +1,7 @@
+# v0.11.0
+
+- Implemented better styling for 404 page
+
 # v0.10.0
 
 - Implemented custom 404 page for GitHub Pages
