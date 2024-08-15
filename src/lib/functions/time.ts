@@ -11,7 +11,7 @@ async function time<ReturnType = unknown>(
     return result;
   }
 
-  console.log(`[${taskName}] | Took ${elapsedMS}ms to complete task`);
+  console.debug(`[${taskName}] | Took ${elapsedMS}ms to complete task`);
   return result;
 }
 

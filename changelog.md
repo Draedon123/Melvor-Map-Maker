@@ -2,6 +2,8 @@
 
 - Implemented better styling for 404 page
 - Moved scripts and tests directories from src to root directory
+- Changed log level of `time` function to debug
+- Removed testing `console.log` from Viewport
 
 # v0.10.0
 

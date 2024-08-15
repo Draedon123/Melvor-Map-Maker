@@ -67,7 +67,6 @@ class Viewport extends _Viewport {
     this.on("moved", this.updateLastViewport);
     this.on("zoomed-end", () => {
       this.updateLastViewport();
-      console.log("updating");
 
       this.hexGridLayer.updateGraphicsContext(
         HexGridLayer.getHexGraphicContext(
