@@ -4,6 +4,7 @@
 - Moved scripts and tests directories from src to root directory
 - Changed log level of `time` function to debug
 - Removed testing `console.log` from Viewport
+- Fixed stack overflow error when repopulating Hex Grid with many Hex Displays
 
 # v0.10.0
 

@@ -91,7 +91,15 @@ class HexGridLayer extends Container<HexDisplay> {
     this.removeChildren().forEach((child) => {
       child.destroy(true);
     });
-    this.addChild(...hexDisplays);
+
+    // the children are looped over to prevent stack overflow errors when there
+    // are a ton of hex displays
+    // internally, pixi.js container.addChild recursively calls itself for each
+    // child being added, so there is no performance difference by looping over
+    // the children manually
+    for (const hexDisplay of hexDisplays) {
+      this.addChild(hexDisplay);
+    }
 
     return hexDisplays;
   }
