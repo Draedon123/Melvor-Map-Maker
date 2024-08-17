@@ -104,15 +104,18 @@
     );
 
     $store.backgroundLayer.addChild(...sprites);
+
+    $store.viewport.worldWidth = $store.mapDimensions.x;
+    $store.viewport.worldHeight = $store.mapDimensions.y;
+
+    $store.viewport.centerViewport();
+
     $store.hexGridLayer.populate(
       $store.mapDimensions,
       $store.viewport,
       $store.hexesX,
       $store.hexesY
     );
-    $store.viewport.worldWidth = tilesX * $store.mapDimensions.x;
-    $store.viewport.worldHeight = tilesY * $store.mapDimensions.y;
-    $store.viewport.centerViewport();
   }
 
   onMount(() => {

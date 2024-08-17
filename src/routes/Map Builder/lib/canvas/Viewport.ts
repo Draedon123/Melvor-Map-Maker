@@ -106,25 +106,25 @@ class Viewport extends _Viewport {
   }
 
   public centerViewport(): void {
-    const shortestSideLength =
-      this.screenWidthInWorldPixels < this.screenHeightInWorldPixels
+    this.scale.set(1);
+
+    const mapAspectRatio = this.worldWidth / this.worldHeight;
+    const screenAspectRatio = this.screenWidth / this.screenHeight;
+
+    const fitTo = mapAspectRatio > screenAspectRatio ? "width" : "height";
+
+    this[fitTo] =
+      fitTo === "width"
         ? this.screenWidthInWorldPixels
         : this.screenHeightInWorldPixels;
+    const scale = fitTo === "width" ? this.scale.x : this.scale.y;
 
-    const shortestSide =
-      this.screenWidthInWorldPixels < this.screenHeightInWorldPixels
-        ? "width"
-        : "height";
-
-    this.width = shortestSideLength;
-    this.height = shortestSideLength;
-
-    this.position.set(0);
+    this.scale.set(scale);
 
     this.position.x =
-      shortestSide === "width" ? 0 : this.screenWidth / 2 - this.width / 2;
+      fitTo === "width" ? 0 : this.screenWidth / 2 - this.width / 2;
     this.position.y =
-      shortestSide === "height" ? 0 : this.screenHeight / 2 - this.height / 2;
+      fitTo === "height" ? 0 : this.screenHeight / 2 - this.height / 2;
 
     this.baseScale = this.scale.y;
   }

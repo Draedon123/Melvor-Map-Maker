@@ -14,7 +14,7 @@
     <ToolbarItem
       imageSRC="{base}/upload.png"
       imageAltText="An upload icon"
-      imageOnClick={() => {
+      onClick={() => {
         uploadFileModal.exports.modal?.toggle();
       }}
     >
@@ -23,7 +23,7 @@
     <ToolbarItem
       imageSRC="{base}/hex_grid.png"
       imageAltText="A honeycomb"
-      imageOnClick={() => {
+      onClick={() => {
         hexModal.exports.modal?.toggle();
       }}
     >

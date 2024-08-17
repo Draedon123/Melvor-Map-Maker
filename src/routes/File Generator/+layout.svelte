@@ -45,7 +45,7 @@
     <ToolbarItem
       imageSRC="{base}/preview.png"
       imageAltText="A document and a magnifying glass"
-      imageOnClick={dialog?.toggle}
+      onClick={dialog?.toggle}
     >
       Preview Image
     </ToolbarItem>

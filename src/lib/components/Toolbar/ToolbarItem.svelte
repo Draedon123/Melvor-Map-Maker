@@ -1,20 +1,15 @@
 <script lang="ts">
   export let imageSRC: string;
   export let imageAltText: string;
-  export let imageOnClick: () => void = () => {};
+  export let onClick: () => void = () => {};
 </script>
 
-<div>
-  <input
-    type="image"
-    src={imageSRC}
-    alt={imageAltText}
-    on:click={imageOnClick}
-  />
+<button on:click={onClick}>
+  <img src={imageSRC} alt={imageAltText} />
   <span>
     <slot />
   </span>
-</div>
+</button>
 
 <style lang="scss">
   @use "sass:math";
@@ -23,20 +18,28 @@
   $toolbar-colour: #1f1f1f;
   $image-dimensions: 0.9 * $toolbar-width;
 
-  div {
-    transition:
-      background-color 0.4s ease,
-      width 0.4s ease-in-out;
+  button {
     width: $toolbar-width;
+
     position: relative;
     display: flex;
     align-items: center;
+
+    padding: 0;
+    border: none;
+    background-color: transparent;
+
     overflow-x: hidden;
+    transition:
+      background-color 0.4s ease,
+      width 0.4s ease-in-out;
+    font-size: medium;
     cursor: pointer;
 
-    input[type="image"] {
+    img {
       width: $image-dimensions;
       height: $image-dimensions;
+
       font-size: medium;
       user-select: none;
       padding-right: calc(100% - $image-dimensions);
@@ -47,13 +50,19 @@
     }
 
     span {
-      opacity: 0;
-      color: white;
-      transition: opacity 0.4s;
       height: math.div($image-dimensions, 2);
+
+      opacity: 0;
+      transition: opacity 0.4s;
+
+      color: white;
       text-wrap: nowrap;
+      font-family: auto;
+
       position: absolute;
       left: calc($image-dimensions + 0.5ch);
+
+      padding-right: 1ch;
     }
   }
 </style>

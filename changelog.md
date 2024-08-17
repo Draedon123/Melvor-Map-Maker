@@ -5,6 +5,8 @@
 - Changed log level of `time` function to debug
 - Removed testing `console.log` from Viewport
 - Fixed stack overflow error when repopulating Hex Grid with many Hex Displays
+- Fixed `viewport.centerViewport` method forcing map into a square
+- Fixed toolbar only triggering click events when the image is clicked
 
 # v0.10.0
 

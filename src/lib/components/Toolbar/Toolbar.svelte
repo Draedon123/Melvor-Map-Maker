@@ -24,7 +24,7 @@
     z-index: 10;
   }
 
-  :global(.toolbar:hover div) {
+  :global(.toolbar:hover button) {
     width: 4 * $toolbar-width !important;
 
     &:hover {
