@@ -6,7 +6,6 @@
       content="lDmejdqh_nn2rTbbClLvYNnYhgN11CkBDKr74kh8WiE"
     />
     <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
@@ -41,9 +40,31 @@
     <meta property="og:image:height" content="1000" />
     <meta property="og:image:alt" content="The Melvor Idle map" />
     <meta property="og:type" content="website" />
-    %sveltekit.head%
+
+    <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
+
+    <link
+      rel="icon"
+      href="%sveltekit.assets%/favicon.ico"
+      sizes="48x48"
+      pwa="true"
+    />
+    <link
+      rel="icon"
+      href="%sveltekit.assets%/favicon.svg"
+      sizes="any"
+      type="image/svg+xml"
+      pwa="true"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="%sveltekit.assets%/apple-touch-icon-180x180.png"
+      pwa="true"
+    />
   </head>
   <body data-sveltekit-preload-data="hover">
+    %sveltekit.head%
+
     <div style="display: contents">%sveltekit.body%</div>
     <noscript>
       <h1>JavaScript must be enabled for this site to work!</h1>

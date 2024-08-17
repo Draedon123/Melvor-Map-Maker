@@ -13,6 +13,12 @@ const config = {
     paths: {
       base: "/Melvor-Map-Maker",
     },
+    serviceWorker: {
+      register: false,
+    },
+    files: {
+      serviceWorker: "src/serviceWorker.ts",
+    },
     alias: {
       $routes: "src/routes",
       "$routes/*": "src/routes/*",

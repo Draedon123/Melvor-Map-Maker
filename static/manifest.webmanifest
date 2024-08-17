@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest",
+  "name": "Melvor Map Maker",
+  "short_name": "M3",
+  "start_url": "/Melvor-Map-Maker",
+  "display": "standalone",
+  "id": "Melvor Map Maker",
+  "theme_color": "#D19034",
+  "lang": "en",
+  "dir": "ltr",
+  "orientation": "landscape",
+  "description": "A friendly and accessible interface to create custom maps for the Cartography Skill in Melvor Idle",
+  "categories": "design, developer, games, utilities",
+  "screenshots": [
+    {
+      "src": "/Melvor-Map-Maker/screenshot_1.png",
+      "sizes": "1920x957",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Map Builder"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/Melvor-Map-Maker/pwa-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/Melvor-Map-Maker/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Melvor-Map-Maker/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/Melvor-Map-Maker/maskable-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

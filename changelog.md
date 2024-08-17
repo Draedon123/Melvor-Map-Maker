@@ -1,3 +1,7 @@
+# v0.12.0
+
+- Implemented manifest.webmanifest and a script to generate PWA icons
+
 # v0.11.0
 
 - Implemented better styling for 404 page

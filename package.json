@@ -1,10 +1,10 @@
 {
   "name": "melvor-map-maker",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "npm i && npm run writeEnv && npm run getMelvorSchema && npm run check && npm run lint && vitest run && npm run format",
+    "prebuild": "npm i && npm run writeEnv && npm run getMelvorSchema && npm run generatePWAIcons && npm run check && npm run lint && vitest run && npm run format",
     "build": "vite build",
     "postbuild": "npm run addRedirects && npm run minify",
     "preview": "vite preview",
@@ -17,7 +17,8 @@
     "addRedirects": "node scripts/addRedirects.cjs",
     "writeEnv": "node scripts/writeEnv.cjs",
     "minify": "node scripts/minify.cjs",
-    "getMelvorSchema": "node scripts/getMelvorSchema.cjs"
+    "getMelvorSchema": "node scripts/getMelvorSchema.cjs",
+    "generatePWAIcons": "node scripts/generatePWAIcons.cjs"
   },
   "devDependencies": {
     "@pixi/devtools": "^2.0.1",
@@ -26,6 +27,7 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@types/eslint": "^8.56.7",
     "@types/toastify-js": "^1.12.3",
+    "@vite-pwa/assets-generator": "^0.2.4",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-svelte": "^2.36.0",
