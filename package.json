@@ -3,10 +3,10 @@
   "version": "0.12.0",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
-    "prebuild": "npm i && npm run writeEnv && npm run getMelvorSchema && npm run generatePWAIcons && npm run check && npm run lint && vitest run && npm run format",
+    "dev": "npm run patchServiceWorkers && vite dev",
+    "prebuild": "npm i && npm run addRedirects && npm run patchServiceWorkers && npm run writeEnv && npm run getMelvorSchema && npm run generatePWAIcons && npm run check && npm run lint && vitest run && npm run format",
     "build": "vite build",
-    "postbuild": "npm run addRedirects && npm run minify",
+    "postbuild": "npm run minify",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -18,7 +18,8 @@
     "writeEnv": "node scripts/writeEnv.cjs",
     "minify": "node scripts/minify.cjs",
     "getMelvorSchema": "node scripts/getMelvorSchema.cjs",
-    "generatePWAIcons": "node scripts/generatePWAIcons.cjs"
+    "generatePWAIcons": "node scripts/generatePWAIcons.cjs",
+    "patchServiceWorkers": "node scripts/patchServiceWorkers.cjs"
   },
   "devDependencies": {
     "@pixi/devtools": "^2.0.1",

@@ -1,6 +1,8 @@
 # v0.12.0
 
+- Implemented basic service worker
 - Implemented manifest.webmanifest and a script to generate PWA icons
+- Changed output directory of `addRedirects.cjs` to `static`
 
 # v0.11.0
 

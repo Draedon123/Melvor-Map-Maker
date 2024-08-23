@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { dev } from "$app/environment";
   import { base } from "$app/paths";
   import { onMount } from "svelte";
   import { PUBLIC_VERSION } from "$env/static/public";
@@ -30,6 +31,13 @@
   }
 
   onMount(() => {
+    if (import.meta.env.PROD) {
+      navigator.serviceWorker.register(`${base}/service-worker.js`, {
+        type: dev ? "module" : "classic",
+        scope: `${base}/`,
+      });
+    }
+
     new KeyboardShortcut(
       async (event) => {
         event.preventDefault();
