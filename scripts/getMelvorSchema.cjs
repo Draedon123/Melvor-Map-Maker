@@ -24,6 +24,7 @@
   const result = await compile(schemaData, "MelvorSchema", {
     format: false,
     maxItems: -1,
+    additionalProperties: false,
     style: {
       printWidth: Infinity,
       tabWidth: 0,

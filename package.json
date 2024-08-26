@@ -1,6 +1,6 @@
 {
   "name": "melvor-map-maker",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "private": true,
   "scripts": {
     "dev": "npm run patchServiceWorkers && vite dev",

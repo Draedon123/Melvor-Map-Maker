@@ -38,7 +38,6 @@ export type SkillLevelCapIncreaseData = IDData & {
    * Optional. Sets the level cap of a skill when a requirement set is met. Has no effect if the skill's level cap is already above the amount.
    */
   setIncreases?: SkillIDValue[];
-  [k: string]: unknown;
 } & {
   /**
    * Determines the type of level cap that is increased
@@ -69,7 +68,6 @@ export type SkillLevelCapIncreaseData = IDData & {
    * Optional. Sets the level cap of a skill when a requirement set is met. Has no effect if the skill's level cap is already above the amount.
    */
   setIncreases?: SkillIDValue[];
-  [k: string]: unknown;
 };
 export type AnyRequirementData =
   | SkillLevelRequirementData
@@ -5299,7 +5297,6 @@ export type GamemodeData = IDData & {
    * Optional. ID of a SkillLevelCapIncrease that will convert the old post 99 roll save data
    */
   post99RollConversion?: SkillLevelCapIncreaseID;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the Gamemode
@@ -5494,7 +5491,6 @@ export type GamemodeData = IDData & {
    * Optional. ID of a SkillLevelCapIncrease that will convert the old post 99 roll save data
    */
   post99RollConversion?: SkillLevelCapIncreaseID;
-  [k: string]: unknown;
 };
 export type CombatTriangleType = "Standard" | "Hardcore" | "InvertedHardcore";
 export type PageID =
@@ -12525,7 +12521,6 @@ export type ModifierValuesRecordData = BaseEnemyModifierValuesRecordData & {
    * Positive value alias for melvorD:damageDealtToMonstersInArea
    */
   increasedDamageToAbyssalSlayerAreaMonsters?: number | ScopedModifierValue0[];
-  [k: string]: unknown;
 };
 export type DamageTypeID =
   | ValidID
@@ -12603,9 +12598,7 @@ export type SingleCombatEffectApplicatorData = CombatEffectApplicatorData & {
   initialParams?: {
     name: string;
     value: number;
-    [k: string]: unknown;
   }[];
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the CombatEffect to apply
@@ -12617,9 +12610,7 @@ export type SingleCombatEffectApplicatorData = CombatEffectApplicatorData & {
   initialParams?: {
     name: string;
     value: number;
-    [k: string]: unknown;
   }[];
-  [k: string]: unknown;
 };
 export type CombatEffectApplicatorConditionData =
   | DamageDealtConditionData
@@ -12647,13 +12638,11 @@ export type CombatConditionData = {
    * The character that must meet the condition
    */
   character: "Player" | "Enemy";
-  [k: string]: unknown;
 } & CombatConditionData1 & {
     /**
      * The character that must meet the condition
      */
     character: "Player" | "Enemy";
-    [k: string]: unknown;
   } & CombatConditionData1;
 export type CombatConditionData1 =
   | HitpointsConditionData
@@ -12668,7 +12657,6 @@ export type CombatConditionData1 =
  */
 export type HitpointsConditionData = ValueConditionData & {
   type: "Hitpoints";
-  [k: string]: unknown;
 };
 /**
  * Requires that the character and their target have the specified Combat Styles
@@ -12683,7 +12671,6 @@ export type AttackTypeConditionData = BooleanConditionData & {
    * The combat style that the character's target must use
    */
   targetAttackType: AttackType | "any";
-  [k: string]: unknown;
 };
 export type AttackType = "melee" | "ranged" | "magic";
 /**
@@ -12695,14 +12682,12 @@ export type DamageTypeConditionData = BooleanConditionData & {
    * The damage type the character must deal
    */
   damageType: DamageTypeID;
-  [k: string]: unknown;
 };
 /**
  * Compares the barrier percent of the specified character with value
  */
 export type BarrierConditionData = ValueConditionData & {
   type: "Barrier";
-  [k: string]: unknown;
 };
 /**
  * Requires that the specified character has an effect that belongs to the specified group active
@@ -12713,7 +12698,6 @@ export type CombatEffectGroupConditionData = BooleanConditionData & {
    * The ID of the CombatEffectGroup that an active effect must belong to
    */
   groupID: CombatEffectGroupID;
-  [k: string]: unknown;
 };
 /**
  * Requires that the specified character has the specified effect active
@@ -12724,7 +12708,6 @@ export type CombatEffectConditionData = BooleanConditionData & {
    * The ID of the CombatEffect that must be active
    */
   effectID: CombatEffectID;
-  [k: string]: unknown;
 };
 export type CombatEffectID =
   | ValidID
@@ -13121,7 +13104,6 @@ export type CombatEffectID =
  */
 export type FightingBossConditionData = BooleanConditionData & {
   type: "FightingBoss";
-  [k: string]: unknown;
 };
 export type CombatEffectTarget = "Self" | "Target";
 /**
@@ -13132,13 +13114,11 @@ export type TableCombatEffectApplicatorData = CombatEffectApplicatorData & {
    * The ID of the CombatEffectTable to select an applicator from
    */
   tableID: CombatEffectTableID;
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the CombatEffectTable to select an applicator from
    */
   tableID: CombatEffectTableID;
-  [k: string]: unknown;
 };
 export type CombatEffectTableID =
   | ValidID
@@ -14368,7 +14348,6 @@ export type AnyItemData =
   | FiremakingOilItemData;
 export type ItemData = BaseItemData & {
   itemType: "Item";
-  [k: string]: unknown;
 };
 export type BaseItemData = IDData & {
   /**
@@ -14431,7 +14410,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14493,7 +14471,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14555,7 +14532,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14617,7 +14593,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14679,7 +14654,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14741,7 +14715,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14803,7 +14776,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14865,7 +14837,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14927,7 +14898,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -14989,7 +14959,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -15051,7 +15020,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -15113,7 +15081,6 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name for the item
@@ -15175,11 +15142,9 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-  [k: string]: unknown;
 };
 export type EquipmentItemData = BaseEquipmentItemData & {
   itemType: "Equipment";
-  [k: string]: unknown;
 };
 export type BaseEquipmentItemData = BaseItemData &
   IStatObjectData & {
@@ -15266,7 +15231,6 @@ export type BaseEquipmentItemData = BaseItemData &
      * Optional. If present sets the priority of losing this item when dying. Higher priority indicates the item will be lost before others. Defaults to 0.
      */
     deathPenaltyPriority?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Classification for the tier of item. Currently only effects which items can be converted to Clothing in township
@@ -15351,7 +15315,6 @@ export type BaseEquipmentItemData = BaseItemData &
      * Optional. If present sets the priority of losing this item when dying. Higher priority indicates the item will be lost before others. Defaults to 0.
      */
     deathPenaltyPriority?: number;
-    [k: string]: unknown;
   };
 export type ConditionalModifierConditionData =
   | CombatConditionData
@@ -15384,7 +15347,6 @@ export type ItemInBankConditionData = ValueConditionData & {
    * The ID of the item that must be present in the bank
    */
   itemID: AnyItemID;
-  [k: string]: unknown;
 };
 /**
  * Compares the quantity of item charges of the equipment item with value
@@ -15395,7 +15357,6 @@ export type ItemChargeConditionData = ValueConditionData & {
    * The ID of the equipment item that has charges
    */
   itemID: EquipmentItemID;
-  [k: string]: unknown;
 };
 /**
  * Checks if the player is using a specific potion item/potion from a specific recipe
@@ -15410,7 +15371,6 @@ export type PotionUsedConditionData = BooleanConditionData & {
    * Optional. The ID of a herblore recipe, where one of its potions must be used
    */
   recipeID?: HerbloreActionID;
-  [k: string]: unknown;
 };
 export type HerbloreActionID =
   | ValidID
@@ -15497,7 +15457,6 @@ export type EquipStatCompareConditionData =
      * The equipment stat to compare
      */
     statKey: EquipStatKey;
-    [k: string]: unknown;
   };
 export type EquipStatKey =
   | "attackSpeed"
@@ -15525,7 +15484,6 @@ export type DamageTypeEquipStatCompareConditionData =
      * The damage type of the stat
      */
     damageType: DamageTypeID;
-    [k: string]: unknown;
   };
 export type DamageTypeEquipStatKey = "resistance" | "summoningMaxhit";
 /**
@@ -15533,7 +15491,6 @@ export type DamageTypeEquipStatKey = "resistance" | "summoningMaxhit";
  */
 export type FightingSlayerTaskConditionData = BooleanConditionData & {
   type: "FightingSlayerTask";
-  [k: string]: unknown;
 };
 export type EquipmentSlotID =
   | ValidID
@@ -16272,7 +16229,6 @@ export type WoodcuttingEventMatcherOptions = SkillActionEventMatcherOptions & {
    * @minItems 1
    */
   actionIDs?: [WoodcuttingActionID, ...WoodcuttingActionID[]];
-  [k: string]: unknown;
 };
 export type WoodcuttingActionID =
   | ValidID
@@ -16342,7 +16298,6 @@ export type FishingActionEventMatcherOptions =
      * Optional. If present, the primary reward being a Special item must match
      */
     specialItemGiven?: boolean;
-    [k: string]: unknown;
   };
 export type FishingActionID =
   | ValidID
@@ -16446,7 +16401,6 @@ export type FiremakingActionEventMatcherOptions =
      * @minItems 1
      */
     actionIDs?: [FiremakingActionID, ...FiremakingActionID[]];
-    [k: string]: unknown;
   };
 export type FiremakingActionID =
   | ValidID
@@ -16507,7 +16461,6 @@ export type CookingActionEventMatcherOptions =
      * Optional. If present, the player passive cooking during the action must match
      */
     isPassiveCooking?: boolean;
-    [k: string]: unknown;
   };
 export type CookingActionID =
   | ValidID
@@ -16646,7 +16599,6 @@ export type MiningActionEventMatcherOptions = SkillActionEventMatcherOptions & {
    * @minItems 1
    */
   categories?: [MiningCategoryID, ...MiningCategoryID[]];
-  [k: string]: unknown;
 };
 export type MiningActionID =
   | ValidID
@@ -16735,7 +16687,6 @@ export type SmithingActionEventMatcherOptions =
      * @minItems 1
      */
     consumedItemIDs?: [AnyItemID, ...AnyItemID[]];
-    [k: string]: unknown;
   };
 export type SmithingActionID =
   | ValidID
@@ -17068,7 +17019,6 @@ export type ThievingActionEventMatcherOptions =
      * Optional. If present, a common drop being obtained from the action must match
      */
     commonDropObtained?: boolean;
-    [k: string]: unknown;
   };
 export type ThievingActionID =
   | ValidID
@@ -17251,7 +17201,6 @@ export type FarmingHarvestActionEventMatcherOptions =
      * @minItems 1
      */
     categoryIDs?: [FarmingCategoryID, ...FarmingCategoryID[]];
-    [k: string]: unknown;
   };
 /**
  * Matches when a Fletching action occurs
@@ -17279,7 +17228,6 @@ export type FletchingActionEventMatcherOptions =
      * Optional. If present, the fletching action making unstrung bows must match
      */
     isUnstrungBows?: boolean;
-    [k: string]: unknown;
   };
 export type FletchingActionID =
   | ValidID
@@ -17462,7 +17410,6 @@ export type CraftingActionEventMatcherOptions =
      * Optional. If present, the item being crafted must match being a consumable item or not
      */
     isConsumable?: boolean;
-    [k: string]: unknown;
   };
 export type CraftingActionID =
   | ValidID
@@ -17705,7 +17652,6 @@ export type RunecraftingActionEventMatcherOptions =
      * @minItems 1
      */
     subcategoryIDs?: [ValidID, ...ValidID[]];
-    [k: string]: unknown;
   };
 export type RunecraftingActionID =
   | ValidID
@@ -17982,7 +17928,6 @@ export type HerbloreActionEventMatcherOptions =
      * @minItems 1
      */
     categoryIDs?: [HerbloreCategoryID, ...HerbloreCategoryID[]];
-    [k: string]: unknown;
   };
 export type HerbloreCategoryID =
   | ValidID
@@ -18010,7 +17955,6 @@ export type AgilityActionEventMatcherOptions =
      * @minItems 1
      */
     categoryIDs?: [number, ...number[]];
-    [k: string]: unknown;
   };
 export type AgilityObstacleID =
   | ValidID
@@ -18149,7 +18093,6 @@ export type SummoningActionEventMatcherOptions =
      * @minItems 1
      */
     categoryIDs?: [SummoningCategoryID, ...SummoningCategoryID[]];
-    [k: string]: unknown;
   };
 export type SummoningActionID =
   | ValidID
@@ -18229,7 +18172,6 @@ export type AstrologyActionEventMatcherOptions =
      * @minItems 1
      */
     actionIDs?: [AstrologyActionID, ...AstrologyActionID[]];
-    [k: string]: unknown;
   };
 export type AstrologyActionID =
   | ValidID
@@ -18288,7 +18230,6 @@ export type AltMagicActionEventMatcherOptions =
      * @minItems 1
      */
     usedRuneIDs?: [AnyItemID, ...AnyItemID[]];
-    [k: string]: unknown;
   };
 export type AltMagicSpellID =
   | ValidID
@@ -18341,7 +18282,6 @@ export type CartographySurveyEventMatcherOptions =
      * @minItems 1
      */
     worldMaps?: [WorldMapID, ...WorldMapID[]];
-    [k: string]: unknown;
   };
 /**
  * Matches when the player performs a paper making action in Cartography
@@ -18355,7 +18295,6 @@ export type CartographyPaperMakingEventMatcherOptions =
      * @minItems 1
      */
     recipes?: [PaperMakingRecipeID, ...PaperMakingRecipeID[]];
-    [k: string]: unknown;
   };
 export type PaperMakingRecipeID =
   | ValidID
@@ -18393,7 +18332,6 @@ export type CartographyMapUpgradeEventMatcherOptions =
      * @minItems 1
      */
     digSites?: [ArchaeologyDigSiteID, ...ArchaeologyDigSiteID[]];
-    [k: string]: unknown;
   };
 export type ArchaeologyDigSiteID =
   | ValidID
@@ -18433,7 +18371,6 @@ export type ArchaeologyActionEventMatcherOptions =
      * Optional. If present the action finding an artifact must match.
      */
     artifactFound?: boolean;
-    [k: string]: unknown;
   };
 /**
  * Matches when a Harvesting action occurs
@@ -18447,7 +18384,6 @@ export type HarvestingActionEventMatcherOptions =
      * @minItems 1
      */
     actionIDs?: [HarvestingActionID, ...HarvestingActionID[]];
-    [k: string]: unknown;
   };
 export type HarvestingActionID =
   | ValidID
@@ -18474,7 +18410,6 @@ export type WeaponItemData = BaseEquipmentItemData & {
    * Optional. The ID of the damage type this Weapon deals. Defaults to Normal.
    */
   damageType?: DamageTypeID;
-  [k: string]: unknown;
 };
 export type FoodItemData = BaseItemData &
   IStatObjectData & {
@@ -18483,7 +18418,6 @@ export type FoodItemData = BaseItemData &
      * The base healing value of the food. Specified as 1/10th of the desired value in Standard Mode.
      */
     healsFor: number;
-    [k: string]: unknown;
   };
 export type BoneItemData = BaseItemData & {
   itemType: "Bone";
@@ -18491,7 +18425,6 @@ export type BoneItemData = BaseItemData & {
    * The base number of prayer points obtained by burying the item
    */
   prayerPoints: number;
-  [k: string]: unknown;
 };
 export type PotionItemData = BaseItemData &
   IStatObjectData & {
@@ -18514,7 +18447,6 @@ export type PotionItemData = BaseItemData &
      * @minItems 1
      */
     consumesOn: [GameEventMatcherData, ...GameEventMatcherData[]];
-    [k: string]: unknown;
   };
 export type ActionID =
   | ValidID
@@ -18556,9 +18488,7 @@ export type ReadableItemData = BaseItemData & {
      * Specifies the id of an HTMLTemplateElement in the DOM to use as the html for the SweetAlert2 modal.
      */
     htmlTemplateID: string;
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 };
 export type OpenableItemData = BaseItemData & {
   itemType: "Openable";
@@ -18572,12 +18502,10 @@ export type OpenableItemData = BaseItemData & {
    * Optional. If present, this item is required to open the item. The quantity provided will be consumed per item opened.
    */
   keyItem?: AnyItemQuantity;
-  [k: string]: unknown;
 };
 export type TokenItemData = BaseItemData &
   IStatObjectData & {
     itemType: "Token";
-    [k: string]: unknown;
   };
 export type MasteryTokenItemData = BaseItemData & {
   itemType: "MasteryToken";
@@ -18597,7 +18525,6 @@ export type MasteryTokenItemData = BaseItemData & {
    * Optional. If this item should be rolled for when the corresponding skill completes an action. Defaults to true.
    */
   rollInSkill?: boolean;
-  [k: string]: unknown;
 };
 export type CompostItemData = BaseItemData & {
   itemType: "Compost";
@@ -18625,7 +18552,6 @@ export type CompostItemData = BaseItemData & {
    * Optional. Sets the currency cost to apply this item to all farming plots. Defaults to 2000 GP
    */
   compostAllCost?: CurrencyQuantity;
-  [k: string]: unknown;
 };
 export type SoulItemData = BaseItemData & {
   itemType: "Soul";
@@ -18633,7 +18559,6 @@ export type SoulItemData = BaseItemData & {
    * The base number of soul points obtained by excercizing the item
    */
   soulPoints: number;
-  [k: string]: unknown;
 };
 export type RuneItemData = BaseItemData & {
   itemType: "Rune";
@@ -18645,7 +18570,6 @@ export type RuneItemData = BaseItemData & {
    * Optional. The realm this rune belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID & string;
-  [k: string]: unknown;
 };
 export type FiremakingOilItemData = BaseItemData & {
   itemType: "FiremakingOil";
@@ -18657,7 +18581,6 @@ export type FiremakingOilItemData = BaseItemData & {
    * The interval of the Oil
    */
   oilInterval: number;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing an AttackStyle object
@@ -18676,7 +18599,6 @@ export type AttackStyleData = IDData &
        * The amount of experience gained per hitpoint multiplier normalized point of damage dealt.
        */
       ratio: number;
-      [k: string]: unknown;
     }[];
     /**
      * The combat style the Player can use this attack style with
@@ -18686,7 +18608,6 @@ export type AttackStyleData = IDData &
      * The display name of the attack style
      */
     name: string;
-    [k: string]: unknown;
   } & {
     /**
      * Experience that is gained when dealing damage with this attack style
@@ -18700,7 +18621,6 @@ export type AttackStyleData = IDData &
        * The amount of experience gained per hitpoint multiplier normalized point of damage dealt.
        */
       ratio: number;
-      [k: string]: unknown;
     }[];
     /**
      * The combat style the Player can use this attack style with
@@ -18710,7 +18630,6 @@ export type AttackStyleData = IDData &
      * The display name of the attack style
      */
     name: string;
-    [k: string]: unknown;
   };
 /**
  * Data used to construct a CombatEffectGroup
@@ -18728,7 +18647,6 @@ export type CombatEffectGroupData = IDData & {
    * Adjective describing the state of a character impacted by this effect group (e.g. Burning). Used to generate descriptions.
    */
   adjective: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of this effect group for use in modifiers
@@ -18742,7 +18660,6 @@ export type CombatEffectGroupData = IDData & {
    * Adjective describing the state of a character impacted by this effect group (e.g. Burning). Used to generate descriptions.
    */
   adjective: string;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a CombatEffectTemplate
@@ -18760,7 +18677,6 @@ export type CombatEffectTemplateData = IDData & {
    * The partial combat effect data that will be inherited by other templates/combat effects
    */
   baseEffectData: BaseCombatEffectData;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Description with instructions on the use of this template
@@ -18774,7 +18690,6 @@ export type CombatEffectTemplateData = IDData & {
    * The partial combat effect data that will be inherited by other templates/combat effects
    */
   baseEffectData: BaseCombatEffectData;
-  [k: string]: unknown;
 };
 export type CombatEffectTemplateID =
   | ValidID
@@ -18866,7 +18781,6 @@ export type CombatEffectLangTTSpanData = CombatEffectTTSpanData & {
   templateData?: {
     [k: string]: CombatEffectNumberExpression;
   };
-  [k: string]: unknown;
 };
 export type CombatEffectStringTTSpanData = CombatEffectTTSpanData & {
   /**
@@ -18883,7 +18797,6 @@ export type CombatEffectStringTTSpanData = CombatEffectTTSpanData & {
   templateData?: {
     [k: string]: CombatEffectNumberExpression;
   };
-  [k: string]: unknown;
 };
 export type CombatEffectStatsTTSpanData = CombatEffectTTSpanData & {
   /**
@@ -18894,7 +18807,6 @@ export type CombatEffectStatsTTSpanData = CombatEffectTTSpanData & {
    * The name of the stat group to display
    */
   statGroupName: string;
-  [k: string]: unknown;
 };
 export type CombatEffectTurnsTTSpanData = CombatEffectTTSpanData & {
   /**
@@ -18905,7 +18817,6 @@ export type CombatEffectTurnsTTSpanData = CombatEffectTTSpanData & {
    * The value to use for the number of turns left
    */
   turns: CombatEffectNumberExpression;
-  [k: string]: unknown;
 };
 export type CombatEffectStacksWithMaxTTSpanData = CombatEffectTTSpanData & {
   /**
@@ -18920,7 +18831,6 @@ export type CombatEffectStacksWithMaxTTSpanData = CombatEffectTTSpanData & {
    * The value to use for the maximum number of stacks
    */
   maxStacks: CombatEffectNumberExpression;
-  [k: string]: unknown;
 };
 /**
  * This interface was referenced by `undefined`'s JSON-Schema definition
@@ -18941,7 +18851,6 @@ export type RolledDamage = BaseDamage & {
    * The magnitude of the minimum damage. Effect depends on the value of minRoll
    */
   minPercent: number;
-  [k: string]: unknown;
 };
 export type CharacterType = "Target" | "Attacker";
 export type RollType =
@@ -18979,7 +18888,6 @@ export type FixedDamage = BaseDamage & {
    * Determines if the damage should roll between a minimum and maximum value
    */
   roll: false;
-  [k: string]: unknown;
 };
 export type DOTType =
   | "Burn"
@@ -19015,7 +18923,6 @@ export type InterruptTurnBehaviourData = CombatEffectBehaviourData & {
    * Defines a Combat effect behaviour that interrupts the characters turn, resetting their action timer and cancelling any special attacks they were performing
    */
   type: "InterruptTurn";
-  [k: string]: unknown;
 };
 export type AnyCombatEffectBehaviourTriggerData =
   | EndOfTurnTriggerData
@@ -19046,7 +18953,6 @@ export type EndOfTurnTriggerData = CombatBehaviourTriggerData & {
    * Determines whether the behaviour executes at the end of the character's turn or their target's
    */
   target: CombatEffectTarget;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a HitWithAttackTrigger
@@ -19056,7 +18962,6 @@ export type HitWithAttackTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs when the character hits with an attack
    */
   type: "HitWithAttack";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a MissedWithAttackTrigger
@@ -19066,7 +18971,6 @@ export type MissedWithAttackTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs when the character misses with an attack
    */
   type: "MissedWithAttack";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a HitByAttackTrigger
@@ -19076,7 +18980,6 @@ export type HitByAttackTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs when the character is hit by an attack
    */
   type: "HitByAttack";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct an EvadedAttackTrigger
@@ -19086,7 +18989,6 @@ export type EvadedAttackTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs when the character evades an attack
    */
   type: "EvadedAttack";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct an PostAttackTrigger
@@ -19096,7 +18998,6 @@ export type PostAttackTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs after a character attacks
    */
   type: "PostAttack";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct an WasAttackedTrigger
@@ -19106,7 +19007,6 @@ export type WasAttackedTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs after a character is attacked
    */
   type: "WasAttacked";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct an EndOfFightTrigger
@@ -19116,7 +19016,6 @@ export type EndOfFightTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs when the current fight ends
    */
   type: "EndOfFight";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a PrayerPointUseTrigger
@@ -19130,7 +19029,6 @@ export type PrayerPointUseTriggerData = CombatBehaviourTriggerData & {
    * Optional. If present the prayer that is using points must be of the same type for the behaviour to execute
    */
   isUnholy?: boolean;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a EquipmentChangedTrigger
@@ -19148,7 +19046,6 @@ export type EquipmentChangedTriggerData = CombatBehaviourTriggerData & {
    * Optional. The IDs of equipment items the player must have equipped for the behaviour to execute
    */
   isEquipped?: EquipmentItemID[];
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a ParameterChangedTrigger
@@ -19162,7 +19059,6 @@ export type ParameterChangedTriggerData = CombatBehaviourTriggerData & {
    * The name of the parameter that changes
    */
   paramName: string;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a StatsChangedTrigger
@@ -19176,7 +19072,6 @@ export type StatsChangedTriggerData = CombatBehaviourTriggerData & {
    * The name of the stat group that changes
    */
   statGroupName: string;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a TimerFiredTrigger
@@ -19190,7 +19085,6 @@ export type TimerFiredTriggerData = CombatBehaviourTriggerData & {
    * The name of the timer that fires
    */
   timerName: string;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a EffectAppliedTrigger
@@ -19200,7 +19094,6 @@ export type EffectAppliedTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs when the effect is first applied to a character
    */
   type: "EffectApplied";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a EffectReappliedTrigger
@@ -19210,7 +19103,6 @@ export type EffectReappliedTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs when the effect is applied to a character, but is already active
    */
   type: "EffectReapplied";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a EffectRemovedTrigger
@@ -19220,7 +19112,6 @@ export type EffectRemovedTriggerData = CombatBehaviourTriggerData & {
    * Defines a behaviour trigger that occurs just before the effect is removed from a character
    */
   type: "EffectRemoved";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct an ProcessEffectApplicatorBehaviour
@@ -19234,7 +19125,6 @@ export type ProcessEffectApplicatorBehaviourData = CombatEffectBehaviourData & {
    * Data for an effect Applicator that is processed when the behaviour is executed
    */
   applicator: AnyCombatEffectApplicatorData;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a RemoveEffectBehaviour
@@ -19244,7 +19134,6 @@ export type RemoveEffectBehaviourData = CombatEffectBehaviourData & {
    * Defines a Combat effect behaviour that removes the effect from the character
    */
   type: "RemoveEffect";
-  [k: string]: unknown;
 };
 /**
  *  Data used to construct a ModifyStatsBehaviour
@@ -19258,7 +19147,6 @@ export type ModifyStatsBehaviourData = ModifyBehaviourData & {
    * The name of the stat group whose value should be modified
    */
   statGroupName: string;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a ModifyBehaviour
@@ -19268,13 +19156,11 @@ export type ModifyBehaviourData = CombatEffectBehaviourData & {
    * The new value to set the existing value to
    */
   newValue: CombatEffectNumberExpression;
-  [k: string]: unknown;
 } & {
   /**
    * The new value to set the existing value to
    */
   newValue: CombatEffectNumberExpression;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a ModifyParameterBehaviour
@@ -19288,7 +19174,6 @@ export type ModifyParameterBehaviourData = ModifyBehaviourData & {
    * The name of the parameter whose current value should be modified
    */
   paramName: string;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a DamageCharacterBehaviour
@@ -19306,7 +19191,6 @@ export type DamageCharacterBehaviourData = CombatEffectBehaviourData & {
    * Optional. Determines the colour of the damage splash, and which lifesteal modifiers from the source character to apply
    */
   damageType?: DOTType;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a DamageBarrierBehaviour
@@ -19324,7 +19208,6 @@ export type DamageBarrierBehaviourData = CombatEffectBehaviourData & {
    * Optional. Determines the colour of the damage splash
    */
   damageType?: DOTType;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a HealCharacterBehaviour
@@ -19338,7 +19221,6 @@ export type HealCharacterBehaviourData = CombatEffectBehaviourData & {
    * The amount of hitpoints to heal the character
    */
   value: CombatEffectNumberExpression;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a StartTimerBehaviour
@@ -19356,7 +19238,6 @@ export type StartTimerBehaviourData = CombatEffectBehaviourData & {
    * Value of interval to start the timer with in [ms]
    */
   value: CombatEffectNumberExpression;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a StopTimerBehaviour
@@ -19370,7 +19251,6 @@ export type StopTimerBehaviourData = CombatEffectBehaviourData & {
    * The name of the timer to stop
    */
   timerName: string;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct an UpdatePrayerModifiersBehaviour
@@ -19384,7 +19264,6 @@ export type UpdatePrayerModifiersBehaviourData = CombatEffectBehaviourData & {
    * The value to set the Unholy Prayer multiplier to
    */
   updateTo?: CombatEffectNumberExpression;
-  [k: string]: unknown;
 };
 /**
  * Data used to construct an ApplyCorruptionBehaviour
@@ -19394,7 +19273,6 @@ export type ApplyCorruptionBehaviourData = CombatEffectBehaviourData & {
    * Defines a Combat Effect Behaviour that applies a random unlocked corruption effect
    */
   type: "ApplyCorruption";
-  [k: string]: unknown;
 };
 /**
  * Data used to construct a HealBarrierBehaviour
@@ -19408,7 +19286,6 @@ export type HealBarrierBehaviourData = CombatEffectBehaviourData & {
    * The amount of barrier to add to the character
    */
   value: CombatEffectNumberExpression;
-  [k: string]: unknown;
 };
 export type AnyCombatEffectData = CombatEffectData | TemplatedCombatEffectData;
 /**
@@ -19424,7 +19301,6 @@ export type TemplatedCombatEffectData = IDData &
      * The ID of the CombatEffectTemplate to inherit data from
      */
     templateID: CombatEffectTemplateID;
-    [k: string]: unknown;
   };
 /**
  * Data used to construct a CombatEffectTable
@@ -19444,14 +19320,12 @@ export type CombatEffectTableData = IDData & {
     initialParams?: {
       name: string;
       value: number;
-      [k: string]: unknown;
     }[];
     /**
      * The relative weight of selecting this effect
      */
     weight: number;
   }[];
-  [k: string]: unknown;
 } & {
   /**
    * Weighted array from which a random CombatEffect can be selected from
@@ -19467,14 +19341,12 @@ export type CombatEffectTableData = IDData & {
     initialParams?: {
       name: string;
       value: number;
-      [k: string]: unknown;
     }[];
     /**
      * The relative weight of selecting this effect
      */
     weight: number;
   }[];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a SpecialAttack object
@@ -19576,7 +19448,6 @@ export type AttackData = IDData & {
    * Optional. A templated string that can be used to auto-generate a templated description string for this attack
    */
   descriptionGenerator?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The default percentage chance that this attack is chosen
@@ -19674,7 +19545,6 @@ export type AttackData = IDData & {
    * Optional. A templated string that can be used to auto-generate a templated description string for this attack
    */
   descriptionGenerator?: string;
-  [k: string]: unknown;
 };
 export type DamageData = NormalDamageData | CustomDamageData;
 /**
@@ -19682,7 +19552,6 @@ export type DamageData = NormalDamageData | CustomDamageData;
  */
 export type CustomDamageData = Damage & {
   damageType: "Custom";
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a CombatPassive object
@@ -19731,7 +19600,6 @@ export type CombatPassiveData = IDData & {
    * Optional. Specifies a custom description that overrides the description automatically generated from modifiers.
    */
   customDescription?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the Passive
@@ -19776,7 +19644,6 @@ export type CombatPassiveData = IDData & {
    * Optional. Specifies a custom description that overrides the description automatically generated from modifiers.
    */
   customDescription?: string;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a Monster object
@@ -19830,7 +19697,6 @@ export type MonsterData = IDData & {
      * Optional. Corruption level. Allows this monster to use the Corruption mechanic
      */
     Corruption?: number;
-    [k: string]: unknown;
   };
   /**
    * Equipment stats of the Monster. Used to calculate its stats.
@@ -19889,7 +19755,6 @@ export type MonsterData = IDData & {
      * The minimum amount of the currency to drop
      */
     max: number;
-    [k: string]: unknown;
   }[];
   /**
    * @deprecated
@@ -19898,7 +19763,6 @@ export type MonsterData = IDData & {
   gpDrops?: {
     min: number;
     max: number;
-    [k: string]: unknown;
   };
   /**
    * Optional. If present, the monster will always drop the specified item, outside of dungeons
@@ -19912,7 +19776,6 @@ export type MonsterData = IDData & {
      * The quantity of the item to drop
      */
     quantity?: number;
-    [k: string]: unknown;
   };
   /**
    * Determines if the monster is Eligible to be a slayer task
@@ -19938,7 +19801,6 @@ export type MonsterData = IDData & {
      * The number of this monster that must be killed for the pet
      */
     quantity: number;
-    [k: string]: unknown;
   };
   /**
    * Optional. If present, the monster starts with Barrier equal to this percent of its max hitpoints.
@@ -19948,7 +19810,6 @@ export type MonsterData = IDData & {
    * Optional. The ID of the damage type this Monster deals. Defaults to Normal.
    */
   damageType?: DamageTypeID;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the Monster
@@ -19998,7 +19859,6 @@ export type MonsterData = IDData & {
      * Optional. Corruption level. Allows this monster to use the Corruption mechanic
      */
     Corruption?: number;
-    [k: string]: unknown;
   };
   /**
    * Equipment stats of the Monster. Used to calculate its stats.
@@ -20057,7 +19917,6 @@ export type MonsterData = IDData & {
      * The minimum amount of the currency to drop
      */
     max: number;
-    [k: string]: unknown;
   }[];
   /**
    * @deprecated
@@ -20066,7 +19925,6 @@ export type MonsterData = IDData & {
   gpDrops?: {
     min: number;
     max: number;
-    [k: string]: unknown;
   };
   /**
    * Optional. If present, the monster will always drop the specified item, outside of dungeons
@@ -20080,7 +19938,6 @@ export type MonsterData = IDData & {
      * The quantity of the item to drop
      */
     quantity?: number;
-    [k: string]: unknown;
   };
   /**
    * Determines if the monster is Eligible to be a slayer task
@@ -20106,7 +19963,6 @@ export type MonsterData = IDData & {
      * The number of this monster that must be killed for the pet
      */
     quantity: number;
-    [k: string]: unknown;
   };
   /**
    * Optional. If present, the monster starts with Barrier equal to this percent of its max hitpoints.
@@ -20116,7 +19972,6 @@ export type MonsterData = IDData & {
    * Optional. The ID of the damage type this Monster deals. Defaults to Normal.
    */
   damageType?: DamageTypeID;
-  [k: string]: unknown;
 };
 export type CombatPassiveID =
   | ValidID
@@ -20529,7 +20384,6 @@ export type CombatAreaCategoryData = IDData & {
    * The IDs of the CombatAreas that belong to this category
    */
   areas: CombatAreaID[];
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the category
@@ -20543,7 +20397,6 @@ export type CombatAreaCategoryData = IDData & {
    * The IDs of the CombatAreas that belong to this category
    */
   areas: CombatAreaID[];
-  [k: string]: unknown;
 };
 export type CombatAreaID =
   | ValidID
@@ -20687,7 +20540,6 @@ export type CombatAreaData = RealmedObjectData & {
      * An array of requirements that the player must meet to enter the area
      */
     entryRequirements: AnyRequirementData[];
-    [k: string]: unknown;
   }[];
   /**
    * The ID of the combat triangle set to use while in this area. Defaults to Normal.
@@ -20707,7 +20559,6 @@ export type CombatAreaData = RealmedObjectData & {
    * Optional. Set which gamemode IDs this area will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the area
@@ -20746,7 +20597,6 @@ export type CombatAreaData = RealmedObjectData & {
      * An array of requirements that the player must meet to enter the area
      */
     entryRequirements: AnyRequirementData[];
-    [k: string]: unknown;
   }[];
   /**
    * The ID of the combat triangle set to use while in this area. Defaults to Normal.
@@ -20766,7 +20616,6 @@ export type CombatAreaData = RealmedObjectData & {
    * Optional. Set which gamemode IDs this area will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the area
@@ -20805,7 +20654,6 @@ export type CombatAreaData = RealmedObjectData & {
      * An array of requirements that the player must meet to enter the area
      */
     entryRequirements: AnyRequirementData[];
-    [k: string]: unknown;
   }[];
   /**
    * The ID of the combat triangle set to use while in this area. Defaults to Normal.
@@ -20825,7 +20673,6 @@ export type CombatAreaData = RealmedObjectData & {
    * Optional. Set which gamemode IDs this area will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the area
@@ -20864,7 +20711,6 @@ export type CombatAreaData = RealmedObjectData & {
      * An array of requirements that the player must meet to enter the area
      */
     entryRequirements: AnyRequirementData[];
-    [k: string]: unknown;
   }[];
   /**
    * The ID of the combat triangle set to use while in this area. Defaults to Normal.
@@ -20884,7 +20730,6 @@ export type CombatAreaData = RealmedObjectData & {
    * Optional. Set which gamemode IDs this area will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a RealmedObject object
@@ -20894,55 +20739,46 @@ export type RealmedObjectData = IDData & {
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
   realm?: RealmID;
-  [k: string]: unknown;
 };
 export type GamemodeID =
   | ValidID
@@ -20978,7 +20814,6 @@ export type SlayerAreaData = CombatAreaData & {
    * Optional. If present, killing monsters in the area has a chance to drop a pet
    */
   pet?: PetChanceData;
-  [k: string]: unknown;
 } & {
   /**
    * Describes the slayer area's effect. Templated by
@@ -20992,7 +20827,6 @@ export type SlayerAreaData = CombatAreaData & {
    * Optional. If present, killing monsters in the area has a chance to drop a pet
    */
   pet?: PetChanceData;
-  [k: string]: unknown;
 };
 export type CombatAreaEffectData = PlayerAreaEffectData | EnemyAreaEffectData;
 export type PlayerAreaEffectData = BaseAreaEffectData & {
@@ -21006,7 +20840,6 @@ export type PlayerAreaEffectData = BaseAreaEffectData & {
    * Optional. If present this modifier will be applied to the player, with a base value equal to the magnitude
    */
   modifier?: ModifierKey;
-  [k: string]: unknown;
 };
 export type ModifierKey = ModifierAlias | ModifierID;
 export type ModifierAlias =
@@ -21973,7 +21806,6 @@ export type EnemyAreaEffectData = BaseAreaEffectData & {
    * Optional. If present this modifier will be applied to the enemy, with a base value equal to the magnitude
    */
   modifier?: EnemyModifierKey;
-  [k: string]: unknown;
 };
 export type EnemyModifierKey = EnemyModifierAlias | EnemyModifierID;
 /**
@@ -22044,7 +21876,6 @@ export type DungeonData = CombatAreaData & {
    * Optional. Whether to hide the dungeon element if it is locked. Defaults to false.
    */
   hideIfLocked?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed
@@ -22110,7 +21941,6 @@ export type DungeonData = CombatAreaData & {
    * Optional. Whether to hide the dungeon element if it is locked. Defaults to false.
    */
   hideIfLocked?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed
@@ -22176,7 +22006,6 @@ export type DungeonData = CombatAreaData & {
    * Optional. Whether to hide the dungeon element if it is locked. Defaults to false.
    */
   hideIfLocked?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed
@@ -22242,7 +22071,6 @@ export type DungeonData = CombatAreaData & {
    * Optional. Whether to hide the dungeon element if it is locked. Defaults to false.
    */
   hideIfLocked?: boolean;
-  [k: string]: unknown;
 };
 export type CombatEventID = ValidID | "melvorF:ImpendingDarkness";
 /**
@@ -22262,7 +22090,6 @@ export type StrongholdData = CombatAreaData & {
      * Determines the requirements and rewards for the superior version of this stronghold
      */
     Superior: StrongholdTierData;
-    [k: string]: unknown;
   };
   /**
    * Optional. Defines a pet that can drop on Stronghold completion
@@ -22274,7 +22101,6 @@ export type StrongholdData = CombatAreaData & {
    * @minItems 1
    */
   bossOnlyPassives?: [CombatPassiveID, ...CombatPassiveID[]];
-  [k: string]: unknown;
 } & {
   tiers: {
     /**
@@ -22289,7 +22115,6 @@ export type StrongholdData = CombatAreaData & {
      * Determines the requirements and rewards for the superior version of this stronghold
      */
     Superior: StrongholdTierData;
-    [k: string]: unknown;
   };
   /**
    * Optional. Defines a pet that can drop on Stronghold completion
@@ -22301,7 +22126,6 @@ export type StrongholdData = CombatAreaData & {
    * @minItems 1
    */
   bossOnlyPassives?: [CombatPassiveID, ...CombatPassiveID[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a CombatEvent object
@@ -22363,7 +22187,6 @@ export type CombatEventData = IDData & {
    * The ID of the monster that serves as the boss for 5th and last stage of the event
    */
   finalBossMonster: MonsterID;
-  [k: string]: unknown;
 } & {
   /**
    * The IDs of the items that are rewarded at the end of a stage of the event
@@ -22421,7 +22244,6 @@ export type CombatEventData = IDData & {
    * The ID of the monster that serves as the boss for 5th and last stage of the event
    */
   finalBossMonster: MonsterID;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a SlayerTaskCategory object
@@ -22492,7 +22314,6 @@ export type SlayerTaskCategoryData = RealmedObjectData & {
    * Optional. The ID of the category previous to this one. Used to count the number of tasks completions for this category and below.
    */
   previousCategory?: SlayerTaskCategoryID;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the category
@@ -22559,7 +22380,6 @@ export type SlayerTaskCategoryData = RealmedObjectData & {
    * Optional. The ID of the category previous to this one. Used to count the number of tasks completions for this category and below.
    */
   previousCategory?: SlayerTaskCategoryID;
-  [k: string]: unknown;
 };
 export type AnySlayerTaskMonsterSelectionData =
   | CombatLevelSlayerTaskMonsterSelection
@@ -22611,7 +22431,6 @@ export type PrayerData = IDData &
      * @minItems 1
      */
     allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-    [k: string]: unknown;
   } & {
     /**
      * The Prayer level required to use the prayer
@@ -22655,7 +22474,6 @@ export type PrayerData = IDData &
      * @minItems 1
      */
     allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-    [k: string]: unknown;
   };
 /**
  * Data for constructing an AttackSpellbook object
@@ -22699,7 +22517,6 @@ export type AttackSpellbookData = IDData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the spellbook
@@ -22739,7 +22556,6 @@ export type AttackSpellbookData = IDData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing an AttackSpell object
@@ -22761,7 +22577,6 @@ export type AttackSpellData = CombatSpellData & {
    * The ID of the spellbook this spell belongs to
    */
   spellbook: AttackSpellbookID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The base maximum hit used to calculate the player's max hit. 1/10th of the desired damage in Standard mode. Defaults to 0
@@ -22779,7 +22594,6 @@ export type AttackSpellData = CombatSpellData & {
    * The ID of the spellbook this spell belongs to
    */
   spellbook: AttackSpellbookID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. The base maximum hit used to calculate the player's max hit. 1/10th of the desired damage in Standard mode. Defaults to 0
@@ -22797,7 +22611,6 @@ export type AttackSpellData = CombatSpellData & {
    * The ID of the spellbook this spell belongs to
    */
   spellbook: AttackSpellbookID;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a CombatSpell object
@@ -22817,7 +22630,6 @@ export type CombatSpellData = BaseSpellData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. If present, the player must have the specified EquipmentItem equipped to use the spell
@@ -22833,7 +22645,6 @@ export type CombatSpellData = BaseSpellData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. If present, the player must have the specified EquipmentItem equipped to use the spell
@@ -22849,7 +22660,6 @@ export type CombatSpellData = BaseSpellData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a BaseSpell object
@@ -22883,7 +22693,6 @@ export type BaseSpellData = IDData & {
    * Optional. The ids of spell categories the spell belongs to
    */
   categories?: SpellCategoryID[];
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the spell
@@ -22913,7 +22722,6 @@ export type BaseSpellData = IDData & {
    * Optional. The ids of spell categories the spell belongs to
    */
   categories?: SpellCategoryID[];
-  [k: string]: unknown;
 };
 export type SpellCategoryID =
   | ValidID
@@ -22958,13 +22766,11 @@ export type CurseSpellData = CombatSpellData & {
    * The ID of the CombatEffect that is applied when the curse is cast
    */
   effectID: CombatEffectID;
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the CombatEffect that is applied when the curse is cast
    */
   effectID: CombatEffectID;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a AuroraSpell object
@@ -23025,7 +22831,6 @@ export type PetData = IDData &
      * @minItems 1
      */
     realms?: [RealmID, ...RealmID[]];
-    [k: string]: unknown;
   } & {
     /**
      * The display name of the Pet
@@ -23077,7 +22882,6 @@ export type PetData = IDData &
      * @minItems 1
      */
     realms?: [RealmID, ...RealmID[]];
-    [k: string]: unknown;
   };
 /**
  * Data for constructing a ShopCategory object
@@ -23099,7 +22903,6 @@ export type ShopCategoryData = IDData & {
    * Optional. Set which gamemode IDs this shop category will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the category
@@ -23117,7 +22920,6 @@ export type ShopCategoryData = IDData & {
    * Optional. Set which gamemode IDs this shop category will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a ShopPurchase object
@@ -23175,7 +22977,6 @@ export type ShopPurchaseData = IDData & {
      * The buy limit for the purchase for the specified gamemode. If set to 0, the player max purchase it unlimited times
      */
     maximum: number;
-    [k: string]: unknown;
   }[];
   /**
    * Determines if the shop purchase should still show in the shop when at its buy limit.
@@ -23195,7 +22996,6 @@ export type ShopPurchaseData = IDData & {
    * Optional. Set which gamemode IDs this shop item will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Custom name for the purchase. Overrides the name generated by the purchase contents.
@@ -23249,7 +23049,6 @@ export type ShopPurchaseData = IDData & {
      * The buy limit for the purchase for the specified gamemode. If set to 0, the player max purchase it unlimited times
      */
     maximum: number;
-    [k: string]: unknown;
   }[];
   /**
    * Determines if the shop purchase should still show in the shop when at its buy limit.
@@ -23269,7 +23068,6 @@ export type ShopPurchaseData = IDData & {
    * Optional. Set which gamemode IDs this shop item will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-  [k: string]: unknown;
 };
 export type ShopCategoryID =
   | ValidID
@@ -23292,7 +23090,6 @@ export type ShopCurrencyCostData = AnyShopCost & {
    * The ID of the currency the purchase should cost
    */
   currency: CurrencyID;
-  [k: string]: unknown;
 };
 export type AnyShopCost = FixedCost | LinearCost | BankSlotCost | GloveCost;
 /**
@@ -23331,7 +23128,6 @@ export type ShopUpgradeChainData = IDData & {
    * Optional. Language string ID to use for the defaultDescription property
    */
   descriptionLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the highest shop purchase in the chain
@@ -23365,7 +23161,6 @@ export type ShopUpgradeChainData = IDData & {
    * Optional. Language string ID to use for the defaultDescription property
    */
   descriptionLang?: string;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a TutorialStage object
@@ -23405,7 +23200,6 @@ export type TutorialStageData = IDData & {
      * Items given upon stage completion
      */
     items: AnyItemQuantity[];
-    [k: string]: unknown;
   };
   /**
    * ShopPurchases that the player is allowed to make during the stage
@@ -23423,7 +23217,6 @@ export type TutorialStageData = IDData & {
    * If the player is allowed to use combat during the stage
    */
   allowCombat: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the stage
@@ -23459,7 +23252,6 @@ export type TutorialStageData = IDData & {
      * Items given upon stage completion
      */
     items: AnyItemQuantity[];
-    [k: string]: unknown;
   };
   /**
    * ShopPurchases that the player is allowed to make during the stage
@@ -23477,7 +23269,6 @@ export type TutorialStageData = IDData & {
    * If the player is allowed to use combat during the stage
    */
   allowCombat: boolean;
-  [k: string]: unknown;
 };
 export type AnySkillData =
   | {
@@ -23486,7 +23277,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Attack";
       data: BaseSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23494,7 +23284,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Strength";
       data: BaseSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23502,7 +23291,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Defence";
       data: BaseSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23510,7 +23298,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Hitpoints";
       data: BaseSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23518,7 +23305,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Ranged";
       data: BaseSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23526,7 +23312,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Magic";
       data: MagicSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23534,7 +23319,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Prayer";
       data: BaseSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23542,7 +23326,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Slayer";
       data: BaseSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23550,7 +23333,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Woodcutting";
       data: WoodcuttingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23558,7 +23340,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Fishing";
       data: FishingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23566,7 +23347,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Firemaking";
       data: FiremakingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23574,7 +23354,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Cooking";
       data: CookingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23582,7 +23361,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Mining";
       data: MiningSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23590,7 +23368,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Smithing";
       data: SmithingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23598,7 +23375,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Thieving";
       data: ThievingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23606,7 +23382,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Farming";
       data: FarmingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23614,7 +23389,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Fletching";
       data: FletchingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23622,7 +23396,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Crafting";
       data: CraftingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23630,7 +23403,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Runecrafting";
       data: RunecraftingSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23638,7 +23410,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Herblore";
       data: HerbloreSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23646,7 +23417,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Agility";
       data: AgilitySkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23654,7 +23424,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Summoning";
       data: SummoningSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23662,7 +23431,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Astrology";
       data: AstrologySkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23670,7 +23438,6 @@ export type AnySkillData =
        */
       skillID: "melvorD:Township";
       data: TownshipSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23678,7 +23445,6 @@ export type AnySkillData =
        */
       skillID: "melvorAoD:Cartography";
       data: CartographySkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23686,7 +23452,6 @@ export type AnySkillData =
        */
       skillID: "melvorAoD:Archaeology";
       data: ArchaeologySkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23694,7 +23459,6 @@ export type AnySkillData =
        */
       skillID: "melvorItA:Corruption";
       data: CorruptionSkillData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -23702,7 +23466,6 @@ export type AnySkillData =
        */
       skillID: "melvorItA:Harvesting";
       data: HarvestingSkillData;
-      [k: string]: unknown;
     };
 export type RareSkillDropChance =
   | FixedSkillDropChance
@@ -23713,14 +23476,12 @@ export type RareSkillDropChance =
  */
 export type LevelScalingSkillDropChance = ScalingChance & {
   type: "LevelScaling";
-  [k: string]: unknown;
 };
 /**
  * A linearly scaling chance that an item should drop that scales with total mastery level
  */
 export type TotalMasteryScalingSkillDropChance = ScalingChance & {
   type: "TotalMasteryScaling";
-  [k: string]: unknown;
 };
 export type MilestoneData = CustomSkillMilestoneData | EquipItemMilestoneData;
 /**
@@ -23736,7 +23497,6 @@ export type CustomSkillMilestoneData = MilestoneLike & {
    * Optional. Used to grab the description from localization
    */
   milestoneID?: string;
-  [k: string]: unknown;
 };
 export type AncientRelicID =
   | ValidID
@@ -23922,7 +23682,6 @@ export type SkillTreeData = IDData & {
    * The nodes for the Skill Tree
    */
   nodes: SkillTreeNodeData[];
-  [k: string]: unknown;
 };
 /**
  * Data For constructing a SkillTreeNode object
@@ -23947,7 +23706,6 @@ export type SkillTreeNodeData = IDData &
      * These requirements must be met to unlock the Node.
      */
     requirements?: AnyRequirementData[];
-    [k: string]: unknown;
   };
 export type ShopUpgradeChainID =
   | ValidID
@@ -23986,7 +23744,6 @@ export type MagicSkillData = MasterySkillData & {
    * @minItems 1
    */
   randomShards?: [DropTableData, ...DropTableData[]];
-  [k: string]: unknown;
 };
 /**
  * Basic data shared between all Mastery skills
@@ -24010,7 +23767,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24030,7 +23786,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24050,7 +23805,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24070,7 +23824,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24090,7 +23843,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24110,7 +23862,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24130,7 +23881,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24150,7 +23900,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24170,7 +23919,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24190,7 +23938,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24210,7 +23957,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24230,7 +23976,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24250,7 +23995,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24270,7 +24014,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24290,7 +24033,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24310,7 +24052,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24330,7 +24071,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
@@ -24350,7 +24090,6 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
-  [k: string]: unknown;
 };
 export type SkillSubcategoryData = IDData & {
   /**
@@ -24361,7 +24100,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24371,7 +24109,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24381,7 +24118,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24391,7 +24127,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24401,7 +24136,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24411,7 +24145,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24421,7 +24154,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24431,7 +24163,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24441,7 +24172,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24451,7 +24181,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24461,7 +24190,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the subcategory
@@ -24471,7 +24199,6 @@ export type SkillSubcategoryData = IDData & {
    * Optional. The id of a language string to use instead of the name
    */
   nameLang?: string;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a AltMagicSpell object
@@ -24523,7 +24250,6 @@ export type AltMagicSpellData = BaseSpellData &
        * The quantity of the item(s) that should be consumed
        */
       quantity: number;
-      [k: string]: unknown;
     };
     /**
      * Defines what the spell produces. Can either be a special production, or a set itemID.
@@ -24533,7 +24259,6 @@ export type AltMagicSpellData = BaseSpellData &
      * Determines the quantity of resources produces by the spell. Effect depends on the produces property.
      */
     productionRatio: number;
-    [k: string]: unknown;
   } & {
     /**
      * The displayed description for the spell. Automatically templated.
@@ -24580,7 +24305,6 @@ export type AltMagicSpellData = BaseSpellData &
        * The quantity of the item(s) that should be consumed
        */
       quantity: number;
-      [k: string]: unknown;
     };
     /**
      * Defines what the spell produces. Can either be a special production, or a set itemID.
@@ -24590,7 +24314,6 @@ export type AltMagicSpellData = BaseSpellData &
      * Determines the quantity of resources produces by the spell. Effect depends on the produces property.
      */
     productionRatio: number;
-    [k: string]: unknown;
   };
 /**
  * Data for the Woodcutting Skill
@@ -24623,7 +24346,6 @@ export type WoodcuttingSkillData = MasterySkillData & {
    * @minItems 1
    */
   bannedJewleryIDs?: [AnyItemID, ...AnyItemID[]];
-  [k: string]: unknown;
 };
 /**
  * Data For constructing a WoodcuttingTree object
@@ -24649,7 +24371,6 @@ export type WoodcuttingTreeData = SingleProductRecipeData & {
    * Optional. If present, these requirements must also be met to cut to tree, in addition to Woodcutting level.
    */
   requirements?: AnyRequirementData[];
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the tree
@@ -24671,7 +24392,6 @@ export type WoodcuttingTreeData = SingleProductRecipeData & {
    * Optional. If present, these requirements must also be met to cut to tree, in addition to Woodcutting level.
    */
   requirements?: AnyRequirementData[];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a SingleProductRecipe object
@@ -24681,31 +24401,26 @@ export type SingleProductRecipeData = BasicSkillRecipeData & {
    * The ID of the item that is produced
    */
   productId: AnyItemID;
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the item that is produced
    */
   productId: AnyItemID;
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the item that is produced
    */
   productId: AnyItemID;
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the item that is produced
    */
   productId: AnyItemID;
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the item that is produced
    */
   productId: AnyItemID;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a BasicSkillRecipe object
@@ -24727,7 +24442,6 @@ export type BasicSkillRecipeData = RealmedObjectData & {
    * Optional. The abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The base experience rewarded per action
@@ -24745,7 +24459,6 @@ export type BasicSkillRecipeData = RealmedObjectData & {
    * Optional. The abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The base experience rewarded per action
@@ -24763,7 +24476,6 @@ export type BasicSkillRecipeData = RealmedObjectData & {
    * Optional. The abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The base experience rewarded per action
@@ -24781,7 +24493,6 @@ export type BasicSkillRecipeData = RealmedObjectData & {
    * Optional. The abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The base experience rewarded per action
@@ -24799,7 +24510,6 @@ export type BasicSkillRecipeData = RealmedObjectData & {
    * Optional. The abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The base experience rewarded per action
@@ -24817,7 +24527,6 @@ export type BasicSkillRecipeData = RealmedObjectData & {
    * Optional. The abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The base experience rewarded per action
@@ -24835,7 +24544,6 @@ export type BasicSkillRecipeData = RealmedObjectData & {
    * Optional. The abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for the Fishing Skill
@@ -24894,7 +24602,6 @@ export type FishingSkillData = MasterySkillData & {
     originalID: AnyItemID;
     equippedID: EquipmentItemID;
     rewardID: AnyItemID;
-    [k: string]: unknown;
   };
   /**
    * Optional. Defined Fishing Contest fish data
@@ -24902,7 +24609,6 @@ export type FishingSkillData = MasterySkillData & {
    * @minItems 1
    */
   fishingContestFish?: [FishingContestFishData, ...FishingContestFishData[]];
-  [k: string]: unknown;
 };
 /**
  * Data For constructing a Fish object
@@ -24920,7 +24626,6 @@ export type FishData = SingleProductRecipeData & {
    * The base maximum interval to catch the fish in [ms]
    */
   baseMaxInterval: number;
-  [k: string]: unknown;
 } & {
   /**
    * Base strength skill experience earned on a successful catch
@@ -24934,7 +24639,6 @@ export type FishData = SingleProductRecipeData & {
    * The base maximum interval to catch the fish in [ms]
    */
   baseMaxInterval: number;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a FishingArea object
@@ -24978,7 +24682,6 @@ export type FishingAreaData = RealmedObjectData & {
    * Optional. If present the Cartography Point of Interest requirement must be met to access the area
    */
   poiRequirement?: CartographyPOIDiscoveryRequirementData;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the area
@@ -25018,7 +24721,6 @@ export type FishingAreaData = RealmedObjectData & {
    * Optional. If present the Cartography Point of Interest requirement must be met to access the area
    */
   poiRequirement?: CartographyPOIDiscoveryRequirementData;
-  [k: string]: unknown;
 };
 /**
  * Data for the Firemaking Skill
@@ -25054,7 +24756,6 @@ export type FiremakingSkillData = MasterySkillData & {
    * @minItems 1
    */
   defaultSecondaryProducts?: [AnyItemID, ...AnyItemID[]];
-  [k: string]: unknown;
 };
 /**
  * Data For constructing a FiremakingLog object
@@ -25088,7 +24789,6 @@ export type FiremakingLogData = BasicSkillRecipeData & {
    * Optional. The percent bonus to abyssal firemaking XP that a bonfire provides. Also re-themes the bonfire to abyssal, and makes normal bonuses that effect bonfires non-functional.
    */
   bonfireAXPBonus?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The Item ID of the log that should be burnt
@@ -25118,7 +24818,6 @@ export type FiremakingLogData = BasicSkillRecipeData & {
    * Optional. The percent bonus to abyssal firemaking XP that a bonfire provides. Also re-themes the bonfire to abyssal, and makes normal bonuses that effect bonfires non-functional.
    */
   bonfireAXPBonus?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for the Cooking Skill
@@ -25142,7 +24841,6 @@ export type CookingSkillData = MasterySkillData & {
    * @minItems 1
    */
   recipes?: [CookingRecipeData, ...CookingRecipeData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a CookingCategory object
@@ -25164,7 +24862,6 @@ export type CookingCategoryData = SkillCategoryData & {
    * If an upgrade must be purchased to cook items in this category
    */
   upgradeRequired: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The name of this category as it appears in modifiers
@@ -25182,7 +24879,6 @@ export type CookingCategoryData = SkillCategoryData & {
    * If an upgrade must be purchased to cook items in this category
    */
   upgradeRequired: boolean;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a SkillCategory object
@@ -25196,7 +24892,6 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-  [k: string]: unknown;
 } & {
   /**
    * URI for the categories image
@@ -25206,7 +24901,6 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-  [k: string]: unknown;
 } & {
   /**
    * URI for the categories image
@@ -25216,7 +24910,6 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-  [k: string]: unknown;
 } & {
   /**
    * URI for the categories image
@@ -25226,7 +24919,6 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-  [k: string]: unknown;
 } & {
   /**
    * URI for the categories image
@@ -25236,7 +24928,6 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-  [k: string]: unknown;
 } & {
   /**
    * URI for the categories image
@@ -25246,7 +24937,6 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-  [k: string]: unknown;
 } & {
   /**
    * URI for the categories image
@@ -25256,7 +24946,6 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-  [k: string]: unknown;
 } & {
   /**
    * URI for the categories image
@@ -25266,7 +24955,6 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a CookingRecipe object
@@ -25294,7 +24982,6 @@ export type CookingRecipeData = SingleProductArtisanSkillRecipeData & {
    * @minItems 1
    */
   discoveredItems?: [AnyItemID, ...AnyItemID[]];
-  [k: string]: unknown;
 } & {
   /**
    * The Item ID of the perfect version of the product
@@ -25318,7 +25005,6 @@ export type CookingRecipeData = SingleProductArtisanSkillRecipeData & {
    * @minItems 1
    */
   discoveredItems?: [AnyItemID, ...AnyItemID[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a SingleProductArtisanSkillRecipe object
@@ -25333,7 +25019,6 @@ export type SingleProductArtisanSkillRecipeData =
      * The base quantity of the item produced
      */
     baseQuantity: number;
-    [k: string]: unknown;
   } & {
     /**
      * ID of the item produced by this recipe
@@ -25343,7 +25028,6 @@ export type SingleProductArtisanSkillRecipeData =
      * The base quantity of the item produced
      */
     baseQuantity: number;
-    [k: string]: unknown;
   } & {
     /**
      * ID of the item produced by this recipe
@@ -25353,7 +25037,6 @@ export type SingleProductArtisanSkillRecipeData =
      * The base quantity of the item produced
      */
     baseQuantity: number;
-    [k: string]: unknown;
   } & {
     /**
      * ID of the item produced by this recipe
@@ -25363,7 +25046,6 @@ export type SingleProductArtisanSkillRecipeData =
      * The base quantity of the item produced
      */
     baseQuantity: number;
-    [k: string]: unknown;
   } & {
     /**
      * ID of the item produced by this recipe
@@ -25373,7 +25055,6 @@ export type SingleProductArtisanSkillRecipeData =
      * The base quantity of the item produced
      */
     baseQuantity: number;
-    [k: string]: unknown;
   } & {
     /**
      * ID of the item produced by this recipe
@@ -25383,7 +25064,6 @@ export type SingleProductArtisanSkillRecipeData =
      * The base quantity of the item produced
      */
     baseQuantity: number;
-    [k: string]: unknown;
   };
 /**
  * Data for constructing a CategorizedArtisanRecipeData object
@@ -25393,13 +25073,11 @@ export type CategorizedArtisanRecipeData = ArtisanSkillRecipeData & {
    * ID of the category this recipe belongs to
    */
   categoryID: ValidID;
-  [k: string]: unknown;
 } & {
   /**
    * ID of the category this recipe belongs to
    */
   categoryID: ValidID;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a ArtisanSkillRecipeData object
@@ -25423,7 +25101,6 @@ export type ArtisanSkillRecipeData = BasicSkillRecipeData & {
    * The base slayer coin cost required to perform the action
    */
   scCost?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for the Mining Skill
@@ -25449,7 +25126,6 @@ export type MiningSkillData = MasterySkillData & {
    * Sets the item that should drop as Runestone
    */
   runestoneItemID?: AnyItemID;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a MiningCategory object
@@ -25471,7 +25147,6 @@ export type MiningCategoryData = IDData & {
    * Optional. If rocks in this category should roll for abyssal gem veins when mined. Defaults to false.
    */
   givesAbyssalGemVeins?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of this category
@@ -25489,7 +25164,6 @@ export type MiningCategoryData = IDData & {
    * Optional. If rocks in this category should roll for abyssal gem veins when mined. Defaults to false.
    */
   givesAbyssalGemVeins?: boolean;
-  [k: string]: unknown;
 };
 /**
  * Data For constructing a MiningRock object
@@ -25556,7 +25230,6 @@ export type MiningRockData = SingleProductRecipeData & {
    * Optional. If present, this rock is eligible to be rolled as an abyssal gem vein and have it's HP increase. Higher weight indicates a higher chance to be selected.
    */
   abyssalGemVeinWeight?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the rock
@@ -25619,7 +25292,6 @@ export type MiningRockData = SingleProductRecipeData & {
    * Optional. If present, this rock is eligible to be rolled as an abyssal gem vein and have it's HP increase. Higher weight indicates a higher chance to be selected.
    */
   abyssalGemVeinWeight?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for the Smithing Skill
@@ -25643,7 +25315,6 @@ export type SmithingSkillData = MasterySkillData & {
    * @minItems 1
    */
   recipes?: [SmithingRecipeData, ...SmithingRecipeData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a SmithingRecipe object
@@ -25653,7 +25324,6 @@ export type SmithingRecipeData = SingleProductArtisanSkillRecipeData & {
    * Optional. The Id of the subcategory this recipe belong to
    */
   subcategoryID?: ValidID;
-  [k: string]: unknown;
 };
 /**
  * Data for the Thieving Skill
@@ -25689,9 +25359,7 @@ export type ThievingSkillData = MasterySkillData & {
     equippedID: EquipmentItemID;
     positionedID: AnyItemID;
     rewardID: AnyItemID;
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 };
 /**
  * Data For constructing a ThievingNPC object
@@ -25736,7 +25404,6 @@ export type ThievingNPCData = BasicSkillRecipeData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the NPC
@@ -25777,7 +25444,6 @@ export type ThievingNPCData = BasicSkillRecipeData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
-  [k: string]: unknown;
 };
 /**
  * Data For constructing a ThievingArea object
@@ -25797,7 +25463,6 @@ export type ThievingAreaData = RealmedObjectData & {
    * Defines the area unique drops that can be obtained from npcs in this area
    */
   uniqueDrops: AnyItemQuantity[];
-  [k: string]: unknown;
 } & {
   /**
    * The display name of this area
@@ -25813,7 +25478,6 @@ export type ThievingAreaData = RealmedObjectData & {
    * Defines the area unique drops that can be obtained from npcs in this area
    */
   uniqueDrops: AnyItemQuantity[];
-  [k: string]: unknown;
 };
 /**
  * Data for the Farming Skill
@@ -25837,7 +25501,6 @@ export type FarmingSkillData = MasterySkillData & {
    * @minItems 1
    */
   plots?: [FarmingPlotData, ...FarmingPlotData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a FarmingCategory object
@@ -25875,7 +25538,6 @@ export type FarmingCategoryData = SkillCategoryData & {
    * Singular form of the display name of this category. e.g. Herb
    */
   singularName: string;
-  [k: string]: unknown;
 } & {
   /**
    * If actions in this category should have a chance to return seeds on harvest
@@ -25909,7 +25571,6 @@ export type FarmingCategoryData = SkillCategoryData & {
    * Singular form of the display name of this category. e.g. Herb
    */
   singularName: string;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a FarmingRecipe object
@@ -25943,7 +25604,6 @@ export type FarmingRecipeData = SingleProductRecipeData & {
    * Optional. The base quantity produced. Defaults to 5
    */
   baseQuantity?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The base time that it takes for the crop to grow in [ms]
@@ -25973,7 +25633,6 @@ export type FarmingRecipeData = SingleProductRecipeData & {
    * Optional. The base quantity produced. Defaults to 5
    */
   baseQuantity?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a FarmingPlot object
@@ -26008,7 +25667,6 @@ export type FarmingPlotData = IDData & {
    * Optional. The abyssal farming level required to unlock this plot
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * The ID of the farming category of seeds that can be planted in this plot
@@ -26039,7 +25697,6 @@ export type FarmingPlotData = IDData & {
    * Optional. The abyssal farming level required to unlock this plot
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for the Fletching Skill
@@ -26063,7 +25720,6 @@ export type FletchingSkillData = MasterySkillData & {
    * @minItems 1
    */
   recipes?: [FletchingRecipeData, ...FletchingRecipeData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a FletchingRecipe object
@@ -26090,7 +25746,6 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     },
     {
       /**
@@ -26103,7 +25758,6 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     },
     ...{
       /**
@@ -26116,10 +25770,8 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     }[],
   ];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Manually sets a subcategory for this recipe. Will be overridden by automatic assignment if applicable
@@ -26142,7 +25794,6 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     },
     {
       /**
@@ -26155,7 +25806,6 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     },
     ...{
       /**
@@ -26168,10 +25818,8 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     }[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for the Crafting Skill
@@ -26195,7 +25843,6 @@ export type CraftingSkillData = MasterySkillData & {
    * @minItems 1
    */
   recipes?: [CraftingRecipeData, ...CraftingRecipeData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a CraftingRecipe object
@@ -26205,13 +25852,11 @@ export type CraftingRecipeData = SingleProductArtisanSkillRecipeData & {
    * Optional. Manually sets a subcategory for this recipe. Will be overridden by automatic assignment if applicable
    */
   subcategoryID?: ValidID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Manually sets a subcategory for this recipe. Will be overridden by automatic assignment if applicable
    */
   subcategoryID?: ValidID;
-  [k: string]: unknown;
 };
 /**
  * Data for the Runecrafting Skill
@@ -26247,7 +25892,6 @@ export type RunecraftingSkillData = MasterySkillData & {
    * @minItems 1
    */
   comboRuneIDs?: [AnyItemID, ...AnyItemID[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a RunecraftingRecipe object
@@ -26257,7 +25901,6 @@ export type RunecraftingRecipeData = SingleProductArtisanSkillRecipeData & {
    * Optional. The ids of subcategories this recipe belongs to
    */
   subcategories?: ValidID[];
-  [k: string]: unknown;
 };
 /**
  * Data for the Herblore Skill
@@ -26275,7 +25918,6 @@ export type HerbloreSkillData = MasterySkillData & {
    * @minItems 1
    */
   recipes?: [HerbloreRecipeData, ...HerbloreRecipeData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a HerbloreRecipe object
@@ -26298,7 +25940,6 @@ export type HerbloreRecipeData = CategorizedArtisanRecipeData & {
    * The display name of the potion
    */
   name: string;
-  [k: string]: unknown;
 } & {
   /**
    * The IDs of potion items that can be obtained at each tier
@@ -26317,7 +25958,6 @@ export type HerbloreRecipeData = CategorizedArtisanRecipeData & {
    * The display name of the potion
    */
   name: string;
-  [k: string]: unknown;
 };
 /**
  * Data for the Agility Skill
@@ -26341,7 +25981,6 @@ export type AgilitySkillData = MasterySkillData & {
    * @minItems 1
    */
   obstacles?: [AgilityObstacleData, ...AgilityObstacleData[]];
-  [k: string]: unknown;
 };
 export type AgilityPillarSlot = AgilityObstacleSlot & {
   /**
@@ -26356,7 +25995,6 @@ export type AgilityPillarSlot = AgilityObstacleSlot & {
    * The number of obstacles that must be sequentially built for this pillar slot to be active
    */
   obstacleCount: number;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a AgilityPillar object
@@ -26366,13 +26004,11 @@ export type AgilityPillarData = BaseAgilityObjectData & {
    * The index of the slot that the pillar belongs to. 0 indexed.
    */
   slot: number;
-  [k: string]: unknown;
 } & {
   /**
    * The index of the slot that the pillar belongs to. 0 indexed.
    */
   slot: number;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a BaseAgilityObject object
@@ -26417,7 +26053,6 @@ export type BaseAgilityObjectData = RealmedObjectData & {
    * Optional. Modifiers provided to the enemy when this obstacle/pillar is active
    */
   enemyModifiers?: EnemyModifierValuesRecordData;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the obstacle or pillar
@@ -26458,7 +26093,6 @@ export type BaseAgilityObjectData = RealmedObjectData & {
    * Optional. Modifiers provided to the enemy when this obstacle/pillar is active
    */
   enemyModifiers?: EnemyModifierValuesRecordData;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a AgilityObstacle object
@@ -26509,7 +26143,6 @@ export type AgilityObstacleData = BaseAgilityObjectData & {
    * Optional. The base Agility abyssal experience granted when completing the obstacle
    */
   baseAbyssalExperience?: number;
-  [k: string]: unknown;
 } & {
   /**
    * URI of the obstacles image
@@ -26556,7 +26189,6 @@ export type AgilityObstacleData = BaseAgilityObjectData & {
    * Optional. The base Agility abyssal experience granted when completing the obstacle
    */
   baseAbyssalExperience?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for the Summoning Skill
@@ -26580,7 +26212,6 @@ export type SummoningSkillData = MasterySkillData & {
    * @minItems 1
    */
   synergies?: [SummoningSynergyData, ...SummoningSynergyData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a SummoningCategory object
@@ -26590,7 +26221,6 @@ export type SummoningCategoryData = SkillCategoryData & {
    * Determines the functionality when selecting this category. Defaults to Tablet.
    */
   type?: "Mark" | "Tablet" | "Synergy";
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a SummoningRecipe object
@@ -26616,7 +26246,6 @@ export type SummoningRecipeData = SingleProductArtisanSkillRecipeData & {
    * Optional. Defines the maximum Summoning Mark level this familiar can reach. Defaults to 6.
    */
   maxMarkLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * URI of the Summoning marks media shown on the Marks tab
@@ -26638,7 +26267,6 @@ export type SummoningRecipeData = SingleProductArtisanSkillRecipeData & {
    * Optional. Defines the maximum Summoning Mark level this familiar can reach. Defaults to 6.
    */
   maxMarkLevel?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for the Summoning Skill
@@ -26656,7 +26284,6 @@ export type AstrologySkillData = MasterySkillData & {
    * @minItems 1
    */
   baseRandomItemChances?: [ItemChanceData, ...ItemChanceData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a AstrologyRecipe object
@@ -26711,7 +26338,6 @@ export type AstrologyRecipeData = BasicSkillRecipeData & {
    * Optional. The key of an mastery XP modifier that depends on the number of max level modifiers
    */
   masteryXPModifier?: ModifierID;
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the constellation
@@ -26762,7 +26388,6 @@ export type AstrologyRecipeData = BasicSkillRecipeData & {
    * Optional. The key of an mastery XP modifier that depends on the number of max level modifiers
    */
   masteryXPModifier?: ModifierID;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a AstrologyModifier object
@@ -26782,7 +26407,6 @@ export type AstrologyModifierData = IStatObjectData & {
    * Optional. Requirements the player must meet before being able to use study this constellation
    */
   unlockRequirements?: AnyRequirementData[];
-  [k: string]: unknown;
 } & {
   /**
    * The maximum number of times this modifier can be bought
@@ -26798,7 +26422,6 @@ export type AstrologyModifierData = IStatObjectData & {
    * Optional. Requirements the player must meet before being able to use study this constellation
    */
   unlockRequirements?: AnyRequirementData[];
-  [k: string]: unknown;
 } & {
   /**
    * The maximum number of times this modifier can be bought
@@ -26814,7 +26437,6 @@ export type AstrologyModifierData = IStatObjectData & {
    * Optional. Requirements the player must meet before being able to use study this constellation
    */
   unlockRequirements?: AnyRequirementData[];
-  [k: string]: unknown;
 };
 /**
  * Data for the Township Skill
@@ -26884,7 +26506,6 @@ export type TownshipSkillData = BaseSkillData & {
    * Defines new trader options for the skill
    */
   itemConversions?: TownshipItemConversionData;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a TownshipResource object
@@ -26910,7 +26531,6 @@ export type TownshipResourceData = IDData & {
    * Optional. The storage this resources uses. Defaults to Normal.
    */
   storageType?: "Normal" | "Soul";
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the resource
@@ -26932,7 +26552,6 @@ export type TownshipResourceData = IDData & {
    * Optional. The storage this resources uses. Defaults to Normal.
    */
   storageType?: "Normal" | "Soul";
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a TownshipBiome object
@@ -26960,7 +26579,6 @@ export type TownshipBiomeData = IDData & {
    * @minItems 1
    */
   requirements?: [AnyRequirementData, ...AnyRequirementData[]];
-  [k: string]: unknown;
 } & {
   /**
    * The display name of the biome
@@ -26984,7 +26602,6 @@ export type TownshipBiomeData = IDData & {
    * @minItems 1
    */
   requirements?: [AnyRequirementData, ...AnyRequirementData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a TownshipBuilding object
@@ -27039,7 +26656,6 @@ export type TownshipBuildingData = IDData &
      * @minItems 1
      */
     requirements?: [AnyRequirementData, ...AnyRequirementData[]];
-    [k: string]: unknown;
   } & {
     /**
      * The display name of the building
@@ -27089,7 +26705,6 @@ export type TownshipBuildingData = IDData &
      * @minItems 1
      */
     requirements?: [AnyRequirementData, ...AnyRequirementData[]];
-    [k: string]: unknown;
   };
 export type TownshipBiomeID =
   | ValidID
@@ -27184,7 +26799,6 @@ export type TownshipWorshipData = IDData & {
    * Defines seasons where the positive modifiers of this worship are multiplied by a value
    */
   seasonMultiplier: TownshipWorshipSeasonMultiplierData[];
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the worship
@@ -27233,7 +26847,6 @@ export type TownshipWorshipData = IDData & {
    * Defines seasons where the positive modifiers of this worship are multiplied by a value
    */
   seasonMultiplier: TownshipWorshipSeasonMultiplierData[];
-  [k: string]: unknown;
 };
 export type TownshipSeasonID =
   | ValidID
@@ -27267,7 +26880,6 @@ export type TownshipTaskCategoryData = IDData & {
    * CSS class used for the background colour of task menus
    */
   bgClass: string;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the category
@@ -27285,7 +26897,6 @@ export type TownshipTaskCategoryData = IDData & {
    * CSS class used for the background colour of task menus
    */
   bgClass: string;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a TownshipTask object
@@ -27296,13 +26907,11 @@ export type TownshipTaskData = BaseTownshipTaskData &
      * The category of the task. This is used to group tasks together
      */
     category: TownshipTaskCategoryID;
-    [k: string]: unknown;
   } & {
     /**
      * The category of the task. This is used to group tasks together
      */
     category: TownshipTaskCategoryID;
-    [k: string]: unknown;
   };
 /**
  * Data for constructing a BaseTownshipTask object
@@ -27314,7 +26923,6 @@ export type BaseTownshipTaskData = IDData & {
   description?: string;
   goals: TownshipTaskGoalsData;
   rewards: TownshipTaskRewardsData;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. A description of the task
@@ -27322,7 +26930,6 @@ export type BaseTownshipTaskData = IDData & {
   description?: string;
   goals: TownshipTaskGoalsData;
   rewards: TownshipTaskRewardsData;
-  [k: string]: unknown;
 };
 export type TownshipTaskCategoryID =
   | ValidID
@@ -27345,13 +26952,11 @@ export type TownshipCasualTaskData = BaseTownshipTaskData & {
    * Requirements the player must meet before starting the task
    */
   requirements: AnyRequirementData[];
-  [k: string]: unknown;
 } & {
   /**
    * Requirements the player must meet before starting the task
    */
   requirements: AnyRequirementData[];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a TownshipSeason object
@@ -27378,7 +26983,6 @@ export type TownshipSeasonData = IDData &
      * If the player should be unable to change their current worship while the season is active
      */
     disableWorshipChange: boolean;
-    [k: string]: unknown;
   } & {
     /**
      * The display name of the season
@@ -27400,7 +27004,6 @@ export type TownshipSeasonData = IDData &
      * If the player should be unable to change their current worship while the season is active
      */
     disableWorshipChange: boolean;
-    [k: string]: unknown;
   };
 /**
  * Data for the Cartography Skill
@@ -27440,7 +27043,6 @@ export type CartographySkillData = BaseSkillData & {
    * @minItems 1
    */
   refinementModifiers?: [ModifierValuesArrayData, ...ModifierValuesArrayData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a WorldMap object
@@ -27466,7 +27068,6 @@ export type WorldMapData = IDData & {
      * The path to the root folder that contains each map tile texture. High quality files should be tile_${i}_${j}@1x.png, Medium should be tile_${i}_${j}@1x.basis and Low should be tile_${i}_${j}@0.5x.basis
      */
     tilePath: string;
-    [k: string]: unknown;
   };
   /**
    * Height and Width of the world in pixels
@@ -27508,7 +27109,6 @@ export type WorldMapData = IDData & {
    * Data for WorldMapMasteryBonus objects for this map
    */
   masteryBonuses: WorldMapMasteryBonusData[];
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the World Map
@@ -27530,7 +27130,6 @@ export type WorldMapData = IDData & {
      * The path to the root folder that contains each map tile texture. High quality files should be tile_${i}_${j}@1x.png, Medium should be tile_${i}_${j}@1x.basis and Low should be tile_${i}_${j}@0.5x.basis
      */
     tilePath: string;
-    [k: string]: unknown;
   };
   /**
    * Height and Width of the world in pixels
@@ -27572,7 +27171,6 @@ export type WorldMapData = IDData & {
    * Data for WorldMapMasteryBonus objects for this map
    */
   masteryBonuses: WorldMapMasteryBonusData[];
-  [k: string]: unknown;
 };
 export type HexColour = string;
 /**
@@ -27587,7 +27185,6 @@ export type FastTravelGroupData = IDData & {
    * URI of the icon to display for discovered pois in this group on the world map
    */
   media: string;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing AnyPointOfInterest
@@ -27595,7 +27192,6 @@ export type FastTravelGroupData = IDData & {
 export type AnyPoiData = OtherPOIData | DigSitePOIData | WatchtowerData;
 export type OtherPOIData = PointOfInterestData & {
   type: "Other";
-  [k: string]: unknown;
 };
 export type PointOfInterestData = IDData & {
   /**
@@ -27630,7 +27226,6 @@ export type PointOfInterestData = IDData & {
      * Optional. One time costs to unlock fast traveling to this poi
      */
     unlockCosts?: FixedCostsData;
-    [k: string]: unknown;
   };
   /**
    * Optional. GP, Slayer Coins or Items given when the POI is discovered
@@ -27648,7 +27243,6 @@ export type PointOfInterestData = IDData & {
      * The modifiers that are temporarily given to the player
      */
     modifiers: ModifierValuesRecordData;
-    [k: string]: unknown;
   };
   /**
    * Optional. If present, the POI will be hidden from the player until they meet the requirements and are located at the hex and are wearing the specified items.
@@ -27666,9 +27260,7 @@ export type PointOfInterestData = IDData & {
      * If a marker should be shown on the map when the requirements are met
      */
     showMarker: boolean;
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * Axial Hex Coordinates of POIs location
@@ -27702,7 +27294,6 @@ export type PointOfInterestData = IDData & {
      * Optional. One time costs to unlock fast traveling to this poi
      */
     unlockCosts?: FixedCostsData;
-    [k: string]: unknown;
   };
   /**
    * Optional. GP, Slayer Coins or Items given when the POI is discovered
@@ -27720,7 +27311,6 @@ export type PointOfInterestData = IDData & {
      * The modifiers that are temporarily given to the player
      */
     modifiers: ModifierValuesRecordData;
-    [k: string]: unknown;
   };
   /**
    * Optional. If present, the POI will be hidden from the player until they meet the requirements and are located at the hex and are wearing the specified items.
@@ -27738,9 +27328,7 @@ export type PointOfInterestData = IDData & {
      * If a marker should be shown on the map when the requirements are met
      */
     showMarker: boolean;
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * Axial Hex Coordinates of POIs location
@@ -27774,7 +27362,6 @@ export type PointOfInterestData = IDData & {
      * Optional. One time costs to unlock fast traveling to this poi
      */
     unlockCosts?: FixedCostsData;
-    [k: string]: unknown;
   };
   /**
    * Optional. GP, Slayer Coins or Items given when the POI is discovered
@@ -27792,7 +27379,6 @@ export type PointOfInterestData = IDData & {
      * The modifiers that are temporarily given to the player
      */
     modifiers: ModifierValuesRecordData;
-    [k: string]: unknown;
   };
   /**
    * Optional. If present, the POI will be hidden from the player until they meet the requirements and are located at the hex and are wearing the specified items.
@@ -27810,9 +27396,7 @@ export type PointOfInterestData = IDData & {
      * If a marker should be shown on the map when the requirements are met
      */
     showMarker: boolean;
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * Axial Hex Coordinates of POIs location
@@ -27846,7 +27430,6 @@ export type PointOfInterestData = IDData & {
      * Optional. One time costs to unlock fast traveling to this poi
      */
     unlockCosts?: FixedCostsData;
-    [k: string]: unknown;
   };
   /**
    * Optional. GP, Slayer Coins or Items given when the POI is discovered
@@ -27864,7 +27447,6 @@ export type PointOfInterestData = IDData & {
      * The modifiers that are temporarily given to the player
      */
     modifiers: ModifierValuesRecordData;
-    [k: string]: unknown;
   };
   /**
    * Optional. If present, the POI will be hidden from the player until they meet the requirements and are located at the hex and are wearing the specified items.
@@ -27882,9 +27464,7 @@ export type PointOfInterestData = IDData & {
      * If a marker should be shown on the map when the requirements are met
      */
     showMarker: boolean;
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 };
 export type DigSitePOIData = PointOfInterestData & {
   type: "DigSite";
@@ -27892,7 +27472,6 @@ export type DigSitePOIData = PointOfInterestData & {
    * ID of the Archaeology Dig Site this POI links to
    */
   digSiteID: ArchaeologyDigSiteID & string;
-  [k: string]: unknown;
 };
 export type WatchtowerData = PointOfInterestData & {
   type: "Watchtower";
@@ -27900,7 +27479,6 @@ export type WatchtowerData = PointOfInterestData & {
    * Range in hexes around the tower to reveal the map
    */
   towerRange: number;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a WorldMapMasteryBonus object
@@ -27939,20 +27517,17 @@ export type WorldMapMasteryBonusData = IDData &
      * @minItems 1
      */
     items?: [AnyItemQuantity, ...AnyItemQuantity[]];
-    [k: string]: unknown;
   };
 export type PortalPOIData = PointOfInterestData & {
   /**
    * ID of the World Map that this portal resides in
    */
   originWorldMap: WorldMapID;
-  [k: string]: unknown;
 } & {
   /**
    * ID of the World Map that this portal resides in
    */
   originWorldMap: WorldMapID;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a RandomTravelEvent object
@@ -27980,7 +27555,6 @@ export type RandomTravelEventData = IDData & {
    * Temporary modifiers given to the player when the event triggers. Modifiers are removed when the player moves to a new hex.
    */
   tempBonuses?: ModifierValuesRecordData;
-  [k: string]: unknown;
 } & {
   /**
    * Weight of event occuring relative to other events
@@ -28004,7 +27578,6 @@ export type RandomTravelEventData = IDData & {
    * Temporary modifiers given to the player when the event triggers. Modifiers are removed when the player moves to a new hex.
    */
   tempBonuses?: ModifierValuesRecordData;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a PaperMakingRecipe object
@@ -28018,7 +27591,6 @@ export type PaperMakingRecipeData = SingleProductRecipeData & {
    * Base costs to make this paper recipe
    */
   costs: FixedCostsData;
-  [k: string]: unknown;
 } & {
   /**
    * Base quantity of paper to make
@@ -28028,14 +27600,12 @@ export type PaperMakingRecipeData = SingleProductRecipeData & {
    * Base costs to make this paper recipe
    */
   costs: FixedCostsData;
-  [k: string]: unknown;
 };
 export type BaseModifierValueData = ModifierScopeData & {
   /**
    * The value of the modifier
    */
   value: number;
-  [k: string]: unknown;
 };
 export type ModifierValuesArrayData = BaseModifierValueData[];
 /**
@@ -28058,7 +27628,6 @@ export type ArchaeologySkillData = MasterySkillData & {
    * Data for Museum Reward objects for Archaeology
    */
   museumRewards?: ArchaeologyMuseumRewardData[];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing an ArchaeologyDigSite object
@@ -28096,7 +27665,6 @@ export type ArchaeologyDigSiteData = BasicSkillRecipeData & {
    * If this Dig Site contains an item required to locate a different one
    */
   containsDigSiteRequirement: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the Dig Site
@@ -28130,7 +27698,6 @@ export type ArchaeologyDigSiteData = BasicSkillRecipeData & {
    * If this Dig Site contains an item required to locate a different one
    */
   containsDigSiteRequirement: boolean;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing an ArchaeologyDigSite object
@@ -28156,7 +27723,6 @@ export type ArchaeologyToolData = IDData & {
    * The ID of the ShopUpgradeChain associated with this tool. Used to determine display name and description.
    */
   upgradeChainID: ShopUpgradeChainID;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the tool
@@ -28178,7 +27744,6 @@ export type ArchaeologyToolData = IDData & {
    * The ID of the ShopUpgradeChain associated with this tool. Used to determine display name and description.
    */
   upgradeChainID: ShopUpgradeChainID;
-  [k: string]: unknown;
 };
 export type ArtefactType = "tiny" | "small" | "medium" | "large";
 /**
@@ -28218,7 +27783,6 @@ export type ArchaeologyMuseumRewardData = IDData &
      * @minItems 1
      */
     items?: [AnyItemQuantity, ...AnyItemQuantity[]];
-    [k: string]: unknown;
   };
 /**
  * Data for the Corruption Skill
@@ -28236,14 +27800,12 @@ export type CorruptionSkillData = BaseSkillData & {
    * Defines new Corruption effects that may be applied when the corruption bar fills
    */
   corruptionEffects?: CorruptionEffectTableData[];
-  [k: string]: unknown;
 };
 /**
  * Data for the Harvesting Skill
  */
 export type HarvestingSkillData = MasterySkillData & {
   veinData?: HarvestingVeinData[];
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a HarvestingVein object
@@ -28281,13 +27843,11 @@ export type HarvestingVeinData = BasicSkillRecipeData & {
      * The relative weight of selecting this product
      */
     weight: number;
-    [k: string]: unknown;
   }[];
   /**
    * The unique product that has a chance to be awarded from this vein
    */
   uniqueProduct: AnyItemQuantity;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a Page object
@@ -28345,7 +27905,6 @@ export type PageData = IDData & {
    * Optional. CSS class that is added/removed when the page container is shown/hidden. Useful for using d-flex on a container
    */
   displayClass?: string;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Specifies a custom name for the page to be used instead of the first skill name
@@ -28399,7 +27958,6 @@ export type PageData = IDData & {
    * Optional. CSS class that is added/removed when the page container is shown/hidden. Useful for using d-flex on a container
    */
   displayClass?: string;
-  [k: string]: unknown;
 };
 /**
  * Data for constructing a LoreBook object
@@ -28417,7 +27975,6 @@ export type LoreBookData = IDData & {
    * Requirements the player must meet to read the book
    */
   unlockRequirements: AnyRequirementData[];
-  [k: string]: unknown;
 } & {
   /**
    * The displayed title of the book
@@ -28431,7 +27988,6 @@ export type LoreBookData = IDData & {
    * Requirements the player must meet to read the book
    */
   unlockRequirements: AnyRequirementData[];
-  [k: string]: unknown;
 };
 /**
  * Data for Ancient Relics
@@ -28450,7 +28006,6 @@ export type AncientRelicData = IDData &
      * The number of the ancient relic.
      */
     number?: number;
-    [k: string]: unknown;
   } & {
     /**
      * The display name of the Ancient Relic
@@ -28464,7 +28019,6 @@ export type AncientRelicData = IDData &
      * The number of the ancient relic.
      */
     number?: number;
-    [k: string]: unknown;
   };
 export type CombatTriangleSetData = IDData & {
   /**
@@ -28487,7 +28041,6 @@ export type CombatTriangleSetData = IDData & {
    * Determines the combat triangle when playing Gamemodes that use the Inverted Hardcore Triangle
    */
   InvertedHardcore: CombatTriangleData;
-  [k: string]: unknown;
 } & {
   /**
    * Display name of the triangle set
@@ -28509,7 +28062,6 @@ export type CombatTriangleSetData = IDData & {
    * Determines the combat triangle when playing Gamemodes that use the Inverted Hardcore Triangle
    */
   InvertedHardcore: CombatTriangleData;
-  [k: string]: unknown;
 };
 export type EquipmentSlotData = IDData & {
   /**
@@ -28540,7 +28092,6 @@ export type EquipmentSlotData = IDData & {
    * Optional. Requirements the player must meet to use this slot. Ignored in Golbin Raid.
    */
   requirements?: AnyRequirementData[];
-  [k: string]: unknown;
 } & {
   /**
    * If this slot allows a quantity of an item to be equipped to it
@@ -28570,7 +28121,6 @@ export type EquipmentSlotData = IDData & {
    * Optional. Requirements the player must meet to use this slot. Ignored in Golbin Raid.
    */
   requirements?: AnyRequirementData[];
-  [k: string]: unknown;
 };
 export type RealmsData = IDData & {
   /**
@@ -28593,7 +28143,6 @@ export type RealmsData = IDData & {
    * Optional. Whether mastery actions ignore completion. Defaults to false.
    */
   ignoreCompletion?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The name of the Realm
@@ -28615,7 +28164,6 @@ export type RealmsData = IDData & {
    * Optional. Whether mastery actions ignore completion. Defaults to false.
    */
   ignoreCompletion?: boolean;
-  [k: string]: unknown;
 };
 export type DamageTypeData = IDData & {
   /**
@@ -28646,7 +28194,6 @@ export type DamageTypeData = IDData & {
    * Optional. If this damage type should only be displayed to the player if using.
    */
   onlyShowIfUsing?: boolean;
-  [k: string]: unknown;
 } & {
   /**
    * The name of the damage type
@@ -28676,7 +28223,6 @@ export type DamageTypeData = IDData & {
    * Optional. If this damage type should only be displayed to the player if using.
    */
   onlyShowIfUsing?: boolean;
-  [k: string]: unknown;
 };
 export type ModifierData = IDData & {
   /**
@@ -28709,7 +28255,6 @@ export type ModifierData = IDData & {
    * @minItems 1
    */
   allowedScopes: [ModifierScopingData, ...ModifierScopingData[]];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. If negative values of this modifier should be treated as positive and vice versa. Defaults to false.
@@ -28741,7 +28286,6 @@ export type ModifierData = IDData & {
    * @minItems 1
    */
   allowedScopes: [ModifierScopingData, ...ModifierScopingData[]];
-  [k: string]: unknown;
 };
 export type ModifierScopeSourceID =
   | SkillID
@@ -28751,25 +28295,21 @@ export type ModifierAliasData = ModifierScopeData & {
    * The old modifier key that is an alias for this modifier
    */
   key: string;
-  [k: string]: unknown;
 } & {
   /**
    * The old modifier key that is an alias for this modifier
    */
   key: string;
-  [k: string]: unknown;
 } & {
   /**
    * The old modifier key that is an alias for this modifier
    */
   key: string;
-  [k: string]: unknown;
 } & {
   /**
    * The old modifier key that is an alias for this modifier
    */
   key: string;
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a CombatArea object
@@ -28782,14 +28322,11 @@ export type CombatAreaModificationData = ModificationIDData & {
     add?: {
       monsterID: MonsterID;
       insertAt?: number;
-      [k: string]: unknown;
     }[];
     remove?: {
       monsterID: MonsterID;
       removeAt?: number;
-      [k: string]: unknown;
     }[];
-    [k: string]: unknown;
   };
   /**
    * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
@@ -28804,7 +28341,6 @@ export type CombatAreaModificationData = ModificationIDData & {
   entryRequirements?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of requirements that the player must meet to enter the area for specific gamemodes.
@@ -28816,7 +28352,6 @@ export type CombatAreaModificationData = ModificationIDData & {
     gamemodeID: GamemodeID;
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of damage types that the player can use in the area
@@ -28824,9 +28359,7 @@ export type CombatAreaModificationData = ModificationIDData & {
   allowedDamageTypeIDs?: {
     add?: DamageTypeID[];
     remove?: DamageTypeID[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * An array of Monster IDs that can be fought in the area
@@ -28835,14 +28368,11 @@ export type CombatAreaModificationData = ModificationIDData & {
     add?: {
       monsterID: MonsterID;
       insertAt?: number;
-      [k: string]: unknown;
     }[];
     remove?: {
       monsterID: MonsterID;
       removeAt?: number;
-      [k: string]: unknown;
     }[];
-    [k: string]: unknown;
   };
   /**
    * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
@@ -28857,7 +28387,6 @@ export type CombatAreaModificationData = ModificationIDData & {
   entryRequirements?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of requirements that the player must meet to enter the area for specific gamemodes.
@@ -28869,7 +28398,6 @@ export type CombatAreaModificationData = ModificationIDData & {
     gamemodeID: GamemodeID;
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of damage types that the player can use in the area
@@ -28877,9 +28405,7 @@ export type CombatAreaModificationData = ModificationIDData & {
   allowedDamageTypeIDs?: {
     add?: DamageTypeID[];
     remove?: DamageTypeID[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * An array of Monster IDs that can be fought in the area
@@ -28888,14 +28414,11 @@ export type CombatAreaModificationData = ModificationIDData & {
     add?: {
       monsterID: MonsterID;
       insertAt?: number;
-      [k: string]: unknown;
     }[];
     remove?: {
       monsterID: MonsterID;
       removeAt?: number;
-      [k: string]: unknown;
     }[];
-    [k: string]: unknown;
   };
   /**
    * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
@@ -28910,7 +28433,6 @@ export type CombatAreaModificationData = ModificationIDData & {
   entryRequirements?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of requirements that the player must meet to enter the area for specific gamemodes.
@@ -28922,7 +28444,6 @@ export type CombatAreaModificationData = ModificationIDData & {
     gamemodeID: GamemodeID;
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of damage types that the player can use in the area
@@ -28930,9 +28451,7 @@ export type CombatAreaModificationData = ModificationIDData & {
   allowedDamageTypeIDs?: {
     add?: DamageTypeID[];
     remove?: DamageTypeID[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 };
 export type CookingCategoryModificationData = ModificationIDData & {
   /**
@@ -28941,7 +28460,6 @@ export type CookingCategoryModificationData = ModificationIDData & {
    * @minItems 1
    */
   shopUpgradeIDs: [ShopPurchaseID, ...ShopPurchaseID[]];
-  [k: string]: unknown;
 } & {
   /**
    * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
@@ -28949,7 +28467,6 @@ export type CookingCategoryModificationData = ModificationIDData & {
    * @minItems 1
    */
   shopUpgradeIDs: [ShopPurchaseID, ...ShopPurchaseID[]];
-  [k: string]: unknown;
 } & {
   /**
    * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
@@ -28957,7 +28474,6 @@ export type CookingCategoryModificationData = ModificationIDData & {
    * @minItems 1
    */
   shopUpgradeIDs: [ShopPurchaseID, ...ShopPurchaseID[]];
-  [k: string]: unknown;
 } & {
   /**
    * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
@@ -28965,7 +28481,6 @@ export type CookingCategoryModificationData = ModificationIDData & {
    * @minItems 1
    */
   shopUpgradeIDs: [ShopPurchaseID, ...ShopPurchaseID[]];
-  [k: string]: unknown;
 };
 export type CombatAreaCategoryID =
   | ValidID
@@ -28989,7 +28504,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   rewardItemIDs?: {
     add?: AnyItemID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * This item will be rewarded upon the first completion of the dungeon. Set to null to remove the one time reward.
@@ -29015,7 +28529,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   unlockRequirement?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of requirements that the player must meet to enter the area
@@ -29023,7 +28536,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   entryRequirements?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * Determines the Pet that is rolled for upon completing the dungeon
@@ -29043,16 +28555,13 @@ export type DungeonModificationData = CombatAreaModificationData & {
   nonBossPassives?: {
     add?: CombatPassiveID[];
     remove?: CombatPassiveID[];
-    [k: string]: unknown;
   };
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed for the specified gamemode
    */
   gamemodeRewardItemIDs?: {
     add?: GamemodeRewardItemIDData[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed
@@ -29060,7 +28569,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   rewardItemIDs?: {
     add?: AnyItemID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * This item will be rewarded upon the first completion of the dungeon. Set to null to remove the one time reward.
@@ -29086,7 +28594,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   unlockRequirement?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of requirements that the player must meet to enter the area
@@ -29094,7 +28601,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   entryRequirements?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * Determines the Pet that is rolled for upon completing the dungeon
@@ -29114,16 +28620,13 @@ export type DungeonModificationData = CombatAreaModificationData & {
   nonBossPassives?: {
     add?: CombatPassiveID[];
     remove?: CombatPassiveID[];
-    [k: string]: unknown;
   };
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed for the specified gamemode
    */
   gamemodeRewardItemIDs?: {
     add?: GamemodeRewardItemIDData[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed
@@ -29131,7 +28634,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   rewardItemIDs?: {
     add?: AnyItemID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * This item will be rewarded upon the first completion of the dungeon. Set to null to remove the one time reward.
@@ -29157,7 +28659,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   unlockRequirement?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of requirements that the player must meet to enter the area
@@ -29165,7 +28666,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   entryRequirements?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * Determines the Pet that is rolled for upon completing the dungeon
@@ -29185,16 +28685,13 @@ export type DungeonModificationData = CombatAreaModificationData & {
   nonBossPassives?: {
     add?: CombatPassiveID[];
     remove?: CombatPassiveID[];
-    [k: string]: unknown;
   };
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed for the specified gamemode
    */
   gamemodeRewardItemIDs?: {
     add?: GamemodeRewardItemIDData[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed
@@ -29202,7 +28699,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   rewardItemIDs?: {
     add?: AnyItemID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * This item will be rewarded upon the first completion of the dungeon. Set to null to remove the one time reward.
@@ -29228,7 +28724,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   unlockRequirement?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * An array of requirements that the player must meet to enter the area
@@ -29236,7 +28731,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   entryRequirements?: {
     add?: AnyRequirementData[];
     remove?: string[];
-    [k: string]: unknown;
   };
   /**
    * Determines the Pet that is rolled for upon completing the dungeon
@@ -29256,16 +28750,13 @@ export type DungeonModificationData = CombatAreaModificationData & {
   nonBossPassives?: {
     add?: CombatPassiveID[];
     remove?: CombatPassiveID[];
-    [k: string]: unknown;
   };
   /**
    * An array of item IDs that will be rewarded when the dungeon is completed for the specified gamemode
    */
   gamemodeRewardItemIDs?: {
     add?: GamemodeRewardItemIDData[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 };
 export type AnyItemModificationData =
   | BaseItemModificationData
@@ -29290,7 +28781,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
     validSlots?: {
       add?: EquipmentSlotID[];
       remove?: EquipmentSlotID[];
-      [k: string]: unknown;
     };
     /**
      * Equipment slots that will also be occupied by this item, in addition to one of the validSlots. Typical usecase is to make a weapon 2-Handed
@@ -29298,7 +28788,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
     occupiesSlots?: {
       add?: EquipmentSlotID[];
       remove?: EquipmentSlotID[];
-      [k: string]: unknown;
     };
     /**
      * Requirements that are needed to be met in order to equip this item
@@ -29306,7 +28795,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
     equipRequirements?: {
       add?: AnyRequirementData[];
       remove?: string[];
-      [k: string]: unknown;
     };
     /**
      * Equipment stats that are provided by this item. Do not apply if item is in the Passive slot.
@@ -29318,7 +28806,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
     specialAttacks?: {
       add?: SpecialAttackID[];
       remove?: SpecialAttackID[];
-      [k: string]: unknown;
     };
     /**
      * If present with the specialAttacks property, overrides their default chances to happen. Must be the same length as specialAttacks. Set to null to use default special attack chances.
@@ -29351,7 +28838,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
        */
       remove?: [string, ...string[]];
     };
-    [k: string]: unknown;
   } & {
     /**
      * Classification for the tier of item. Currently only effects which items can be converted to Clothing in township
@@ -29363,7 +28849,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
     validSlots?: {
       add?: EquipmentSlotID[];
       remove?: EquipmentSlotID[];
-      [k: string]: unknown;
     };
     /**
      * Equipment slots that will also be occupied by this item, in addition to one of the validSlots. Typical usecase is to make a weapon 2-Handed
@@ -29371,7 +28856,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
     occupiesSlots?: {
       add?: EquipmentSlotID[];
       remove?: EquipmentSlotID[];
-      [k: string]: unknown;
     };
     /**
      * Requirements that are needed to be met in order to equip this item
@@ -29379,7 +28863,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
     equipRequirements?: {
       add?: AnyRequirementData[];
       remove?: string[];
-      [k: string]: unknown;
     };
     /**
      * Equipment stats that are provided by this item. Do not apply if item is in the Passive slot.
@@ -29391,7 +28874,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
     specialAttacks?: {
       add?: SpecialAttackID[];
       remove?: SpecialAttackID[];
-      [k: string]: unknown;
     };
     /**
      * If present with the specialAttacks property, overrides their default chances to happen. Must be the same length as specialAttacks. Set to null to use default special attack chances.
@@ -29424,7 +28906,6 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
        */
       remove?: [string, ...string[]];
     };
-    [k: string]: unknown;
   };
 export type WeaponItemModificationData = BaseEquipmentItemModificationData & {
   /**
@@ -29435,7 +28916,6 @@ export type WeaponItemModificationData = BaseEquipmentItemModificationData & {
    * This weapon requires an item to be equipped in the Quiver with a matching AmmoType to attack. Set to null to not consume ammo.
    */
   ammoTypeRequired?: AmmoType | null;
-  [k: string]: unknown;
 };
 export type FoodItemModificationData = BaseItemModificationData &
   IStatObjectModificationData & {
@@ -29443,14 +28923,12 @@ export type FoodItemModificationData = BaseItemModificationData &
      * The base healing value of the food. Specified as 1/10th of the desired value in Standard Mode.
      */
     healsFor?: number;
-    [k: string]: unknown;
   };
 export type BoneItemModificationData = BaseItemModificationData & {
   /**
    * The base number of prayer points obtained by burying the item
    */
   prayerPoints?: number;
-  [k: string]: unknown;
 };
 export type PotionItemModificationData = BaseItemModificationData &
   IStatObjectModificationData & {
@@ -29458,7 +28936,6 @@ export type PotionItemModificationData = BaseItemModificationData &
      * The base quantity of charges the potion provides per use
      */
     charges?: number;
-    [k: string]: unknown;
   };
 export type OpenableItemModificationData = BaseItemModificationData & {
   /**
@@ -29467,13 +28944,11 @@ export type OpenableItemModificationData = BaseItemModificationData & {
   dropTable?: {
     add?: DropTableData[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * The item that is required to open this item. The quantity provided will be consumed per item opened. Set to null to remove requirement.
    */
   keyItem?: AnyItemQuantity;
-  [k: string]: unknown;
 };
 export type TokenItemModificationData = BaseItemModificationData &
   IStatObjectModificationData;
@@ -29502,14 +28977,12 @@ export type CompostItemModificationData = BaseItemModificationData & {
    * Optional. Sets the currency cost to apply this item to all farming plots
    */
   compostAllCost?: CurrencyQuantity;
-  [k: string]: unknown;
 };
 export type SoulItemModificationData = BaseItemModificationData & {
   /**
    * The base number of soul points obtained by excercizing the item
    */
   soulPoints?: number;
-  [k: string]: unknown;
 };
 export type FletchingRecipeModificationData =
   SingleProductArtisanSkillRecipeModificationData & {
@@ -29531,9 +29004,7 @@ export type FletchingRecipeModificationData =
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     }[];
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the subcategory for this recipe
@@ -29553,9 +29024,7 @@ export type FletchingRecipeModificationData =
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     }[];
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the subcategory for this recipe
@@ -29575,9 +29044,7 @@ export type FletchingRecipeModificationData =
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     }[];
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the subcategory for this recipe
@@ -29597,9 +29064,7 @@ export type FletchingRecipeModificationData =
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
       quantityMultiplier: number;
-      [k: string]: unknown;
     }[];
-    [k: string]: unknown;
   };
 /**
  * Data for modifying a SingleProductArtisanSkillRecipe object
@@ -29614,7 +29079,6 @@ export type SingleProductArtisanSkillRecipeModificationData =
      * Optional. Changes the base quantity of the item produced
      */
     baseQuantity?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the item produced by this recipe
@@ -29624,7 +29088,6 @@ export type SingleProductArtisanSkillRecipeModificationData =
      * Optional. Changes the base quantity of the item produced
      */
     baseQuantity?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the item produced by this recipe
@@ -29634,7 +29097,6 @@ export type SingleProductArtisanSkillRecipeModificationData =
      * Optional. Changes the base quantity of the item produced
      */
     baseQuantity?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the item produced by this recipe
@@ -29644,7 +29106,6 @@ export type SingleProductArtisanSkillRecipeModificationData =
      * Optional. Changes the base quantity of the item produced
      */
     baseQuantity?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the item produced by this recipe
@@ -29654,7 +29115,6 @@ export type SingleProductArtisanSkillRecipeModificationData =
      * Optional. Changes the base quantity of the item produced
      */
     baseQuantity?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the item produced by this recipe
@@ -29664,7 +29124,6 @@ export type SingleProductArtisanSkillRecipeModificationData =
      * Optional. Changes the base quantity of the item produced
      */
     baseQuantity?: number;
-    [k: string]: unknown;
   };
 /**
  * Data for modifying a CategorizedArtisanRecipeData object
@@ -29675,13 +29134,11 @@ export type CategorizedArtisanRecipeModificationData =
      * Optional. Changes the category this recipe belongs to
      */
     categoryID?: ValidID;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the category this recipe belongs to
      */
     categoryID?: ValidID;
-    [k: string]: unknown;
   };
 /**
  * Data for modifying a ArtisanSkillRecipeData object
@@ -29696,7 +29153,6 @@ export type ArtisanSkillRecipeModificationData =
      * Optional. Adds or removes currency costs for the recipe
      */
     currencyCosts?: CurrencyQuantitiesModificationData;
-    [k: string]: unknown;
   };
 /**
  * Data for modifying a BasicSkillRecipe object
@@ -29718,7 +29174,6 @@ export type BasicSkillRecipeModificationData = ModificationIDData & {
    * Optional. Changes the abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the base experience rewarded per action
@@ -29736,7 +29191,6 @@ export type BasicSkillRecipeModificationData = ModificationIDData & {
    * Optional. Changes the abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the base experience rewarded per action
@@ -29754,7 +29208,6 @@ export type BasicSkillRecipeModificationData = ModificationIDData & {
    * Optional. Changes the abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the base experience rewarded per action
@@ -29772,7 +29225,6 @@ export type BasicSkillRecipeModificationData = ModificationIDData & {
    * Optional. Changes the abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the base experience rewarded per action
@@ -29790,7 +29242,6 @@ export type BasicSkillRecipeModificationData = ModificationIDData & {
    * Optional. Changes the abyssal skill level required to perform the action
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 };
 export type ShopPurchaseModificationData = ModificationIDData & {
   /**
@@ -29805,7 +29256,6 @@ export type ShopPurchaseModificationData = ModificationIDData & {
      * The buy limit for the purchase for the specified gamemode. If set to 0, the player max purchase it unlimited times
      */
     maximum: number;
-    [k: string]: unknown;
   }[];
   /**
    * Optional. Defines new gamemode specific overrides to the purchaseRequirements. Overwrites existing purchase requirements.
@@ -29819,7 +29269,6 @@ export type ShopPurchaseModificationData = ModificationIDData & {
      * Requirements the player must meet to purchase this item
      */
     newRequirements: AnyRequirementData[];
-    [k: string]: unknown;
   }[];
   /**
    * Optional. Defines new gamemode specific overrides to the costs.
@@ -29833,9 +29282,7 @@ export type ShopPurchaseModificationData = ModificationIDData & {
      * Adds to the cost of purchasing the shop item
      */
     newCosts: ShopCost;
-    [k: string]: unknown;
   }[];
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Defines additional gamemode specific overrides to the defaultBuyLimit
@@ -29849,7 +29296,6 @@ export type ShopPurchaseModificationData = ModificationIDData & {
      * The buy limit for the purchase for the specified gamemode. If set to 0, the player max purchase it unlimited times
      */
     maximum: number;
-    [k: string]: unknown;
   }[];
   /**
    * Optional. Defines new gamemode specific overrides to the purchaseRequirements. Overwrites existing purchase requirements.
@@ -29863,7 +29309,6 @@ export type ShopPurchaseModificationData = ModificationIDData & {
      * Requirements the player must meet to purchase this item
      */
     newRequirements: AnyRequirementData[];
-    [k: string]: unknown;
   }[];
   /**
    * Optional. Defines new gamemode specific overrides to the costs.
@@ -29877,22 +29322,18 @@ export type ShopPurchaseModificationData = ModificationIDData & {
      * Adds to the cost of purchasing the shop item
      */
     newCosts: ShopCost;
-    [k: string]: unknown;
   }[];
-  [k: string]: unknown;
 };
 export type ShopUpgradeChainModificationData = ModificationIDData & {
   /**
    * Optional. Overwrites the highest shop purchase in the chain with the purchase with this ID.
    */
   rootUpgradeID?: ShopPurchaseID;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Overwrites the highest shop purchase in the chain with the purchase with this ID.
    */
   rootUpgradeID?: ShopPurchaseID;
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a SlayerArea object
@@ -29910,7 +29351,6 @@ export type SlayerAreaModificationData = CombatAreaModificationData & {
    * Killing monsters in the area has a chance to drop a pet. Set to null to remove the pet drop.
    */
   pet?: PetChanceData | null;
-  [k: string]: unknown;
 } & {
   /**
    * Describes the slayer area's effect. Set to null to clear the area's description.
@@ -29924,7 +29364,6 @@ export type SlayerAreaModificationData = CombatAreaModificationData & {
    * Killing monsters in the area has a chance to drop a pet. Set to null to remove the pet drop.
    */
   pet?: PetChanceData | null;
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a Modifier instance
@@ -29939,7 +29378,6 @@ export type ModifierModificationData = ModificationIDData & {
     ModifierScopingModificationData,
     ...ModifierScopingModificationData[],
   ];
-  [k: string]: unknown;
 } & {
   /**
    * Adds or modifies an existing scopes belonging to this modifier
@@ -29950,7 +29388,6 @@ export type ModifierModificationData = ModificationIDData & {
     ModifierScopingModificationData,
     ...ModifierScopingModificationData[],
   ];
-  [k: string]: unknown;
 };
 export type AnySkillModificationData =
   | {
@@ -29959,7 +29396,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Attack";
       data: BaseSkillModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -29967,7 +29403,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Strength";
       data: BaseSkillModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -29975,7 +29410,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Defence";
       data: BaseSkillModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -29983,7 +29417,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Hitpoints";
       data: BaseSkillModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -29991,7 +29424,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Ranged";
       data: BaseSkillModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -29999,7 +29431,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Magic";
       data: MagicModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30007,7 +29438,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Prayer";
       data: BaseSkillModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30015,7 +29445,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Slayer";
       data: BaseSkillModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30023,7 +29452,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Woodcutting";
       data: WoodcuttingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30031,7 +29459,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Fishing";
       data: FishingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30039,7 +29466,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Firemaking";
       data: FiremakingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30047,7 +29473,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Cooking";
       data: CookingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30055,7 +29480,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Mining";
       data: MiningModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30063,7 +29487,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Smithing";
       data: SmithingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30071,7 +29494,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Thieving";
       data: ThievingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30079,7 +29501,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Farming";
       data: FarmingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30087,7 +29508,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Fletching";
       data: FletchingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30095,7 +29515,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Crafting";
       data: CraftingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30103,7 +29522,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Runecrafting";
       data: RunecraftingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30111,7 +29529,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Herblore";
       data: HerbloreModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30119,7 +29536,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Agility";
       data: AgilityModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30127,7 +29543,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Summoning";
       data: SummoningModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30135,7 +29550,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Astrology";
       data: AstrologyModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30143,7 +29557,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorD:Township";
       data: TownshipModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30151,7 +29564,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorAoD:Cartography";
       data: CartographyModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30159,7 +29571,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorAoD:Archaeology";
       data: ArchaeologyModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30167,7 +29578,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorItA:Harvesting";
       data: HarvestingModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30175,7 +29585,6 @@ export type AnySkillModificationData =
        */
       skillID: "melvorItA:Corruption";
       data: CorruptionModificationData;
-      [k: string]: unknown;
     }
   | {
       /**
@@ -30197,7 +29606,6 @@ export type MagicModificationData = BaseSkillModificationData & {
     AltMagicSpellModificationData,
     ...AltMagicSpellModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying an AltMagicSpell object
@@ -30238,7 +29646,6 @@ export type AltMagicSpellModificationData = BaseSpellModificationData & {
      * Optional. Changes the quantity of the item(s) that should be consumed
      */
     quantity?: number;
-    [k: string]: unknown;
   };
   /**
    * Optional. Changes what the spell produces. Can either be a special production, or a set itemID.
@@ -30248,7 +29655,6 @@ export type AltMagicSpellModificationData = BaseSpellModificationData & {
    * Optional. Changes the quantity of resources produces by the spell. Effect depends on the produces property.
    */
   productionRatio?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the base experience earned per cast of the spell
@@ -30285,7 +29691,6 @@ export type AltMagicSpellModificationData = BaseSpellModificationData & {
      * Optional. Changes the quantity of the item(s) that should be consumed
      */
     quantity?: number;
-    [k: string]: unknown;
   };
   /**
    * Optional. Changes what the spell produces. Can either be a special production, or a set itemID.
@@ -30295,7 +29700,6 @@ export type AltMagicSpellModificationData = BaseSpellModificationData & {
    * Optional. Changes the quantity of resources produces by the spell. Effect depends on the produces property.
    */
   productionRatio?: number;
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a BaseSpell object
@@ -30324,7 +29728,6 @@ export type BaseSpellModificationData = ModificationIDData & {
     add?: SpellCategoryID[];
     remove?: SpellCategoryID[];
   };
-  [k: string]: unknown;
 };
 /**
  * Data modifications for the Woodcutting Skill
@@ -30339,46 +29742,12 @@ export type WoodcuttingModificationData = MasterySkillModificationData & {
     WoodcuttingTreeModificationData,
     ...WoodcuttingTreeModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data modifications shared between all Mastery skills
  */
-export type MasterySkillModificationData = BaseSkillModificationData & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-} & {
-  [k: string]: unknown;
-};
+export type MasterySkillModificationData =
+  BaseSkillModificationData & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {};
 /**
  * Data For modifying a WoodcuttingTree object
  */
@@ -30394,13 +29763,11 @@ export type WoodcuttingTreeModificationData =
     randomProducts?: {
       add?: AnyItemID[];
       remove?: AnyItemID[];
-      [k: string]: unknown;
     };
     /**
      * Optional. Adds or removes requirements needed to cut this tree
      */
     requirements?: RequirementsModificationData;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the base time it takes to cut the tree in [ms]
@@ -30412,13 +29779,11 @@ export type WoodcuttingTreeModificationData =
     randomProducts?: {
       add?: AnyItemID[];
       remove?: AnyItemID[];
-      [k: string]: unknown;
     };
     /**
      * Optional. Adds or removes requirements needed to cut this tree
      */
     requirements?: RequirementsModificationData;
-    [k: string]: unknown;
   };
 /**
  * Data for modifying a SingleProductRecipe object
@@ -30429,19 +29794,16 @@ export type SingleProductRecipeModificationData =
      * Optional. Changes the item that is produced by the recipe
      */
     productId?: AnyItemID;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the item that is produced by the recipe
      */
     productId?: AnyItemID;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the item that is produced by the recipe
      */
     productId?: AnyItemID;
-    [k: string]: unknown;
   };
 /**
  * Data modifications for the Fishing Skill
@@ -30453,7 +29815,6 @@ export type FishingModificationData = MasterySkillModificationData & {
    * @minItems 1
    */
   fish?: [FishModificationData, ...FishModificationData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a Fish object
@@ -30471,7 +29832,6 @@ export type FishModificationData = SingleProductRecipeModificationData & {
    * Optional. Changes the base maximum interval to catch the fish in [ms]
    */
   baseMaxInterval?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the base strength skill experience earned on a successful catch
@@ -30485,7 +29845,6 @@ export type FishModificationData = SingleProductRecipeModificationData & {
    * Optional. Changes the base maximum interval to catch the fish in [ms]
    */
   baseMaxInterval?: number;
-  [k: string]: unknown;
 };
 /**
  * Data modifications for the Firemaking Skill
@@ -30497,7 +29856,6 @@ export type FiremakingModificationData = MasterySkillModificationData & {
    * @minItems 1
    */
   logs?: [FiremakingLogModificationData, ...FiremakingLogModificationData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a FiremakingLog object
@@ -30517,7 +29875,6 @@ export type FiremakingLogModificationData = BasicSkillRecipeModificationData & {
   primaryProducts?: {
     add?: AnyItemID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * Optional. Adds or removes secondary products that can be gained from this log.
@@ -30525,7 +29882,6 @@ export type FiremakingLogModificationData = BasicSkillRecipeModificationData & {
   secondaryProducts?: {
     add?: AnyItemID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * Optional. Changes the base interval that a bonfire lasts for in [ms]
@@ -30539,7 +29895,6 @@ export type FiremakingLogModificationData = BasicSkillRecipeModificationData & {
    * Optional. Changes the percent bonus to abyssal firemaking XP that a bonfire provides
    */
   bonfireAXPBonus?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the log that should be burnt
@@ -30555,7 +29910,6 @@ export type FiremakingLogModificationData = BasicSkillRecipeModificationData & {
   primaryProducts?: {
     add?: AnyItemID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * Optional. Adds or removes secondary products that can be gained from this log.
@@ -30563,7 +29917,6 @@ export type FiremakingLogModificationData = BasicSkillRecipeModificationData & {
   secondaryProducts?: {
     add?: AnyItemID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * Optional. Changes the base interval that a bonfire lasts for in [ms]
@@ -30577,7 +29930,6 @@ export type FiremakingLogModificationData = BasicSkillRecipeModificationData & {
    * Optional. Changes the percent bonus to abyssal firemaking XP that a bonfire provides
    */
   bonfireAXPBonus?: number;
-  [k: string]: unknown;
 };
 /**
  * Data modifications for the Cooking Skill
@@ -30598,7 +29950,6 @@ export type CookingModificationData = MasterySkillModificationData & {
    * @minItems 1
    */
   recipes?: [CookingRecipeModificationData, ...CookingRecipeModificationData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a CookingRecipe object
@@ -30617,7 +29968,6 @@ export type CookingRecipeModificationData =
      * Optional. Changes the subcategory for this recipe
      */
     subcategoryID?: ValidID;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the Perfect Item for this recipe
@@ -30631,7 +29981,6 @@ export type CookingRecipeModificationData =
      * Optional. Changes the subcategory for this recipe
      */
     subcategoryID?: ValidID;
-    [k: string]: unknown;
   };
 /**
  * Data modifications for the Mining Skill
@@ -30643,7 +29992,6 @@ export type MiningModificationData = MasterySkillModificationData & {
    * @minItems 1
    */
   rockData?: [MiningRockModificationData, ...MiningRockModificationData[]];
-  [k: string]: unknown;
 };
 /**
  * Data For modifying a MiningRock object
@@ -30697,7 +30045,6 @@ export type MiningRockModificationData = SingleProductRecipeModificationData & {
    * Optional. Sets the weight of rolling this rock as an abyssal gem vein. Higher weight indicates a higher chance to be selected.
    */
   abyssalGemVeinWeight?: number;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the base time it takes for the rock to respawn in [ms]
@@ -30747,7 +30094,6 @@ export type MiningRockModificationData = SingleProductRecipeModificationData & {
    * Optional. Sets the weight of rolling this rock as an abyssal gem vein. Higher weight indicates a higher chance to be selected.
    */
   abyssalGemVeinWeight?: number;
-  [k: string]: unknown;
 };
 /**
  * Data modifications for the Smithing Skill
@@ -30757,7 +30103,6 @@ export type SmithingModificationData = MasterySkillModificationData & {
    * Optional. Modifies the SmithingRecipes registered to the skill
    */
   recipes?: SmithingRecipeModificationData[];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a SmithingRecipe object
@@ -30768,7 +30113,6 @@ export type SmithingRecipeModificationData =
      * Optional. Changes the subcategory this recipe belong to
      */
     subcategoryID?: ValidID;
-    [k: string]: unknown;
   };
 /**
  * Data modifications for the Thieving Skill
@@ -30780,7 +30124,6 @@ export type ThievingModificationData = MasterySkillModificationData & {
    * @minItems 1
    */
   npcs?: [ThievingNPCModificationData, ...ThievingNPCModificationData[]];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a ThievingNPC object
@@ -30808,7 +30151,6 @@ export type ThievingNPCModificationData = BasicSkillRecipeModificationData & {
   lootTable: {
     add?: DropTableData[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * Optional. Adds or removes allowed damage types from NPCs
@@ -30816,9 +30158,7 @@ export type ThievingNPCModificationData = BasicSkillRecipeModificationData & {
   allowedDamageTypeIDs?: {
     add?: DamageTypeID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the value of the NPCs perception stat. Higher values indicate a more difficult target to steal from
@@ -30842,7 +30182,6 @@ export type ThievingNPCModificationData = BasicSkillRecipeModificationData & {
   lootTable: {
     add?: DropTableData[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * Optional. Adds or removes allowed damage types from NPCs
@@ -30850,16 +30189,12 @@ export type ThievingNPCModificationData = BasicSkillRecipeModificationData & {
   allowedDamageTypeIDs?: {
     add?: DamageTypeID[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 };
 /**
  * Data modifications for the Farming Skill
  */
-export type FarmingModificationData = MasterySkillModificationData & {
-  [k: string]: unknown;
-};
+export type FarmingModificationData = MasterySkillModificationData & {};
 /**
  * Data modifications for the Fletching Skill
  */
@@ -30873,7 +30208,6 @@ export type FletchingModificationData = MasterySkillModificationData & {
     FletchingRecipeModificationData,
     ...FletchingRecipeModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data modifications for the Crafting Skill
@@ -30888,7 +30222,6 @@ export type CraftingModificationData = MasterySkillModificationData & {
     CraftingRecipeModificationData,
     ...CraftingRecipeModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a CraftingRecipe object
@@ -30899,13 +30232,11 @@ export type CraftingRecipeModificationData =
      * Optional. Changes the subcategory for this recipe
      */
     subcategoryID?: ValidID;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the subcategory for this recipe
      */
     subcategoryID?: ValidID;
-    [k: string]: unknown;
   };
 /**
  * Data modifications for the Runecrafting Skill
@@ -30920,7 +30251,6 @@ export type RunecraftingModificationData = MasterySkillModificationData & {
     RunecraftingRecipeModificationData,
     ...RunecraftingRecipeModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a RunecraftingRecipe object
@@ -30933,9 +30263,7 @@ export type RunecraftingRecipeModificationData =
     subcategories?: {
       add?: ValidID[];
       remove?: ValidID[];
-      [k: string]: unknown;
     };
-    [k: string]: unknown;
   };
 /**
  * Data modifications for the Herblore Skill
@@ -30950,7 +30278,6 @@ export type HerbloreModificationData = MasterySkillModificationData & {
     HerbloreRecipeModificationData,
     ...HerbloreRecipeModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a HerbloreRecipe object
@@ -30970,7 +30297,6 @@ export type HerbloreRecipeModificationData =
       PotionItemID,
       ...PotionItemID[],
     ];
-    [k: string]: unknown;
   } & {
     /**
      * Changes the potion items obtained at each tier
@@ -30985,7 +30311,6 @@ export type HerbloreRecipeModificationData =
       PotionItemID,
       ...PotionItemID[],
     ];
-    [k: string]: unknown;
   };
 /**
  * Data modifications for the Agility Skill
@@ -31009,7 +30334,6 @@ export type AgilityModificationData = MasterySkillModificationData & {
     AgilityPillarModificationData,
     ...AgilityPillarModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying an AgilityObstacle object
@@ -31033,7 +30357,6 @@ export type AgilityObstacleModificationData =
        * Removes the skill level requirements with a matching skill IDs
        */
       remove?: SkillID[];
-      [k: string]: unknown;
     };
     /**
      * Optional. Changes the base Agility experience granted when completing the obstacle
@@ -31051,7 +30374,6 @@ export type AgilityObstacleModificationData =
      * Optional. Changes the base Agility abyssal experience granted when completing the obstacle
      */
     baseAbyssalExperience?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the tier of the agility obstacle. 0 indexed.
@@ -31070,7 +30392,6 @@ export type AgilityObstacleModificationData =
        * Removes the skill level requirements with a matching skill IDs
        */
       remove?: SkillID[];
-      [k: string]: unknown;
     };
     /**
      * Optional. Changes the base Agility experience granted when completing the obstacle
@@ -31088,7 +30409,6 @@ export type AgilityObstacleModificationData =
      * Optional. Changes the base Agility abyssal experience granted when completing the obstacle
      */
     baseAbyssalExperience?: number;
-    [k: string]: unknown;
   };
 /**
  * Data for modifying a BaseAgilityObject object
@@ -31114,7 +30434,6 @@ export type BaseAgilityObjectModificationData = ModificationIDData & {
    * Optional. Changes the modifiers provided to the enemy when this obstacle/pillar is active
    */
   enemyModifiers?: EnemyModifierValuesModificationData;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Adds/removes items required to build the obstacle/pillar
@@ -31136,7 +30455,6 @@ export type BaseAgilityObjectModificationData = ModificationIDData & {
    * Optional. Changes the modifiers provided to the enemy when this obstacle/pillar is active
    */
   enemyModifiers?: EnemyModifierValuesModificationData;
-  [k: string]: unknown;
 };
 /**
  * Data for modifying an AgilityPillar object
@@ -31147,13 +30465,11 @@ export type AgilityPillarModificationData =
      * Optional. Changes the index of the slot that the pillar belongs to. 0 indexed.
      */
     slot?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Changes the index of the slot that the pillar belongs to. 0 indexed.
      */
     slot?: number;
-    [k: string]: unknown;
   };
 /**
  * Data modifications for the Summoning Skill
@@ -31168,7 +30484,6 @@ export type SummoningModificationData = MasterySkillModificationData & {
     SummoningRecipeModificationData,
     ...SummoningRecipeModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a SummoningRecipe object
@@ -31197,7 +30512,6 @@ export type SummoningRecipeModificationData =
      * Optional. Changes the maximum Summoning Mark level this familiar can reach
      */
     maxMarkLevel?: number;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Adds/Removes the non shard items that are options to make the Summoning Tablet
@@ -31221,7 +30535,6 @@ export type SummoningRecipeModificationData =
      * Optional. Changes the maximum Summoning Mark level this familiar can reach
      */
     maxMarkLevel?: number;
-    [k: string]: unknown;
   };
 /**
  * Data modifications for the Astrology Skill
@@ -31236,7 +30549,6 @@ export type AstrologyModificationData = MasterySkillModificationData & {
     AstrologyRecipeModificationData,
     ...AstrologyRecipeModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying an AstrologyRecipe object
@@ -31281,7 +30593,6 @@ export type AstrologyRecipeModificationData =
      * Optional. Sets the mastery XP modifier that depends on the number of max level modifiers in this constellation
      */
     masteryXPModifier?: ModifierID;
-    [k: string]: unknown;
   } & {
     /**
      * Optional. Adds/Removes skills associated with this constellation
@@ -31321,7 +30632,6 @@ export type AstrologyRecipeModificationData =
      * Optional. Sets the mastery XP modifier that depends on the number of max level modifiers in this constellation
      */
     masteryXPModifier?: ModifierID;
-    [k: string]: unknown;
   };
 /**
  * Data for modifying an AstrologyModifier object
@@ -31345,7 +30655,6 @@ export type AstrologyModifierModificationData = IStatObjectModificationData & {
     modify?: {
       index: number;
       value: number;
-      [k: string]: unknown;
     };
     /**
      * Adds new costs to buy a level of the modifier
@@ -31361,9 +30670,7 @@ export type AstrologyModifierModificationData = IStatObjectModificationData & {
      * Removes all requirements of the given types
      */
     remove?: string[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * The index of the modifier to modify
@@ -31383,7 +30690,6 @@ export type AstrologyModifierModificationData = IStatObjectModificationData & {
     modify?: {
       index: number;
       value: number;
-      [k: string]: unknown;
     };
     /**
      * Adds new costs to buy a level of the modifier
@@ -31399,9 +30705,7 @@ export type AstrologyModifierModificationData = IStatObjectModificationData & {
      * Removes all requirements of the given types
      */
     remove?: string[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * The index of the modifier to modify
@@ -31421,7 +30725,6 @@ export type AstrologyModifierModificationData = IStatObjectModificationData & {
     modify?: {
       index: number;
       value: number;
-      [k: string]: unknown;
     };
     /**
      * Adds new costs to buy a level of the modifier
@@ -31437,9 +30740,7 @@ export type AstrologyModifierModificationData = IStatObjectModificationData & {
      * Removes all requirements of the given types
      */
     remove?: string[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 };
 /**
  * Data modifications for the Township Skill
@@ -31454,7 +30755,6 @@ export type TownshipModificationData = BaseSkillModificationData & {
     TownshipSeasonModificationData,
     ...TownshipSeasonModificationData[],
   ];
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a TownshipSeason object
@@ -31472,7 +30772,6 @@ export type TownshipSeasonModificationData = ModificationIDData & {
    * Optional. Changes the modifiers provided to the enemy when this season is active
    */
   enemyModifiers?: EnemyModifierValuesModificationData;
-  [k: string]: unknown;
 } & {
   /**
    * Optional. Changes the modifiers provided to the player by the season
@@ -31486,32 +30785,23 @@ export type TownshipSeasonModificationData = ModificationIDData & {
    * Optional. Changes the modifiers provided to the enemy when this season is active
    */
   enemyModifiers?: EnemyModifierValuesModificationData;
-  [k: string]: unknown;
 };
 /**
  * Data modifications for the Cartography Skill
  */
-export type CartographyModificationData = BaseSkillModificationData & {
-  [k: string]: unknown;
-};
+export type CartographyModificationData = BaseSkillModificationData & {};
 /**
  * Data modifications for the Archaeology Skill
  */
-export type ArchaeologyModificationData = MasterySkillModificationData & {
-  [k: string]: unknown;
-};
+export type ArchaeologyModificationData = MasterySkillModificationData & {};
 /**
  * Data modifications for the Harvesting Skill
  */
-export type HarvestingModificationData = MasterySkillModificationData & {
-  [k: string]: unknown;
-};
+export type HarvestingModificationData = MasterySkillModificationData & {};
 /**
  * Data modifications for the Corruption Skill
  */
-export type CorruptionModificationData = BaseSkillModificationData & {
-  [k: string]: unknown;
-};
+export type CorruptionModificationData = BaseSkillModificationData & {};
 /**
  * Data for modifying a Pet object
  */
@@ -31520,13 +30810,11 @@ export type PetModificationData = IStatObjectModificationData & {
    * The id of the Pet to modify
    */
   id: PetID;
-  [k: string]: unknown;
 } & {
   /**
    * The id of the Pet to modify
    */
   id: PetID;
-  [k: string]: unknown;
 };
 /**
  * Data for modifying a Item Upgrades
@@ -31552,9 +30840,7 @@ export type ItemUpgradeModificationData = ModificationIDData & {
      * @minItems 1
      */
     remove?: [AnyItemID, ...AnyItemID[]];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 } & {
   /**
    * An array of Item Costs that are used to upgrade the item
@@ -31576,9 +30862,7 @@ export type ItemUpgradeModificationData = ModificationIDData & {
      * @minItems 1
      */
     remove?: [AnyItemID, ...AnyItemID[]];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 };
 
 /**
@@ -31597,7 +30881,6 @@ export interface MelvorGameDataPackage {
    * @minItems 1
    */
   dependentData?: [DependentData, ...DependentData[]];
-  [k: string]: unknown;
 }
 /**
  * Contains the data used to construct game objects
@@ -31991,7 +31274,6 @@ export interface IDData {
    * The local ID of the object
    */
   id: string;
-  [k: string]: unknown;
 }
 export interface SkillLevelCapRequirementSetData {
   /**
@@ -32004,7 +31286,6 @@ export interface SkillLevelCapRequirementSetData {
    * @minItems 1
    */
   requirements: [AnyRequirementData, ...AnyRequirementData[]];
-  [k: string]: unknown;
 }
 export interface SkillLevelRequirementData {
   type: "SkillLevel";
@@ -32016,7 +31297,6 @@ export interface SkillLevelRequirementData {
    * The minimum level the Skill must have
    */
   level: number;
-  [k: string]: unknown;
 }
 export interface AllSkillLevelRequirementData {
   type: "AllSkillLevels";
@@ -32034,7 +31314,6 @@ export interface AllSkillLevelRequirementData {
    * @minItems 1
    */
   exceptions?: [SkillID, ...SkillID[]];
-  [k: string]: unknown;
 }
 export interface DungeonRequirementData {
   type: "DungeonCompletion";
@@ -32046,7 +31325,6 @@ export interface DungeonRequirementData {
    * The number of times the dungeon must be completed
    */
   count: number;
-  [k: string]: unknown;
 }
 export interface CompletionRequirementData {
   type: "Completion";
@@ -32058,7 +31336,6 @@ export interface CompletionRequirementData {
    * The data namespace to check completion in. Accepts the special values of melvorBaseGame and melvorTrue for Base Game (demo + full) and True (all expacs + mods)
    */
   namespace: Namespace;
-  [k: string]: unknown;
 }
 export interface ShopPurchaseRequirementData {
   type: "ShopPurchase";
@@ -32070,7 +31347,6 @@ export interface ShopPurchaseRequirementData {
    * The number of times the purchase must be bought
    */
   count: number;
-  [k: string]: unknown;
 }
 export interface SlayerItemRequirementData {
   type: "SlayerItem";
@@ -32078,7 +31354,6 @@ export interface SlayerItemRequirementData {
    * The ID of the EquipmentItem that must be equipped
    */
   itemID: EquipmentItemID;
-  [k: string]: unknown;
 }
 export interface SlayerTaskRequirement {
   type: "SlayerTask";
@@ -32095,7 +31370,6 @@ export interface SlayerTaskRequirement {
    * The number of Slayer Tasks of the tier or higher that must be completed
    */
   count: number;
-  [k: string]: unknown;
 }
 export interface ItemFoundRequirementData {
   type: "ItemFound";
@@ -32103,7 +31377,6 @@ export interface ItemFoundRequirementData {
    * The ID of the item that must be found at least once
    */
   itemID: AnyItemID;
-  [k: string]: unknown;
 }
 export interface MonsterKilledRequirementData {
   type: "MonsterKilled";
@@ -32115,7 +31388,6 @@ export interface MonsterKilledRequirementData {
    * The number of times the monster must be killed
    */
   count: number;
-  [k: string]: unknown;
 }
 export interface TownshipTaskCompletionRequirement {
   type: "TownshipTask";
@@ -32127,7 +31399,6 @@ export interface TownshipTaskCompletionRequirement {
    * Optional. Only check tasks attached to this Realm. Defaults to Melvor Realm.
    */
   realm?: RealmID & string;
-  [k: string]: unknown;
 }
 export interface TownshipBuildingRequirementData {
   type: "TownshipBuilding";
@@ -32139,7 +31410,6 @@ export interface TownshipBuildingRequirementData {
    * The number of buildings that must be actively built
    */
   count: number;
-  [k: string]: unknown;
 }
 export interface CartographyHexDiscoveryRequirementData {
   type: "CartographyHexDiscovery";
@@ -32151,7 +31421,6 @@ export interface CartographyHexDiscoveryRequirementData {
    * The number of hexes that must be fully surveyed
    */
   count: number;
-  [k: string]: unknown;
 }
 export interface CartographyPOIDiscoveryRequirementData {
   type: "CartographyPOIDiscovery";
@@ -32165,7 +31434,6 @@ export interface CartographyPOIDiscoveryRequirementData {
    * @minItems 1
    */
   poiIDs: [PointsOfInterestID, ...PointsOfInterestID[]];
-  [k: string]: unknown;
 }
 export interface ArchaeologyItemsDonatedRequirementData {
   type: "ArchaeologyItemsDonated";
@@ -32173,7 +31441,6 @@ export interface ArchaeologyItemsDonatedRequirementData {
    * The number of items required to be donated
    */
   count: number;
-  [k: string]: unknown;
 }
 export interface AbyssalLevelRequirementData {
   type: "AbyssalLevel";
@@ -32185,7 +31452,6 @@ export interface AbyssalLevelRequirementData {
    * The minimum abyssal level the Skill must have
    */
   level: number;
-  [k: string]: unknown;
 }
 export interface SkillTreeNodeUnlockedRequirementData {
   type: "SkillTreeNodeUnlocked";
@@ -32201,7 +31467,6 @@ export interface SkillTreeNodeUnlockedRequirementData {
    * The ID of the Node within the Skill Tree
    */
   nodeID: ValidID;
-  [k: string]: unknown;
 }
 export interface AbyssDepthRequirementData {
   type: "AbyssDepthCompletion";
@@ -32213,7 +31478,6 @@ export interface AbyssDepthRequirementData {
    * The number of times the depth must be completed
    */
   count: number;
-  [k: string]: unknown;
 }
 export interface MasteryLevelRequirementData {
   type: "MasteryLevel";
@@ -32229,7 +31493,6 @@ export interface MasteryLevelRequirementData {
    * The minimum mastery level the action must have
    */
   level: number;
-  [k: string]: unknown;
 }
 export interface SkillCapIncreaseData {
   /**
@@ -32244,7 +31507,6 @@ export interface SkillCapIncreaseData {
    * The maximum level cap that can be reached with this increase
    */
   maximum: number;
-  [k: string]: unknown;
 }
 export interface SkillIDValue {
   /**
@@ -32255,7 +31517,6 @@ export interface SkillIDValue {
    * The value associated with the skill
    */
   value: number;
-  [k: string]: unknown;
 }
 export interface AnyItemQuantity {
   /**
@@ -35181,14 +34442,12 @@ export interface BaseEnemyModifierValuesRecordData {
    * Positive value alias for melvorD:magicAccuracyRating
    */
   increasedLightningSpellAccuracy?: number | ScopedModifierValue0[];
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue0 {
   /**
    * The value of the modifier
    */
   value: number;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue64 {
   /**
@@ -35199,7 +34458,6 @@ export interface ScopedModifierValue64 {
    * The Id of the Skill Subcategory this modifier value is scoped to
    */
   subcategoryID?: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue2 {
   /**
@@ -35210,7 +34468,6 @@ export interface ScopedModifierValue2 {
    * The ID of the DamageType this modifier value is scoped to
    */
   damageTypeID: DamageTypeID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue16 {
   /**
@@ -35221,7 +34478,6 @@ export interface ScopedModifierValue16 {
    * The ID of the Skill Category this modifier value is scoped to
    */
   categoryID: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue256 {
   /**
@@ -35232,7 +34488,6 @@ export interface ScopedModifierValue256 {
    * The Id of the combat effect group this modifier value is scoped to
    */
   effectGroupID?: CombatEffectGroupID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue32 {
   /**
@@ -35243,7 +34498,6 @@ export interface ScopedModifierValue32 {
    * The ID of the Skill Action this modifier value is scoped to
    */
   actionID: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue1 {
   /**
@@ -35254,7 +34508,6 @@ export interface ScopedModifierValue1 {
    * The ID of the Skill this modifier value is scoped to
    */
   skillID: SkillID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue4 {
   /**
@@ -35265,7 +34518,6 @@ export interface ScopedModifierValue4 {
    * The ID of the Realm this modifier value is scoped to
    */
   realmID: RealmID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue5 {
   /**
@@ -35280,7 +34532,6 @@ export interface ScopedModifierValue5 {
    * The ID of the Realm this modifier value is scoped to
    */
   realmID: RealmID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue33 {
   /**
@@ -35295,7 +34546,6 @@ export interface ScopedModifierValue33 {
    * The ID of the Skill Action this modifier value is scoped to
    */
   actionID: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue17 {
   /**
@@ -35310,7 +34560,6 @@ export interface ScopedModifierValue17 {
    * The ID of the Skill Category this modifier value is scoped to
    */
   categoryID: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue65 {
   /**
@@ -35325,7 +34574,6 @@ export interface ScopedModifierValue65 {
    * The Id of the Skill Subcategory this modifier value is scoped to
    */
   subcategoryID?: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue8 {
   /**
@@ -35336,7 +34584,6 @@ export interface ScopedModifierValue8 {
    * The ID of the Currency this modifier value is scoped to
    */
   currencyID: CurrencyID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue161 {
   /**
@@ -35355,7 +34602,6 @@ export interface ScopedModifierValue161 {
    * The Id of the Item this modifier value is scoped to
    */
   itemID?: AnyItemID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue69 {
   /**
@@ -35374,7 +34620,6 @@ export interface ScopedModifierValue69 {
    * The Id of the Skill Subcategory this modifier value is scoped to
    */
   subcategoryID?: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue9 {
   /**
@@ -35389,7 +34634,6 @@ export interface ScopedModifierValue9 {
    * The ID of the Currency this modifier value is scoped to
    */
   currencyID: CurrencyID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue41 {
   /**
@@ -35408,7 +34652,6 @@ export interface ScopedModifierValue41 {
    * The ID of the Skill Action this modifier value is scoped to
    */
   actionID: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue10 {
   /**
@@ -35423,7 +34666,6 @@ export interface ScopedModifierValue10 {
    * The ID of the Currency this modifier value is scoped to
    */
   currencyID: CurrencyID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue12 {
   /**
@@ -35438,7 +34680,6 @@ export interface ScopedModifierValue12 {
    * The ID of the Currency this modifier value is scoped to
    */
   currencyID: CurrencyID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue21 {
   /**
@@ -35457,7 +34698,6 @@ export interface ScopedModifierValue21 {
    * The ID of the Skill Category this modifier value is scoped to
    */
   categoryID: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue129 {
   /**
@@ -35472,7 +34712,6 @@ export interface ScopedModifierValue129 {
    * The Id of the Item this modifier value is scoped to
    */
   itemID?: AnyItemID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue25 {
   /**
@@ -35491,7 +34730,6 @@ export interface ScopedModifierValue25 {
    * The ID of the Skill Category this modifier value is scoped to
    */
   categoryID: ValidID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue133 {
   /**
@@ -35510,7 +34748,6 @@ export interface ScopedModifierValue133 {
    * The Id of the Item this modifier value is scoped to
    */
   itemID?: AnyItemID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue128 {
   /**
@@ -35521,7 +34758,6 @@ export interface ScopedModifierValue128 {
    * The Id of the Item this modifier value is scoped to
    */
   itemID?: AnyItemID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue193 {
   /**
@@ -35540,7 +34776,6 @@ export interface ScopedModifierValue193 {
    * The Id of the Item this modifier value is scoped to
    */
   itemID?: AnyItemID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue145 {
   /**
@@ -35559,7 +34794,6 @@ export interface ScopedModifierValue145 {
    * The Id of the Item this modifier value is scoped to
    */
   itemID?: AnyItemID;
-  [k: string]: unknown;
 }
 export interface ScopedModifierValue149 {
   /**
@@ -35582,7 +34816,6 @@ export interface ScopedModifierValue149 {
    * The Id of the Item this modifier value is scoped to
    */
   itemID?: AnyItemID;
-  [k: string]: unknown;
 }
 /**
  * Data used to construct a CombatEffectApplicator
@@ -35604,7 +34837,6 @@ export interface CombatEffectApplicatorData {
    * Optional. Determines if the effect can be applied even when the target has barrier, if applying the effect from self to target. Defaults to false.
    */
   bypassBarrier?: boolean;
-  [k: string]: unknown;
 }
 export interface DamageDealtConditionData {
   /**
@@ -35661,14 +34893,12 @@ export interface ValueConditionData {
    * The comparison operator to use
    */
   operator: Comparison;
-  [k: string]: unknown;
 }
 export interface BooleanConditionData {
   /**
    * If the condition should be inverted. e.g. !condition. Defaults to false
    */
   inverted?: boolean;
-  [k: string]: unknown;
 }
 export interface CombatEffectApplicatorTriggerData {
   /**
@@ -35691,7 +34921,6 @@ export interface CombatEffectApplicatorTriggerData {
    * Optional. Specifies if this applicator's description should be formatted as negative. Defaults to false.
    */
   isNegative?: boolean;
-  [k: string]: unknown;
 }
 export interface LevelCapIncreaseCostData {
   /**
@@ -35742,7 +34971,6 @@ export interface FixedCostsBase {
    * @minItems 1
    */
   items?: [AnyItemQuantity, ...AnyItemQuantity[]];
-  [k: string]: unknown;
 }
 export interface CurrencyQuantity {
   /**
@@ -35781,7 +35009,6 @@ export interface IStatObjectData {
     ConditionalModifierData,
     ...ConditionalModifierData[],
   ];
-  [k: string]: unknown;
 }
 export interface ConditionalModifierData {
   /**
@@ -35808,7 +35035,6 @@ export interface ConditionalModifierData {
    * Optional. ID of language string to use in place of description property
    */
   descriptionLang?: string;
-  [k: string]: unknown;
 }
 export interface BaseEquipStatCompareConditionData {
   type: "EquipStatCompare";
@@ -35816,7 +35042,6 @@ export interface BaseEquipStatCompareConditionData {
    * The comparison operator to use
    */
   operator: Comparison;
-  [k: string]: unknown;
 }
 export interface EquipStatPairData {
   /**
@@ -35827,7 +35052,6 @@ export interface EquipStatPairData {
    * The value of the equipment stat provided
    */
   value: number;
-  [k: string]: unknown;
 }
 export interface DamageTypeEquipStatData {
   /**
@@ -35842,7 +35066,6 @@ export interface DamageTypeEquipStatData {
    * Optional. The damage type of the stat. Defaults to melvorD:Normal
    */
   damageType?: DamageTypeID;
-  [k: string]: unknown;
 }
 export interface SkillActionEventMatcherOptions {
   /**
@@ -35865,7 +35088,6 @@ export interface SkillActionEventMatcherOptions {
    * @minItems 1
    */
   realms?: [RealmID, ...RealmID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when a Firemaking bonfire is lit
@@ -35884,7 +35106,6 @@ export interface BonfireLitEventMatcherOptions {
    * @minItems 1
    */
   realms?: [RealmID, ...RealmID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when a Farming Plant action occurs
@@ -35903,7 +35124,6 @@ export interface FarmingPlantActionEventMatcherOptions {
    * @minItems 1
    */
   categoryIDs?: [FarmingCategoryID, ...FarmingCategoryID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when a Monster drops an item in combat
@@ -35914,7 +35134,6 @@ export interface MonsterDropEventMatcherOptions {
    * Optional. If present, the original item dropped being a herb seed must match
    */
   herbSeed?: boolean;
-  [k: string]: unknown;
 }
 /**
  * Matches when a Player Attack occurs
@@ -35927,7 +35146,6 @@ export interface PlayerAttackEventMatcherOptions {
    * @minItems 1
    */
   attackTypes?: [AttackType, ...AttackType[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when a Enemy Attack occurs
@@ -35940,14 +35158,12 @@ export interface EnemyAttackEventMatcherOptions {
    * @minItems 1
    */
   attackTypes?: [AttackType, ...AttackType[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when the player eats a food item
  */
 export interface FoodEatenEventMatcherOptions {
   type: "FoodEaten";
-  [k: string]: unknown;
 }
 /**
  * Matches when the player uses prayer points
@@ -35958,42 +35174,36 @@ export interface PrayerPointConsumptionEventMatcherOptions {
    * Optional. If present the prayers isUnholy property must match.
    */
   isUnholy?: boolean;
-  [k: string]: unknown;
 }
 /**
  * Matches when the player regenerated hitpoints
  */
 export interface PlayerHitpointsRegenerationEventMatcherOptions {
   type: "PlayerHitpointRegeneration";
-  [k: string]: unknown;
 }
 /**
  * Matches when the player's summons make an attack
  */
 export interface PlayerSummonAttackEventMatcherOptions {
   type: "PlayerSummonAttack";
-  [k: string]: unknown;
 }
 /**
  * Matches when the player uses runes to cast a spell
  */
 export interface RuneConsumptionEventMatcherOptions {
   type: "RuneConsumption";
-  [k: string]: unknown;
 }
 /**
  * Matches when the player uses a potion item
  */
 export interface PotionUsedEventMatcherOptions {
   type: "PotionUsed";
-  [k: string]: unknown;
 }
 /**
  * Matches when the player uses a potion charge
  */
 export interface PotionChargeUsedEventMatcherOptions {
   type: "PotionChargeUsed";
-  [k: string]: unknown;
 }
 /**
  * Matches when the player kills a monster
@@ -36024,7 +35234,6 @@ export interface MonsterKilledEventMatcherOptions {
    * Optional. If present, the monster being killed must match being Corrupted
    */
   isCorrupted?: boolean;
-  [k: string]: unknown;
 }
 /**
  * Matches when the player equips an item
@@ -36037,7 +35246,6 @@ export interface ItemEquippedEventMatcherOptions {
    * @minItems 1
    */
   itemIDs?: [EquipmentItemID, ...EquipmentItemID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when the player equips a food item
@@ -36050,7 +35258,6 @@ export interface FoodEquippedEventMatcherOptions {
    * @minItems 1
    */
   itemIDs?: [FoodItemID, ...FoodItemID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when the player purchases an item from the shop
@@ -36063,7 +35270,6 @@ export interface ShopPurchaseMadeEventMatcherOptions {
    * @minItems 1
    */
   purchaseIDs?: [ShopPurchaseID, ...ShopPurchaseID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when the player uses a Summoning tablet
@@ -36082,7 +35288,6 @@ export interface SummonTabletUsedEventMatcherOptions {
    * @minItems 1
    */
   realms?: [RealmID, ...RealmID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when a monster spawns
@@ -36095,7 +35300,6 @@ export interface MonsterSpawnedEventMatcherOptions {
    * @minItems 1
    */
   monsterIDs?: [MonsterID, ...MonsterID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when the player purchases a new refinement in Cartography
@@ -36108,7 +35312,6 @@ export interface CartographyMapRefinementEventMatcherOptions {
    * @minItems 1
    */
   digSites?: [ArchaeologyDigSiteID, ...ArchaeologyDigSiteID[]];
-  [k: string]: unknown;
 }
 /**
  * Matches when an enemy in combat drops bones
@@ -36198,7 +35401,6 @@ export interface BaseCombatEffectData {
      * The default initial value of the parameter when an ActiveEffect is constructed
      */
     initialValue: number;
-    [k: string]: unknown;
   }[];
   /**
    * Defines timers for the effect. Timers can be used as a trigger for behaviours.
@@ -36208,7 +35410,6 @@ export interface BaseCombatEffectData {
      * The name of the timer
      */
     name: string;
-    [k: string]: unknown;
   }[];
   /**
    * Defines stat groups for the effect. Stat groups can be applied to the character the effect is active on.
@@ -36230,7 +35431,6 @@ export interface BaseCombatEffectData {
    * The IDs of effect groups that block the application of this effect if they are present on the character it is being applied to
    */
   exclusiveGroups?: CombatEffectGroupID[];
-  [k: string]: unknown;
 }
 export interface CombatEffectTTSpanData {
   /**
@@ -36245,7 +35445,6 @@ export interface CombatEffectTTSpanData {
    * Optional. If present, this condition must be met in order for the span to display
    */
   condition?: BehaviourTriggerConditionData;
-  [k: string]: unknown;
 }
 export interface BehaviourTriggerConditionData {
   /**
@@ -36278,7 +35477,6 @@ export interface CombatEffectProgressBarData {
    * CSS classes to apply to the progress bar when it is full
    */
   fullStyles: string[];
-  [k: string]: unknown;
 }
 export interface CombatEffectDescriptionTemplateDataData {
   /**
@@ -36370,7 +35568,6 @@ export interface BaseDamage {
    * Optional. If present on a Mult-hit Special attack, the damage will only be dealt on this hit of the attack
    */
   attackCount?: number;
-  [k: string]: unknown;
 }
 /**
  * Data used to construct a CombatEffectBehaviour
@@ -36388,7 +35585,6 @@ export interface CombatEffectBehaviourData {
    * Optional. Specifies the priority of executing this behaviour. Higher values will be executed before lower values. Defaults to 0
    */
   priority?: number;
-  [k: string]: unknown;
 }
 /**
  * Data used to construct a CombatBehaviourTrigger
@@ -36398,7 +35594,6 @@ export interface CombatBehaviourTriggerData {
    * Optional. Defines a condition that must be true for the behaviour to execute from this trigger
    */
   condition?: BehaviourTriggerConditionData;
-  [k: string]: unknown;
 }
 /**
  * Convenience data type for defining damage based on normal attack damage
@@ -36430,7 +35625,6 @@ export interface RuneQuantity {
 export interface InsertStart {
   insertAt: "Start";
   ids: ObjectsToInsert;
-  [k: string]: unknown;
 }
 /**
  * Inserts objects at the end of the order
@@ -36438,7 +35632,6 @@ export interface InsertStart {
 export interface InsertEnd {
   insertAt: "End";
   ids: ObjectsToInsert;
-  [k: string]: unknown;
 }
 /**
  * Inserts objects before the specified object
@@ -36450,7 +35643,6 @@ export interface InsertBefore {
    */
   beforeID: ValidID;
   ids: ObjectsToInsert;
-  [k: string]: unknown;
 }
 /**
  * Inserts objects after the specified object
@@ -36462,7 +35654,6 @@ export interface InsertAfter {
    */
   afterID: ValidID;
   ids: ObjectsToInsert;
-  [k: string]: unknown;
 }
 export interface BaseAreaEffectData {
   /**
@@ -36473,7 +35664,6 @@ export interface BaseAreaEffectData {
    * Optional. If present this effect applicator will be merged with the character, with chances multiplied by the magnitude
    */
   applicator?: TriggeredCombatEffectApplicatorData;
-  [k: string]: unknown;
 }
 export interface PetChanceData {
   /**
@@ -36484,7 +35674,6 @@ export interface PetChanceData {
    * Determines the chance of the pet. Rolls at 1/weight probability.
    */
   weight: number;
-  [k: string]: unknown;
 }
 export interface GamemodeRewardItemIDData {
   /**
@@ -36495,7 +35684,6 @@ export interface GamemodeRewardItemIDData {
    * An array of item IDs that will be rewarded when the dungeon is completed
    */
   rewardItemIDs?: AnyItemID[];
-  [k: string]: unknown;
 }
 export interface StrongholdTierData {
   /**
@@ -36553,7 +35741,6 @@ export interface ShopCost {
    * Golbin Raid coin cost of the purchase
    */
   raidCoins?: AnyShopCost;
-  [k: string]: unknown;
 }
 /**
  * A fixed cost per purchase in the shop
@@ -36564,7 +35751,6 @@ export interface FixedCost {
    * The cost per purchase. Can be set to 0 to indicate no cost.
    */
   cost: number;
-  [k: string]: unknown;
 }
 /**
  * A linearly scaling cost per purchase in the shop
@@ -36579,14 +35765,12 @@ export interface LinearCost {
    * The amount the cost should increase per purchase made
    */
   scaling: number;
-  [k: string]: unknown;
 }
 /**
  * A cost that scales according the bank slot cost formula per purchase in the shop
  */
 export interface BankSlotCost {
   type: "BankSlot";
-  [k: string]: unknown;
 }
 /**
  * A fixed cost that can be reduced if the player has read the merchant's permit
@@ -36597,7 +35781,6 @@ export interface GloveCost {
    * The cost per purchase.
    */
   cost: number;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing an ItemUpgrade object
@@ -36641,7 +35824,6 @@ export interface ItemUpgradeData {
    * Optional. Determines the quantity of the upgradeItemID that is given per upgrade
    */
   quantity?: number;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing an ItemSynergy object
@@ -36690,7 +35872,6 @@ export interface ItemSynergyData {
     TriggeredCombatEffectApplicatorData,
     ...TriggeredCombatEffectApplicatorData[],
   ];
-  [k: string]: unknown;
 }
 /**
  * Data for the Golbin Raid minigame
@@ -36716,7 +35897,6 @@ export interface GolbinRaidData {
      * The weight of the item in golbin crates. Higher value indicates more common items
      */
     weight: 35 | 20 | 10 | 4 | 1;
-    [k: string]: unknown;
   }[];
   /**
    * The IDs of CombatPassives that may randomly be given to Golbins
@@ -36742,7 +35922,6 @@ export interface GolbinRaidData {
      * The starting quantity of ammo
      */
     quantity: number;
-    [k: string]: unknown;
   };
   /**
    * Optional. Sets the starting runes of the player
@@ -36756,13 +35935,11 @@ export interface GolbinRaidData {
   randomModifiers?: {
     key: EnemyModifierKey;
     multiplier?: number;
-    [k: string]: unknown;
   }[];
   /**
    * Optional. Modifiers that are always active on the player during raid
    */
   playerModifiers?: ModifierValuesRecordData;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing an SteamAchievement object
@@ -36780,7 +35957,6 @@ export interface SteamAchievementData {
    * Optional. The ID of the gamemode that the player must be playing to unlock the achievement. If unset the achievement can be unlocked in any gamemode
    */
   requiredGamemodeID?: GamemodeID;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a TutorialTask object
@@ -36810,7 +35986,6 @@ export interface TutorialTaskData {
    * Whether the quantity of items made/equipped/purchased should be counted for the eventCount
    */
   countEventQuantity: boolean;
-  [k: string]: unknown;
 }
 /**
  * Basic data shared between all skills
@@ -36891,7 +36066,6 @@ export interface BaseSkillData {
    * Optional. Sets a realm that this skills standard levels are tied to
    */
   abyssalLevelRealm?: RealmID;
-  [k: string]: unknown;
 }
 export interface RareSkillDropData {
   /**
@@ -36922,7 +36096,6 @@ export interface RareSkillDropData {
    * Optional. Determines the realms this drop can drop from. Unset means all realms.
    */
   realms?: RealmID[];
-  [k: string]: unknown;
 }
 /**
  * A Fixed chance that the item should drop
@@ -36933,7 +36106,6 @@ export interface FixedSkillDropChance {
    * The percent chance that the item should drop
    */
   chance: number;
-  [k: string]: unknown;
 }
 export interface ScalingChance {
   /**
@@ -36948,7 +36120,6 @@ export interface ScalingChance {
    * The maximum percent chance that the item should drop
    */
   maxChance: number;
-  [k: string]: unknown;
 }
 export interface MinibarData {
   /**
@@ -36963,7 +36134,6 @@ export interface MinibarData {
    * The ID of pets that should be displayed in the minibar
    */
   pets: PetID[];
-  [k: string]: unknown;
 }
 export interface MilestoneLike {
   /**
@@ -36978,7 +36148,6 @@ export interface MilestoneLike {
    * The URI of the milestones image
    */
   media: string;
-  [k: string]: unknown;
 }
 /**
  * Defines a milestone for being able to equip an item
@@ -36989,7 +36158,6 @@ export interface EquipItemMilestoneData {
    * The ID of the equipment item to show as a milestone
    */
   itemID: EquipmentItemID;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing an AncientRelicSet object
@@ -37025,7 +36193,6 @@ export interface AncientRelicSetData {
    * Optional. Levels in a skill that a random drop from this set is unlocked at.
    */
   abyssalLevelUpUnlocks?: number[];
-  [k: string]: unknown;
 }
 /**
  * Data for Ancient Relics drops via Skills
@@ -37043,7 +36210,6 @@ export interface AncientRelicDropData {
    * Determines how the chance to obtain the drop is calculated
    */
   chance: RareSkillDropChance;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a MasteryLevelUnlock object
@@ -37061,7 +36227,6 @@ export interface MasteryLevelUnlockData {
    * The mastery level the unlock occurs at
    */
   level: number;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a MasteryLevelBonus object
@@ -37091,7 +36256,6 @@ export interface MasteryLevelBonusData {
    * Optional. Filter to apply based on the action. Acceptable values depend on the skill.
    */
   filter?: string;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a MasteryPoolBonus object
@@ -37109,7 +36273,6 @@ export interface MasteryPoolBonusData {
    * The percent that the mastery pool must be full to for this bonus to be active
    */
   percent: number;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a RandomWoodcuttingProduct object
@@ -37131,7 +36294,6 @@ export interface RandomWoodcuttingProductData {
    * Optional. The minimum value the chance can reach
    */
   minChance?: number;
-  [k: string]: unknown;
 }
 /**
  * Data For constructing a Fishing Contest Fish object
@@ -37153,7 +36315,6 @@ export interface FishingContestFishData {
    * The base maximum length possible for the fish in [cm]
    */
   maxLength: number;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a FiremakingProduct object
@@ -37184,7 +36345,6 @@ export interface FiremakingProductData {
      */
     factor: number;
   };
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a GeneralThievingRare object
@@ -37210,7 +36370,6 @@ export interface GeneralThievingRareData {
    * @minItems 1
    */
   realms?: [RealmID, ...RealmID[]];
-  [k: string]: unknown;
 }
 /**
  * Data for constructing an AgilityCourse object
@@ -37228,7 +36387,6 @@ export interface AgilityCourseData {
    * Determines how many passive pillars exist in this course, as well as their level/abyssal level requirements, and obstacle requirements
    */
   pillarSlots: AgilityPillarSlot[];
-  [k: string]: unknown;
 }
 export interface AgilityObstacleSlot {
   /**
@@ -37239,7 +36397,6 @@ export interface AgilityObstacleSlot {
    * Optional. The Abyssal Agility level required to build obstacles/pillars in this slot
    */
   abyssalLevel?: number;
-  [k: string]: unknown;
 }
 /**
  * The data required to construct a SummoningSynergy object
@@ -37288,7 +36445,6 @@ export interface SummoningSynergyData {
    * @minItems 1
    */
   consumesOn: [GameEventMatcherData, ...GameEventMatcherData[]];
-  [k: string]: unknown;
 }
 export interface ItemChanceData {
   /**
@@ -37309,7 +36465,6 @@ export interface TownshipBuildingCostData {
    * The resource costs to apply
    */
   cost: TownshipResourceQuantity[];
-  [k: string]: unknown;
 }
 export interface TownshipResourceQuantity {
   /**
@@ -37320,7 +36475,6 @@ export interface TownshipResourceQuantity {
    * The quantity of the resource
    */
   quantity: number;
-  [k: string]: unknown;
 }
 export interface TownshipBuildingProvidesData {
   /**
@@ -37359,7 +36513,6 @@ export interface TownshipBuildingProvidesData {
    * Optional. Base soul storage cap provided by the building
    */
   soulStorage?: number;
-  [k: string]: unknown;
 }
 export interface TownshipWorshipSeasonMultiplierData {
   /**
@@ -37370,7 +36523,6 @@ export interface TownshipWorshipSeasonMultiplierData {
    * The value to multiply the positive modifiers of the worship by
    */
   multiplier: number;
-  [k: string]: unknown;
 }
 /**
  * The requirements for completing the task
@@ -37392,7 +36544,6 @@ export interface TownshipTaskGoalsData {
      * The number of times the mosnter must be killed
      */
     quantity: number;
-    [k: string]: unknown;
   }[];
   /**
    * Skill XP that must be earned to complete the task
@@ -37406,7 +36557,6 @@ export interface TownshipTaskGoalsData {
      * The amount of skill XP that must be earned
      */
     quantity: number;
-    [k: string]: unknown;
   }[];
   /**
    * Township Buildings that must be actively built to complete the task
@@ -37420,7 +36570,6 @@ export interface TownshipTaskGoalsData {
      * The number of buildings that must be built
      */
     quantity: number;
-    [k: string]: unknown;
   }[];
   /**
    * Monsters that must be killed while the specified items are equipped to complete the task
@@ -37438,7 +36587,6 @@ export interface TownshipTaskGoalsData {
      * The number of times the monster must be killed
      */
     quantity: number;
-    [k: string]: unknown;
   }[];
   /**
    * Total number of POIs to discover to complete the task
@@ -37452,13 +36600,11 @@ export interface TownshipTaskGoalsData {
      * The number of Points of Interest to discover
      */
     quantity: number;
-    [k: string]: unknown;
   }[];
   /**
    * Total number of dig site refinements required complete the task
    */
   numRefinements?: number;
-  [k: string]: unknown;
 }
 /**
  * The rewards given for completing the task
@@ -37494,13 +36640,11 @@ export interface TownshipTaskRewardsData {
      * The amount of skill XP rewarded
      */
     quantity: number;
-    [k: string]: unknown;
   }[];
   /**
    * Township resources awarded upon completion of the task
    */
   townshipResources: TownshipResourceQuantity[];
-  [k: string]: unknown;
 }
 export interface TownshipItemConversionData {
   /**
@@ -37511,7 +36655,6 @@ export interface TownshipItemConversionData {
    * Defines conversions from TownshipResources to Items
    */
   fromTownship: TownshipResourceItemConversionData[];
-  [k: string]: unknown;
 }
 export interface TownshipResourceItemConversionData {
   /**
@@ -37522,7 +36665,6 @@ export interface TownshipResourceItemConversionData {
    * Item conversions that are possible with the resource
    */
   items: TownshipSingleItemConversionData[];
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a TownshipItemConversion object
@@ -37540,7 +36682,6 @@ export interface TownshipSingleItemConversionData {
    * Optional. Set a custom conversion rate for this Item
    */
   baseCost?: number;
-  [k: string]: unknown;
 }
 export interface PointData {
   /**
@@ -37551,7 +36692,6 @@ export interface PointData {
    * y-coordinate or height
    */
   y: number;
-  [k: string]: unknown;
 }
 export interface HexCoordData {
   /**
@@ -37562,7 +36702,6 @@ export interface HexCoordData {
    * r - axial coordinate
    */
   r: number;
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a Hex object
@@ -37592,7 +36731,6 @@ export interface HexData {
    * If the hex is considered to be water
    */
   isWater: boolean;
-  [k: string]: unknown;
 }
 export interface WorldMapPortalData {
   /**
@@ -37603,7 +36741,6 @@ export interface WorldMapPortalData {
    * Point of interest data for the second portal
    */
   portalB: PortalPOIData;
-  [k: string]: unknown;
 }
 /**
  * Same as FixedCostsData, but allows quantities of zero
@@ -37631,7 +36768,6 @@ export interface FixedCostsDataZero {
    * @minItems 1
    */
   items?: [AnyItemQuantityZero, ...AnyItemQuantityZero[]];
-  [k: string]: unknown;
 }
 /**
  * Same as FixedCostsData, but allows quantity of zero
@@ -37696,7 +36832,6 @@ export interface ModifierScopeData {
    * Optional. The ID of the combat effect group this scope applies to
    */
   effectGroupID?: CombatEffectGroupID;
-  [k: string]: unknown;
 }
 export interface DigSiteArtefactData {
   /**
@@ -37715,7 +36850,6 @@ export interface DigSiteArtefactData {
    * Determines the drops when digging for large artefacts
    */
   large: DropTableData[];
-  [k: string]: unknown;
 }
 /**
  * Data for constructing a CorruptionEffectTableRow object
@@ -37758,7 +36892,6 @@ export interface PageSideBarItemOptions {
   ignoreToggle?: boolean;
   before?: string;
   after?: string;
-  [k: string]: unknown;
 }
 export interface PageSideBarSubItemOptions {
   /**
@@ -37777,7 +36910,6 @@ export interface PageSideBarSubItemOptions {
   asideClass?: string;
   before?: string;
   after?: string;
-  [k: string]: unknown;
 }
 export interface CombatTriangleData {
   /**
@@ -37788,7 +36920,6 @@ export interface CombatTriangleData {
    * Determines how player damage reduction is multiplied. Indexed by Player Attack type, then by Enemy Attack Type.
    */
   reductionModifier: NestedAttackTypeMultiplier;
-  [k: string]: unknown;
 }
 export interface NestedAttackTypeMultiplier {
   melee: AttackTypeMultiplier;
@@ -38073,14 +37204,12 @@ export interface GamemodeModificationData {
     add?: SkillID[];
     remove?: SkillID[];
   };
-  [k: string]: unknown;
 }
 export interface ModificationIDData {
   /**
    * The ID of the object to modify
    */
   id: ValidID;
-  [k: string]: unknown;
 }
 /**
  * Data for modifying a CombatAreaCategory object
@@ -38102,9 +37231,7 @@ export interface CombatAreaCategoryModificationData {
      * Removes the CombatAreas from the area with the IDs in this array. Performed before add.
      */
     remove?: CombatAreaID[];
-    [k: string]: unknown;
   };
-  [k: string]: unknown;
 }
 export interface BaseItemModificationData {
   /**
@@ -38127,7 +37254,6 @@ export interface BaseItemModificationData {
    * Base sale price for the item
    */
   sellsFor?: number;
-  [k: string]: unknown;
 }
 export interface IStatObjectModificationData {
   /**
@@ -38146,7 +37272,6 @@ export interface IStatObjectModificationData {
    * Optional. Adds/removes ConditionalModifiers
    */
   conditionalModifiers?: ConditionalModifiersModificationData;
-  [k: string]: unknown;
 }
 export interface ModifierValuesModificationData {
   /**
@@ -38267,7 +37392,6 @@ export interface MonsterModificationData {
      * Magic level. Impacts magic accuracy, max hit and evasion rating
      */
     Magic?: number;
-    [k: string]: unknown;
   };
   /**
    * Equipment stats of the Monster. Used to calculate its stats.
@@ -38287,10 +37411,8 @@ export interface MonsterModificationData {
        * Override the default chance of the special attack happening
        */
       chance?: number;
-      [k: string]: unknown;
     }[];
     remove?: SpecialAttackID[];
-    [k: string]: unknown;
   };
   /**
    * Optional. CombatEffects applied via the enemy at the specified times
@@ -38302,7 +37424,6 @@ export interface MonsterModificationData {
   passives?: {
     add?: CombatPassiveID[];
     remove?: CombatPassiveID[];
-    [k: string]: unknown;
   };
   /**
    * Percent chance that this monster should drop an item from its loot table.
@@ -38314,7 +37435,6 @@ export interface MonsterModificationData {
   lootTable?: {
     add?: DropTableData[];
     remove?: AnyItemID[];
-    [k: string]: unknown;
   };
   /**
    * Modifies the currencies that drop from this monster
@@ -38336,13 +37456,11 @@ export interface MonsterModificationData {
        * The minimum amount of the currency to drop
        */
       max?: number;
-      [k: string]: unknown;
     }[];
     /**
      * Removes currency drops from the monster that match the IDs in the array
      */
     remove?: CurrencyID[];
-    [k: string]: unknown;
   };
   /**
    * @deprecated
@@ -38351,7 +37469,6 @@ export interface MonsterModificationData {
   gpDrops?: {
     min?: number;
     max?: number;
-    [k: string]: unknown;
   };
   /**
    * The monster will always drop the specified item, outside of dungeons
@@ -38365,7 +37482,6 @@ export interface MonsterModificationData {
      * The quantity of the item to drop
      */
     quantity: number;
-    [k: string]: unknown;
   } | null;
   /**
    * Determines if the monster is Eligible to be a slayer task
@@ -38391,9 +37507,7 @@ export interface MonsterModificationData {
      * The number of this monster that must be killed for the pet
      */
     quantity: number;
-    [k: string]: unknown;
   } | null;
-  [k: string]: unknown;
 }
 /**
  * Data for modifying a Page object
@@ -38495,9 +37609,7 @@ export interface ModifierScopingModificationData {
 /**
  * Basic data modifications for all skills
  */
-export interface BaseSkillModificationData {
-  [k: string]: unknown;
-}
+export interface BaseSkillModificationData {}
 export interface RuneQuantitiesModificationData {
   /**
    * Adds new rune quantities to the existing array
