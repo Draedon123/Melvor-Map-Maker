@@ -1,9 +1,10 @@
 <script lang="ts">
   import { base } from "$app/paths";
+  import Hex from "./lib/components/modals/Hex.svelte";
   import Toolbar from "$lib/components/Toolbar/Toolbar.svelte";
   import UploadFile from "./lib/components/modals/UploadFile.svelte";
   import ToolbarItem from "$lib/components/Toolbar/ToolbarItem.svelte";
-  import Hex from "./lib/components/modals/Hex.svelte";
+  import PropertiesMenu from "./lib/components/PropertiesMenu.svelte";
 
   let uploadFileModal: UploadFile;
   let hexModal: Hex;
@@ -36,6 +37,7 @@
 
   <div class="main">
     <slot />
+    <PropertiesMenu />
   </div>
 </div>
 
@@ -51,5 +53,13 @@
     margin-right: 0;
     position: relative;
     min-height: calc(100vh - $navigation-bar-height - 1ch);
+  }
+
+  .main {
+    width: 100%;
+    height: calc(100vh - $navigation-bar-height);
+
+    display: flex;
+    flex-direction: row;
   }
 </style>

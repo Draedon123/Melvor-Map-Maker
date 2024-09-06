@@ -4,15 +4,15 @@
   import initialisePIXIDevTools from "../canvas/initialisePIXIDevTools";
   import type { Application } from "pixi.js";
 
+  let container: HTMLDivElement;
   let canvas: HTMLCanvasElement;
   let app: Application | null = null;
 
   onMount(async () => {
-    const resizeTo = document.querySelector(".container") as HTMLElement | null;
     app = await initialiseApp({
       canvas,
       appOptions: {
-        resizeTo: resizeTo ?? undefined,
+        resizeTo: container,
         resolution: window.devicePixelRatio ?? 1.5,
       },
       viewportOptions: {
@@ -54,18 +54,23 @@
   });
 </script>
 
-<canvas bind:this={canvas} />
+<div bind:this={container} class="container">
+  <canvas bind:this={canvas} />
+</div>
 
 <style lang="scss">
-  @import "/src/styles/globals.scss";
+  .container {
+    height: 100%;
+    min-width: calc(100% - 25vw);
+  }
 
   canvas {
-    position: absolute;
-    width: calc(100vw - $toolbar-width);
-    height: calc(100vh - $navigation-bar-height);
-    top: 0;
-    left: 0;
-    z-index: 1;
+    width: 100%;
+    height: 100%;
+
     background-color: black;
+
+    flex-shrink: 0;
+    flex-grow: 1;
   }
 </style>

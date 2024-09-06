@@ -1,8 +1,8 @@
 import type { PointData } from "$lib/melvor/schema";
 import { Container } from "pixi.js";
 import SafeGraphicsContext from "./SafeGraphicsContext";
-import type Viewport from "./Viewport";
 import HexDisplay from "./HexDisplay";
+import type Viewport from "./Viewport";
 
 const SQRT_3 = Math.sqrt(3);
 const THIRD_PI = Math.PI / 3;
@@ -12,8 +12,6 @@ class HexGridLayer extends Container<HexDisplay> {
     super({
       label: "Hex Grid",
       zIndex: 1,
-      interactive: false,
-      interactiveChildren: false,
     });
   }
 

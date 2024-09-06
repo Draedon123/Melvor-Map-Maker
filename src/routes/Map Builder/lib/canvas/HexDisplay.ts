@@ -1,6 +1,6 @@
 import { Graphics } from "pixi.js";
-import type { PointData } from "$lib/melvor/schema";
-import { oddQToAxial } from "$lib/functions/coordinates";
+import { axialToOddQ, oddQToAxial } from "$lib/functions/coordinates";
+import type { HexCoordData, PointData } from "$lib/melvor/schema";
 import SafeGraphicsContext from "./SafeGraphicsContext";
 
 const SQRT_3 = Math.sqrt(3);
@@ -10,11 +10,6 @@ const FLAT_HEX_ORIENT = {
     [3 / 2, 0],
     [SQRT_3 / 2, SQRT_3],
   ],
-  // https://www.redblobgames.com/grids/hexagons/#hex-to-pixel-axial
-  // inverse: [
-  //   [2 / 3, 0],
-  //   [-1 / 3, SQRT_3 / 3],
-  // ],
 } as const;
 
 class HexDisplay extends Graphics {
@@ -27,9 +22,8 @@ class HexDisplay extends Graphics {
   ) {
     super({
       cullable: true,
-      interactive: false,
-      interactiveChildren: false,
       context: graphicsContext,
+      eventMode: "static",
     });
 
     this.hexScale = hexScale;
@@ -42,6 +36,14 @@ class HexDisplay extends Graphics {
 
   public get coordinates(): PointData {
     return this._coordinates;
+  }
+
+  public get axialCoordinates(): HexCoordData {
+    return oddQToAxial(this.coordinates);
+  }
+
+  public set axialCoordinates(coordaintes: HexCoordData) {
+    this.coordinates = axialToOddQ(coordaintes);
   }
 
   public get origin(): PointData {
