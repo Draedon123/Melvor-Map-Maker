@@ -1,38 +1,35 @@
 <svelte:options accessors />
 
+<script lang="ts" context="module">
+  import { writable, type Writable } from "svelte/store";
+
+  type PropertiesMenuContext = {
+    activeTab: Writable<number>;
+  };
+
+  const DEFAULT_CONTEXT: PropertiesMenuContext = {
+    activeTab: writable(0),
+  };
+
+  export type { PropertiesMenuContext };
+</script>
+
 <script lang="ts">
   import { base } from "$app/paths";
+  import { setContext } from "svelte";
   import Tab from "./Tab.svelte";
 
   export let hidden: boolean = false;
 
   let container: HTMLDivElement;
-  let activeTab: number = 0;
 
-  function tabIconOnClick(id: number): void {
-    activeTab = id;
-  }
+  setContext<PropertiesMenuContext>("propertiesMenu", DEFAULT_CONTEXT);
 </script>
 
 <div bind:this={container} class="container" class:hidden>
-  <Tab
-    imageSRC="{base}/hex_grid.png"
-    imageAltText=""
-    {activeTab}
-    iconOnClick={tabIconOnClick}>1</Tab
-  >
-  <Tab
-    imageSRC="{base}/hex_grid.png"
-    imageAltText=""
-    {activeTab}
-    iconOnClick={tabIconOnClick}>2</Tab
-  >
-  <Tab
-    imageSRC="{base}/hex_grid.png"
-    imageAltText=""
-    {activeTab}
-    iconOnClick={tabIconOnClick}>3</Tab
-  >
+  <Tab imageSRC="{base}/hex_grid.png" imageAltText="">1</Tab>
+  <Tab imageSRC="{base}/hex_grid.png" imageAltText="">2</Tab>
+  <Tab imageSRC="{base}/hex_grid.png" imageAltText="">3</Tab>
 </div>
 
 <style lang="scss">

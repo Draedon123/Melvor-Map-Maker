@@ -7,22 +7,30 @@
 </script>
 
 <script lang="ts">
+  import { getContext } from "svelte";
+  import type { PropertiesMenuContext } from "./PropertiesMenu.svelte";
+
   export let imageSRC: string;
   export let imageAltText: string;
-  export let activeTab: number;
-  export let iconOnClick: (id: number) => void = () => {};
 
   export const id = getNewID();
+
+  const activeTab =
+    getContext<PropertiesMenuContext>("propertiesMenu").activeTab;
+
+  function iconOnClick(): void {
+    $activeTab = id;
+  }
 </script>
 
 <input
   type="image"
   src={imageSRC}
   alt={imageAltText}
-  class:active={id === activeTab}
-  on:click={() => iconOnClick(id)}
+  class:active={id === $activeTab}
+  on:click={iconOnClick}
 />
-<div class:hidden={id !== activeTab}>
+<div class:hidden={id !== $activeTab}>
   <slot />
 </div>
 
