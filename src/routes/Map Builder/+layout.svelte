@@ -4,7 +4,7 @@
   import Toolbar from "$lib/components/Toolbar/Toolbar.svelte";
   import UploadFile from "./lib/components/modals/UploadFile.svelte";
   import ToolbarItem from "$lib/components/Toolbar/ToolbarItem.svelte";
-  import PropertiesMenu from "./lib/components/PropertiesMenu.svelte";
+  import PropertiesMenu from "./lib/components/PropertiesMenu/PropertiesMenu.svelte";
 
   let uploadFileModal: UploadFile;
   let hexModal: Hex;
