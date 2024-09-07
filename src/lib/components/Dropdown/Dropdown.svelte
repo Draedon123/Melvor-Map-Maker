@@ -15,7 +15,7 @@
   export let value: string = "";
   export let caretFillColour: string = "#000000";
   export let style: string = "";
-  export let showOptions: boolean = true;
+  export let showOptions: boolean = false;
 
   let textContent: string = value;
 
