@@ -61,7 +61,7 @@
 <style lang="scss">
   .container {
     height: 100%;
-    min-width: calc(100% - 25vw);
+    width: calc(100% - 25vw);
   }
 
   canvas {

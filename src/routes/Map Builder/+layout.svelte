@@ -10,6 +10,15 @@
   let hexModal: Hex;
 </script>
 
+<svelte:head>
+  <!-- my browser sometimes get 1px whitespace at the bottom for some reason -->
+  <style>
+    body {
+      background-color: #000000;
+    }
+  </style>
+</svelte:head>
+
 <div class="container">
   <Toolbar>
     <ToolbarItem
@@ -52,7 +61,6 @@
     margin-left: $toolbar-width;
     margin-right: 0;
     position: relative;
-    min-height: calc(100vh - $navigation-bar-height - 1ch);
   }
 
   .main {

@@ -25,6 +25,7 @@
   import Dropdown from "../Dropdown/Dropdown.svelte";
   import Requirement from "./Requirement.svelte";
   import DropdownOption from "../Dropdown/DropdownOption.svelte";
+  import { base } from "$app/paths";
 
   export let requirements: AnyRequirementData[] = [];
 
@@ -202,7 +203,17 @@
   </tr>
   {#each requirements as requirement}
     <tr>
-      <Requirement {...{ requirement, deleteButtonOnClick }} />
+      <td>
+        <Requirement {requirement} />
+      </td>
+      <td>
+        <input
+          type="image"
+          src="{base}/delete.png"
+          alt="A bin"
+          on:click={() => deleteButtonOnClick(requirement)}
+        />
+      </td>
     </tr>
   {/each}
 </table>
@@ -211,7 +222,7 @@
   @import "/src/styles/button.scss";
 
   table,
-  :global(td),
+  td,
   th {
     border: 2px solid #4f4f4f;
     border-collapse: collapse;
@@ -221,7 +232,7 @@
     text-align: center;
   }
 
-  :global(td),
+  td,
   th {
     padding: 3px 5px;
   }
@@ -240,5 +251,10 @@
 
   .dropdown-container {
     width: min-content;
+  }
+
+  input[type="image"] {
+    width: 2em;
+    height: 2em;
   }
 </style>

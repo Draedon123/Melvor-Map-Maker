@@ -17,6 +17,7 @@
   export let caretFillColour: string = "#000000";
   export let style: string = "";
   export let showOptions: boolean = false;
+  export let height: number = 10;
   export let onChange: (value: string) => void = () => {};
 
   let textContent: string = value;
@@ -56,13 +57,22 @@
     </svg>
   </button>
 
-  <div class="optionContainer" class:hidden={!showOptions}>
+  <div
+    class="optionContainer"
+    class:hidden={!showOptions}
+    style="max-height: {height}em;"
+  >
     <slot />
   </div>
 </div>
 
 <style lang="scss">
   @import "/src/styles/button.scss";
+  @import "/src/styles/scrollbar.scss";
+
+  .container {
+    position: relative;
+  }
 
   button {
     @include button(#4f4f4f);
@@ -95,5 +105,13 @@
     flex-direction: column;
 
     background-color: #4f4f4f;
+    position: absolute;
+
+    width: 100%;
+    overflow-y: scroll;
+
+    font-size: small;
+
+    @include scrollbar(#4f4f4f, #7f7f7f);
   }
 </style>

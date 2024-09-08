@@ -13,6 +13,8 @@
 </div>
 
 <style lang="scss">
+  @import "/src/styles/scrollbar.scss";
+
   .container {
     height: 100%;
     width: 25vw;
@@ -32,21 +34,6 @@
     display: flex;
     flex-direction: column;
 
-    &::-webkit-scrollbar {
-      background-color: #1f1f1f;
-      border: 1px solid black;
-    }
-
-    &::-webkit-scrollbar-button {
-      display: none;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #3f3f3f;
-
-      &:hover {
-        background-color: #4f4f4f;
-      }
-    }
+    @include scrollbar();
   }
 </style>
