@@ -18,10 +18,7 @@ export type SkillLevelCapIncreaseData = IDData & {
    *
    * @minItems 1
    */
-  requirementSets: [
-    SkillLevelCapRequirementSetData,
-    ...SkillLevelCapRequirementSetData[],
-  ];
+  requirementSets: SkillLevelCapRequirementSetData[];
   /**
    * Optional. Fixed increases to level caps given when a requirement set is met
    */
@@ -48,10 +45,7 @@ export type SkillLevelCapIncreaseData = IDData & {
    *
    * @minItems 1
    */
-  requirementSets: [
-    SkillLevelCapRequirementSetData,
-    ...SkillLevelCapRequirementSetData[],
-  ];
+  requirementSets: SkillLevelCapRequirementSetData[];
   /**
    * Optional. Fixed increases to level caps given when a requirement set is met
    */
@@ -5193,19 +5187,13 @@ export type GamemodeData = IDData & {
    *
    * @minItems 1
    */
-  playerCombatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  playerCombatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Effect Applicators merged with the enemy in this Gamemode
    *
    * @minItems 1
    */
-  enemyCombatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  enemyCombatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Determines if the Player has access to the tutorial on creating a new save
    */
@@ -5215,7 +5203,7 @@ export type GamemodeData = IDData & {
    *
    * @minItems 1
    */
-  disabledModifiers?: [ModifierID, ...ModifierID[]];
+  disabledModifiers?: ModifierID[];
   /**
    * Optional. If present, all skills will have an initial level cap equal to this value, except for the skills in initialLevelCaps
    */
@@ -5387,19 +5375,13 @@ export type GamemodeData = IDData & {
    *
    * @minItems 1
    */
-  playerCombatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  playerCombatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Effect Applicators merged with the enemy in this Gamemode
    *
    * @minItems 1
    */
-  enemyCombatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  enemyCombatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Determines if the Player has access to the tutorial on creating a new save
    */
@@ -5409,7 +5391,7 @@ export type GamemodeData = IDData & {
    *
    * @minItems 1
    */
-  disabledModifiers?: [ModifierID, ...ModifierID[]];
+  disabledModifiers?: ModifierID[];
   /**
    * Optional. If present, all skills will have an initial level cap equal to this value, except for the skills in initialLevelCaps
    */
@@ -15157,7 +15139,7 @@ export type BaseEquipmentItemData = BaseItemData &
      *
      * @minItems 1
      */
-    validSlots: [EquipmentSlotID, ...EquipmentSlotID[]];
+    validSlots: EquipmentSlotID[];
     /**
      * Equipment slots that will also be occupied by this item, in addition to one of the validSlots. Typical usecase is to make a weapon 2-Handed
      */
@@ -15179,19 +15161,19 @@ export type BaseEquipmentItemData = BaseItemData &
      *
      * @minItems 1
      */
-    specialAttacks?: [SpecialAttackID, ...SpecialAttackID[]];
+    specialAttacks?: SpecialAttackID[];
     /**
      * Optional. If present with the specialAttacks property, overrides their default chances to happen. Must be the same length as specialAttacks.
      *
      * @minItems 1
      */
-    overrideSpecialChances?: [number, ...number[]];
+    overrideSpecialChances?: number[];
     /**
      * Optional. An array of runes that are provided by this item.
      *
      * @minItems 1
      */
-    providedRunes?: [AnyItemQuantity, ...AnyItemQuantity[]];
+    providedRunes?: AnyItemQuantity[];
     /**
      * Only required if one of the validSlots for this item is Quiver. Specifies the types of weapons this item can supply with ammunition.
      */
@@ -15201,13 +15183,13 @@ export type BaseEquipmentItemData = BaseItemData &
      *
      * @minItems 1
      */
-    consumesChargesOn?: [GameEventMatcherData, ...GameEventMatcherData[]];
+    consumesChargesOn?: GameEventMatcherData[];
     /**
      * Optional. Specifies an array of GameEventMatchers, which on a successful match will consume one of the equipped item. Best utilized for the Quiver, Summon1, Summon2, and Consumable slots.
      *
      * @minItems 1
      */
-    consumesOn?: [GameEventMatcherData, ...GameEventMatcherData[]];
+    consumesOn?: GameEventMatcherData[];
     /**
      * Optional. If present, specifies that an item in the bank will be consumed if a successful GameEvent matches
      */
@@ -15225,7 +15207,7 @@ export type BaseEquipmentItemData = BaseItemData &
        *
        * @minItems 1
        */
-      matchers: [GameEventMatcherData, ...GameEventMatcherData[]];
+      matchers: GameEventMatcherData[];
     };
     /**
      * Optional. If present sets the priority of losing this item when dying. Higher priority indicates the item will be lost before others. Defaults to 0.
@@ -15241,7 +15223,7 @@ export type BaseEquipmentItemData = BaseItemData &
      *
      * @minItems 1
      */
-    validSlots: [EquipmentSlotID, ...EquipmentSlotID[]];
+    validSlots: EquipmentSlotID[];
     /**
      * Equipment slots that will also be occupied by this item, in addition to one of the validSlots. Typical usecase is to make a weapon 2-Handed
      */
@@ -15263,19 +15245,19 @@ export type BaseEquipmentItemData = BaseItemData &
      *
      * @minItems 1
      */
-    specialAttacks?: [SpecialAttackID, ...SpecialAttackID[]];
+    specialAttacks?: SpecialAttackID[];
     /**
      * Optional. If present with the specialAttacks property, overrides their default chances to happen. Must be the same length as specialAttacks.
      *
      * @minItems 1
      */
-    overrideSpecialChances?: [number, ...number[]];
+    overrideSpecialChances?: number[];
     /**
      * Optional. An array of runes that are provided by this item.
      *
      * @minItems 1
      */
-    providedRunes?: [AnyItemQuantity, ...AnyItemQuantity[]];
+    providedRunes?: AnyItemQuantity[];
     /**
      * Only required if one of the validSlots for this item is Quiver. Specifies the types of weapons this item can supply with ammunition.
      */
@@ -15285,13 +15267,13 @@ export type BaseEquipmentItemData = BaseItemData &
      *
      * @minItems 1
      */
-    consumesChargesOn?: [GameEventMatcherData, ...GameEventMatcherData[]];
+    consumesChargesOn?: GameEventMatcherData[];
     /**
      * Optional. Specifies an array of GameEventMatchers, which on a successful match will consume one of the equipped item. Best utilized for the Quiver, Summon1, Summon2, and Consumable slots.
      *
      * @minItems 1
      */
-    consumesOn?: [GameEventMatcherData, ...GameEventMatcherData[]];
+    consumesOn?: GameEventMatcherData[];
     /**
      * Optional. If present, specifies that an item in the bank will be consumed if a successful GameEvent matches
      */
@@ -15309,7 +15291,7 @@ export type BaseEquipmentItemData = BaseItemData &
        *
        * @minItems 1
        */
-      matchers: [GameEventMatcherData, ...GameEventMatcherData[]];
+      matchers: GameEventMatcherData[];
     };
     /**
      * Optional. If present sets the priority of losing this item when dying. Higher priority indicates the item will be lost before others. Defaults to 0.
@@ -16228,7 +16210,7 @@ export type WoodcuttingEventMatcherOptions = SkillActionEventMatcherOptions & {
    *
    * @minItems 1
    */
-  actionIDs?: [WoodcuttingActionID, ...WoodcuttingActionID[]];
+  actionIDs?: WoodcuttingActionID[];
 };
 export type WoodcuttingActionID =
   | ValidID
@@ -16279,13 +16261,13 @@ export type FishingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [FishingActionID, ...FishingActionID[]];
+    actionIDs?: FishingActionID[];
     /**
      * Optional. If present, the fishing area must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    areaIDs?: [FishingAreaID, ...FishingAreaID[]];
+    areaIDs?: FishingAreaID[];
     /**
      * Optional. If present, the primary reward being a Gem item must match
      */
@@ -16400,7 +16382,7 @@ export type FiremakingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [FiremakingActionID, ...FiremakingActionID[]];
+    actionIDs?: FiremakingActionID[];
   };
 export type FiremakingActionID =
   | ValidID
@@ -16450,13 +16432,13 @@ export type CookingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [CookingActionID, ...CookingActionID[]];
+    actionIDs?: CookingActionID[];
     /**
      * Optional. If present, the category of the cooking action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [CookingCategoryID, ...CookingCategoryID[]];
+    categoryIDs?: CookingCategoryID[];
     /**
      * Optional. If present, the player passive cooking during the action must match
      */
@@ -16565,7 +16547,7 @@ export type MiningActionEventMatcherOptions = SkillActionEventMatcherOptions & {
    *
    * @minItems 1
    */
-  actionIDs?: [MiningActionID, ...MiningActionID[]];
+  actionIDs?: MiningActionID[];
   /**
    * Optional. If present, the action giving a standard gem reward must match
    */
@@ -16592,13 +16574,13 @@ export type MiningActionEventMatcherOptions = SkillActionEventMatcherOptions & {
    *
    * @minItems 1
    */
-  oreTypes?: [MiningRockType, ...MiningRockType[]];
+  oreTypes?: MiningRockType[];
   /**
    * Optional. If present, the actions category must match an element of the array
    *
    * @minItems 1
    */
-  categories?: [MiningCategoryID, ...MiningCategoryID[]];
+  categories?: MiningCategoryID[];
 };
 export type MiningActionID =
   | ValidID
@@ -16674,19 +16656,19 @@ export type SmithingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [SmithingActionID, ...SmithingActionID[]];
+    actionIDs?: SmithingActionID[];
     /**
      * Optional. If present, the category of the smithing action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [SmithingCategoryID, ...SmithingCategoryID[]];
+    categoryIDs?: SmithingCategoryID[];
     /**
      * Optional. If present, one of the items consumed in the action must have an ID that m atches one element of the array
      *
      * @minItems 1
      */
-    consumedItemIDs?: [AnyItemID, ...AnyItemID[]];
+    consumedItemIDs?: AnyItemID[];
   };
 export type SmithingActionID =
   | ValidID
@@ -17008,13 +16990,13 @@ export type ThievingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    npcIDs?: [ThievingActionID, ...ThievingActionID[]];
+    npcIDs?: ThievingActionID[];
     /**
      * Optional. If present, the thieving area must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    areaIDs?: [ThievingAreaID, ...ThievingAreaID[]];
+    areaIDs?: ThievingAreaID[];
     /**
      * Optional. If present, a common drop being obtained from the action must match
      */
@@ -17194,13 +17176,13 @@ export type FarmingHarvestActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [FarmingActionID, ...FarmingActionID[]];
+    actionIDs?: FarmingActionID[];
     /**
      * Optional. If present, the category of the farming action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [FarmingCategoryID, ...FarmingCategoryID[]];
+    categoryIDs?: FarmingCategoryID[];
   };
 /**
  * Matches when a Fletching action occurs
@@ -17213,13 +17195,13 @@ export type FletchingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [FletchingActionID, ...FletchingActionID[]];
+    actionIDs?: FletchingActionID[];
     /**
      * Optional. If present, the category of the fletching action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [FletchingCategoryID, ...FletchingCategoryID[]];
+    categoryIDs?: FletchingCategoryID[];
     /**
      * Optional. If present, the fletching action making arrows must match
      */
@@ -17393,19 +17375,19 @@ export type CraftingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [CraftingActionID, ...CraftingActionID[]];
+    actionIDs?: CraftingActionID[];
     /**
      * Optional. If present, the category of the Crafting action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [CraftingCategoryID, ...CraftingCategoryID[]];
+    categoryIDs?: CraftingCategoryID[];
     /**
      * Optional. If present the subcategory of the Crafting action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    subcategoryIDs?: [CraftingSubcategoryID, ...CraftingSubcategoryID[]];
+    subcategoryIDs?: CraftingSubcategoryID[];
     /**
      * Optional. If present, the item being crafted must match being a consumable item or not
      */
@@ -17633,25 +17615,25 @@ export type RunecraftingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [RunecraftingActionID, ...RunecraftingActionID[]];
+    actionIDs?: RunecraftingActionID[];
     /**
      * Optional. If present, the category of the Runecrafting action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [RunecraftingCategoryID, ...RunecraftingCategoryID[]];
+    categoryIDs?: RunecraftingCategoryID[];
     /**
      * Optional. If present, one of the items consumed in the action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    consumedItemIDs?: [AnyItemID, ...AnyItemID[]];
+    consumedItemIDs?: AnyItemID[];
     /**
      * Optional. If present, one of the subcategories of the recipe must match an element of this array
      *
      * @minItems 1
      */
-    subcategoryIDs?: [ValidID, ...ValidID[]];
+    subcategoryIDs?: ValidID[];
   };
 export type RunecraftingActionID =
   | ValidID
@@ -17921,13 +17903,13 @@ export type HerbloreActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [HerbloreActionID, ...HerbloreActionID[]];
+    actionIDs?: HerbloreActionID[];
     /**
      * Optional. If present, the category of the Herblore action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [HerbloreCategoryID, ...HerbloreCategoryID[]];
+    categoryIDs?: HerbloreCategoryID[];
   };
 export type HerbloreCategoryID =
   | ValidID
@@ -17948,13 +17930,13 @@ export type AgilityActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [AgilityObstacleID, ...AgilityObstacleID[]];
+    actionIDs?: AgilityObstacleID[];
     /**
      * Optional. If present, the tier of the Agility Obstacle must match one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [number, ...number[]];
+    categoryIDs?: number[];
   };
 export type AgilityObstacleID =
   | ValidID
@@ -18086,13 +18068,13 @@ export type SummoningActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [SummoningActionID, ...SummoningActionID[]];
+    actionIDs?: SummoningActionID[];
     /**
      * Optional. If present, the category of the Summoning action must have an ID that matches one element of the array
      *
      * @minItems 1
      */
-    categoryIDs?: [SummoningCategoryID, ...SummoningCategoryID[]];
+    categoryIDs?: SummoningCategoryID[];
   };
 export type SummoningActionID =
   | ValidID
@@ -18171,7 +18153,7 @@ export type AstrologyActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [AstrologyActionID, ...AstrologyActionID[]];
+    actionIDs?: AstrologyActionID[];
   };
 export type AstrologyActionID =
   | ValidID
@@ -18217,19 +18199,19 @@ export type AltMagicActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [AltMagicSpellID, ...AltMagicSpellID[]];
+    actionIDs?: AltMagicSpellID[];
     /**
      * Optional. If present, the spell must have a produces property that matches on element of the array
      *
      * @minItems 1
      */
-    produces?: [AltMagicProduction, ...AltMagicProduction[]];
+    produces?: AltMagicProduction[];
     /**
      * Optional. If present, the spell must have consumed (or had the potential to consume) a rune with an ID matching an element of the array
      *
      * @minItems 1
      */
-    usedRuneIDs?: [AnyItemID, ...AnyItemID[]];
+    usedRuneIDs?: AnyItemID[];
   };
 export type AltMagicSpellID =
   | ValidID
@@ -18281,7 +18263,7 @@ export type CartographySurveyEventMatcherOptions =
      *
      * @minItems 1
      */
-    worldMaps?: [WorldMapID, ...WorldMapID[]];
+    worldMaps?: WorldMapID[];
   };
 /**
  * Matches when the player performs a paper making action in Cartography
@@ -18294,7 +18276,7 @@ export type CartographyPaperMakingEventMatcherOptions =
      *
      * @minItems 1
      */
-    recipes?: [PaperMakingRecipeID, ...PaperMakingRecipeID[]];
+    recipes?: PaperMakingRecipeID[];
   };
 export type PaperMakingRecipeID =
   | ValidID
@@ -18331,7 +18313,7 @@ export type CartographyMapUpgradeEventMatcherOptions =
      *
      * @minItems 1
      */
-    digSites?: [ArchaeologyDigSiteID, ...ArchaeologyDigSiteID[]];
+    digSites?: ArchaeologyDigSiteID[];
   };
 export type ArchaeologyDigSiteID =
   | ValidID
@@ -18366,7 +18348,7 @@ export type ArchaeologyActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [ArchaeologyDigSiteID, ...ArchaeologyDigSiteID[]];
+    actionIDs?: ArchaeologyDigSiteID[];
     /**
      * Optional. If present the action finding an artifact must match.
      */
@@ -18383,7 +18365,7 @@ export type HarvestingActionEventMatcherOptions =
      *
      * @minItems 1
      */
-    actionIDs?: [HarvestingActionID, ...HarvestingActionID[]];
+    actionIDs?: HarvestingActionID[];
   };
 export type HarvestingActionID =
   | ValidID
@@ -18446,7 +18428,7 @@ export type PotionItemData = BaseItemData &
      *
      * @minItems 1
      */
-    consumesOn: [GameEventMatcherData, ...GameEventMatcherData[]];
+    consumesOn: GameEventMatcherData[];
   };
 export type ActionID =
   | ValidID
@@ -18497,7 +18479,7 @@ export type OpenableItemData = BaseItemData & {
    *
    * @minItems 1
    */
-  dropTable: [DropTableData, ...DropTableData[]];
+  dropTable: DropTableData[];
   /**
    * Optional. If present, this item is required to open the item. The quantity provided will be consumed per item opened.
    */
@@ -19421,13 +19403,13 @@ export type AttackData = IDData & {
    *
    * @minItems 1
    */
-  attackTypes?: [AttackType, ...AttackType[]];
+  attackTypes?: AttackType[];
   /**
    * Optional. If present this special attack will require these runes to be used
    *
    * @minItems 1
    */
-  extraRuneConsumption?: [RuneQuantity, ...RuneQuantity[]];
+  extraRuneConsumption?: RuneQuantity[];
   /**
    * Optional. f the attack is considered to be dragonbreath. Utilized for modifiers that reduce damage from dragonbreath.
    */
@@ -19518,13 +19500,13 @@ export type AttackData = IDData & {
    *
    * @minItems 1
    */
-  attackTypes?: [AttackType, ...AttackType[]];
+  attackTypes?: AttackType[];
   /**
    * Optional. If present this special attack will require these runes to be used
    *
    * @minItems 1
    */
-  extraRuneConsumption?: [RuneQuantity, ...RuneQuantity[]];
+  extraRuneConsumption?: RuneQuantity[];
   /**
    * Optional. f the attack is considered to be dragonbreath. Utilized for modifiers that reduce damage from dragonbreath.
    */
@@ -19570,10 +19552,7 @@ export type CombatPassiveData = IDData & {
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Modifiers that are provided to the player by the Passive
    */
@@ -19583,19 +19562,13 @@ export type CombatPassiveData = IDData & {
    *
    * @minItems 1
    */
-  playerCombatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  playerCombatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Conditional Modifiers provided by the Passive
    *
    * @minItems 1
    */
-  conditionalModifiers?: [
-    ConditionalModifierData,
-    ...ConditionalModifierData[],
-  ];
+  conditionalModifiers?: ConditionalModifierData[];
   /**
    * Optional. Specifies a custom description that overrides the description automatically generated from modifiers.
    */
@@ -19614,10 +19587,7 @@ export type CombatPassiveData = IDData & {
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Modifiers that are provided to the player by the Passive
    */
@@ -19627,19 +19597,13 @@ export type CombatPassiveData = IDData & {
    *
    * @minItems 1
    */
-  playerCombatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  playerCombatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Conditional Modifiers provided by the Passive
    *
    * @minItems 1
    */
-  conditionalModifiers?: [
-    ConditionalModifierData,
-    ...ConditionalModifierData[],
-  ];
+  conditionalModifiers?: ConditionalModifierData[];
   /**
    * Optional. Specifies a custom description that overrides the description automatically generated from modifiers.
    */
@@ -19723,10 +19687,7 @@ export type MonsterData = IDData & {
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Array of Combat Passive IDs that monster has
    */
@@ -19885,10 +19846,7 @@ export type MonsterData = IDData & {
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Array of Combat Passive IDs that monster has
    */
@@ -20498,7 +20456,7 @@ export type InsertOrder = InsertStart | InsertEnd | InsertBefore | InsertAfter;
  *
  * @minItems 1
  */
-export type ObjectsToInsert = [ValidID, ...ValidID[]];
+export type ObjectsToInsert = ValidID[];
 /**
  * Data for constructing a CombatArea object
  */
@@ -20516,14 +20474,14 @@ export type CombatAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  monsterIDs: [MonsterID, ...MonsterID[]];
+  monsterIDs: MonsterID[];
   /**
    * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
    *
    * @minItems 1
    * @maxItems 2
    */
-  difficulty: [number, ...number[]];
+  difficulty: number[];
   /**
    * An array of requirements that the player must meet to enter the area
    */
@@ -20550,7 +20508,7 @@ export type CombatAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
   /**
    * Optional. If set, this will override the damage types of all Monsters in the area with the set damage type.
    */
@@ -20573,14 +20531,14 @@ export type CombatAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  monsterIDs: [MonsterID, ...MonsterID[]];
+  monsterIDs: MonsterID[];
   /**
    * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
    *
    * @minItems 1
    * @maxItems 2
    */
-  difficulty: [number, ...number[]];
+  difficulty: number[];
   /**
    * An array of requirements that the player must meet to enter the area
    */
@@ -20607,7 +20565,7 @@ export type CombatAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
   /**
    * Optional. If set, this will override the damage types of all Monsters in the area with the set damage type.
    */
@@ -20630,14 +20588,14 @@ export type CombatAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  monsterIDs: [MonsterID, ...MonsterID[]];
+  monsterIDs: MonsterID[];
   /**
    * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
    *
    * @minItems 1
    * @maxItems 2
    */
-  difficulty: [number, ...number[]];
+  difficulty: number[];
   /**
    * An array of requirements that the player must meet to enter the area
    */
@@ -20664,7 +20622,7 @@ export type CombatAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
   /**
    * Optional. If set, this will override the damage types of all Monsters in the area with the set damage type.
    */
@@ -20687,14 +20645,14 @@ export type CombatAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  monsterIDs: [MonsterID, ...MonsterID[]];
+  monsterIDs: MonsterID[];
   /**
    * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
    *
    * @minItems 1
    * @maxItems 2
    */
-  difficulty: [number, ...number[]];
+  difficulty: number[];
   /**
    * An array of requirements that the player must meet to enter the area
    */
@@ -20721,7 +20679,7 @@ export type CombatAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
   /**
    * Optional. If set, this will override the damage types of all Monsters in the area with the set damage type.
    */
@@ -21829,7 +21787,7 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  floors?: [number, ...number[]];
+  floors?: number[];
   /**
    * Optional. ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour.
    */
@@ -21839,7 +21797,7 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  unlockRequirement?: [AnyRequirementData, ...AnyRequirementData[]];
+  unlockRequirement?: AnyRequirementData[];
   /**
    * Optional. Adds a Pet that is rolled for upon completing the dungeon
    */
@@ -21857,13 +21815,13 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  nonBossPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  nonBossPassives?: CombatPassiveID[];
   /**
    * Optional. If present the Combat Passives with the IDs given will be given to all isBoss = true monsters in the dungeon
    *
    * @minItems 1
    */
-  bossOnlyPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  bossOnlyPassives?: CombatPassiveID[];
   /**
    * Optional. An array of item IDs that will be rewarded when the dungeon is completed for the respective gamemode
    */
@@ -21894,7 +21852,7 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  floors?: [number, ...number[]];
+  floors?: number[];
   /**
    * Optional. ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour.
    */
@@ -21904,7 +21862,7 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  unlockRequirement?: [AnyRequirementData, ...AnyRequirementData[]];
+  unlockRequirement?: AnyRequirementData[];
   /**
    * Optional. Adds a Pet that is rolled for upon completing the dungeon
    */
@@ -21922,13 +21880,13 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  nonBossPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  nonBossPassives?: CombatPassiveID[];
   /**
    * Optional. If present the Combat Passives with the IDs given will be given to all isBoss = true monsters in the dungeon
    *
    * @minItems 1
    */
-  bossOnlyPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  bossOnlyPassives?: CombatPassiveID[];
   /**
    * Optional. An array of item IDs that will be rewarded when the dungeon is completed for the respective gamemode
    */
@@ -21959,7 +21917,7 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  floors?: [number, ...number[]];
+  floors?: number[];
   /**
    * Optional. ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour.
    */
@@ -21969,7 +21927,7 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  unlockRequirement?: [AnyRequirementData, ...AnyRequirementData[]];
+  unlockRequirement?: AnyRequirementData[];
   /**
    * Optional. Adds a Pet that is rolled for upon completing the dungeon
    */
@@ -21987,13 +21945,13 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  nonBossPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  nonBossPassives?: CombatPassiveID[];
   /**
    * Optional. If present the Combat Passives with the IDs given will be given to all isBoss = true monsters in the dungeon
    *
    * @minItems 1
    */
-  bossOnlyPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  bossOnlyPassives?: CombatPassiveID[];
   /**
    * Optional. An array of item IDs that will be rewarded when the dungeon is completed for the respective gamemode
    */
@@ -22024,7 +21982,7 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  floors?: [number, ...number[]];
+  floors?: number[];
   /**
    * Optional. ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour.
    */
@@ -22034,7 +21992,7 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  unlockRequirement?: [AnyRequirementData, ...AnyRequirementData[]];
+  unlockRequirement?: AnyRequirementData[];
   /**
    * Optional. Adds a Pet that is rolled for upon completing the dungeon
    */
@@ -22052,13 +22010,13 @@ export type DungeonData = CombatAreaData & {
    *
    * @minItems 1
    */
-  nonBossPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  nonBossPassives?: CombatPassiveID[];
   /**
    * Optional. If present the Combat Passives with the IDs given will be given to all isBoss = true monsters in the dungeon
    *
    * @minItems 1
    */
-  bossOnlyPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  bossOnlyPassives?: CombatPassiveID[];
   /**
    * Optional. An array of item IDs that will be rewarded when the dungeon is completed for the respective gamemode
    */
@@ -22100,7 +22058,7 @@ export type StrongholdData = CombatAreaData & {
    *
    * @minItems 1
    */
-  bossOnlyPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  bossOnlyPassives?: CombatPassiveID[];
 } & {
   tiers: {
     /**
@@ -22125,7 +22083,7 @@ export type StrongholdData = CombatAreaData & {
    *
    * @minItems 1
    */
-  bossOnlyPassives?: [CombatPassiveID, ...CombatPassiveID[]];
+  bossOnlyPassives?: CombatPassiveID[];
 };
 /**
  * Data for constructing a CombatEvent object
@@ -22154,7 +22112,7 @@ export type CombatEventData = IDData & {
    *
    * @minItems 1
    */
-  slayerAreaIDs: [ValidID, ...ValidID[]];
+  slayerAreaIDs: ValidID[];
   /**
    * The IDs of the combat passives that the player can select from between stages of the event
    *
@@ -22211,7 +22169,7 @@ export type CombatEventData = IDData & {
    *
    * @minItems 1
    */
-  slayerAreaIDs: [ValidID, ...ValidID[]];
+  slayerAreaIDs: ValidID[];
   /**
    * The IDs of the combat passives that the player can select from between stages of the event
    *
@@ -22430,7 +22388,7 @@ export type PrayerData = IDData &
      *
      * @minItems 1
      */
-    allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+    allowedDamageTypeIDs?: DamageTypeID[];
   } & {
     /**
      * The Prayer level required to use the prayer
@@ -22473,7 +22431,7 @@ export type PrayerData = IDData &
      *
      * @minItems 1
      */
-    allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+    allowedDamageTypeIDs?: DamageTypeID[];
   };
 /**
  * Data for constructing an AttackSpellbook object
@@ -22516,7 +22474,7 @@ export type AttackSpellbookData = IDData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
 } & {
   /**
    * Display name of the spellbook
@@ -22555,7 +22513,7 @@ export type AttackSpellbookData = IDData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
 };
 /**
  * Data for constructing an AttackSpell object
@@ -22629,7 +22587,7 @@ export type CombatSpellData = BaseSpellData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
 } & {
   /**
    * Optional. If present, the player must have the specified EquipmentItem equipped to use the spell
@@ -22644,7 +22602,7 @@ export type CombatSpellData = BaseSpellData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
 } & {
   /**
    * Optional. If present, the player must have the specified EquipmentItem equipped to use the spell
@@ -22659,7 +22617,7 @@ export type CombatSpellData = BaseSpellData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
 };
 /**
  * Data for constructing a BaseSpell object
@@ -22830,7 +22788,7 @@ export type PetData = IDData &
      *
      * @minItems 1
      */
-    realms?: [RealmID, ...RealmID[]];
+    realms?: RealmID[];
   } & {
     /**
      * The display name of the Pet
@@ -22881,7 +22839,7 @@ export type PetData = IDData &
      *
      * @minItems 1
      */
-    realms?: [RealmID, ...RealmID[]];
+    realms?: RealmID[];
   };
 /**
  * Data for constructing a ShopCategory object
@@ -23179,7 +23137,7 @@ export type TutorialStageData = IDData & {
    *
    * @minItems 1
    */
-  tasks: [TutorialTaskData, ...TutorialTaskData[]];
+  tasks: TutorialTaskData[];
   /**
    * The ID of the page that the task is completed on
    */
@@ -23231,7 +23189,7 @@ export type TutorialStageData = IDData & {
    *
    * @minItems 1
    */
-  tasks: [TutorialTaskData, ...TutorialTaskData[]];
+  tasks: TutorialTaskData[];
   /**
    * The ID of the page that the task is completed on
    */
@@ -23701,7 +23659,7 @@ export type SkillTreeNodeData = IDData &
      *
      * @minItems 1
      */
-    parents?: [ValidID, ...ValidID[]];
+    parents?: ValidID[];
     /**
      * These requirements must be met to unlock the Node.
      */
@@ -23731,19 +23689,19 @@ export type MagicSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  spellCategories?: [SkillSubcategoryData, ...SkillSubcategoryData[]];
+  spellCategories?: SkillSubcategoryData[];
   /**
    * Optional. Defines new Alt Magic spells
    *
    * @minItems 1
    */
-  altSpells?: [AltMagicSpellData, ...AltMagicSpellData[]];
+  altSpells?: AltMagicSpellData[];
   /**
    * Optional. Adds drops to the random shard table
    *
    * @minItems 1
    */
-  randomShards?: [DropTableData, ...DropTableData[]];
+  randomShards?: DropTableData[];
 };
 /**
  * Basic data shared between all Mastery skills
@@ -23754,342 +23712,342 @@ export type MasterySkillData = BaseSkillData & {
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 } & {
   /**
    * Optional. Data for mastery level unlocks for this skill
    *
    * @minItems 1
    */
-  masteryLevelUnlocks?: [MasteryLevelUnlockData, ...MasteryLevelUnlockData[]];
+  masteryLevelUnlocks?: MasteryLevelUnlockData[];
   /**
    * Optional. Defines mastery level bonuses that are provided by this skill
    *
    * @minItems 1
    */
-  masteryLevelBonuses?: [MasteryLevelBonusData, ...MasteryLevelBonusData[]];
+  masteryLevelBonuses?: MasteryLevelBonusData[];
   /**
    * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
    *
    * @minItems 1
    */
-  masteryPoolBonuses?: [MasteryPoolBonusData, ...MasteryPoolBonusData[]];
+  masteryPoolBonuses?: MasteryPoolBonusData[];
 };
 export type SkillSubcategoryData = IDData & {
   /**
@@ -24226,7 +24184,7 @@ export type AltMagicSpellData = BaseSpellData &
      *
      * @minItems 1
      */
-    fixedItemCosts?: [AnyItemQuantity, ...AnyItemQuantity[]];
+    fixedItemCosts?: AnyItemQuantity[];
     /**
      * Defines the special costs for the spell.
      */
@@ -24281,7 +24239,7 @@ export type AltMagicSpellData = BaseSpellData &
      *
      * @minItems 1
      */
-    fixedItemCosts?: [AnyItemQuantity, ...AnyItemQuantity[]];
+    fixedItemCosts?: AnyItemQuantity[];
     /**
      * Defines the special costs for the spell.
      */
@@ -24324,28 +24282,25 @@ export type WoodcuttingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  trees?: [WoodcuttingTreeData, ...WoodcuttingTreeData[]];
+  trees?: WoodcuttingTreeData[];
   /**
    * Determines the default random products given by trees
    *
    * @minItems 1
    */
-  defaultRandomProducts?: [AnyItemID, ...AnyItemID[]];
+  defaultRandomProducts?: AnyItemID[];
   /**
    * Defines information on the random products gained from trees
    *
    * @minItems 1
    */
-  randomProducts?: [
-    RandomWoodcuttingProductData,
-    ...RandomWoodcuttingProductData[],
-  ];
+  randomProducts?: RandomWoodcuttingProductData[];
   /**
    * Sets items that cannot drop as a random jewelry item
    *
    * @minItems 1
    */
-  bannedJewleryIDs?: [AnyItemID, ...AnyItemID[]];
+  bannedJewleryIDs?: AnyItemID[];
 };
 /**
  * Data For constructing a WoodcuttingTree object
@@ -24554,19 +24509,19 @@ export type FishingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  fish?: [FishData, ...FishData[]];
+  fish?: FishData[];
   /**
    * Defines new fishing areas
    *
    * @minItems 1
    */
-  areas?: [FishingAreaData, ...FishingAreaData[]];
+  areas?: FishingAreaData[];
   /**
    * Defines Junk items that can drop
    *
    * @minItems 1
    */
-  junkItemIDs?: [AnyItemID, ...AnyItemID[]];
+  junkItemIDs?: AnyItemID[];
   /**
    * Defines Special items that drop from specific realms
    *
@@ -24583,7 +24538,7 @@ export type FishingSkillData = MasterySkillData & {
        *
        * @minItems 1
        */
-      drops: [DropTableData, ...DropTableData[]];
+      drops: DropTableData[];
     },
     ...{
       /**
@@ -24595,7 +24550,7 @@ export type FishingSkillData = MasterySkillData & {
        *
        * @minItems 1
        */
-      drops: [DropTableData, ...DropTableData[]];
+      drops: DropTableData[];
     }[],
   ];
   easterEgg?: {
@@ -24608,7 +24563,7 @@ export type FishingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  fishingContestFish?: [FishingContestFishData, ...FishingContestFishData[]];
+  fishingContestFish?: FishingContestFishData[];
 };
 /**
  * Data For constructing a Fish object
@@ -24669,7 +24624,7 @@ export type FishingAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  fishIDs: [FishingActionID, ...FishingActionID[]];
+  fishIDs: FishingActionID[];
   /**
    * Optional. If present this item must be equipped to fish in the area
    */
@@ -24708,7 +24663,7 @@ export type FishingAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  fishIDs: [FishingActionID, ...FishingActionID[]];
+  fishIDs: FishingActionID[];
   /**
    * Optional. If present this item must be equipped to fish in the area
    */
@@ -24731,31 +24686,31 @@ export type FiremakingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  logs?: [FiremakingLogData, ...FiremakingLogData[]];
+  logs?: FiremakingLogData[];
   /**
    * Optional. Defines the base quantities and chances for primary products
    *
    * @minItems 1
    */
-  primaryProducts?: [FiremakingProductData, ...FiremakingProductData[]];
+  primaryProducts?: FiremakingProductData[];
   /**
    * Optional. Defines the base quantities and chances for secondary products
    *
    * @minItems 1
    */
-  secondaryProducts?: [FiremakingProductData, ...FiremakingProductData[]];
+  secondaryProducts?: FiremakingProductData[];
   /**
    * Optional. Defines default primary products that logs should give
    *
    * @minItems 1
    */
-  defaultPrimaryProducts?: [AnyItemID, ...AnyItemID[]];
+  defaultPrimaryProducts?: AnyItemID[];
   /**
    * Optional. Defines default secondary products that logs should give
    *
    * @minItems 1
    */
-  defaultSecondaryProducts?: [AnyItemID, ...AnyItemID[]];
+  defaultSecondaryProducts?: AnyItemID[];
 };
 /**
  * Data For constructing a FiremakingLog object
@@ -24828,19 +24783,19 @@ export type CookingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [CookingCategoryData, ...CookingCategoryData[]];
+  categories?: CookingCategoryData[];
   /**
    * Defines new subcategories for the skill
    *
    * @minItems 1
    */
-  subcategories?: [SkillSubcategoryData, ...SkillSubcategoryData[]];
+  subcategories?: SkillSubcategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  recipes?: [CookingRecipeData, ...CookingRecipeData[]];
+  recipes?: CookingRecipeData[];
 };
 /**
  * Data for constructing a CookingCategory object
@@ -24981,7 +24936,7 @@ export type CookingRecipeData = SingleProductArtisanSkillRecipeData & {
    *
    * @minItems 1
    */
-  discoveredItems?: [AnyItemID, ...AnyItemID[]];
+  discoveredItems?: AnyItemID[];
 } & {
   /**
    * The Item ID of the perfect version of the product
@@ -25004,7 +24959,7 @@ export type CookingRecipeData = SingleProductArtisanSkillRecipeData & {
    *
    * @minItems 1
    */
-  discoveredItems?: [AnyItemID, ...AnyItemID[]];
+  discoveredItems?: AnyItemID[];
 };
 /**
  * Data for constructing a SingleProductArtisanSkillRecipe object
@@ -25111,13 +25066,13 @@ export type MiningSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [MiningCategoryData, ...MiningCategoryData[]];
+  categories?: MiningCategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  rockData?: [MiningRockData, ...MiningRockData[]];
+  rockData?: MiningRockData[];
   /**
    * Sets the item that should drop as Coal Ore
    */
@@ -25302,19 +25257,19 @@ export type SmithingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [SkillCategoryData, ...SkillCategoryData[]];
+  categories?: SkillCategoryData[];
   /**
    * Defines new subcategories for the skill
    *
    * @minItems 1
    */
-  subcategories?: [SkillSubcategoryData, ...SkillSubcategoryData[]];
+  subcategories?: SkillSubcategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  recipes?: [SmithingRecipeData, ...SmithingRecipeData[]];
+  recipes?: SmithingRecipeData[];
 };
 /**
  * Data for constructing a SmithingRecipe object
@@ -25334,19 +25289,19 @@ export type ThievingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  npcs?: [ThievingNPCData, ...ThievingNPCData[]];
+  npcs?: ThievingNPCData[];
   /**
    * Defines new areas for the skill
    *
    * @minItems 1
    */
-  areas?: [ThievingAreaData, ...ThievingAreaData[]];
+  areas?: ThievingAreaData[];
   /**
    * Defines rare items that can be dropped from any thieving target
    *
    * @minItems 1
    */
-  generalRareItems?: [GeneralThievingRareData, ...GeneralThievingRareData[]];
+  generalRareItems?: GeneralThievingRareData[];
   /**
    * Sets the item that should drop from the Ent + Leprechaun synergy
    */
@@ -25403,7 +25358,7 @@ export type ThievingNPCData = BasicSkillRecipeData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
 } & {
   /**
    * Display name of the NPC
@@ -25443,7 +25398,7 @@ export type ThievingNPCData = BasicSkillRecipeData & {
    *
    * @minItems 1
    */
-  allowedDamageTypeIDs?: [DamageTypeID, ...DamageTypeID[]];
+  allowedDamageTypeIDs?: DamageTypeID[];
 };
 /**
  * Data For constructing a ThievingArea object
@@ -25458,7 +25413,7 @@ export type ThievingAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  npcIDs: [ThievingActionID, ...ThievingActionID[]];
+  npcIDs: ThievingActionID[];
   /**
    * Defines the area unique drops that can be obtained from npcs in this area
    */
@@ -25473,7 +25428,7 @@ export type ThievingAreaData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  npcIDs: [ThievingActionID, ...ThievingActionID[]];
+  npcIDs: ThievingActionID[];
   /**
    * Defines the area unique drops that can be obtained from npcs in this area
    */
@@ -25488,19 +25443,19 @@ export type FarmingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [FarmingCategoryData, ...FarmingCategoryData[]];
+  categories?: FarmingCategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  recipes?: [FarmingRecipeData, ...FarmingRecipeData[]];
+  recipes?: FarmingRecipeData[];
   /**
    * Defines new farming plots
    *
    * @minItems 1
    */
-  plots?: [FarmingPlotData, ...FarmingPlotData[]];
+  plots?: FarmingPlotData[];
 };
 /**
  * Data for constructing a FarmingCategory object
@@ -25656,13 +25611,13 @@ export type FarmingPlotData = IDData & {
    *
    * @minItems 1
    */
-  currencyCosts?: [CurrencyQuantity, ...CurrencyQuantity[]];
+  currencyCosts?: CurrencyQuantity[];
   /**
    * Optional. If present, defines items requred to purchase this plot. If this and currencyCosts are undefined the plot will automatically be unlocked when the level requirement is met.
    *
    * @minItems 1
    */
-  itemCosts?: [AnyItemQuantity, ...AnyItemQuantity[]];
+  itemCosts?: AnyItemQuantity[];
   /**
    * Optional. The abyssal farming level required to unlock this plot
    */
@@ -25686,13 +25641,13 @@ export type FarmingPlotData = IDData & {
    *
    * @minItems 1
    */
-  currencyCosts?: [CurrencyQuantity, ...CurrencyQuantity[]];
+  currencyCosts?: CurrencyQuantity[];
   /**
    * Optional. If present, defines items requred to purchase this plot. If this and currencyCosts are undefined the plot will automatically be unlocked when the level requirement is met.
    *
    * @minItems 1
    */
-  itemCosts?: [AnyItemQuantity, ...AnyItemQuantity[]];
+  itemCosts?: AnyItemQuantity[];
   /**
    * Optional. The abyssal farming level required to unlock this plot
    */
@@ -25707,19 +25662,19 @@ export type FletchingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [SkillCategoryData, ...SkillCategoryData[]];
+  categories?: SkillCategoryData[];
   /**
    * Defines new subcategories for the skill
    *
    * @minItems 1
    */
-  subcategories?: [SkillSubcategoryData, ...SkillSubcategoryData[]];
+  subcategories?: SkillSubcategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  recipes?: [FletchingRecipeData, ...FletchingRecipeData[]];
+  recipes?: FletchingRecipeData[];
 };
 /**
  * Data for constructing a FletchingRecipe object
@@ -25741,7 +25696,7 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -25753,7 +25708,7 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -25765,7 +25720,7 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -25789,7 +25744,7 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -25801,7 +25756,7 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -25813,7 +25768,7 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -25830,19 +25785,19 @@ export type CraftingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [SkillCategoryData, ...SkillCategoryData[]];
+  categories?: SkillCategoryData[];
   /**
    * Defines new subcategories for the skill
    *
    * @minItems 1
    */
-  subcategories?: [SkillSubcategoryData, ...SkillSubcategoryData[]];
+  subcategories?: SkillSubcategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  recipes?: [CraftingRecipeData, ...CraftingRecipeData[]];
+  recipes?: CraftingRecipeData[];
 };
 /**
  * Data for constructing a CraftingRecipe object
@@ -25867,31 +25822,31 @@ export type RunecraftingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [SkillCategoryData, ...SkillCategoryData[]];
+  categories?: SkillCategoryData[];
   /**
    * Defines new subcategories for the skill
    *
    * @minItems 1
    */
-  subcategories?: [SkillSubcategoryData, ...SkillSubcategoryData[]];
+  subcategories?: SkillSubcategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  recipes?: [RunecraftingRecipeData, ...RunecraftingRecipeData[]];
+  recipes?: RunecraftingRecipeData[];
   /**
    * Defines elemental runes that can be randomly given via the increasedChanceForElementalRune modifier
    *
    * @minItems 1
    */
-  elementalRuneIDs?: [AnyItemID, ...AnyItemID[]];
+  elementalRuneIDs?: AnyItemID[];
   /**
    * Defines combo runes that can be randomly given via the summoningSynergy_10_18 modifier
    *
    * @minItems 1
    */
-  comboRuneIDs?: [AnyItemID, ...AnyItemID[]];
+  comboRuneIDs?: AnyItemID[];
 };
 /**
  * Data for constructing a RunecraftingRecipe object
@@ -25911,13 +25866,13 @@ export type HerbloreSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [SkillCategoryData, ...SkillCategoryData[]];
+  categories?: SkillCategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  recipes?: [HerbloreRecipeData, ...HerbloreRecipeData[]];
+  recipes?: HerbloreRecipeData[];
 };
 /**
  * Data for constructing a HerbloreRecipe object
@@ -25968,19 +25923,19 @@ export type AgilitySkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  courses?: [AgilityCourseData, ...AgilityCourseData[]];
+  courses?: AgilityCourseData[];
   /**
    * Defines new passive pillars for the skill
    *
    * @minItems 1
    */
-  pillars?: [AgilityPillarData, ...AgilityPillarData[]];
+  pillars?: AgilityPillarData[];
   /**
    * Defines new obstacles for the skill
    *
    * @minItems 1
    */
-  obstacles?: [AgilityObstacleData, ...AgilityObstacleData[]];
+  obstacles?: AgilityObstacleData[];
 };
 export type AgilityPillarSlot = AgilityObstacleSlot & {
   /**
@@ -26045,10 +26000,7 @@ export type BaseAgilityObjectData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Modifiers provided to the enemy when this obstacle/pillar is active
    */
@@ -26085,10 +26037,7 @@ export type BaseAgilityObjectData = RealmedObjectData & {
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Modifiers provided to the enemy when this obstacle/pillar is active
    */
@@ -26199,19 +26148,19 @@ export type SummoningSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  categories?: [SummoningCategoryData, ...SummoningCategoryData[]];
+  categories?: SummoningCategoryData[];
   /**
    * Defines new actions for the skill
    *
    * @minItems 1
    */
-  recipes?: [SummoningRecipeData, ...SummoningRecipeData[]];
+  recipes?: SummoningRecipeData[];
   /**
    * Defines new summoning synergies
    *
    * @minItems 1
    */
-  synergies?: [SummoningSynergyData, ...SummoningSynergyData[]];
+  synergies?: SummoningSynergyData[];
 };
 /**
  * Data for constructing a SummoningCategory object
@@ -26277,13 +26226,13 @@ export type AstrologySkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  recipes?: [AstrologyRecipeData, ...AstrologyRecipeData[]];
+  recipes?: AstrologyRecipeData[];
   /**
    * Optional. Defines the base chances of recieving a random item from a constellation
    *
    * @minItems 1
    */
-  baseRandomItemChances?: [ItemChanceData, ...ItemChanceData[]];
+  baseRandomItemChances?: ItemChanceData[];
 };
 /**
  * Data for constructing a AstrologyRecipe object
@@ -26402,7 +26351,7 @@ export type AstrologyModifierData = IStatObjectData & {
    *
    * @minItems 1
    */
-  costs: [number, ...number[]];
+  costs: number[];
   /**
    * Optional. Requirements the player must meet before being able to use study this constellation
    */
@@ -26417,7 +26366,7 @@ export type AstrologyModifierData = IStatObjectData & {
    *
    * @minItems 1
    */
-  costs: [number, ...number[]];
+  costs: number[];
   /**
    * Optional. Requirements the player must meet before being able to use study this constellation
    */
@@ -26432,7 +26381,7 @@ export type AstrologyModifierData = IStatObjectData & {
    *
    * @minItems 1
    */
-  costs: [number, ...number[]];
+  costs: number[];
   /**
    * Optional. Requirements the player must meet before being able to use study this constellation
    */
@@ -26447,61 +26396,61 @@ export type TownshipSkillData = BaseSkillData & {
    *
    * @minItems 1
    */
-  resources?: [TownshipResourceData, ...TownshipResourceData[]];
+  resources?: TownshipResourceData[];
   /**
    * Defines new biomes for the skill
    *
    * @minItems 1
    */
-  biomes?: [TownshipBiomeData, ...TownshipBiomeData[]];
+  biomes?: TownshipBiomeData[];
   /**
    * Defines new buildings for the skill
    *
    * @minItems 1
    */
-  buildings?: [TownshipBuildingData, ...TownshipBuildingData[]];
+  buildings?: TownshipBuildingData[];
   /**
    * Defines new worships for the skill
    *
    * @minItems 1
    */
-  worships?: [TownshipWorshipData, ...TownshipWorshipData[]];
+  worships?: TownshipWorshipData[];
   /**
    * Defines the display order of buildings in the skill
    *
    * @minItems 1
    */
-  buildingDisplayOrder?: [InsertOrder, ...InsertOrder[]];
+  buildingDisplayOrder?: InsertOrder[];
   /**
    * Defines the display order of resources in the skill
    *
    * @minItems 1
    */
-  resourceDisplayOrder?: [InsertOrder, ...InsertOrder[]];
+  resourceDisplayOrder?: InsertOrder[];
   /**
    * Defines new task categories for the skill
    *
    * @minItems 1
    */
-  taskCategories?: [TownshipTaskCategoryData, ...TownshipTaskCategoryData[]];
+  taskCategories?: TownshipTaskCategoryData[];
   /**
    * Defines new tasks for the skill
    *
    * @minItems 1
    */
-  tasks?: [TownshipTaskData, ...TownshipTaskData[]];
+  tasks?: TownshipTaskData[];
   /**
    * Defines new casual tasks for the skill
    *
    * @minItems 1
    */
-  casualTasks?: [TownshipCasualTaskData, ...TownshipCasualTaskData[]];
+  casualTasks?: TownshipCasualTaskData[];
   /**
    * Defines new seasons for the skill
    *
    * @minItems 1
    */
-  seasons?: [TownshipSeasonData, ...TownshipSeasonData[]];
+  seasons?: TownshipSeasonData[];
   /**
    * Defines new trader options for the skill
    */
@@ -26578,7 +26527,7 @@ export type TownshipBiomeData = IDData & {
    *
    * @minItems 1
    */
-  requirements?: [AnyRequirementData, ...AnyRequirementData[]];
+  requirements?: AnyRequirementData[];
 } & {
   /**
    * The display name of the biome
@@ -26601,7 +26550,7 @@ export type TownshipBiomeData = IDData & {
    *
    * @minItems 1
    */
-  requirements?: [AnyRequirementData, ...AnyRequirementData[]];
+  requirements?: AnyRequirementData[];
 };
 /**
  * Data for constructing a TownshipBuilding object
@@ -26637,7 +26586,7 @@ export type TownshipBuildingData = IDData &
      *
      * @minItems 1
      */
-    biomes: [TownshipBiomeID, ...TownshipBiomeID[]];
+    biomes: TownshipBiomeID[];
     /**
      * The maximum number of times this building can be upgraded
      */
@@ -26655,7 +26604,7 @@ export type TownshipBuildingData = IDData &
      *
      * @minItems 1
      */
-    requirements?: [AnyRequirementData, ...AnyRequirementData[]];
+    requirements?: AnyRequirementData[];
   } & {
     /**
      * The display name of the building
@@ -26686,7 +26635,7 @@ export type TownshipBuildingData = IDData &
      *
      * @minItems 1
      */
-    biomes: [TownshipBiomeID, ...TownshipBiomeID[]];
+    biomes: TownshipBiomeID[];
     /**
      * The maximum number of times this building can be upgraded
      */
@@ -26704,7 +26653,7 @@ export type TownshipBuildingData = IDData &
      *
      * @minItems 1
      */
-    requirements?: [AnyRequirementData, ...AnyRequirementData[]];
+    requirements?: AnyRequirementData[];
   };
 export type TownshipBiomeID =
   | ValidID
@@ -27014,7 +26963,7 @@ export type CartographySkillData = BaseSkillData & {
    *
    * @minItems 1
    */
-  worldMaps?: [WorldMapData, ...WorldMapData[]];
+  worldMaps?: WorldMapData[];
   /**
    * Defines pairs of map portal points of interest, that allow travelling between World Maps
    */
@@ -27024,25 +26973,25 @@ export type CartographySkillData = BaseSkillData & {
    *
    * @minItems 1
    */
-  travelEvents?: [RandomTravelEventData, ...RandomTravelEventData[]];
+  travelEvents?: RandomTravelEventData[];
   /**
    * Defines the costs of refinement slots for Dig Site Maps. Elements are appended to the cost array
    *
    * @minItems 1
    */
-  refinementSlotCosts?: [FixedCostsData, ...FixedCostsData[]];
+  refinementSlotCosts?: FixedCostsData[];
   /**
    * Defines new recipes for paper for the skill
    *
    * @minItems 1
    */
-  paperRecipes?: [PaperMakingRecipeData, ...PaperMakingRecipeData[]];
+  paperRecipes?: PaperMakingRecipeData[];
   /**
    * Defines random modifiers that can be chosen as refinements for dig site maps
    *
    * @minItems 1
    */
-  refinementModifiers?: [ModifierValuesArrayData, ...ModifierValuesArrayData[]];
+  refinementModifiers?: ModifierValuesArrayData[];
 };
 /**
  * Data for constructing a WorldMap object
@@ -27494,7 +27443,7 @@ export type WorldMapMasteryBonusData = IDData &
      *
      * @minItems 1
      */
-    pets?: [PetID, ...PetID[]];
+    pets?: PetID[];
     /**
      * @deprecated
      * Optional. GP to give to the player when reaching this bonus
@@ -27510,13 +27459,13 @@ export type WorldMapMasteryBonusData = IDData &
      *
      * @minItems 1
      */
-    currencies?: [CurrencyQuantity, ...CurrencyQuantity[]];
+    currencies?: CurrencyQuantity[];
     /**
      * Optional. Items to give to the player when reaching this bonus
      *
      * @minItems 1
      */
-    items?: [AnyItemQuantity, ...AnyItemQuantity[]];
+    items?: AnyItemQuantity[];
   };
 export type PortalPOIData = PointOfInterestData & {
   /**
@@ -27550,7 +27499,7 @@ export type RandomTravelEventData = IDData & {
    *
    * @minItems 1
    */
-  itemsRequired?: [AnyItemQuantity, ...AnyItemQuantity[]];
+  itemsRequired?: AnyItemQuantity[];
   /**
    * Temporary modifiers given to the player when the event triggers. Modifiers are removed when the player moves to a new hex.
    */
@@ -27573,7 +27522,7 @@ export type RandomTravelEventData = IDData & {
    *
    * @minItems 1
    */
-  itemsRequired?: [AnyItemQuantity, ...AnyItemQuantity[]];
+  itemsRequired?: AnyItemQuantity[];
   /**
    * Temporary modifiers given to the player when the event triggers. Modifiers are removed when the player moves to a new hex.
    */
@@ -27617,13 +27566,13 @@ export type ArchaeologySkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  digSites?: [ArchaeologyDigSiteData, ...ArchaeologyDigSiteData[]];
+  digSites?: ArchaeologyDigSiteData[];
   /**
    * Defines new Archaeology Tools for the skill
    *
    * @minItems 1
    */
-  tools?: [ArchaeologyToolData, ...ArchaeologyToolData[]];
+  tools?: ArchaeologyToolData[];
   /**
    * Data for Museum Reward objects for Archaeology
    */
@@ -27760,7 +27709,7 @@ export type ArchaeologyMuseumRewardData = IDData &
      *
      * @minItems 1
      */
-    pets?: [PetID, ...PetID[]];
+    pets?: PetID[];
     /**
      * @deprecated
      * Optional. GP to give to the player when reaching this reward
@@ -27776,13 +27725,13 @@ export type ArchaeologyMuseumRewardData = IDData &
      *
      * @minItems 1
      */
-    currencies?: [CurrencyQuantity, ...CurrencyQuantity[]];
+    currencies?: CurrencyQuantity[];
     /**
      * Optional. Items to give to the player when reaching this reward
      *
      * @minItems 1
      */
-    items?: [AnyItemQuantity, ...AnyItemQuantity[]];
+    items?: AnyItemQuantity[];
   };
 /**
  * Data for the Corruption Skill
@@ -27886,7 +27835,7 @@ export type PageData = IDData & {
    *
    * @minItems 1
    */
-  skills?: [SkillID, ...SkillID[]];
+  skills?: SkillID[];
   /**
    * Optional. If present this page will generate an item in the sidebar to change to it
    */
@@ -27896,7 +27845,7 @@ export type PageData = IDData & {
    *
    * @minItems 1
    */
-  sidebarSubItems?: [PageSideBarSubItemOptions, ...PageSideBarSubItemOptions[]];
+  sidebarSubItems?: PageSideBarSubItemOptions[];
   /**
    * The sidebar category ID to place associated skills' sidebar item under
    */
@@ -27939,7 +27888,7 @@ export type PageData = IDData & {
    *
    * @minItems 1
    */
-  skills?: [SkillID, ...SkillID[]];
+  skills?: SkillID[];
   /**
    * Optional. If present this page will generate an item in the sidebar to change to it
    */
@@ -27949,7 +27898,7 @@ export type PageData = IDData & {
    *
    * @minItems 1
    */
-  sidebarSubItems?: [PageSideBarSubItemOptions, ...PageSideBarSubItemOptions[]];
+  sidebarSubItems?: PageSideBarSubItemOptions[];
   /**
    * The sidebar category ID to place associated skills' sidebar item under
    */
@@ -28254,7 +28203,7 @@ export type ModifierData = IDData & {
    *
    * @minItems 1
    */
-  allowedScopes: [ModifierScopingData, ...ModifierScopingData[]];
+  allowedScopes: ModifierScopingData[];
 } & {
   /**
    * Optional. If negative values of this modifier should be treated as positive and vice versa. Defaults to false.
@@ -28285,7 +28234,7 @@ export type ModifierData = IDData & {
    *
    * @minItems 1
    */
-  allowedScopes: [ModifierScopingData, ...ModifierScopingData[]];
+  allowedScopes: ModifierScopingData[];
 };
 export type ModifierScopeSourceID =
   | SkillID
@@ -28334,7 +28283,7 @@ export type CombatAreaModificationData = ModificationIDData & {
    * @minItems 1
    * @maxItems 2
    */
-  difficulty?: [number, ...number[]];
+  difficulty?: number[];
   /**
    * An array of requirements that the player must meet to enter the area
    */
@@ -28380,7 +28329,7 @@ export type CombatAreaModificationData = ModificationIDData & {
    * @minItems 1
    * @maxItems 2
    */
-  difficulty?: [number, ...number[]];
+  difficulty?: number[];
   /**
    * An array of requirements that the player must meet to enter the area
    */
@@ -28426,7 +28375,7 @@ export type CombatAreaModificationData = ModificationIDData & {
    * @minItems 1
    * @maxItems 2
    */
-  difficulty?: [number, ...number[]];
+  difficulty?: number[];
   /**
    * An array of requirements that the player must meet to enter the area
    */
@@ -28459,28 +28408,28 @@ export type CookingCategoryModificationData = ModificationIDData & {
    *
    * @minItems 1
    */
-  shopUpgradeIDs: [ShopPurchaseID, ...ShopPurchaseID[]];
+  shopUpgradeIDs: ShopPurchaseID[];
 } & {
   /**
    * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
    *
    * @minItems 1
    */
-  shopUpgradeIDs: [ShopPurchaseID, ...ShopPurchaseID[]];
+  shopUpgradeIDs: ShopPurchaseID[];
 } & {
   /**
    * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
    *
    * @minItems 1
    */
-  shopUpgradeIDs: [ShopPurchaseID, ...ShopPurchaseID[]];
+  shopUpgradeIDs: ShopPurchaseID[];
 } & {
   /**
    * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
    *
    * @minItems 1
    */
-  shopUpgradeIDs: [ShopPurchaseID, ...ShopPurchaseID[]];
+  shopUpgradeIDs: ShopPurchaseID[];
 };
 export type CombatAreaCategoryID =
   | ValidID
@@ -28518,7 +28467,7 @@ export type DungeonModificationData = CombatAreaModificationData & {
    *
    * @minItems 1
    */
-  floors?: [number, ...number[]];
+  floors?: number[];
   /**
    * ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour. Set to null to unassociate the dungeon from events.
    */
@@ -28583,7 +28532,7 @@ export type DungeonModificationData = CombatAreaModificationData & {
    *
    * @minItems 1
    */
-  floors?: [number, ...number[]];
+  floors?: number[];
   /**
    * ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour. Set to null to unassociate the dungeon from events.
    */
@@ -28648,7 +28597,7 @@ export type DungeonModificationData = CombatAreaModificationData & {
    *
    * @minItems 1
    */
-  floors?: [number, ...number[]];
+  floors?: number[];
   /**
    * ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour. Set to null to unassociate the dungeon from events.
    */
@@ -28713,7 +28662,7 @@ export type DungeonModificationData = CombatAreaModificationData & {
    *
    * @minItems 1
    */
-  floors?: [number, ...number[]];
+  floors?: number[];
   /**
    * ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour. Set to null to unassociate the dungeon from events.
    */
@@ -28812,7 +28761,7 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
      *
      * @minItems 1
      */
-    overrideSpecialChances?: [number, ...number[]] | null;
+    overrideSpecialChances?: number[] | null;
     /**
      * Runes that are provided by this item.
      */
@@ -28830,13 +28779,13 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
        *
        * @minItems 1
        */
-      add?: [GameEventMatcherData, ...GameEventMatcherData[]];
+      add?: GameEventMatcherData[];
       /**
        * Removes all ways this item can be consumed of the given type of GameEventMatcher
        *
        * @minItems 1
        */
-      remove?: [string, ...string[]];
+      remove?: string[];
     };
   } & {
     /**
@@ -28880,7 +28829,7 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
      *
      * @minItems 1
      */
-    overrideSpecialChances?: [number, ...number[]] | null;
+    overrideSpecialChances?: number[] | null;
     /**
      * Runes that are provided by this item.
      */
@@ -28898,13 +28847,13 @@ export type BaseEquipmentItemModificationData = BaseItemModificationData &
        *
        * @minItems 1
        */
-      add?: [GameEventMatcherData, ...GameEventMatcherData[]];
+      add?: GameEventMatcherData[];
       /**
        * Removes all ways this item can be consumed of the given type of GameEventMatcher
        *
        * @minItems 1
        */
-      remove?: [string, ...string[]];
+      remove?: string[];
     };
   };
 export type WeaponItemModificationData = BaseEquipmentItemModificationData & {
@@ -28999,7 +28948,7 @@ export type FletchingRecipeModificationData =
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -29019,7 +28968,7 @@ export type FletchingRecipeModificationData =
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -29039,7 +28988,7 @@ export type FletchingRecipeModificationData =
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -29059,7 +29008,7 @@ export type FletchingRecipeModificationData =
        *
        * @minItems 1
        */
-      itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+      itemCosts: AnyItemQuantity[];
       /**
        * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
        */
@@ -29374,20 +29323,14 @@ export type ModifierModificationData = ModificationIDData & {
    *
    * @minItems 1
    */
-  allowedScopes?: [
-    ModifierScopingModificationData,
-    ...ModifierScopingModificationData[],
-  ];
+  allowedScopes?: ModifierScopingModificationData[];
 } & {
   /**
    * Adds or modifies an existing scopes belonging to this modifier
    *
    * @minItems 1
    */
-  allowedScopes?: [
-    ModifierScopingModificationData,
-    ...ModifierScopingModificationData[],
-  ];
+  allowedScopes?: ModifierScopingModificationData[];
 };
 export type AnySkillModificationData =
   | {
@@ -29602,10 +29545,7 @@ export type MagicModificationData = BaseSkillModificationData & {
    *
    * @minItems 1
    */
-  altSpells?: [
-    AltMagicSpellModificationData,
-    ...AltMagicSpellModificationData[],
-  ];
+  altSpells?: AltMagicSpellModificationData[];
 };
 /**
  * Data for modifying an AltMagicSpell object
@@ -29738,10 +29678,7 @@ export type WoodcuttingModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  trees?: [
-    WoodcuttingTreeModificationData,
-    ...WoodcuttingTreeModificationData[],
-  ];
+  trees?: WoodcuttingTreeModificationData[];
 };
 /**
  * Data modifications shared between all Mastery skills
@@ -29814,7 +29751,7 @@ export type FishingModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  fish?: [FishModificationData, ...FishModificationData[]];
+  fish?: FishModificationData[];
 };
 /**
  * Data for modifying a Fish object
@@ -29855,7 +29792,7 @@ export type FiremakingModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  logs?: [FiremakingLogModificationData, ...FiremakingLogModificationData[]];
+  logs?: FiremakingLogModificationData[];
 };
 /**
  * Data for modifying a FiremakingLog object
@@ -29940,16 +29877,13 @@ export type CookingModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  categories?: [
-    CookingCategoryModificationData,
-    ...CookingCategoryModificationData[],
-  ];
+  categories?: CookingCategoryModificationData[];
   /**
    * Modifies the CookingRecipes registered to the skill
    *
    * @minItems 1
    */
-  recipes?: [CookingRecipeModificationData, ...CookingRecipeModificationData[]];
+  recipes?: CookingRecipeModificationData[];
 };
 /**
  * Data for modifying a CookingRecipe object
@@ -29991,7 +29925,7 @@ export type MiningModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  rockData?: [MiningRockModificationData, ...MiningRockModificationData[]];
+  rockData?: MiningRockModificationData[];
 };
 /**
  * Data For modifying a MiningRock object
@@ -30123,7 +30057,7 @@ export type ThievingModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  npcs?: [ThievingNPCModificationData, ...ThievingNPCModificationData[]];
+  npcs?: ThievingNPCModificationData[];
 };
 /**
  * Data for modifying a ThievingNPC object
@@ -30204,10 +30138,7 @@ export type FletchingModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  recipes?: [
-    FletchingRecipeModificationData,
-    ...FletchingRecipeModificationData[],
-  ];
+  recipes?: FletchingRecipeModificationData[];
 };
 /**
  * Data modifications for the Crafting Skill
@@ -30218,10 +30149,7 @@ export type CraftingModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  recipes?: [
-    CraftingRecipeModificationData,
-    ...CraftingRecipeModificationData[],
-  ];
+  recipes?: CraftingRecipeModificationData[];
 };
 /**
  * Data for modifying a CraftingRecipe object
@@ -30247,10 +30175,7 @@ export type RunecraftingModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  recipes?: [
-    RunecraftingRecipeModificationData,
-    ...RunecraftingRecipeModificationData[],
-  ];
+  recipes?: RunecraftingRecipeModificationData[];
 };
 /**
  * Data for modifying a RunecraftingRecipe object
@@ -30274,10 +30199,7 @@ export type HerbloreModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  recipes?: [
-    HerbloreRecipeModificationData,
-    ...HerbloreRecipeModificationData[],
-  ];
+  recipes?: HerbloreRecipeModificationData[];
 };
 /**
  * Data for modifying a HerbloreRecipe object
@@ -30321,19 +30243,13 @@ export type AgilityModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  pillars?: [
-    AgilityObstacleModificationData,
-    ...AgilityObstacleModificationData[],
-  ];
+  pillars?: AgilityObstacleModificationData[];
   /**
    * Optional. Modifies the AgilityObstacles registered to the skill
    *
    * @minItems 1
    */
-  obstacles?: [
-    AgilityPillarModificationData,
-    ...AgilityPillarModificationData[],
-  ];
+  obstacles?: AgilityPillarModificationData[];
 };
 /**
  * Data for modifying an AgilityObstacle object
@@ -30480,10 +30396,7 @@ export type SummoningModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  recipes?: [
-    SummoningRecipeModificationData,
-    ...SummoningRecipeModificationData[],
-  ];
+  recipes?: SummoningRecipeModificationData[];
 };
 /**
  * Data for modifying a SummoningRecipe object
@@ -30545,10 +30458,7 @@ export type AstrologyModificationData = MasterySkillModificationData & {
    *
    * @minItems 1
    */
-  recipes?: [
-    AstrologyRecipeModificationData,
-    ...AstrologyRecipeModificationData[],
-  ];
+  recipes?: AstrologyRecipeModificationData[];
 };
 /**
  * Data for modifying an AstrologyRecipe object
@@ -30751,10 +30661,7 @@ export type TownshipModificationData = BaseSkillModificationData & {
    *
    * @minItems 1
    */
-  seasons?: [
-    TownshipSeasonModificationData,
-    ...TownshipSeasonModificationData[],
-  ];
+  seasons?: TownshipSeasonModificationData[];
 };
 /**
  * Data for modifying a TownshipSeason object
@@ -30835,11 +30742,11 @@ export type ItemUpgradeModificationData = ModificationIDData & {
     /**
      * @minItems 1
      */
-    add?: [AnyItemID, ...AnyItemID[]];
+    add?: AnyItemID[];
     /**
      * @minItems 1
      */
-    remove?: [AnyItemID, ...AnyItemID[]];
+    remove?: AnyItemID[];
   };
 } & {
   /**
@@ -30857,11 +30764,11 @@ export type ItemUpgradeModificationData = ModificationIDData & {
     /**
      * @minItems 1
      */
-    add?: [AnyItemID, ...AnyItemID[]];
+    add?: AnyItemID[];
     /**
      * @minItems 1
      */
-    remove?: [AnyItemID, ...AnyItemID[]];
+    remove?: AnyItemID[];
   };
 };
 
@@ -30880,7 +30787,7 @@ export interface MelvorGameDataPackage {
    *
    * @minItems 1
    */
-  dependentData?: [DependentData, ...DependentData[]];
+  dependentData?: DependentData[];
 }
 /**
  * Contains the data used to construct game objects
@@ -30891,380 +30798,374 @@ export interface GameData {
    *
    * @minItems 1
    */
-  skillLevelCapIncreases?: [
-    SkillLevelCapIncreaseData,
-    ...SkillLevelCapIncreaseData[],
-  ];
+  skillLevelCapIncreases?: SkillLevelCapIncreaseData[];
   /**
    * An array of Gamemodes defined by this data package
    *
    * @minItems 1
    */
-  gamemodes?: [GamemodeData, ...GamemodeData[]];
+  gamemodes?: GamemodeData[];
   /**
    * Items defined by this data package
    *
    * @minItems 1
    */
-  items?: [AnyItemData, ...AnyItemData[]];
+  items?: AnyItemData[];
   /**
    * AttackStyles defined by this data package
    *
    * @minItems 1
    */
-  attackStyles?: [AttackStyleData, ...AttackStyleData[]];
+  attackStyles?: AttackStyleData[];
   /**
    * CombatEffectGroups defined by this data package
    *
    * @minItems 1
    */
-  combatEffectGroups?: [CombatEffectGroupData, ...CombatEffectGroupData[]];
+  combatEffectGroups?: CombatEffectGroupData[];
   /**
    * CombatEffectTemplates defined by this data package
    *
    * @minItems 1
    */
-  combatEffectTemplates?: [
-    CombatEffectTemplateData,
-    ...CombatEffectTemplateData[],
-  ];
+  combatEffectTemplates?: CombatEffectTemplateData[];
   /**
    * CombatEffects defined by this data package
    *
    * @minItems 1
    */
-  combatEffects?: [AnyCombatEffectData, ...AnyCombatEffectData[]];
+  combatEffects?: AnyCombatEffectData[];
   /**
    * CombatEffectTables defined by this data package
    *
    * @minItems 1
    */
-  combatEffectTables?: [CombatEffectTableData, ...CombatEffectTableData[]];
+  combatEffectTables?: CombatEffectTableData[];
   /**
    * SpecialAttacks defined by this data package
    *
    * @minItems 1
    */
-  attacks?: [AttackData, ...AttackData[]];
+  attacks?: AttackData[];
   /**
    * CombatPassives defined by this data package
    *
    * @minItems 1
    */
-  combatPassives?: [CombatPassiveData, ...CombatPassiveData[]];
+  combatPassives?: CombatPassiveData[];
   /**
    * Monsters defined by this data package
    *
    * @minItems 1
    */
-  monsters?: [MonsterData, ...MonsterData[]];
+  monsters?: MonsterData[];
   /**
    * Combat Area Categories defined by this data package. This category must be referenced in combatAreaCategoryOrder to display.
    *
    * @minItems 1
    */
-  combatAreaCategories?: [CombatAreaCategoryData, ...CombatAreaCategoryData[]];
+  combatAreaCategories?: CombatAreaCategoryData[];
   /**
    * The display order of Combat Area Categories.
    *
    * @minItems 1
    */
-  combatAreaCategoryOrder?: [InsertOrder, ...InsertOrder[]];
+  combatAreaCategoryOrder?: InsertOrder[];
   /**
    * Combat Areas defined by this data package
    *
    * @minItems 1
    */
-  combatAreas?: [CombatAreaData, ...CombatAreaData[]];
+  combatAreas?: CombatAreaData[];
   /**
    * @deprecated
    * Determines the display order of combat areas
    *
    * @minItems 1
    */
-  combatAreaDisplayOrder?: [InsertOrder, ...InsertOrder[]];
+  combatAreaDisplayOrder?: InsertOrder[];
   /**
    * Slayer Areas defined by this data package
    *
    * @minItems 1
    */
-  slayerAreas?: [SlayerAreaData, ...SlayerAreaData[]];
+  slayerAreas?: SlayerAreaData[];
   /**
    * @deprecated
    * Determines the display order of slayer areas
    *
    * @minItems 1
    */
-  slayerAreaDisplayOrder?: [InsertOrder, ...InsertOrder[]];
+  slayerAreaDisplayOrder?: InsertOrder[];
   /**
    * Dungeons defined by this data package
    *
    * @minItems 1
    */
-  dungeons?: [DungeonData, ...DungeonData[]];
+  dungeons?: DungeonData[];
   /**
    * @deprecated
    * Determines the display order of dungeons
    *
    * @minItems 1
    */
-  dungeonDisplayOrder?: [InsertOrder, ...InsertOrder[]];
+  dungeonDisplayOrder?: InsertOrder[];
   /**
    * The Abyss Depths defined by this data package
    *
    * @minItems 1
    */
-  abyssDepths?: [DungeonData, ...DungeonData[]];
+  abyssDepths?: DungeonData[];
   /**
    * Strongholds defined by this data package
    *
    * @minItems 1
    */
-  strongholds?: [StrongholdData, ...StrongholdData[]];
+  strongholds?: StrongholdData[];
   /**
    * CombatEvent objects defined by this data package
    *
    * @minItems 1
    */
-  combatEvents?: [CombatEventData, ...CombatEventData[]];
+  combatEvents?: CombatEventData[];
   /**
    * Slayer Task Categories defined by this data package
    *
    * @minItems 1
    */
-  slayerTaskCategories?: [SlayerTaskCategoryData, ...SlayerTaskCategoryData[]];
+  slayerTaskCategories?: SlayerTaskCategoryData[];
   /**
    * ActivePrayers defined by this data package
    *
    * @minItems 1
    */
-  prayers?: [PrayerData, ...PrayerData[]];
+  prayers?: PrayerData[];
   /**
    * AttackSpellbooks defined by this data package
    *
    * @minItems 1
    */
-  attackSpellbooks?: [AttackSpellbookData, ...AttackSpellbookData[]];
+  attackSpellbooks?: AttackSpellbookData[];
   /**
    * AttackSpells defined by this data package
    *
    * @minItems 1
    */
-  attackSpells?: [AttackSpellData, ...AttackSpellData[]];
+  attackSpells?: AttackSpellData[];
   /**
    * @deprecated
    * StandardSpells defined by this data package
    *
    * @minItems 1
    */
-  standardSpells?: [OldAttackSpellData, ...OldAttackSpellData[]];
+  standardSpells?: OldAttackSpellData[];
   /**
    * @deprecated
    * AncientSpells defined by this data package
    *
    * @minItems 1
    */
-  ancientSpells?: [OldAttackSpellData, ...OldAttackSpellData[]];
+  ancientSpells?: OldAttackSpellData[];
   /**
    * @deprecated
    * ArchaicSpells defined by this data package
    *
    * @minItems 1
    */
-  archaicSpells?: [OldAttackSpellData, ...OldAttackSpellData[]];
+  archaicSpells?: OldAttackSpellData[];
   /**
    * CurseSpells defined by this data package
    *
    * @minItems 1
    */
-  curseSpells?: [CurseSpellData, ...CurseSpellData[]];
+  curseSpells?: CurseSpellData[];
   /**
    * AuroraSpells defined by this data package
    *
    * @minItems 1
    */
-  auroraSpells?: [AuroraSpellData, ...AuroraSpellData[]];
+  auroraSpells?: AuroraSpellData[];
   /**
    * Pets defined by this data package
    *
    * @minItems 1
    */
-  pets?: [PetData, ...PetData[]];
+  pets?: PetData[];
   /**
    * ShopCategories defined by this data package
    *
    * @minItems 1
    */
-  shopCategories?: [ShopCategoryData, ...ShopCategoryData[]];
+  shopCategories?: ShopCategoryData[];
   /**
    * Determines the display order of ShopCategories
    *
    * @minItems 1
    */
-  shopCategoryOrder?: [InsertOrder, ...InsertOrder[]];
+  shopCategoryOrder?: InsertOrder[];
   /**
    * ShopPurchases defined by this data package
    *
    * @minItems 1
    */
-  shopPurchases?: [ShopPurchaseData, ...ShopPurchaseData[]];
+  shopPurchases?: ShopPurchaseData[];
   /**
    * Determines the display order of ShopPurchases
    *
    * @minItems 1
    */
-  shopDisplayOrder?: [InsertOrder, ...InsertOrder[]];
+  shopDisplayOrder?: InsertOrder[];
   /**
    * Defines the display order of skill trees
    *
    * @minItems 1
    */
-  skillTreesDisplayOrder?: [InsertOrder, ...InsertOrder[]];
+  skillTreesDisplayOrder?: InsertOrder[];
   /**
    * Defines the display order of ancient relics skill dropdown
    *
    * @minItems 1
    */
-  ancientRelicsDisplayOrder?: [InsertOrder, ...InsertOrder[]];
+  ancientRelicsDisplayOrder?: InsertOrder[];
   /**
    * ShopUpgradeChains defined by this data package
    *
    * @minItems 1
    */
-  shopUpgradeChains?: [ShopUpgradeChainData, ...ShopUpgradeChainData[]];
+  shopUpgradeChains?: ShopUpgradeChainData[];
   /**
    * ItemUpgrades defined by this data package
    *
    * @minItems 1
    */
-  itemUpgrades?: [ItemUpgradeData, ...ItemUpgradeData[]];
+  itemUpgrades?: ItemUpgradeData[];
   /**
    * ItemSynergies defined by this data package
    *
    * @minItems 1
    */
-  itemSynergies?: [ItemSynergyData, ...ItemSynergyData[]];
+  itemSynergies?: ItemSynergyData[];
   golbinRaid?: GolbinRaidData;
   /**
    * SteamAchievements defined by this data package. Has no effect for modded data packages.
    *
    * @minItems 1
    */
-  steamAchievements?: [SteamAchievementData, ...SteamAchievementData[]];
+  steamAchievements?: SteamAchievementData[];
   /**
    * TutorialStages defined by this data package. Has no effect for modded data packages.
    *
    * @minItems 1
    */
-  tutorialStages?: [TutorialStageData, ...TutorialStageData[]];
+  tutorialStages?: TutorialStageData[];
   /**
    * Determines the order that tutorial stages must be completed in. Has no effect for modded data packages.
    *
    * @minItems 1
    */
-  tutorialStageOrder?: [InsertOrder, ...InsertOrder[]];
+  tutorialStageOrder?: InsertOrder[];
   /**
    * Contains data that should be registered to skills. Supports custom skill data.
    *
    * @minItems 1
    */
-  skillData?: [AnySkillData, ...AnySkillData[]];
+  skillData?: AnySkillData[];
   /**
    * Determines the drops in the standard gem table.
    *
    * @minItems 1
    */
-  randomGems?: [DropTableData, ...DropTableData[]];
+  randomGems?: DropTableData[];
   /**
    * Determines the drops in the superior gem table.
    *
    * @minItems 1
    */
-  randomSuperiorGems?: [DropTableData, ...DropTableData[]];
+  randomSuperiorGems?: DropTableData[];
   /**
    * Determines the drops in the abyssal gem table,
    *
    * @minItems 1
    */
-  randomAbyssalGems?: [DropTableData, ...DropTableData[]];
+  randomAbyssalGems?: DropTableData[];
   /**
    * Determines the drops in the fragments table,
    *
    * @minItems 1
    */
-  randomFragments?: [DropTableData, ...DropTableData[]];
+  randomFragments?: DropTableData[];
   /**
    * Determines the drops in the firemaking oils table,
    *
    * @minItems 1
    */
-  randomFiremakingOils?: [DropTableData, ...DropTableData[]];
+  randomFiremakingOils?: DropTableData[];
   /**
    * Determines the list of monsters the Into the Mist Dungeon should choose from.
    *
    * @minItems 1
    */
-  itmMonsters?: [MonsterID, ...MonsterID[]];
+  itmMonsters?: MonsterID[];
   /**
    * Determines the list of monsters the Spider Lair Dungeons should choose from.
    *
    * @minItems 1
    */
-  spiderLairMonsters?: [MonsterID, ...MonsterID[]];
+  spiderLairMonsters?: MonsterID[];
   /**
    * Pages defined by this data package.
    *
    * @minItems 1
    */
-  pages?: [PageData, ...PageData[]];
+  pages?: PageData[];
   /**
    * Determines the default sort order for items in the bank.
    *
    * @minItems 1
    */
-  bankSortOrder?: [InsertOrder, ...InsertOrder[]];
+  bankSortOrder?: InsertOrder[];
   /**
    * LoreBooks defined by this data package.
    *
    * @minItems 1
    */
-  lore?: [LoreBookData, ...LoreBookData[]];
+  lore?: LoreBookData[];
   /**
    * AncientRelics defined by this data package.
    *
    * @minItems 1
    */
-  ancientRelics?: [AncientRelicData, ...AncientRelicData[]];
+  ancientRelics?: AncientRelicData[];
   /**
    * Combat Triangle sets defined by this data package
    *
    * @minItems 1
    */
-  combatTriangleSets?: [CombatTriangleSetData, ...CombatTriangleSetData[]];
+  combatTriangleSets?: CombatTriangleSetData[];
   /**
    * Equipment Slots defined by this data package
    *
    * @minItems 1
    */
-  equipmentSlots?: [EquipmentSlotData, ...EquipmentSlotData[]];
+  equipmentSlots?: EquipmentSlotData[];
   /**
    * Realms defined by this data package
    *
    * @minItems 1
    */
-  realms?: [RealmsData, ...RealmsData[]];
+  realms?: RealmsData[];
   /**
    * Damage Types defined by this data package
    *
    * @minItems 1
    */
-  damageTypes?: [DamageTypeData, ...DamageTypeData[]];
+  damageTypes?: DamageTypeData[];
   /**
    * Modifiers defined by this data package
    *
    * @minItems 1
    */
-  modifiers?: [ModifierData, ...ModifierData[]];
+  modifiers?: ModifierData[];
 }
 /**
  * Data for constructing a NamespacedObject object
@@ -31285,7 +31186,7 @@ export interface SkillLevelCapRequirementSetData {
    *
    * @minItems 1
    */
-  requirements: [AnyRequirementData, ...AnyRequirementData[]];
+  requirements: AnyRequirementData[];
 }
 export interface SkillLevelRequirementData {
   type: "SkillLevel";
@@ -31313,7 +31214,7 @@ export interface AllSkillLevelRequirementData {
    *
    * @minItems 1
    */
-  exceptions?: [SkillID, ...SkillID[]];
+  exceptions?: SkillID[];
 }
 export interface DungeonRequirementData {
   type: "DungeonCompletion";
@@ -31433,7 +31334,7 @@ export interface CartographyPOIDiscoveryRequirementData {
    *
    * @minItems 1
    */
-  poiIDs: [PointsOfInterestID, ...PointsOfInterestID[]];
+  poiIDs: PointsOfInterestID[];
 }
 export interface ArchaeologyItemsDonatedRequirementData {
   type: "ArchaeologyItemsDonated";
@@ -34964,13 +34865,13 @@ export interface FixedCostsBase {
    *
    * @minItems 1
    */
-  currencies?: [CurrencyQuantity, ...CurrencyQuantity[]];
+  currencies?: CurrencyQuantity[];
   /**
    * Items to give/take from the player
    *
    * @minItems 1
    */
-  items?: [AnyItemQuantity, ...AnyItemQuantity[]];
+  items?: AnyItemQuantity[];
 }
 export interface CurrencyQuantity {
   /**
@@ -34996,19 +34897,13 @@ export interface IStatObjectData {
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Optional. Conditional modifiers provided by this object
    *
    * @minItems 1
    */
-  conditionalModifiers?: [
-    ConditionalModifierData,
-    ...ConditionalModifierData[],
-  ];
+  conditionalModifiers?: ConditionalModifierData[];
 }
 export interface ConditionalModifierData {
   /**
@@ -35081,13 +34976,13 @@ export interface SkillActionEventMatcherOptions {
    *
    * @minItems 1
    */
-  activePotionIDs?: [PotionItemID, ...PotionItemID[]];
+  activePotionIDs?: PotionItemID[];
   /**
    * Optional. If present the id of the realm of the action must match an element of the array
    *
    * @minItems 1
    */
-  realms?: [RealmID, ...RealmID[]];
+  realms?: RealmID[];
 }
 /**
  * Matches when a Firemaking bonfire is lit
@@ -35099,13 +34994,13 @@ export interface BonfireLitEventMatcherOptions {
    *
    * @minItems 1
    */
-  logIDs?: [FiremakingActionID, ...FiremakingActionID[]];
+  logIDs?: FiremakingActionID[];
   /**
    * Optional. If present, the ID of the realm the log belongs to must match an element of the array
    *
    * @minItems 1
    */
-  realms?: [RealmID, ...RealmID[]];
+  realms?: RealmID[];
 }
 /**
  * Matches when a Farming Plant action occurs
@@ -35117,13 +35012,13 @@ export interface FarmingPlantActionEventMatcherOptions {
    *
    * @minItems 1
    */
-  actionIDs?: [FarmingActionID, ...FarmingActionID[]];
+  actionIDs?: FarmingActionID[];
   /**
    * Optional. If present, the category of the farming action must have an ID that matches one element of the array
    *
    * @minItems 1
    */
-  categoryIDs?: [FarmingCategoryID, ...FarmingCategoryID[]];
+  categoryIDs?: FarmingCategoryID[];
 }
 /**
  * Matches when a Monster drops an item in combat
@@ -35145,7 +35040,7 @@ export interface PlayerAttackEventMatcherOptions {
    *
    * @minItems 1
    */
-  attackTypes?: [AttackType, ...AttackType[]];
+  attackTypes?: AttackType[];
 }
 /**
  * Matches when a Enemy Attack occurs
@@ -35157,7 +35052,7 @@ export interface EnemyAttackEventMatcherOptions {
    *
    * @minItems 1
    */
-  attackTypes?: [AttackType, ...AttackType[]];
+  attackTypes?: AttackType[];
 }
 /**
  * Matches when the player eats a food item
@@ -35215,7 +35110,7 @@ export interface MonsterKilledEventMatcherOptions {
    *
    * @minItems 1
    */
-  monsterIDs?: [MonsterID, ...MonsterID[]];
+  monsterIDs?: MonsterID[];
   /**
    * Optional. If present, the monster being killed with the specified combat style must match
    */
@@ -35225,7 +35120,7 @@ export interface MonsterKilledEventMatcherOptions {
    *
    * @minItems 1
    */
-  droppedCurrencies?: [CurrencyID, ...CurrencyID[]];
+  droppedCurrencies?: CurrencyID[];
   /**
    * Optional. If present, the monster dropping a SoulItem must match
    */
@@ -35245,7 +35140,7 @@ export interface ItemEquippedEventMatcherOptions {
    *
    * @minItems 1
    */
-  itemIDs?: [EquipmentItemID, ...EquipmentItemID[]];
+  itemIDs?: EquipmentItemID[];
 }
 /**
  * Matches when the player equips a food item
@@ -35257,7 +35152,7 @@ export interface FoodEquippedEventMatcherOptions {
    *
    * @minItems 1
    */
-  itemIDs?: [FoodItemID, ...FoodItemID[]];
+  itemIDs?: FoodItemID[];
 }
 /**
  * Matches when the player purchases an item from the shop
@@ -35269,7 +35164,7 @@ export interface ShopPurchaseMadeEventMatcherOptions {
    *
    * @minItems 1
    */
-  purchaseIDs?: [ShopPurchaseID, ...ShopPurchaseID[]];
+  purchaseIDs?: ShopPurchaseID[];
 }
 /**
  * Matches when the player uses a Summoning tablet
@@ -35281,13 +35176,13 @@ export interface SummonTabletUsedEventMatcherOptions {
    *
    * @minItems 1
    */
-  tabletIDs?: [EquipmentItemID, ...EquipmentItemID[]];
+  tabletIDs?: EquipmentItemID[];
   /**
    * Optional. If present, the ID of the realm the tablet's recipe belongs to must match an element of the array
    *
    * @minItems 1
    */
-  realms?: [RealmID, ...RealmID[]];
+  realms?: RealmID[];
 }
 /**
  * Matches when a monster spawns
@@ -35299,7 +35194,7 @@ export interface MonsterSpawnedEventMatcherOptions {
    *
    * @minItems 1
    */
-  monsterIDs?: [MonsterID, ...MonsterID[]];
+  monsterIDs?: MonsterID[];
 }
 /**
  * Matches when the player purchases a new refinement in Cartography
@@ -35311,7 +35206,7 @@ export interface CartographyMapRefinementEventMatcherOptions {
    *
    * @minItems 1
    */
-  digSites?: [ArchaeologyDigSiteID, ...ArchaeologyDigSiteID[]];
+  digSites?: ArchaeologyDigSiteID[];
 }
 /**
  * Matches when an enemy in combat drops bones
@@ -35520,10 +35415,7 @@ export interface CombatEffectStatGroupData {
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
 }
 export interface CombatEffectDamageGroupData {
   /**
@@ -35791,7 +35683,7 @@ export interface ItemUpgradeData {
    *
    * @minItems 1
    */
-  itemCosts: [AnyItemQuantity, ...AnyItemQuantity[]];
+  itemCosts: AnyItemQuantity[];
   /**
    * Currency costs required to upgrade the item
    */
@@ -35811,7 +35703,7 @@ export interface ItemUpgradeData {
    *
    * @minItems 1
    */
-  rootItemIDs: [AnyItemID, ...AnyItemID[]];
+  rootItemIDs: AnyItemID[];
   /**
    * The ID of the item that should be produced by this upgrade
    */
@@ -35853,25 +35745,19 @@ export interface ItemSynergyData {
    *
    * @minItems 1
    */
-  conditionalModifiers?: [
-    ConditionalModifierData,
-    ...ConditionalModifierData[],
-  ];
+  conditionalModifiers?: ConditionalModifierData[];
   /**
    * Optional. Equipment stats provided to the player when the synergy is active
    *
    * @minItems 1
    */
-  equipmentStats?: [AnyEquipStatData, ...AnyEquipStatData[]];
+  equipmentStats?: AnyEquipStatData[];
   /**
    * Optional. CombatEffects provided to the player in combat at the specified times.
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
 }
 /**
  * Data for the Golbin Raid minigame
@@ -35928,7 +35814,7 @@ export interface GolbinRaidData {
    *
    * @minItems 1
    */
-  startingRunes?: [AnyItemQuantity, ...AnyItemQuantity[]];
+  startingRunes?: AnyItemQuantity[];
   /**
    * Optional. Determines the random modifier selection
    */
@@ -35996,13 +35882,13 @@ export interface BaseSkillData {
    *
    * @minItems 1
    */
-  pets?: [PetID, ...PetID[]];
+  pets?: PetID[];
   /**
    * Rare drops that may be obtained on performing an action in the skill
    *
    * @minItems 1
    */
-  rareDrops?: [RareSkillDropData, ...RareSkillDropData[]];
+  rareDrops?: RareSkillDropData[];
   /**
    * Data for the skilling minibar for this skill. Has no effect for skills that don't have a minibar
    */
@@ -36012,13 +35898,13 @@ export interface BaseSkillData {
    *
    * @minItems 1
    */
-  customMilestones?: [MilestoneData, ...MilestoneData[]];
+  customMilestones?: MilestoneData[];
   /**
    * Optional. Defines sets of ancient relics that can be obtained from this skill
    *
    * @minItems 1
    */
-  ancientRelicSets?: [AncientRelicSetData, ...AncientRelicSetData[]];
+  ancientRelicSets?: AncientRelicSetData[];
   /**
    * @deprecated
    * Optional. Ancient Relic drops that may be obtained on performing an action in the skill
@@ -36363,13 +36249,13 @@ export interface GeneralThievingRareData {
    *
    * @minItems 1
    */
-  npcs?: [ThievingActionID, ...ThievingActionID[]];
+  npcs?: ThievingActionID[];
   /**
    * Optional. If present, this drop is limited to the realms with the IDs in this array
    *
    * @minItems 1
    */
-  realms?: [RealmID, ...RealmID[]];
+  realms?: RealmID[];
 }
 /**
  * Data for constructing an AgilityCourse object
@@ -36426,25 +36312,19 @@ export interface SummoningSynergyData {
    *
    * @minItems 1
    */
-  conditionalModifiers?: [
-    ConditionalModifierData,
-    ...ConditionalModifierData[],
-  ];
+  conditionalModifiers?: ConditionalModifierData[];
   /**
    * Optional. CombatEffects provided to the player in combat at the specified times.
    *
    * @minItems 1
    */
-  combatEffects?: [
-    TriggeredCombatEffectApplicatorData,
-    ...TriggeredCombatEffectApplicatorData[],
-  ];
+  combatEffects?: TriggeredCombatEffectApplicatorData[];
   /**
    * Game event matchers that determine when the synergy tablets should be consumed
    *
    * @minItems 1
    */
-  consumesOn: [GameEventMatcherData, ...GameEventMatcherData[]];
+  consumesOn: GameEventMatcherData[];
 }
 export interface ItemChanceData {
   /**
@@ -36761,13 +36641,13 @@ export interface FixedCostsDataZero {
    *
    * @minItems 1
    */
-  currencies?: [CurrencyQuantityZero, ...CurrencyQuantityZero[]];
+  currencies?: CurrencyQuantityZero[];
   /**
    * Items to give/take from the player
    *
    * @minItems 1
    */
-  items?: [AnyItemQuantityZero, ...AnyItemQuantityZero[]];
+  items?: AnyItemQuantityZero[];
 }
 /**
  * Same as FixedCostsData, but allows quantity of zero
@@ -37040,22 +36920,19 @@ export interface GameDataModifications {
    *
    * @minItems 1
    */
-  gamemodes?: [GamemodeModificationData, ...GamemodeModificationData[]];
+  gamemodes?: GamemodeModificationData[];
   /**
    * Combat area modifications defined by this data package
    *
    * @minItems 1
    */
-  combatAreas?: [CombatAreaModificationData, ...CombatAreaModificationData[]];
+  combatAreas?: CombatAreaModificationData[];
   /**
    * CookingCategory Modifications defined by this data package
    *
    * @minItems 1
    */
-  cookingCategories?: [
-    CookingCategoryModificationData,
-    ...CookingCategoryModificationData[],
-  ];
+  cookingCategories?: CookingCategoryModificationData[];
   /**
    * CombatAreaCategory Modifications defined by this data package
    */
@@ -37065,106 +36942,91 @@ export interface GameDataModifications {
    *
    * @minItems 1
    */
-  dungeons?: [DungeonModificationData, ...DungeonModificationData[]];
+  dungeons?: DungeonModificationData[];
   /**
    * The Abyss modifications defined by this data package
    *
    * @minItems 1
    */
-  abyssDepths?: [DungeonModificationData, ...DungeonModificationData[]];
+  abyssDepths?: DungeonModificationData[];
   /**
    * Item modifications defined by this data package
    *
    * @minItems 1
    */
-  items?: [AnyItemModificationData, ...AnyItemModificationData[]];
+  items?: AnyItemModificationData[];
   /**
    * FletchingRecipe Modifications defined by this data package
    *
    * @minItems 1
    */
-  fletchingRecipes?: [
-    FletchingRecipeModificationData,
-    ...FletchingRecipeModificationData[],
-  ];
+  fletchingRecipes?: FletchingRecipeModificationData[];
   /**
    * Monsters modifications defined by this data package
    *
    * @minItems 1
    */
-  monsters?: [MonsterModificationData, ...MonsterModificationData[]];
+  monsters?: MonsterModificationData[];
   /**
    * ShopPurchase Modifications defined by this data package
    *
    * @minItems 1
    */
-  shopPurchases?: [
-    ShopPurchaseModificationData,
-    ...ShopPurchaseModificationData[],
-  ];
+  shopPurchases?: ShopPurchaseModificationData[];
   /**
    * ShopUpgradeChain Modifications defined by this data package
    *
    * @minItems 1
    */
-  shopUpgradeChains?: [
-    ShopUpgradeChainModificationData,
-    ...ShopUpgradeChainModificationData[],
-  ];
+  shopUpgradeChains?: ShopUpgradeChainModificationData[];
   /**
    * Slayer area modifications defined by this data package
    *
    * @minItems 1
    */
-  slayerAreas?: [SlayerAreaModificationData, ...SlayerAreaModificationData[]];
+  slayerAreas?: SlayerAreaModificationData[];
   /**
    * Page modifications defined by this data package
    *
    * @minItems 1
    */
-  pages?: [PageModificationData, ...PageModificationData[]];
+  pages?: PageModificationData[];
   /**
    * Equipment Slot modifications defined by this data package
    *
    * @minItems 1
    */
-  equipmentSlots?: [
-    EquipmentSlotModificationData,
-    ...EquipmentSlotModificationData[],
-  ];
+  equipmentSlots?: EquipmentSlotModificationData[];
   /**
    * Damage Type modifications defined by this data package
    *
    * @minItems 1
    */
-  damageTypes?: [DamageTypeModificationData, ...DamageTypeModificationData[]];
+  damageTypes?: DamageTypeModificationData[];
   /**
    * Modifier modifications defined by this data package
    *
    * @minItems 1
    */
-  modifiers?: [ModifierModificationData, ...ModifierModificationData[]];
+  modifiers?: ModifierModificationData[];
   /**
    * Modifications to skill data defined by this data package
    *
    * @minItems 1
    */
-  skillData?: [AnySkillModificationData, ...AnySkillModificationData[]];
+  skillData?: AnySkillModificationData[];
   /**
    * Pet modifications defined by this data package
    *
    * @minItems 1
    */
-  pets?: [PetModificationData, ...PetModificationData[]];
+  pets?: PetModificationData[];
   /**
    * Item upgrade modifications defined by this data package
    *
    * @minItems 1
    */
-  itemUpgrades?: [
-    ItemUpgradeModificationData,
-    ...ItemUpgradeModificationData[],
-  ];
+  itemUpgrades?: ItemUpgradeModificationData[];
 }
 /**
  * Data for modifying a Gamemode object
