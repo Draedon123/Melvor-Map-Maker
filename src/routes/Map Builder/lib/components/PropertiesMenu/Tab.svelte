@@ -7,19 +7,15 @@
 </script>
 
 <script lang="ts">
-  import { getContext } from "svelte";
-  import type { PropertiesMenuContext } from "./PropertiesMenu.svelte";
+  import store from "../../store/store";
 
   export let imageSRC: string;
   export let imageAltText: string;
 
   export const id = getNewID();
 
-  const activeTab =
-    getContext<PropertiesMenuContext>("propertiesMenu").activeTab;
-
   function iconOnClick(): void {
-    $activeTab = id;
+    $store.propertiesMenu.activeTab = id;
   }
 </script>
 
@@ -27,19 +23,15 @@
   type="image"
   src={imageSRC}
   alt={imageAltText}
-  class:active={id === $activeTab}
+  class:active={id === $store.propertiesMenu.activeTab}
   on:click={iconOnClick}
 />
-<div class:hidden={id !== $activeTab}>
+<div class:hidden={id !== $store.propertiesMenu.activeTab}>
   <slot />
 </div>
 
 <style lang="scss">
-  $image-dimensions: 2em;
-
-  .hidden {
-    display: none;
-  }
+  $image-dimensions: 1.5em;
 
   input[type="image"] {
     width: $image-dimensions;

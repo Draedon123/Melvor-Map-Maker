@@ -21,6 +21,12 @@ type MapBuilderStore = {
   mapDimensions: PointData;
   hexesX: number;
   hexesY: number;
+  propertiesMenu: {
+    activeTab: number;
+    hexTab: {
+      activeHex: PointData;
+    };
+  };
 };
 
 type CanvasIntialisationOptions = {
@@ -45,6 +51,12 @@ const store = writable<MapBuilderStore>({
   },
   hexesX: 20,
   hexesY: 20,
+  propertiesMenu: {
+    activeTab: 0,
+    hexTab: {
+      activeHex: { x: 0, y: 0 },
+    },
+  },
 });
 
 async function initialiseApp(

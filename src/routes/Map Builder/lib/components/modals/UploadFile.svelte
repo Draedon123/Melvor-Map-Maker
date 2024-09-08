@@ -177,8 +177,4 @@
     overflow-wrap: break-word;
     width: 100%;
   }
-
-  .hidden {
-    display: none;
-  }
 </style>

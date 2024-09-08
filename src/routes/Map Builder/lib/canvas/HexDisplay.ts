@@ -1,7 +1,8 @@
 import { Graphics } from "pixi.js";
 import { axialToOddQ, oddQToAxial } from "$lib/functions/coordinates";
-import type { HexCoordData, PointData } from "$lib/melvor/schema";
+import type { HexCoordData, HexData, PointData } from "$lib/melvor/schema";
 import SafeGraphicsContext from "./SafeGraphicsContext";
+import store from "../store/store";
 
 const SQRT_3 = Math.sqrt(3);
 // https://www.redblobgames.com/grids/hexagons/#hex-to-pixel-axial
@@ -13,6 +14,8 @@ const FLAT_HEX_ORIENT = {
 } as const;
 
 class HexDisplay extends Graphics {
+  public hex: HexData;
+
   private _hexScale!: PointData;
   private _coordinates!: PointData;
   constructor(
@@ -28,6 +31,25 @@ class HexDisplay extends Graphics {
 
     this.hexScale = hexScale;
     this.coordinates = coordinates;
+    this.hex = {
+      coordinates: this.axialCoordinates,
+      isWater: false,
+      maxMasteryLevel: 5,
+      maxSurveyLevel: 2,
+      requirements: [],
+      travelCost: {},
+    };
+
+    function onClick(this: HexDisplay): void {
+      store.update(($store) => {
+        $store.propertiesMenu.hexTab.activeHex = this.coordinates;
+
+        return $store;
+      });
+    }
+
+    this.on("click", onClick);
+    this.on("tap", onClick);
   }
 
   public get hexScale(): PointData {
@@ -42,8 +64,9 @@ class HexDisplay extends Graphics {
     return oddQToAxial(this.coordinates);
   }
 
-  public set axialCoordinates(coordaintes: HexCoordData) {
-    this.coordinates = axialToOddQ(coordaintes);
+  public set axialCoordinates(coordinates: HexCoordData) {
+    this.coordinates = axialToOddQ(coordinates);
+    this.hex.coordinates = coordinates;
   }
 
   public get origin(): PointData {
@@ -77,6 +100,11 @@ class HexDisplay extends Graphics {
 
     this.position.set(x, y);
     this.label = `Hex Graphic (${coordinates.x}, ${coordinates.y})`;
+    if (this.hex !== undefined) {
+      // this.hex is undefined when initialising
+      // because this.coordinates is set before this.hex
+      this.hex.coordinates = { q, r };
+    }
   }
 }
 

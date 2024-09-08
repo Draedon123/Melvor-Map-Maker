@@ -12,11 +12,12 @@
   function buttonOnClick(): void {
     context.setValue(value);
     context.setTextContext(textContext || (button.textContent ?? ""));
+    context.onChange(value);
     context.hide();
   }
 </script>
 
-<button on:click={buttonOnClick} bind:this={button}>
+<button on:click|stopPropagation={buttonOnClick} bind:this={button}>
   <slot />
 </button>
 

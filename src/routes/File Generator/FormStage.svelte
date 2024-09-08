@@ -15,6 +15,7 @@
     opacity: 0;
     position: absolute;
     top: -9999px;
+    display: unset !important;
   }
 
   div {

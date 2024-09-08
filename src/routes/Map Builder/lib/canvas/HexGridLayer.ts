@@ -46,8 +46,13 @@ class HexGridLayer extends Container<HexDisplay> {
         alpha: 1,
         alignment: 0,
       })
+      .setFillStyle({
+        alpha: 0,
+        color: 0xffffff,
+      })
       .poly(hexVertices)
-      .stroke();
+      .stroke()
+      .fill();
   }
 
   public static getHexScale(

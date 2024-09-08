@@ -1,35 +1,15 @@
 <svelte:options accessors />
 
-<script lang="ts" context="module">
-  import { writable, type Writable } from "svelte/store";
-
-  type PropertiesMenuContext = {
-    activeTab: Writable<number>;
-  };
-
-  const DEFAULT_CONTEXT: PropertiesMenuContext = {
-    activeTab: writable(0),
-  };
-
-  export type { PropertiesMenuContext };
-</script>
-
 <script lang="ts">
-  import { base } from "$app/paths";
-  import { setContext } from "svelte";
-  import Tab from "./Tab.svelte";
+  import HexTab from "./Tabs/HexTab.svelte";
 
   export let hidden: boolean = false;
 
   let container: HTMLDivElement;
-
-  setContext<PropertiesMenuContext>("propertiesMenu", DEFAULT_CONTEXT);
 </script>
 
 <div bind:this={container} class="container" class:hidden>
-  <Tab imageSRC="{base}/hex_grid.png" imageAltText="">1</Tab>
-  <Tab imageSRC="{base}/hex_grid.png" imageAltText="">2</Tab>
-  <Tab imageSRC="{base}/hex_grid.png" imageAltText="">3</Tab>
+  <HexTab />
 </div>
 
 <style lang="scss">
@@ -68,9 +48,5 @@
         background-color: #4f4f4f;
       }
     }
-  }
-
-  .hidden {
-    display: none;
   }
 </style>

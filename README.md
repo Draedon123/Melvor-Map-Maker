@@ -2,7 +2,7 @@
 
 ![Issues](https://img.shields.io/github/issues/Draedon123/Melvor-Map-Maker)
 
-<!-- ![License](https://img.shields.io/github/license/Draedon123/Melvor-Map-Maker) -->
+![License](https://img.shields.io/github/license/Draedon123/Melvor-Map-Maker)
 
 ![Version](https://img.shields.io/github/package-json/v/draedon123/Melvor-Map-Maker)
 
@@ -24,6 +24,7 @@ As of the present, the Melvor Map Maker is an **unofficial** tool and is **not**
 | <img src="static/hex_grid.png" style="width: 2em; height: 2em;" /> | Freepik      | https://www.flaticon.com/free-icon/honeycomb_172591 |
 | <img src="static/no_image.png" style="width: 2em; height: 2em;" /> | yaicon       | https://www.flaticon.com/free-icon/image_10701484   |
 | <img src="static/upload.png" style="width: 2em; height: 2em;" />   | SeyfDesigner | https://www.flaticon.com/free-icon/image_8191581    |
+| <img src="static/delete.png" style="width: 2em; height: 2em;" />   | kliwir art   | https://www.flaticon.com/free-icon/bin_9790368      |
 
 ### Basis Universal Supercompressed GPU Texture Codec
 

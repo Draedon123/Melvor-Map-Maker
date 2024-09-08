@@ -3,6 +3,7 @@
     setValue: (value: string) => void;
     setTextContext: (textContent: string) => void;
     hide: () => void;
+    onChange: (value: string) => void;
   };
 
   export type { DropdownContext };
@@ -16,6 +17,7 @@
   export let caretFillColour: string = "#000000";
   export let style: string = "";
   export let showOptions: boolean = false;
+  export let onChange: (value: string) => void = () => {};
 
   let textContent: string = value;
 
@@ -29,6 +31,7 @@
     setTextContext(newTextContent: string) {
       textContent = newTextContent;
     },
+    onChange,
   });
 
   function buttonOnClick(): void {
@@ -37,7 +40,7 @@
 </script>
 
 <div class="container">
-  <button {style} on:click={buttonOnClick}>
+  <button {style} on:click|stopPropagation={buttonOnClick}>
     {textContent ? textContent : placeholder}
     <svg
       viewBox="0 0 48 48"
