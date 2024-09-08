@@ -18,7 +18,7 @@
       await database.projects.delete(project.id);
 
       if ($store.activeProject === project) {
-        $store.activeProject = null;
+        $store.activeProject = new Project();
       }
 
       return;

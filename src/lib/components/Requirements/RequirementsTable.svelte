@@ -180,17 +180,19 @@
 
 <div class="new-requirement-container">
   <p>Add new Requirement:</p>
-  <Dropdown
-    bind:value={requirementType}
-    placeholder="Select a requirement type"
-  >
-    {#each REQUIREMENT_TYPES as requirement (requirement)}
-      <DropdownOption value={requirement.replaceAll(" ", "")}
-        >{requirement}</DropdownOption
-      >
-    {/each}
-  </Dropdown>
-  <button on:click={addNewRequirement}>Add!</button>
+  <div class="dropdown-container">
+    <Dropdown
+      bind:value={requirementType}
+      placeholder="Select a requirement type"
+    >
+      {#each REQUIREMENT_TYPES as requirement (requirement)}
+        <DropdownOption value={requirement.replaceAll(" ", "")}
+          >{requirement}</DropdownOption
+        >
+      {/each}
+    </Dropdown>
+    <button on:click={addNewRequirement}>Add!</button>
+  </div>
 </div>
 
 <table>
@@ -226,11 +228,17 @@
 
   button {
     & {
+      @include button(#659ca7);
+    }
+
+    & {
       font-size: medium;
       margin: 3px 0;
       width: 100%;
     }
+  }
 
-    @include button(#659ca7);
+  .dropdown-container {
+    width: min-content;
   }
 </style>
