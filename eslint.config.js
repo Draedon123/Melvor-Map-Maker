@@ -24,6 +24,9 @@ export default [
         parser: ts.parser,
       },
     },
+    rules: {
+      "no-undef": 0,
+    },
   },
   {
     ignores: ["build/", ".svelte-kit/", "*/basis_encoder.js"],

@@ -4,11 +4,9 @@
   import HexTab from "./Tabs/HexTab.svelte";
 
   export let hidden: boolean = false;
-
-  let container: HTMLDivElement;
 </script>
 
-<div bind:this={container} class="container" class:hidden>
+<div class="container" class:hidden>
   <HexTab />
 </div>
 

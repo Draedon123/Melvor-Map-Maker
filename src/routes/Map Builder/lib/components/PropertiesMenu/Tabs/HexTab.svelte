@@ -3,12 +3,12 @@
   import { derived } from "svelte/store";
   import Tab from "../Tab.svelte";
   import store from "$routes/Map Builder/lib/store/store";
-  import type { HexData } from "$lib/melvor/schema";
   import RequirementsTable from "$lib/components/Requirements/RequirementsTable.svelte";
+  import CostsTable from "$lib/components/TableList/CostsTable.svelte";
 
   const data = derived(store, ($store) => $store.propertiesMenu.hexTab);
 
-  let activeHex: HexData | undefined = undefined;
+  let activeHex: StrictHexData | undefined = undefined;
 
   data.subscribe(() => {
     activeHex = $store.hexGridLayer.children.find(
@@ -35,6 +35,8 @@
       max={activeHex.maxMasteryLevel}
     />
 
+    <br />
+
     <label for="maxMasteryLevel"> Max Mastery Level: </label>
     <input
       type="number"
@@ -44,11 +46,16 @@
       bind:value={activeHex.maxMasteryLevel}
     />
 
+    <br />
+
     <label for="isWater">Is water?</label>
     <input type="checkbox" id="isWater" bind:checked={activeHex.isWater} />
 
     <h4>Requirements:</h4>
     <RequirementsTable bind:requirements={activeHex.requirements} />
+
+    <h4>Travel Costs</h4>
+    <CostsTable bind:costs={activeHex.travelCost} />
   {:else}
     <h3>No hex selected!</h3>
   {/if}
@@ -57,7 +64,8 @@
 <style lang="scss">
   @import "/src/styles/input.scss";
 
-  h3 {
+  h3,
+  h4 {
     margin: 0;
   }
 

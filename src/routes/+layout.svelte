@@ -139,63 +139,63 @@
 
 <!-- #region Datalists -->
 <datalist id="skillIDs">
-  <option value="melvorD:Attack">melvorD:Attack</option>
-  <option value="melvorD:Strength">melvorD:Strength</option>
-  <option value="melvorD:Defence">melvorD:Defence</option>
-  <option value="melvorD:Hitpoints">melvorD:Hitpoints</option>
-  <option value="melvorD:Ranged">melvorD:Ranged</option>
-  <option value="melvorD:Magic">melvorD:Magic</option>
-  <option value="melvorD:Prayer">melvorD:Prayer</option>
-  <option value="melvorD:Slayer">melvorD:Slayer</option>
-  <option value="melvorD:Woodcutting">melvorD:Woodcutting</option>
-  <option value="melvorD:Fishing">melvorD:Fishing</option>
-  <option value="melvorD:Firemaking">melvorD:Firemaking</option>
-  <option value="melvorD:Cooking">melvorD:Cooking</option>
-  <option value="melvorD:Mining">melvorD:Mining</option>
-  <option value="melvorD:Smithing">melvorD:Smithing</option>
-  <option value="melvorD:Thieving">melvorD:Thieving</option>
-  <option value="melvorD:Farming">melvorD:Farming</option>
-  <option value="melvorD:Fletching">melvorD:Fletching</option>
-  <option value="melvorD:Crafting">melvorD:Crafting</option>
-  <option value="melvorD:Runecrafting">melvorD:Runecrafting</option>
-  <option value="melvorD:Herblore">melvorD:Herblore</option>
-  <option value="melvorD:Agility">melvorD:Agility</option>
-  <option value="melvorD:Summoning">melvorD:Summoning</option>
-  <option value="melvorD:Astrology">melvorD:Astrology</option>
-  <option value="melvorD:Township">melvorD:Township</option>
-  <option value="melvorAoD:Cartography">melvorAoD:Cartography</option>
-  <option value="melvorAoD:Archaeology">melvorAoD:Archaeology</option>
-  <option value="melvorItA:Harvesting">melvorItA:Harvesting</option>
-  <option value="melvorItA:Corruption">melvorItA:Corruption</option>
+  <option value="melvorD:Attack" />
+  <option value="melvorD:Strength" />
+  <option value="melvorD:Defence" />
+  <option value="melvorD:Hitpoints" />
+  <option value="melvorD:Ranged" />
+  <option value="melvorD:Magic" />
+  <option value="melvorD:Prayer" />
+  <option value="melvorD:Slayer" />
+  <option value="melvorD:Woodcutting" />
+  <option value="melvorD:Fishing" />
+  <option value="melvorD:Firemaking" />
+  <option value="melvorD:Cooking" />
+  <option value="melvorD:Mining" />
+  <option value="melvorD:Smithing" />
+  <option value="melvorD:Thieving" />
+  <option value="melvorD:Farming" />
+  <option value="melvorD:Fletching" />
+  <option value="melvorD:Crafting" />
+  <option value="melvorD:Runecrafting" />
+  <option value="melvorD:Herblore" />
+  <option value="melvorD:Agility" />
+  <option value="melvorD:Summoning" />
+  <option value="melvorD:Astrology" />
+  <option value="melvorD:Township" />
+  <option value="melvorAoD:Cartography" />
+  <option value="melvorAoD:Archaeology" />
+  <option value="melvorItA:Harvesting" />
+  <option value="melvorItA:Corruption" />
 </datalist>
 
 <datalist id="namespaces">
-  <option value="melvorBaseGame">melvorBaseGame</option>
-  <option value="melvorTrue">melvorTrue</option>
-  <option value="melvorD">melvorD</option>
-  <option value="melvorF">melvorF</option>
-  <option value="melvorTotH">melvorTotH</option>
-  <option value="melvorAoD">melvorAoD</option>
-  <option value="melvorItA">melvorItA</option>
-  <option value="melvorBirthday2023">melvorBirthday2023</option>
-  <option value="melvorAprilFools2024">melvorAprilFools2024</option>
+  <option value="melvorBaseGame" />
+  <option value="melvorTrue" />
+  <option value="melvorD" />
+  <option value="melvorF" />
+  <option value="melvorTotH" />
+  <option value="melvorAoD" />
+  <option value="melvorItA" />
+  <option value="melvorBirthday2023" />
+  <option value="melvorAprilFools2024" />
 </datalist>
 
 <datalist id="dungeonIDs">
-  <option value="melvorD:Chicken_Coop">melvorD:Chicken_Coop</option>
-  <option value="melvorD:Undead_Graveyard">melvorD:Undead_Graveyard</option>
-  <option value="melvorD:Spider_Forest">melvorD:Spider_Forest</option>
-  <option value="melvorD:Frozen_Cove">melvorD:Frozen_Cove</option>
-  <option value="melvorD:Deep_Sea_Ship">melvorD:Deep_Sea_Ship</option>
-  <option value="melvorD:Volcanic_Cave">melvorD:Volcanic_Cave</option>
-  <option value="melvorD:Bandit_Base">melvorD:Bandit_Base</option>
-  <option value="melvorD:Hall_of_Wizards">melvorD:Hall_of_Wizards</option>
-  <option value="melvorF:Air_God_Dungeon">melvorF:Air_God_Dungeon</option>
-  <option value="melvorF:Water_God_Dungeon">melvorF:Water_God_Dungeon</option>
-  <option value="melvorF:Earth_God_Dungeon">melvorF:Earth_God_Dungeon</option>
-  <option value="melvorF:Fire_God_Dungeon">melvorF:Fire_God_Dungeon</option>
-  <option value="melvorF:Dragons_Den">melvorF:Dragons_Den</option>
-  <option value="melvorF:Miolite_Caves">melvorF:Miolite_Caves</option>
+  <option value="melvorD:Chicken_Coop" />
+  <option value="melvorD:Undead_Graveyard" />
+  <option value="melvorD:Spider_Forest" />
+  <option value="melvorD:Frozen_Cove" />
+  <option value="melvorD:Deep_Sea_Ship" />
+  <option value="melvorD:Volcanic_Cave" />
+  <option value="melvorD:Bandit_Base" />
+  <option value="melvorD:Hall_of_Wizards" />
+  <option value="melvorF:Air_God_Dungeon" />
+  <option value="melvorF:Water_God_Dungeon" />
+  <option value="melvorF:Earth_God_Dungeon" />
+  <option value="melvorF:Fire_God_Dungeon" />
+  <option value="melvorF:Dragons_Den" />
+  <option value="melvorF:Miolite_Caves" />
   <option value="melvorF:Infernal_Stronghold"
     >melvorF:Infernal_Stronghold</option
   >
@@ -232,43 +232,51 @@
 </datalist>
 
 <datalist id="slayerTaskCategories">
-  <option value="melvorF:Easy">melvorF:Easy</option>
-  <option value="melvorF:Normal">melvorF:Normal</option>
-  <option value="melvorF:Hard">melvorF:Hard</option>
-  <option value="melvorF:Elite">melvorF:Elite</option>
-  <option value="melvorF:Master">melvorF:Master</option>
-  <option value="melvorTotH:Legendary">melvorTotH:Legendary</option>
-  <option value="melvorTotH:Mythical">melvorTotH:Mythical</option>
-  <option value="melvorItA:Woe">melvorItA:Woe</option>
-  <option value="melvorItA:Decay">melvorItA:Decay</option>
-  <option value="melvorItA:Fear">melvorItA:Fear</option>
-  <option value="melvorItA:Ruin">melvorItA:Ruin</option>
-  <option value="melvorItA:Isolation">melvorItA:Isolation</option>
-  <option value="melvorItA:Dissolution">melvorItA:Dissolution</option>
-  <option value="melvorItA:Resolution">melvorItA:Resolution</option>
+  <option value="melvorF:Easy" />
+  <option value="melvorF:Normal" />
+  <option value="melvorF:Hard" />
+  <option value="melvorF:Elite" />
+  <option value="melvorF:Master" />
+  <option value="melvorTotH:Legendary" />
+  <option value="melvorTotH:Mythical" />
+  <option value="melvorItA:Woe" />
+  <option value="melvorItA:Decay" />
+  <option value="melvorItA:Fear" />
+  <option value="melvorItA:Ruin" />
+  <option value="melvorItA:Isolation" />
+  <option value="melvorItA:Dissolution" />
+  <option value="melvorItA:Resolution" />
 </datalist>
 
 <datalist id="worldMapIDs">
-  <option value="melvorAoD:Melvor">melvorAoD:Melvor</option>
-  <option value="melvorAoD:Lemvor">melvorAoD:Lemvor</option>
+  <option value="melvorAoD:Melvor" />
+  <option value="melvorAoD:Lemvor" />
 </datalist>
 
 <datalist id="abyssDepths">
-  <option value="melvorItA:Depth1">melvorItA:Depth1</option>
-  <option value="melvorItA:Depth2">melvorItA:Depth2</option>
-  <option value="melvorItA:Depth3">melvorItA:Depth3</option>
-  <option value="melvorItA:Depth4">melvorItA:Depth4</option>
-  <option value="melvorItA:Depth5">melvorItA:Depth5</option>
-  <option value="melvorItA:Depth6">melvorItA:Depth6</option>
-  <option value="melvorItA:Depth7">melvorItA:Depth7</option>
-  <option value="melvorItA:Depth8">melvorItA:Depth8</option>
-  <option value="melvorItA:Depth9">melvorItA:Depth9</option>
+  <option value="melvorItA:Depth1" />
+  <option value="melvorItA:Depth2" />
+  <option value="melvorItA:Depth3" />
+  <option value="melvorItA:Depth4" />
+  <option value="melvorItA:Depth5" />
+  <option value="melvorItA:Depth6" />
+  <option value="melvorItA:Depth7" />
+  <option value="melvorItA:Depth8" />
+  <option value="melvorItA:Depth9" />
 </datalist>
 
 <datalist id="realms">
-  <option value="melvorD:Melvor">melvorD:Melvor</option>
-  <option value="melvorItA:Abyssal">melvorItA:Abyssal</option>
-  <option value="melvorItA:Eternal">melvorItA:Eternal</option>
+  <option value="melvorD:Melvor" />
+  <option value="melvorItA:Abyssal" />
+  <option value="melvorItA:Eternal" />
+</datalist>
+
+<datalist id="currencyIDs">
+  <option value="melvorD:GP" />
+  <option value="melvorD:SlayerCoins" />
+  <option value="melvorD:RaidCoins" />
+  <option value="melvorItA:AbyssalPieces" />
+  <option value="melvorItA:AbyssalSlayerCoins" />
 </datalist>
 
 <!-- #endregion -->

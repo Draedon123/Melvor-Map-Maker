@@ -1,6 +1,6 @@
 import { Graphics } from "pixi.js";
 import { axialToOddQ, oddQToAxial } from "$lib/functions/coordinates";
-import type { HexCoordData, HexData, PointData } from "$lib/melvor/schema";
+import type { HexCoordData, PointData } from "$lib/melvor/schema";
 import SafeGraphicsContext from "./SafeGraphicsContext";
 import store from "../store/store";
 
@@ -14,7 +14,7 @@ const FLAT_HEX_ORIENT = {
 } as const;
 
 class HexDisplay extends Graphics {
-  public hex: HexData;
+  public hex: StrictHexData;
 
   private _hexScale!: PointData;
   private _coordinates!: PointData;
@@ -37,7 +37,10 @@ class HexDisplay extends Graphics {
       maxMasteryLevel: 5,
       maxSurveyLevel: 2,
       requirements: [],
-      travelCost: {},
+      travelCost: {
+        currencies: [],
+        items: [],
+      },
     };
 
     function onClick(this: HexDisplay): void {

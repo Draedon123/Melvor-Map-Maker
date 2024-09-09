@@ -13,6 +13,24 @@ declare global {
         ? Readonly<DeepPartial<U>>[]
         : DeepPartial<T[P]>;
   };
+
+  import type {
+    HexCoordData,
+    AnyRequirementData,
+    CurrencyQuantity,
+    AnyItemQuantity,
+  } from "$lib/melvor/schema";
+  type StrictHexData = {
+    coordinates: HexCoordData;
+    maxSurveyLevel: number;
+    maxMasteryLevel: number;
+    requirements: AnyRequirementData[];
+    travelCost: {
+      currencies: CurrencyQuantity[];
+      items: AnyItemQuantity[];
+    };
+    isWater: boolean;
+  };
 }
 
 export {};
