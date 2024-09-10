@@ -117,3 +117,18 @@
     list="realms"
   /> must be completed
 {/if}
+
+<style lang="scss">
+  @import "/src/styles/input.scss";
+
+  :global(input:not([type="checkbox"]):not([type="image"])) {
+    & {
+      @include input();
+    }
+
+    & {
+      height: 1.1em;
+      font-size: small;
+    }
+  }
+</style>

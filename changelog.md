@@ -1,5 +1,7 @@
 # v0.13.0
 
+- Optimised `HexGridLayer.populate`
+- Updated typescript version
 - Set `additionalProperties` in `getMelvorSchema.cjs` to false
 
 # v0.12.0

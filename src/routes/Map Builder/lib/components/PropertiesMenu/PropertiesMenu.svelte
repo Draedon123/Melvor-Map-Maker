@@ -19,7 +19,7 @@
 
     padding: 0.5em 1ch;
     background-color: #1f1f1f;
-    overflow-x: hidden;
+    overflow-x: scroll;
     overflow-y: scroll;
 
     z-index: 10;

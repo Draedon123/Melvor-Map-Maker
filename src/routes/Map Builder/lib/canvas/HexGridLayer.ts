@@ -8,11 +8,18 @@ const SQRT_3 = Math.sqrt(3);
 const THIRD_PI = Math.PI / 3;
 
 class HexGridLayer extends Container<HexDisplay> {
+  private readonly hexDisplayMap: Map<`${number}_${number}`, HexDisplay>;
+  private hexesX: number;
+  private hexesY: number;
   constructor() {
     super({
       label: "Hex Grid",
       zIndex: 1,
     });
+
+    this.hexDisplayMap = new Map();
+    this.hexesX = 0;
+    this.hexesY = 0;
   }
 
   public static getHexVertices(hexScale: PointData): PointData[] {
@@ -71,8 +78,7 @@ class HexGridLayer extends Container<HexDisplay> {
     viewport: Viewport,
     hexesX: number,
     hexesY: number
-  ): HexDisplay[] {
-    const hexDisplays: HexDisplay[] = [];
+  ): this {
     const hexScale = HexGridLayer.getHexScale(mapDimensions, hexesX, hexesY);
     const graphicsContext = HexGridLayer.getHexGraphicContext(
       HexGridLayer.getHexVertices(hexScale),
@@ -80,31 +86,48 @@ class HexGridLayer extends Container<HexDisplay> {
       mapDimensions
     );
 
-    for (let x = 0; x < hexesX; x++) {
-      for (let y = 0; y < hexesY; y++) {
+    const xUpperBound = Math.max(this.hexesX, hexesX);
+    const yUpperBound = Math.max(this.hexesY, hexesY);
+
+    for (let x = 0; x < xUpperBound; x++) {
+      for (let y = 0; y < yUpperBound; y++) {
         if (x % 2 === 1 && y == hexesY - 1) {
           continue;
         }
 
-        const hexGraphic = new HexDisplay(graphicsContext, hexScale, { x, y });
-        hexDisplays.push(hexGraphic);
+        const mapKey = `${x}_${y}` as const;
+        const existingHexDisplay = this.hexDisplayMap.get(mapKey);
+
+        if (existingHexDisplay !== undefined) {
+          if (x + 1 > hexesX || y + 1 > hexesY) {
+            this.removeChild(existingHexDisplay).destroy(true);
+            this.hexDisplayMap.delete(mapKey);
+
+            continue;
+          }
+
+          existingHexDisplay.context = graphicsContext;
+          existingHexDisplay.hexScale = hexScale;
+          existingHexDisplay.coordinates = { x, y };
+
+          continue;
+        }
+
+        console.log(`Creating Hex (${x}, ${y})`);
+        const hexDisplay = new HexDisplay(graphicsContext, hexScale, {
+          x,
+          y,
+        });
+
+        this.hexDisplayMap.set(mapKey, hexDisplay);
+        this.addChild(hexDisplay);
       }
     }
 
-    this.removeChildren().forEach((child) => {
-      child.destroy(true);
-    });
+    this.hexesX = hexesX;
+    this.hexesY = hexesY;
 
-    // the children are looped over to prevent stack overflow errors when there
-    // are a ton of hex displays
-    // internally, pixi.js container.addChild recursively calls itself for each
-    // child being added, so there is no performance difference by looping over
-    // the children manually
-    for (const hexDisplay of hexDisplays) {
-      this.addChild(hexDisplay);
-    }
-
-    return hexDisplays;
+    return this;
   }
 
   public updateGraphicsContext(context: SafeGraphicsContext): this {

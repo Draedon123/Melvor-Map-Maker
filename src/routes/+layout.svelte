@@ -82,6 +82,7 @@
     body {
       margin: 0;
       overflow: hidden;
+      background-color: unset !important;
     }
   </style>
 </svelte:head>

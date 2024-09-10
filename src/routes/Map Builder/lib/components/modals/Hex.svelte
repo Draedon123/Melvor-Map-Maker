@@ -28,6 +28,9 @@
       hexesX,
       hexesY
     );
+
+    lastHexes.x = hexesX;
+    lastHexes.y = hexesY;
   });
 
   onMount(() => {
