@@ -1,6 +1,10 @@
+<script lang="ts" context="module">
+  const PLACEHOLDER_PREVIEW_IMAGE_SRC = `${base}/black.png`;
+</script>
+
 <script lang="ts">
   import { base } from "$app/paths";
-  import { resize } from "$lib/functions/imageUtils";
+  import { toBlob } from "$lib/functions/imageUtils";
   import store from "./store";
   import Dialog from "$lib/components/Dialog/Dialog.svelte";
   import Toolbar from "$lib/components/Toolbar/Toolbar.svelte";
@@ -8,31 +12,18 @@
 
   let dialog: Dialog;
   let preview: HTMLImageElement;
-  let previewImageSRC: string = `${base}/black.png`;
+  let previewImageSRC: string = PLACEHOLDER_PREVIEW_IMAGE_SRC;
 
   async function getPreviewImageSrc(
     image: HTMLImageElement | null
   ): Promise<void> {
     URL.revokeObjectURL(previewImageSRC);
     if (image === null) {
-      previewImageSRC = `${base}/black.png`;
+      previewImageSRC = PLACEHOLDER_PREVIEW_IMAGE_SRC;
       return;
     }
 
-    const width = document.body.offsetHeight * 0.75 * devicePixelRatio;
-    const height = document.body.offsetHeight * 0.75 * devicePixelRatio;
-
-    const src = await resize(
-      image,
-      {
-        type: "to",
-        x: width,
-        y: height,
-      },
-      "url"
-    );
-
-    previewImageSRC = src;
+    previewImageSRC = URL.createObjectURL(await toBlob(image));
   }
 
   store.subscribe((store) => {
@@ -57,6 +48,9 @@
       src={previewImageSRC}
       alt="Preview"
       class="preview"
+      style={previewImageSRC === PLACEHOLDER_PREVIEW_IMAGE_SRC
+        ? "width: 80vh; height: 80vh;"
+        : ""}
     />
   </Dialog>
 
@@ -70,8 +64,8 @@
   @import "/src/styles/globals.scss";
 
   img.preview {
-    width: 75vh;
-    height: 75vh;
+    max-width: 80vh;
+    max-height: 80vh;
     background-color: black;
     margin: 0;
   }
