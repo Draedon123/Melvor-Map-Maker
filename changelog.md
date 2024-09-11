@@ -4,6 +4,7 @@
 - Updated typescript version
 - Set `additionalProperties` in `getMelvorSchema.cjs` to false
 - Fixed forced aspect ratio of 1 in File Generator Image Preview
+- Added `test assets` to `.gitignore`
 
 # v0.12.0
 
