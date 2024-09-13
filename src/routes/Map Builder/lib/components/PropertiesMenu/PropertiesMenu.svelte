@@ -2,12 +2,14 @@
 
 <script lang="ts">
   import HexTab from "./Tabs/HexTab.svelte";
+  import PoiTab from "./Tabs/PoiTab.svelte";
 
   export let hidden: boolean = false;
 </script>
 
 <div class="container" class:hidden>
   <HexTab />
+  <PoiTab />
 </div>
 
 <style lang="scss">
