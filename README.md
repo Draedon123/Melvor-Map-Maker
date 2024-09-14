@@ -25,6 +25,7 @@ As of the present, the Melvor Map Maker is an **unofficial** tool and is **not**
 | <img src="static/no_image.png" style="width: 2em; height: 2em;" /> | yaicon       | https://www.flaticon.com/free-icon/image_10701484   |
 | <img src="static/upload.png" style="width: 2em; height: 2em;" />   | SeyfDesigner | https://www.flaticon.com/free-icon/image_8191581    |
 | <img src="static/delete.png" style="width: 2em; height: 2em;" />   | kliwir art   | https://www.flaticon.com/free-icon/bin_9790368      |
+| <img src="static/edit.png" style="width: 2em; height: 2em;" />     | riajulislam  | https://www.flaticon.com/free-icon/pen_10336582     |
 
 ### Basis Universal Supercompressed GPU Texture Codec
 

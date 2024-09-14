@@ -1,7 +1,6 @@
 import Dexie, { type EntityTable } from "dexie";
 import { error } from "$lib/functions/log";
 import { base } from "$app/paths";
-import type { WorldMapData } from "$lib/melvor/schema";
 
 type CachedFile = {
   key: string;
@@ -12,7 +11,7 @@ type Project = { id: number } & Nullable<{
   name: string;
   namespace: string;
   tiles: Tiles;
-  worldMapData: WorldMapData;
+  worldMapData: StrictWorldMapData;
   modIcon: Uint8Array;
   thumbnail: Uint8Array;
 }>;

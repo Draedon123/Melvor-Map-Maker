@@ -250,7 +250,7 @@
   }
 
   .dropdown-container {
-    width: min-content;
+    width: max-content;
   }
 
   input[type="image"] {

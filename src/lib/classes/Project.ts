@@ -1,5 +1,4 @@
 import { fromArrayBuffer, toArrayBuffer } from "$lib/functions/imageUtils";
-import type { WorldMapData } from "$lib/melvor/schema";
 import type { Tiles, Project as DatabaseProject } from "$lib/database/database";
 import database from "$lib/database/database";
 
@@ -8,7 +7,7 @@ type IProject = {
   name: string;
   namespace: string;
   tiles: Tiles;
-  worldMapData: WorldMapData;
+  worldMapData: StrictWorldMapData;
   modIcon: HTMLImageElement;
   thumbnail: HTMLImageElement;
 };
@@ -18,7 +17,7 @@ class Project {
   public name: string;
   public namespace: string | null;
   public tiles: Tiles | null;
-  public worldMapData: WorldMapData;
+  public worldMapData: StrictWorldMapData;
   public modIcon: HTMLImageElement | null;
   public thumbnail: HTMLImageElement | null;
   constructor(project: Partial<Nullable<IProject>> = {}) {

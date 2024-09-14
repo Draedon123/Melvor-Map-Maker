@@ -1,4 +1,4 @@
-import{o as ft,u as W,a as dt,h as C,l as mt,m as ht,n as K,w as pt}from"./store.D6yahPAx.js";const T=Object.create(null),X=Object.create(null);function V(o,t){let e=X[o];return e===void 0&&(T[t]===void 0&&(T[t]=1),X[o]=e=T[t]++),e}let M;function gt(){if(!M){M="mediump";const o=ft();o&&o.getShaderPrecisionFormat&&(M=o.getShaderPrecisionFormat(o.FRAGMENT_SHADER,o.HIGH_FLOAT).precision?"highp":"mediump")}return M}function xt(o,t,e){return t?o:e?(o=o.replace("out vec4 finalColor;",""),`
+import{p as ft,u as W,a as dt,d as C,k as mt,l as ht,n as K,w as pt}from"./store.Evwx8C75.js";const T=Object.create(null),X=Object.create(null);function V(o,t){let e=X[o];return e===void 0&&(T[t]===void 0&&(T[t]=1),X[o]=e=T[t]++),e}let M;function gt(){if(!M){M="mediump";const o=ft();o&&o.getShaderPrecisionFormat&&(M=o.getShaderPrecisionFormat(o.FRAGMENT_SHADER,o.HIGH_FLOAT).precision?"highp":"mediump")}return M}function xt(o,t,e){return t?o:e?(o=o.replace("out vec4 finalColor;",""),`
         
         #ifdef GL_ES // This checks if it is WebGL1
         #define in varying
@@ -33,7 +33,7 @@ ${a}
 `).length?e=e.replace(`{{${r}}}`,`//-----${r} START-----//
 ${n.join(`
 `)}
-//----${r} FINISH----//`):e=e.replace(`{{${r}}}`,"")}return e}const g=Object.create(null),I=new Map;let Dt=0;function kt({template:o,bits:t}){const e=ct(o,t);if(g[e])return g[e];const{vertex:r,fragment:n}=Lt(o,t);return g[e]=lt(r,n,t),g[e]}function Nt({template:o,bits:t}){const e=ct(o,t);return g[e]||(g[e]=lt(o.vertex,o.fragment,t)),g[e]}function Lt(o,t){const e=t.map(a=>a.vertex).filter(a=>!!a),r=t.map(a=>a.fragment).filter(a=>!!a);let n=Q(e,o.vertex,!0);n=jt(e,n);const s=Q(r,o.fragment,!0);return{vertex:n,fragment:s}}function ct(o,t){return t.map(e=>(I.has(e)||I.set(e,Dt++),I.get(e))).sort((e,r)=>e-r).join("-")+o.vertex+o.fragment}function lt(o,t,e){const r=Z(o),n=Z(t);return e.forEach(s=>{q(s.vertex,r,s.name),q(s.fragment,n,s.name)}),{vertex:et(o,r),fragment:et(t,n)}}const Ht=`
+//----${r} FINISH----//`):e=e.replace(`{{${r}}}`,"")}return e}const g=Object.create(null),I=new Map;let kt=0;function Dt({template:o,bits:t}){const e=ct(o,t);if(g[e])return g[e];const{vertex:r,fragment:n}=Lt(o,t);return g[e]=lt(r,n,t),g[e]}function Nt({template:o,bits:t}){const e=ct(o,t);return g[e]||(g[e]=lt(o.vertex,o.fragment,t)),g[e]}function Lt(o,t){const e=t.map(a=>a.vertex).filter(a=>!!a),r=t.map(a=>a.fragment).filter(a=>!!a);let n=Q(e,o.vertex,!0);n=jt(e,n);const s=Q(r,o.fragment,!0);return{vertex:n,fragment:s}}function ct(o,t){return t.map(e=>(I.has(e)||I.set(e,kt++),I.get(e))).sort((e,r)=>e-r).join("-")+o.vertex+o.fragment}function lt(o,t,e){const r=Z(o),n=Z(t);return e.forEach(s=>{q(s.vertex,r,s.name),q(s.fragment,n,s.name)}),{vertex:et(o,r),fragment:et(t,n)}}const Ht=`
     @in aPosition: vec2<f32>;
     @in aUV: vec2<f32>;
 
@@ -165,7 +165,7 @@ ${n.join(`
           uniform mat3 uWorldTransformMatrix;
           uniform vec4 uWorldColorAlpha;
           uniform vec2 uResolution;
-        `}};function re({bits:o,name:t}){const e=kt({template:{fragment:Vt,vertex:Ht},bits:[Xt,...o]});return S.from({name:t,vertex:{source:e.vertex,entryPoint:"main"},fragment:{source:e.fragment,entryPoint:"main"}})}function oe({bits:o,name:t}){return new ot({name:t,...Nt({template:{vertex:Wt,fragment:Kt},bits:[Yt,...o]})})}const ne={name:"color-bit",vertex:{header:`
+        `}};function re({bits:o,name:t}){const e=Dt({template:{fragment:Vt,vertex:Ht},bits:[Xt,...o]});return S.from({name:t,vertex:{source:e.vertex,entryPoint:"main"},fragment:{source:e.fragment,entryPoint:"main"}})}function oe({bits:o,name:t}){return new ot({name:t,...Nt({template:{vertex:Wt,fragment:Kt},bits:[Yt,...o]})})}const ne={name:"color-bit",vertex:{header:`
             @in aColor: vec4<f32>;
         `,main:`
             vColor *= vec4<f32>(aColor.rgb * aColor.a, aColor.a);
@@ -194,8 +194,8 @@ ${n.join(`
                 var uvDy = dpdy(vUV);
 
                 ${Zt(o)}
-            `}}),j[o]}const D={};function Jt(o){const t=[];for(let e=0;e<o;e++)e>0&&t.push("else"),e<o-1&&t.push(`if(vTextureId < ${e}.5)`),t.push("{"),t.push(`	outColor = texture(uTextures[${e}], vUV);`),t.push("}");return t.join(`
-`)}function ae(o){return D[o]||(D[o]={name:"texture-batch-bit",vertex:{header:`
+            `}}),j[o]}const k={};function Jt(o){const t=[];for(let e=0;e<o;e++)e>0&&t.push("else"),e<o-1&&t.push(`if(vTextureId < ${e}.5)`),t.push("{"),t.push(`	outColor = texture(uTextures[${e}], vUV);`),t.push("}");return t.join(`
+`)}function ae(o){return k[o]||(k[o]={name:"texture-batch-bit",vertex:{header:`
                 in vec2 aTextureIdAndRound;
                 out float vTextureId;
 
@@ -214,7 +214,7 @@ ${n.join(`
             `,main:`
 
                 ${Jt(o)}
-            `}}),D[o]}const ue={name:"round-pixels-bit",vertex:{header:`
+            `}}),k[o]}const ue={name:"round-pixels-bit",vertex:{header:`
             fn roundPixels(position: vec2<f32>, targetSize: vec2<f32>) -> vec2<f32> 
             {
                 return (floor(((position * 0.5 + 0.5) * targetSize) + 0.5) / targetSize) * 2.0 - 1.0;
@@ -224,7 +224,7 @@ ${n.join(`
             {       
                 return (floor(((position * 0.5 + 0.5) * targetSize) + 0.5) / targetSize) * 2.0 - 1.0;
             }
-        `}},k={name:"local-uniform-bit",vertex:{header:`
+        `}},D={name:"local-uniform-bit",vertex:{header:`
 
             struct LocalUniforms {
                 uTransformMatrix:mat3x3<f32>,
@@ -241,7 +241,7 @@ ${n.join(`
             {
                 vPosition = vec4(roundPixels(vPosition.xy, globalUniforms.uResolution), vPosition.zw);
             }
-        `}},le={...k,vertex:{...k.vertex,header:k.vertex.header.replace("group(1)","group(2)")}},fe={name:"local-uniform-bit",vertex:{header:`
+        `}},le={...D,vertex:{...D.vertex,header:D.vertex.header.replace("group(1)","group(2)")}},fe={name:"local-uniform-bit",vertex:{header:`
 
             uniform mat3 uTransformMatrix;
             uniform vec4 uColor;
@@ -254,4 +254,4 @@ ${n.join(`
             {
                 gl_Position.xy = roundPixels(gl_Position.xy, uResolution);
             }
-        `}};class de{constructor(){this.vertexSize=4,this.indexSize=6,this.location=0,this.batcher=null,this.batch=null,this.roundPixels=0}get blendMode(){return this.renderable.groupBlendMode}packAttributes(t,e,r,n){const s=this.renderable,a=this.texture,i=s.groupTransform,u=i.a,l=i.b,c=i.c,d=i.d,m=i.tx,f=i.ty,p=this.bounds,x=p.maxX,v=p.minX,b=p.maxY,P=p.minY,h=a.uvs,_=s.groupColorAlpha,G=n<<16|this.roundPixels&65535;t[r+0]=u*v+c*P+m,t[r+1]=d*P+l*v+f,t[r+2]=h.x0,t[r+3]=h.y0,e[r+4]=_,e[r+5]=G,t[r+6]=u*x+c*P+m,t[r+7]=d*P+l*x+f,t[r+8]=h.x1,t[r+9]=h.y1,e[r+10]=_,e[r+11]=G,t[r+12]=u*x+c*b+m,t[r+13]=d*b+l*x+f,t[r+14]=h.x2,t[r+15]=h.y2,e[r+16]=_,e[r+17]=G,t[r+18]=u*v+c*b+m,t[r+19]=d*b+l*v+f,t[r+20]=h.x3,t[r+21]=h.y3,e[r+22]=_,e[r+23]=G}packIndex(t,e,r){t[e]=r+0,t[e+1]=r+1,t[e+2]=r+2,t[e+3]=r+0,t[e+4]=r+2,t[e+5]=r+3}reset(){this.renderable=null,this.texture=null,this.batcher=null,this.batch=null,this.bounds=null}}function me(o,t,e){const r=(o>>24&255)/255;t[e++]=(o&255)/255*r,t[e++]=(o>>8&255)/255*r,t[e++]=(o>>16&255)/255*r,t[e++]=r}export{de as B,S as G,L as R,te as S,ee as T,wt as U,ne as a,at as b,re as c,V as d,k as e,ot as f,ie as g,Mt as h,me as i,oe as j,se as k,le as l,ae as m,ce as n,fe as o,ue as r};
+        `}};class de{constructor(){this.vertexSize=4,this.indexSize=6,this.location=0,this.batcher=null,this.batch=null,this.roundPixels=0}get blendMode(){return this.renderable.groupBlendMode}packAttributes(t,e,r,n){const s=this.renderable,a=this.texture,i=s.groupTransform,u=i.a,l=i.b,c=i.c,d=i.d,m=i.tx,f=i.ty,p=this.bounds,x=p.maxX,v=p.minX,b=p.maxY,P=p.minY,h=a.uvs,_=s.groupColorAlpha,G=n<<16|this.roundPixels&65535;t[r+0]=u*v+c*P+m,t[r+1]=d*P+l*v+f,t[r+2]=h.x0,t[r+3]=h.y0,e[r+4]=_,e[r+5]=G,t[r+6]=u*x+c*P+m,t[r+7]=d*P+l*x+f,t[r+8]=h.x1,t[r+9]=h.y1,e[r+10]=_,e[r+11]=G,t[r+12]=u*x+c*b+m,t[r+13]=d*b+l*x+f,t[r+14]=h.x2,t[r+15]=h.y2,e[r+16]=_,e[r+17]=G,t[r+18]=u*v+c*b+m,t[r+19]=d*b+l*v+f,t[r+20]=h.x3,t[r+21]=h.y3,e[r+22]=_,e[r+23]=G}packIndex(t,e,r){t[e]=r+0,t[e+1]=r+1,t[e+2]=r+2,t[e+3]=r+0,t[e+4]=r+2,t[e+5]=r+3}reset(){this.renderable=null,this.texture=null,this.batcher=null,this.batch=null,this.bounds=null}}function me(o,t,e){const r=(o>>24&255)/255;t[e++]=(o&255)/255*r,t[e++]=(o>>8&255)/255*r,t[e++]=(o>>16&255)/255*r,t[e++]=r}export{de as B,S as G,L as R,te as S,ee as T,wt as U,ne as a,at as b,re as c,V as d,D as e,ot as f,ie as g,Mt as h,me as i,oe as j,se as k,le as l,ae as m,ce as n,fe as o,ue as r};

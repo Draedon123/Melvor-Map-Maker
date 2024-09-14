@@ -72,6 +72,7 @@
 
   .container {
     position: relative;
+    width: 100%;
   }
 
   button {
@@ -79,7 +80,7 @@
 
     & {
       height: 1.75em;
-      width: max-content;
+      width: 100%;
 
       padding: 5px;
 
@@ -87,13 +88,16 @@
       align-items: center;
 
       border-radius: 0;
+
+      text-align: left;
     }
   }
 
   svg {
     width: 1.5em;
     height: 1.5em;
-    margin-left: 2px;
+
+    margin-left: auto;
   }
 
   .vertical-flip {

@@ -26,6 +26,9 @@ type MapBuilderStore = {
     hexTab: {
       activeHex: PointData;
     };
+    poiTab: {
+      activePOI: StrictPointOfInterestData | null;
+    };
   };
 };
 
@@ -55,6 +58,9 @@ const store = writable<MapBuilderStore>({
     activeTab: 0,
     hexTab: {
       activeHex: { x: 0, y: 0 },
+    },
+    poiTab: {
+      activePOI: null,
     },
   },
 });

@@ -2,12 +2,21 @@
   import TableListCell from "./TableListCell.svelte";
 
   export let values: object;
+  export let keys: string[] | null;
 
-  $: keys = Object.keys(values) as (keyof typeof values)[];
+  $: objectKeys = Object.keys(values) as (keyof typeof values)[];
 </script>
 
-{#each keys as key}
-  <td>
-    <TableListCell bind:value={values[key]} />
-  </td>
+{#each objectKeys as key}
+  {#if keys !== null}
+    {#if keys.includes(key)}
+      <td>
+        <TableListCell bind:value={values[key]} />
+      </td>
+    {/if}
+  {:else}
+    <td>
+      <TableListCell bind:value={values[key]} />
+    </td>
+  {/if}
 {/each}
