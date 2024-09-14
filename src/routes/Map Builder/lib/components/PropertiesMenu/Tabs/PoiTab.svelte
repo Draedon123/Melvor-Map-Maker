@@ -105,7 +105,7 @@
       id="poiID"
       name="poiID"
       bind:value={activePOI.id}
-      on:change={updatePOIs}
+      on:input={updatePOIs}
     />
 
     <br />
@@ -116,6 +116,9 @@
       id="poiX"
       name="poiX"
       type="number"
+      step="1"
+      min="0"
+      max={$mapBuilderStore.hexesX - 1}
       bind:value={activePOI.coords.x}
     />
 
@@ -126,6 +129,9 @@
       id="poiY"
       name="poiY"
       type="number"
+      step="1"
+      min="0"
+      max={$mapBuilderStore.hexesY - 1}
       bind:value={activePOI.coords.y}
     />
 
