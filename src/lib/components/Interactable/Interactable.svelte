@@ -50,7 +50,6 @@
 
             event.target.style.width = `${event.rect.width}px`;
             event.target.style.height = `${event.rect.height}px`;
-            container.style.transform = `translate(${position.x}px, ${position.y}px)`;
           },
         },
       });
