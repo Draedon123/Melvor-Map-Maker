@@ -52,6 +52,7 @@
   "dependencies": {
     "client-zip": "^2.4.5",
     "dexie": "^4.0.8",
+    "interactjs": "^1.10.27",
     "pixi-viewport": "^5.0.3",
     "pixi.js": "^8.2.5",
     "toastify-js": "^1.12.0"
