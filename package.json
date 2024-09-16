@@ -53,6 +53,7 @@
     "client-zip": "^2.4.5",
     "dexie": "^4.0.8",
     "interactjs": "^1.10.27",
+    "marked": "^14.1.2",
     "pixi-viewport": "^5.0.3",
     "pixi.js": "^8.2.5",
     "tippy.js": "^6.3.7",

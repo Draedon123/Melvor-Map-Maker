@@ -9,10 +9,11 @@
   import Toastify from "toastify-js";
   import NavigationBar from "$lib/components/NavigationBar/NavigationBar.svelte";
   import KeyboardShortcut from "$lib/classes/KeyboardShortcut";
+  import StatObjectEditor from "$lib/components/StatObjectEditor/StatObjectEditor.svelte";
   import NavigationBarItem from "$lib/components/NavigationBar/NavigationBarItem.svelte";
+  import "tippy.js/dist/tippy.css";
   import "/src/styles/globals.scss";
   import "toastify-js/src/toastify.css";
-  import StatObjectEditor from "$lib/components/StatObjectEditor/StatObjectEditor.svelte";
 
   console.clear();
   console.log(`App Version: ${PUBLIC_VERSION}`);
@@ -79,9 +80,14 @@
 </script>
 
 <svelte:head>
-  <style>
+  <style lang="scss">
     body {
+      height: 100vh;
+      width: 100vw;
+
       margin: 0;
+      position: absolute;
+
       overflow: hidden;
       background-color: unset !important;
     }
