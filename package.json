@@ -55,6 +55,7 @@
     "interactjs": "^1.10.27",
     "pixi-viewport": "^5.0.3",
     "pixi.js": "^8.2.5",
+    "tippy.js": "^6.3.7",
     "toastify-js": "^1.12.0"
   }
 }
