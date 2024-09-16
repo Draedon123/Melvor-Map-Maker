@@ -91,6 +91,19 @@
       overflow: hidden;
       background-color: unset !important;
     }
+
+    .tippy-box {
+      max-width: 45vw;
+      max-height: 45vh;
+
+      overflow: scroll;
+
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   </style>
 </svelte:head>
 
