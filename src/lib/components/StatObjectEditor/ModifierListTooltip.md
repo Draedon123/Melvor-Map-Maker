@@ -1,13 +1,14 @@
-- The `Modifier Key` is the unique identifier for the modifier. e.g., `melvorD:attackInterval` and `melvorD:skillXP`
+- The `Modifier Key` is the unique identifier for the modifier. e.g., `melvorD:maxHit` and `melvorD:skillXP`
 - Each modifier can have multiple values attached to it which make it actually work
 - Each of these values are also a key-value pair
 - For a modifier like `melvorD:skillXP`, it will have 2 pairs:
   - value
   - skillID
-    For a modifier like `melvorD:attackInterval`, it will only have a singular pair. i.e., value
+    For a modifier like `melvorD:maxHit`, it will only have a singular pair. i.e., value
 - An example for both of these:
   - Modifier Key: `melvorD:skillXP`
     - `value: 10`
     - `skillID: melvorD:Mining`
-  - Modifier Key: `melvorD:attackInterval`
+  - Modifier Key: `melvorD:maxHit`
     - `value: 5`
+- Note that many (not all) modifier values are additive percentage values.

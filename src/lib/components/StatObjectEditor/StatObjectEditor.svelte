@@ -26,6 +26,7 @@
   export const values: Required<IStatObjectData> = {
     modifiers: [],
     enemyModifiers: [],
+    // @ts-expect-error wip - will need to fix soon
     combatEffects: {},
     conditionalModifiers: {
       modifiers: {},
