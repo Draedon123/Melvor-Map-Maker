@@ -4,8 +4,8 @@
   import { onMount } from "svelte";
 
   export let style: string = "";
-  export let draggable: boolean = true;
-  export let resizeable: boolean = true;
+  export let draggable: boolean = false;
+  export let resizeable: boolean = false;
   export let resizeEdges: Interact.EdgeOptions = {
     top: true,
     left: true,
@@ -61,6 +61,8 @@
 </div>
 
 <style lang="scss">
+  @import "/src/styles/scrollbar.scss";
+
   div {
     width: max-content;
     height: max-content;
@@ -77,5 +79,13 @@
     user-select: none;
     touch-action: none;
     box-sizing: border-box;
+
+    overflow: scroll;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 </style>

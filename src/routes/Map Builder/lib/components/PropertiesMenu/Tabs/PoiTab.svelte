@@ -1,12 +1,11 @@
 <script lang="ts">
   import { base } from "$app/paths";
   import Tab from "../Tab.svelte";
+  import Dropdown from "$lib/components/Dropdown/Dropdown.svelte";
   import TableList from "$lib/components/TableList/TableList.svelte";
   import globalStore from "$routes/store";
-  import mapBuilderStore from "$routes/Map Builder/lib/store/store";
-  import { onMount } from "svelte";
-  import Dropdown from "$lib/components/Dropdown/Dropdown.svelte";
   import DropdownOption from "$lib/components/Dropdown/DropdownOption.svelte";
+  import mapBuilderStore from "$routes/Map Builder/lib/store/store";
 
   $: activePOI = $mapBuilderStore.propertiesMenu.poiTab.activePOI;
 
@@ -61,16 +60,6 @@
     $globalStore.activeProject.worldMapData.pointsOfInterest =
       $globalStore.activeProject.worldMapData.pointsOfInterest;
   }
-
-  onMount(() => {
-    const ticker = setInterval(() => {
-      console.log($globalStore.activeProject.worldMapData.pointsOfInterest);
-    }, 1000);
-
-    return () => {
-      clearInterval(ticker);
-    };
-  });
 </script>
 
 <Tab imageSRC="{base}/point_of_interest.png" imageAltText="A yellow flag">

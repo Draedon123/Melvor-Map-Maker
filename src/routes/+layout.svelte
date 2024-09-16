@@ -12,6 +12,7 @@
   import NavigationBarItem from "$lib/components/NavigationBar/NavigationBarItem.svelte";
   import "/src/styles/globals.scss";
   import "toastify-js/src/toastify.css";
+  import StatObjectEditor from "$lib/components/StatObjectEditor/StatObjectEditor.svelte";
 
   console.clear();
   console.log(`App Version: ${PUBLIC_VERSION}`);
@@ -86,6 +87,8 @@
     }
   </style>
 </svelte:head>
+
+<StatObjectEditor />
 
 <aside>
   <NavigationBar>
