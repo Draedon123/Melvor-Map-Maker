@@ -18,15 +18,15 @@ As of the present, the Melvor Map Maker is an **unofficial** tool and is **not**
 
 ### Icons
 
-| Icon                                                                    | Author         | Link                                                      |
-| ----------------------------------------------------------------------- | -------------- | --------------------------------------------------------- |
-| <img src="static/preview.png" style="width: 2em; height: 2em;" />       | Freepik        | https://www.flaticon.com/free-icon/preview_143594         |
-| <img src="static/hex_grid.png" style="width: 2em; height: 2em;" />      | Freepik        | https://www.flaticon.com/free-icon/honeycomb_172591       |
-| <img src="static/no_image.png" style="width: 2em; height: 2em;" />      | yaicon         | https://www.flaticon.com/free-icon/image_10701484         |
-| <img src="static/upload.png" style="width: 2em; height: 2em;" />        | SeyfDesigner   | https://www.flaticon.com/free-icon/image_8191581          |
-| <img src="static/delete.png" style="width: 2em; height: 2em;" />        | kliwir art     | https://www.flaticon.com/free-icon/bin_9790368            |
-| <img src="static/edit.png" style="width: 2em; height: 2em;" />          | riajulislam    | https://www.flaticon.com/free-icon/pen_10336582           |
-| <img src="static/question_mark.png" style="width: 2em; height: 2em;" /> | Fathema Khanom | https://www.flaticon.com/free-icon/question-mark_10309127 |
+| Icon                                                                    | Author       | Link                                                |
+| ----------------------------------------------------------------------- | ------------ | --------------------------------------------------- |
+| <img src="static/preview.png" style="width: 2em; height: 2em;" />       | Freepik      | https://www.flaticon.com/free-icon/preview_143594   |
+| <img src="static/hex_grid.png" style="width: 2em; height: 2em;" />      | Freepik      | https://www.flaticon.com/free-icon/honeycomb_172591 |
+| <img src="static/no_image.png" style="width: 2em; height: 2em;" />      | yaicon       | https://www.flaticon.com/free-icon/image_10701484   |
+| <img src="static/upload.png" style="width: 2em; height: 2em;" />        | SeyfDesigner | https://www.flaticon.com/free-icon/image_8191581    |
+| <img src="static/delete.png" style="width: 2em; height: 2em;" />        | kliwir art   | https://www.flaticon.com/free-icon/bin_9790368      |
+| <img src="static/edit.png" style="width: 2em; height: 2em;" />          | riajulislam  | https://www.flaticon.com/free-icon/pen_10336582     |
+| <img src="static/question_mark.png" style="width: 2em; height: 2em;" /> | hqrloveq     | https://www.flaticon.com/free-icon/circle_14026794  |
 
 ### Basis Universal Supercompressed GPU Texture Codec
 
