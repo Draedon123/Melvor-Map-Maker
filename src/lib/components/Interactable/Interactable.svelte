@@ -26,6 +26,12 @@
     interact(container)
       .draggable({
         inertia: true,
+        modifiers: [
+          interact.modifiers.restrictRect({
+            restriction: document.body,
+            endOnly: true,
+          }),
+        ],
         listeners: {
           move(event: Interact.DragEvent) {
             if (!draggable) {
