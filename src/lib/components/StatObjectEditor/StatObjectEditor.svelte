@@ -42,9 +42,9 @@
 
 <Interactable draggable resizeable>
   <h2>Player Modifiers</h2>
-  <ModifierList />
+  <ModifierList bind:modifiers={values.modifiers} showHelpButton />
   <h2>Enemy Modifiers</h2>
-  <ModifierList />
+  <ModifierList bind:modifiers={values.enemyModifiers} />
   <h2>Combat Effects</h2>
   <h2>Conditional Modifiers</h2>
 </Interactable>

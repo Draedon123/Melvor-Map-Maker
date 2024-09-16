@@ -1,8 +1,15 @@
 <script lang="ts">
+  import helpTooltipRaw from "./ModifierListtooltip.md?raw";
   import { base } from "$app/paths";
+  import { sticky } from "tippy.js";
+  import { newTooltipAction } from "$lib/actions/tooltip";
   import type { Modifiers } from "./StatObjectEditor.svelte";
+  import { marked } from "marked";
 
   export let modifiers: Modifiers = [];
+  export let showHelpButton: boolean = false;
+
+  const helpTooltipContent = marked(helpTooltipRaw) as string;
 
   function newModifier(): void {
     modifiers.push({
@@ -35,20 +42,49 @@
 
     modifiers = modifiers;
   }
+
+  const helpTooltip = newTooltipAction({
+    content: helpTooltipContent,
+    trigger: "click",
+    arrow: true,
+    allowHTML: true,
+    sticky: true,
+    plugins: [sticky],
+  });
 </script>
 
-<button on:click={newModifier}>New Modifier</button>
+<div class="vertical-align">
+  <button on:click={newModifier}>New Modifier</button>
+  {#if showHelpButton}
+    <img
+      src="{base}/question_mark.png"
+      alt="A question mark"
+      class="question"
+      use:helpTooltip
+    />
+  {/if}
+</div>
 <ul>
   {#each modifiers as modifier}
     <li>
-      <div class="vertical-align">
-        <input bind:value={modifier.key} placeholder="Modifier Key" />
-      </div>
+      <input
+        bind:value={modifier.key}
+        placeholder="Modifier Key"
+        name="Modifier Key"
+      />
       <ul class="less-indent">
         {#each modifier.values as value}
           <li class="no-list-dot vertical-align">
-            <input bind:value={value.key} placeholder="Key" />:
-            <input bind:value={value.value} placeholder="Value" />
+            <input
+              bind:value={value.key}
+              placeholder="Modifier-Value Key"
+              name="Modifier-Value Key"
+            />:
+            <input
+              bind:value={value.value}
+              placeholder="Modifier-Value Value"
+              name="Modifier-Value Value"
+            />
             <input
               type="image"
               src="{base}/delete.png"
@@ -113,5 +149,14 @@
   .vertical-align {
     display: flex;
     align-items: center;
+  }
+
+  img.question {
+    width: 1em;
+    height: 1em;
+
+    cursor: pointer;
+
+    margin-left: 0.5ch;
   }
 </style>
