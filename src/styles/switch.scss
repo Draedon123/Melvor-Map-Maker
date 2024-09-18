@@ -1,0 +1,67 @@
+@use "sass:math";
+@mixin switch($width: 4em, $height: 2em) {
+  appearance: none;
+
+  width: $width;
+  height: $height;
+
+  font-size: medium;
+  position: relative;
+
+  background-color: #1f1f1f;
+  border: 2px solid #3f3f3f;
+  border-radius: 100em;
+
+  cursor: pointer;
+
+  &:checked {
+    &::before {
+      translate: calc(100% + 4px);
+    }
+
+    &::after {
+      content: "";
+
+      height: 40%;
+      aspect-ratio: 0.5;
+
+      rotate: 45deg;
+
+      border-bottom: 2px solid #6f6f6f;
+      border-right: 2px solid #6f6f6f;
+
+      left: 0;
+      translate: math.div($width, 8);
+      margin-top: 10%;
+    }
+  }
+
+  &::before {
+    content: "";
+    height: 100%;
+    aspect-ratio: 1;
+
+    border-radius: 100em;
+    background-color: white;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+
+    transition: translate 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  &::after {
+    content: "\d7";
+    color: #6f6f6f;
+    font-size: calc($height - 8px);
+
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    translate: math.div($width, -16);
+  }
+}
