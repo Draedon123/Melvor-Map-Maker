@@ -34,6 +34,12 @@
     modifiers = modifiers;
   }
 
+  function deleteModifier(modifier: Modifiers[number]): void {
+    modifiers.splice(modifiers.indexOf(modifier), 1);
+
+    modifiers = modifiers;
+  }
+
   function deleteModifierValue(
     modifier: Modifiers[number],
     value: Modifiers[number]["values"][number]
@@ -67,11 +73,21 @@
 <ul>
   {#each modifiers as modifier}
     <li>
-      <input
-        bind:value={modifier.key}
-        placeholder="Modifier Key"
-        name="Modifier Key"
-      />
+      <div class="vertical-align">
+        <input
+          bind:value={modifier.key}
+          placeholder="Modifier Key"
+          name="Modifier Key"
+        />
+        <input
+          type="image"
+          src="{base}/delete.png"
+          alt="A bin"
+          on:click={() => {
+            deleteModifier(modifier);
+          }}
+        />
+      </div>
       <ul class="less-indent">
         {#each modifier.values as value}
           <li class="no-list-dot vertical-align">
@@ -132,6 +148,8 @@
   input[type="image"] {
     width: 1.5em;
     height: 1.5em;
+
+    margin-left: 0.5ch;
   }
 
   button {
