@@ -2,12 +2,12 @@
   import { getContext } from "svelte";
   import type { DropdownContext } from "./Dropdown.svelte";
 
-  export let textContext: string = "";
-  export let value: string = textContext;
+  export let value: string;
 
   const context = getContext<DropdownContext>("dropdown");
 
   let button: HTMLButtonElement;
+  let textContext: string = value;
 
   function buttonOnClick(): void {
     context.setValue(value);
@@ -18,7 +18,7 @@
 </script>
 
 <button on:click|stopPropagation={buttonOnClick} bind:this={button}>
-  <slot />
+  <slot>{value}</slot>
 </button>
 
 <style lang="scss">
