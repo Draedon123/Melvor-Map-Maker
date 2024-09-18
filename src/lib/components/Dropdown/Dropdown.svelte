@@ -59,7 +59,7 @@
   <div
     class="optionContainer"
     class:hidden={!showOptions}
-    style="max-height: {height}em;"
+    style="max-height: {height}em; z-index: 10;"
   >
     <slot />
   </div>
