@@ -19,8 +19,7 @@
   export let showOptions: boolean = false;
   export let height: number = 10;
   export let onChange: (value: string) => void = () => {};
-
-  let textContent: string = value;
+  export let textContent: string = value;
 
   setContext<DropdownContext>("dropdown", {
     hide: () => {
