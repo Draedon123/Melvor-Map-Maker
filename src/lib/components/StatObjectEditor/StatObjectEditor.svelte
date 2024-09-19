@@ -1,14 +1,57 @@
 <script lang="ts" context="module">
   import type {
+    AttackType,
+    CharacterNumberExpression,
+    CombatEffectApplicatorConditionData,
+    CombatEffectApplicatorTriggerData,
+    CombatEffectGroupID,
+    CombatEffectID,
+    Comparison,
     ConditionalModifierData,
-    TriggeredCombatEffectApplicatorData,
+    DamageTypeID,
   } from "$lib/melvor/schema";
 
   type IStatObjectData = {
     modifiers: Modifiers;
     enemyModifiers: Modifiers;
-    combatEffects: TriggeredCombatEffectApplicatorData;
+    combatEffects: TriggeredData[];
     conditionalModifiers: ConditionalModifierData;
+  };
+
+  type TriggeredData = Required<CombatEffectApplicatorTriggerData> &
+    CombatEffectApplicatorData &
+    (SingleTriggeredEffect | TableTriggeredEffect);
+  type SingleTriggeredEffect = {
+    type: "single";
+    effectID: string;
+    initialParams: {
+      name: string;
+      value: number;
+    }[];
+  };
+  type TableTriggeredEffect = {
+    type: "table";
+    tableID: string;
+  };
+  type CombatEffectApplicatorData = {
+    chance: number;
+    condition: {
+      type: CombatEffectApplicatorConditionData["type"];
+      operator: Comparison;
+      rhValue: CharacterNumberExpression;
+      lhValue: CharacterNumberExpression;
+      character: "Player" | "Enemy";
+      thisAttackType: AttackType | "any";
+      targetAttackType: AttackType | "any";
+      damageType: DamageTypeID;
+      value: number;
+      inverted: boolean;
+      groupID: CombatEffectGroupID;
+      effectID: CombatEffectID;
+      conditions: CombatEffectApplicatorData["condition"][];
+    };
+    targetOverride: "Self" | "Target" | "";
+    bypassBarrier: boolean;
   };
 
   type Modifiers = {
@@ -16,18 +59,23 @@
     values: { key: string; value: string }[];
   }[];
 
-  export type { IStatObjectData, Modifiers };
+  export type {
+    IStatObjectData,
+    Modifiers,
+    TriggeredData,
+    CombatEffectApplicatorData,
+  };
 </script>
 
 <script lang="ts">
   import Interactable from "../Interactable/Interactable.svelte";
   import ModifierList from "./ModifierList.svelte";
+  import TriggeredCombatEffectApplicatorList from "./TriggeredCombatEffectApplicatorList.svelte";
 
   export const values: Required<IStatObjectData> = {
     modifiers: [],
     enemyModifiers: [],
-    // @ts-expect-error wip - will need to fix soon
-    combatEffects: {},
+    combatEffects: [],
     conditionalModifiers: {
       modifiers: {},
       enemyModifiers: {},
@@ -41,12 +89,13 @@
   };
 </script>
 
-<Interactable draggable resizeable>
+<Interactable draggable resizeable style="max-height: 80vh; overflow-y: scroll">
   <h2>Player Modifiers</h2>
   <ModifierList bind:modifiers={values.modifiers} showHelpButton />
   <h2>Enemy Modifiers</h2>
   <ModifierList bind:modifiers={values.enemyModifiers} />
   <h2>Combat Effects</h2>
+  <TriggeredCombatEffectApplicatorList bind:effects={values.combatEffects} />
   <h2>Conditional Modifiers</h2>
 </Interactable>
 

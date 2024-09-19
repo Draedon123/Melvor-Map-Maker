@@ -302,6 +302,13 @@
   <option value="melvorItA:AbyssalSlayerCoins" />
 </datalist>
 
+<datalist id="damageTypes">
+  <option value="melvorD:Normal" />
+  <option value="melvorF:Pure" />
+  <option value="melvorItA:Abyssal" />
+  <option value="melvorItA:Eternal" />
+</datalist>
+
 <!-- #endregion -->
 
 <style lang="scss">
