@@ -35,33 +35,6 @@ export type SkillLevelCapIncreaseData = IDData & {
    * Optional. Sets the level cap of a skill when a requirement set is met. Has no effect if the skill's level cap is already above the amount.
    */
   setIncreases?: SkillIDValue[];
-} & {
-  /**
-   * Determines the type of level cap that is increased
-   */
-  levelType: "Standard" | "Abyssal";
-  /**
-   * Determines sets of requirements, that when met will trigger this level cap increase to be applied
-   *
-   * @minItems 1
-   */
-  requirementSets: SkillLevelCapRequirementSetData[];
-  /**
-   * Optional. Fixed increases to level caps given when a requirement set is met
-   */
-  fixedIncreases?: SkillCapIncreaseData[];
-  /**
-   * Optional. Random increases to level caps given when a requirement set is met. One element of this array will be chosen
-   */
-  randomIncreases?: SkillCapIncreaseData[];
-  /**
-   * Optional. The number of random increases that will be given when a requirement set is met
-   */
-  randomCount?: number;
-  /**
-   * Optional. Sets the level cap of a skill when a requirement set is met. Has no effect if the skill's level cap is already above the amount.
-   */
-  setIncreases?: SkillIDValue[];
 };
 export type AnyRequirementData =
   | SkillLevelRequirementData
@@ -5098,194 +5071,6 @@ export type SkillWithMasteryID =
  * Data for constructing a Gamemode object
  */
 export type GamemodeData = IDData & {
-  /**
-   * Display name of the Gamemode
-   */
-  name: string;
-  /**
-   * URI of Gamemode icon
-   */
-  media: string;
-  /**
-   * Optional. Description of the Gamemode displayed on the Character Select screen
-   */
-  description?: string;
-  /**
-   * List of rules that are specific to the Gamemode. Displayed on the Character Select screen
-   */
-  rules: string[];
-  /**
-   * CSS class used on the character select screen to specify the colour of the Gamemode's name
-   */
-  textClass: string;
-  /**
-   * CSS class used on the character select screen to specify the style of both Gamemode Selection and Created Characters
-   */
-  btnClass: string;
-  /**
-   * If true, dying in this Gamemode will delete the save file
-   */
-  isPermaDeath: boolean;
-  /**
-   * If true, a notice will be shown that this gamemode is Time limited on the character select screen
-   */
-  isEvent: boolean;
-  /**
-   * Optional. If present, respresents the Unix timestamp at which the Gamemode is available to play
-   */
-  startDate?: number;
-  /**
-   * Represents the Unix timestamp at which the Gamemode is no longer available to play. If set to 0, the Gamemode is always available.
-   */
-  endDate: number;
-  /**
-   * The combat triangle utilized in the Gamemode. 0 specifies the Standard Triangle. 1 specifies the Hardcore Triangle. 2 specifies the inverted Hardcore triangle.
-   */
-  combatTriangle: CombatTriangleType;
-  /**
-   * All hitpoint and damage values will be multiplied by this value. The Standard value is 10.
-   */
-  hitpointMultiplier: number;
-  /**
-   * Determines if the Player has passive hitpoint regeneration
-   */
-  hasRegen: boolean;
-  /**
-   * Determines if Non-Combat skills will be capped by the Player's combat level
-   */
-  capNonCombatSkillLevels: boolean;
-  /**
-   * ID of the page that the game should change to after the Tutorial has been completed
-   */
-  startingPage: PageID;
-  /**
-   * The items that the Player starts with upon completing the Tutorial
-   */
-  startingItems: AnyItemQuantity[];
-  /**
-   * If the Gamemode allows for skills to be unlocked for a GP cost
-   */
-  allowSkillUnlock: boolean;
-  /**
-   * Optional. Array of Skill IDs that the player should start with in the gamemode. If unset, the player starts with all skills.
-   */
-  startingSkills?: SkillID[];
-  /**
-   * Array of GP costs to unlock new skills in the gamemode. If the number of skills unlocked exceeds the length of this array, the last element will be utilized as the cost. Has no effect if allowSkillUnlock is false.
-   */
-  skillUnlockCost: number[];
-  /**
-   * Optional. Modifiers that will be applied to the Player at all times
-   */
-  playerModifiers?: ModifierValuesRecordData;
-  /**
-   * Optional. Modifiers that will be applied to all Enemies/Monsters
-   */
-  enemyModifiers?: EnemyModifierValuesRecordData;
-  /**
-   * Optional. Effect Applicators merged with the player in this Gamemode
-   *
-   * @minItems 1
-   */
-  playerCombatEffects?: TriggeredCombatEffectApplicatorData[];
-  /**
-   * Optional. Effect Applicators merged with the enemy in this Gamemode
-   *
-   * @minItems 1
-   */
-  enemyCombatEffects?: TriggeredCombatEffectApplicatorData[];
-  /**
-   * Determines if the Player has access to the tutorial on creating a new save
-   */
-  hasTutorial: boolean;
-  /**
-   * Optional. List of Modifiers that are disabled in the gamemode. Is not mechanically implemented, but will render modifiers as disabled.
-   *
-   * @minItems 1
-   */
-  disabledModifiers?: ModifierID[];
-  /**
-   * Optional. If present, all skills will have an initial level cap equal to this value, except for the skills in initialLevelCaps
-   */
-  defaultInitialLevelCap?: number;
-  /**
-   * Optional. If present, skills will start with these level caps in this Gamemode
-   */
-  initialLevelCaps?: SkillIDValue[];
-  /**
-   * Optional. If present, all skills will have an initial abyssal level cap equal to this value, except for the skills in initialAbyssalLevelCaps
-   */
-  defaultInitialAbyssalLevelCap?: number;
-  /**
-   * Optional. If present, skills will start with these level caps in this Gamemode
-   */
-  initialAbyssalLevelCaps?: SkillIDValue[];
-  /**
-   * Optional. Determines which level cap increases are applied during this gamemode
-   */
-  levelCapIncreases?: SkillLevelCapIncreaseID[];
-  /**
-   * Optional. If present, the level caps of skills can be increased by purchasing them
-   */
-  levelCapCost?: LevelCapIncreaseCostData;
-  /**
-   * Optional. If present, the abyssal level caps of skills can be increased by purchasing them
-   */
-  abyssalLevelCapCost?: LevelCapIncreaseCostData;
-  /**
-   * Optional. Determines if the player can continue to gain XP over the level cap.
-   */
-  allowXPOverLevelCap?: boolean;
-  /**
-   * Optional. If set to true, all forms of preservation (Items, Runes, Ammo, Prayer Points, Summoning Tablets, Food, Potion Charges, Dig Site Map Actions) will be disabled
-   */
-  disablePreservation?: boolean;
-  /**
-   * Optional. If set to true, all forms of item doubling will be disabled
-   */
-  disableItemDoubling?: boolean;
-  /**
-   * Optional. If set to true, a warning that the gamemode may require active gameplay to progress will be shown on the character select screen.
-   */
-  hasActiveGameplay?: boolean;
-  /**
-   * Optional. If set to true, ancient relics can be dropped by skills. Only available if the Atlas of Discovery expansion is installed.
-   */
-  allowAncientRelicDrops?: boolean;
-  /**
-   * Optional. Determines if default skill unlock requirements will be used. Defaults to false.
-   */
-  useDefaultSkillUnlockRequirements?: boolean;
-  /**
-   * Optional. Custom skill unlock requirements for this gamemode. Overrides skill default values
-   */
-  skillUnlockRequirements?: {
-    /**
-     * The ID of the skill to set unlock requirements for
-     */
-    skillID: SkillID;
-    /**
-     * The requirements that must be met for the skill to unlock
-     */
-    requirements: AnyRequirementData[];
-  }[];
-  /**
-   * Optional. If set to true, all actions in game will be performed instantly on a click.
-   */
-  enableInstantActions?: boolean;
-  /**
-   * Optional. Array of languages required to see the gamemode. If unset, all languages can see the gamemode.
-   */
-  enabledLangs?: SupportedLanguage[];
-  /**
-   * Optional. ID of a SkillLevelCapIncrease that will convert the old pre 99 roll save data
-   */
-  pre99RollConversion?: SkillLevelCapIncreaseID;
-  /**
-   * Optional. ID of a SkillLevelCapIncrease that will convert the old post 99 roll save data
-   */
-  post99RollConversion?: SkillLevelCapIncreaseID;
-} & {
   /**
    * Display name of the Gamemode
    */
@@ -12581,18 +12366,6 @@ export type SingleCombatEffectApplicatorData = CombatEffectApplicatorData & {
     name: string;
     value: number;
   }[];
-} & {
-  /**
-   * The ID of the CombatEffect to apply
-   */
-  effectID: CombatEffectID;
-  /**
-   * Optional. Specifies overrides to the initial values of parameters in the active effect
-   */
-  initialParams?: {
-    name: string;
-    value: number;
-  }[];
 };
 export type CombatEffectApplicatorConditionData =
   | DamageDealtConditionData
@@ -12620,12 +12393,7 @@ export type CombatConditionData = {
    * The character that must meet the condition
    */
   character: "Player" | "Enemy";
-} & CombatConditionData1 & {
-    /**
-     * The character that must meet the condition
-     */
-    character: "Player" | "Enemy";
-  } & CombatConditionData1;
+} & CombatConditionData1;
 export type CombatConditionData1 =
   | HitpointsConditionData
   | AttackTypeConditionData
@@ -13092,11 +12860,6 @@ export type CombatEffectTarget = "Self" | "Target";
  * Data used to construct a TableCombatEffectApplicator
  */
 export type TableCombatEffectApplicatorData = CombatEffectApplicatorData & {
-  /**
-   * The ID of the CombatEffectTable to select an applicator from
-   */
-  tableID: CombatEffectTableID;
-} & {
   /**
    * The ID of the CombatEffectTable to select an applicator from
    */
@@ -14392,828 +14155,12 @@ export type BaseItemData = IDData & {
    * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
    */
   isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
-} & {
-  /**
-   * The display name for the item
-   */
-  name: string;
-  /**
-   * Category for item, utilized for searching
-   */
-  category: string;
-  /**
-   * Type for item, utilized for searching
-   */
-  type: string;
-  /**
-   * URI of the item's image
-   */
-  media: string;
-  /**
-   * Optional. If present, provides the URI for an animated image of the item
-   */
-  mediaAnimation?: string;
-  /**
-   * URI of an alternative image for the item
-   */
-  altMedia?: string;
-  /**
-   * Determines if the item should not count for item completion
-   */
-  ignoreCompletion: boolean;
-  /**
-   * Determines if the item should be obtainable by clicking on it in the item log
-   */
-  obtainFromItemLog: boolean;
-  /**
-   * Determines if the item should only show up in the Golbin Raid Minigame
-   */
-  golbinRaidExclusive: boolean;
-  /**
-   * Optional. If present, the item will use this description instead of the default autogenerated one.
-   */
-  customDescription?: string;
-  /**
-   * Optional. Determines which currency this item sells for. Defaults to GP.
-   */
-  sellsForCurrency?: CurrencyID;
-  /**
-   * Base sale price for the item
-   */
-  sellsFor: number;
-  /**
-   * Determines if the item is an Artefact obtained from Archaeology
-   */
-  isArtefact?: boolean;
-  /**
-   * Optional. Determines if the item is a Generic Artefact obtained from Archaeology that can be exchanged for Museum Tokens
-   */
-  isGenericArtefact?: boolean;
-  /**
-   * Optional. Flags the item as a Debuggin item that is only to be loaded if DEBUGENABLED is true. Defaults to false.
-   */
-  isDebug?: boolean;
 };
 export type EquipmentItemData = BaseEquipmentItemData & {
   itemType: "Equipment";
 };
 export type BaseEquipmentItemData = BaseItemData &
   IStatObjectData & {
-    /**
-     * Classification for the tier of item. Currently only effects which items can be converted to Clothing in township
-     */
-    tier: string;
-    /**
-     * The valid equipment slots that this item can be equipped to.
-     *
-     * @minItems 1
-     */
-    validSlots: EquipmentSlotID[];
-    /**
-     * Equipment slots that will also be occupied by this item, in addition to one of the validSlots. Typical usecase is to make a weapon 2-Handed
-     */
-    occupiesSlots: EquipmentSlotID[];
-    /**
-     * Optional. The IDs of Equipment Items that this item cannot be equipped with at the same time
-     */
-    cantEquipWith?: EquipmentItemID[];
-    /**
-     * Array of requirements that are needed in order to equip this item
-     */
-    equipRequirements: AnyRequirementData[];
-    /**
-     * Equipment stats that are provided by this item. Do not apply if item is in the Passive slot.
-     */
-    equipmentStats: AnyEquipStatData[];
-    /**
-     * Optional. An array of Special Attack IDs that are provided when the item is equipped.
-     *
-     * @minItems 1
-     */
-    specialAttacks?: SpecialAttackID[];
-    /**
-     * Optional. If present with the specialAttacks property, overrides their default chances to happen. Must be the same length as specialAttacks.
-     *
-     * @minItems 1
-     */
-    overrideSpecialChances?: number[];
-    /**
-     * Optional. An array of runes that are provided by this item.
-     *
-     * @minItems 1
-     */
-    providedRunes?: AnyItemQuantity[];
-    /**
-     * Only required if one of the validSlots for this item is Quiver. Specifies the types of weapons this item can supply with ammunition.
-     */
-    ammoType?: AmmoType;
-    /**
-     * Optional. Only utilized if this item participates in the Item Charges subsystem. Specifies an array of GameEventMatchers, which on a successful match will consume a single item charge.
-     *
-     * @minItems 1
-     */
-    consumesChargesOn?: GameEventMatcherData[];
-    /**
-     * Optional. Specifies an array of GameEventMatchers, which on a successful match will consume one of the equipped item. Best utilized for the Quiver, Summon1, Summon2, and Consumable slots.
-     *
-     * @minItems 1
-     */
-    consumesOn?: GameEventMatcherData[];
-    /**
-     * Optional. If present, specifies that an item in the bank will be consumed if a successful GameEvent matches
-     */
-    consumesItemOn?: {
-      /**
-       * The ID of the item in the bank to be consumed
-       */
-      itemID: AnyItemID;
-      /**
-       * The percentage chance that the item is consumed when an event matches
-       */
-      chance: number;
-      /**
-       * Specifies an array of GameEventMatchers, which on a successful match will roll to consume an item from the bank.
-       *
-       * @minItems 1
-       */
-      matchers: GameEventMatcherData[];
-    };
-    /**
-     * Optional. If present sets the priority of losing this item when dying. Higher priority indicates the item will be lost before others. Defaults to 0.
-     */
-    deathPenaltyPriority?: number;
-  } & {
     /**
      * Classification for the tier of item. Currently only effects which items can be converted to Clothing in township
      */
@@ -18590,28 +17537,6 @@ export type AttackStyleData = IDData &
      * The display name of the attack style
      */
     name: string;
-  } & {
-    /**
-     * Experience that is gained when dealing damage with this attack style
-     */
-    experienceGain: {
-      /**
-       * The ID of the skill that should gain experience
-       */
-      skillID: SkillID;
-      /**
-       * The amount of experience gained per hitpoint multiplier normalized point of damage dealt.
-       */
-      ratio: number;
-    }[];
-    /**
-     * The combat style the Player can use this attack style with
-     */
-    attackType: AttackType;
-    /**
-     * The display name of the attack style
-     */
-    name: string;
   };
 /**
  * Data used to construct a CombatEffectGroup
@@ -18629,37 +17554,11 @@ export type CombatEffectGroupData = IDData & {
    * Adjective describing the state of a character impacted by this effect group (e.g. Burning). Used to generate descriptions.
    */
   adjective: string;
-} & {
-  /**
-   * The display name of this effect group for use in modifiers
-   */
-  name: string;
-  /**
-   * Optional. Language string to use for the name of this effect group
-   */
-  nameLang?: string;
-  /**
-   * Adjective describing the state of a character impacted by this effect group (e.g. Burning). Used to generate descriptions.
-   */
-  adjective: string;
 };
 /**
  * Data used to construct a CombatEffectTemplate
  */
 export type CombatEffectTemplateData = IDData & {
-  /**
-   * Optional. Description with instructions on the use of this template
-   */
-  description?: string;
-  /**
-   * Optional. Array of the IDs of templates to base this one on. Each will be merged together, in the order they appear, then the baseEffectData of this template will be merged ontop.
-   */
-  baseTemplates?: CombatEffectTemplateID[];
-  /**
-   * The partial combat effect data that will be inherited by other templates/combat effects
-   */
-  baseEffectData: BaseCombatEffectData;
-} & {
   /**
    * Optional. Description with instructions on the use of this template
    */
@@ -19138,11 +18037,6 @@ export type ModifyBehaviourData = CombatEffectBehaviourData & {
    * The new value to set the existing value to
    */
   newValue: CombatEffectNumberExpression;
-} & {
-  /**
-   * The new value to set the existing value to
-   */
-  newValue: CombatEffectNumberExpression;
 };
 /**
  * Data used to construct a ModifyParameterBehaviour
@@ -19308,129 +18202,11 @@ export type CombatEffectTableData = IDData & {
      */
     weight: number;
   }[];
-} & {
-  /**
-   * Weighted array from which a random CombatEffect can be selected from
-   */
-  table: {
-    /**
-     * The ID of the CombatEffect to select
-     */
-    effectID: CombatEffectID;
-    /**
-     * Optional. Specifies overrides to the initial values of parameters in the active effect
-     */
-    initialParams?: {
-      name: string;
-      value: number;
-    }[];
-    /**
-     * The relative weight of selecting this effect
-     */
-    weight: number;
-  }[];
 };
 /**
  * Data for constructing a SpecialAttack object
  */
 export type AttackData = IDData & {
-  /**
-   * The default percentage chance that this attack is chosen
-   */
-  defaultChance: number;
-  /**
-   * Array of damage that is reduced to determine the damage dealt per hit of this attack
-   */
-  damage: DamageData[];
-  /**
-   * Effects that are applied before the attack rolls to hit
-   */
-  prehitEffects: AnyCombatEffectApplicatorData[];
-  /**
-   * Effects that are applied only when the attack hits
-   */
-  onhitEffects: (
-    | SingleCombatEffectApplicatorData
-    | TableCombatEffectApplicatorData
-  )[];
-  /**
-   * Optional. If true, this attack will be replaced by a normal attack if any of its pre-hit or on-hit effects are active. Defaults to false.
-   */
-  canNormalAttack?: boolean;
-  /**
-   * If the attack cannot miss the target
-   */
-  cantMiss: boolean;
-  /**
-   * The number of times this attack procs
-   */
-  attackCount: number;
-  /**
-   * The interval between attacks in [ms]
-   */
-  attackInterval: number;
-  /**
-   * The percentage of damage dealt by this attack that should heal the attacker
-   */
-  lifesteal: number;
-  /**
-   * Optional. If present this attack will remove the given effect from the target character, and increase its attack count by the effects paremeter value
-   */
-  consumesEffect?: {
-    /**
-     * The ID of the CombatEffect to try and remove
-     */
-    effectID: CombatEffectID;
-    /**
-     * The name of the parameter to increase the attacks hit count by
-     */
-    paramName: string;
-  };
-  /**
-   * Optional. If the attack consumes spell rune costs per proc
-   */
-  usesRunesPerProc?: boolean;
-  /**
-   * Optional. If the attack consumes prayer points per proc
-   */
-  usesPrayerPointsPerProc?: boolean;
-  /**
-   * Optional. If the attack consumes potion charges per proc
-   */
-  usesPotionChargesPerProc?: boolean;
-  /**
-   * Optional. If present, limits the combat styles that are allowed to use this special attack to the members of the array
-   *
-   * @minItems 1
-   */
-  attackTypes?: AttackType[];
-  /**
-   * Optional. If present this special attack will require these runes to be used
-   *
-   * @minItems 1
-   */
-  extraRuneConsumption?: RuneQuantity[];
-  /**
-   * Optional. f the attack is considered to be dragonbreath. Utilized for modifiers that reduce damage from dragonbreath.
-   */
-  isDragonbreath?: boolean;
-  /**
-   * Optional. If present, the attack requires a minimum accuracy rating to always hit. Has no effect if cantMiss is false.
-   */
-  minAccuracy?: number;
-  /**
-   * The display name of the Attack
-   */
-  name: string;
-  /**
-   * The displayed description of the attack. Descriptions are automatically templated based on the attacks data.
-   */
-  description: string;
-  /**
-   * Optional. A templated string that can be used to auto-generate a templated description string for this attack
-   */
-  descriptionGenerator?: string;
-} & {
   /**
    * The default percentage chance that this attack is chosen
    */
@@ -19573,205 +18349,11 @@ export type CombatPassiveData = IDData & {
    * Optional. Specifies a custom description that overrides the description automatically generated from modifiers.
    */
   customDescription?: string;
-} & {
-  /**
-   * The display name of the Passive
-   */
-  name: string;
-  /**
-   * Optional. Modifiers that are provided to the enemy by the Passive
-   */
-  modifiers?: EnemyModifierValuesRecordData;
-  /**
-   * Optional. CombatEffects merged with the enemy by the Passive
-   *
-   * @minItems 1
-   */
-  combatEffects?: TriggeredCombatEffectApplicatorData[];
-  /**
-   * Optional. Modifiers that are provided to the player by the Passive
-   */
-  playerModifiers?: ModifierValuesRecordData;
-  /**
-   * Optional. CombatEffects merged with the player by the Passive
-   *
-   * @minItems 1
-   */
-  playerCombatEffects?: TriggeredCombatEffectApplicatorData[];
-  /**
-   * Optional. Conditional Modifiers provided by the Passive
-   *
-   * @minItems 1
-   */
-  conditionalModifiers?: ConditionalModifierData[];
-  /**
-   * Optional. Specifies a custom description that overrides the description automatically generated from modifiers.
-   */
-  customDescription?: string;
 };
 /**
  * Data for constructing a Monster object
  */
 export type MonsterData = IDData & {
-  /**
-   * Display name of the Monster
-   */
-  name: string;
-  /**
-   * Optional. Description displayed under the Monster's name
-   */
-  description?: string;
-  /**
-   * URI of the Image of the Monster
-   */
-  media: string;
-  /**
-   * Optional. URI of an animated image of the Monster
-   */
-  mediaAnimation?: string;
-  /**
-   * The combat levels of the Monster. Utilized to compute its stats.
-   */
-  levels: {
-    /**
-     * Hitpoints level. Impacts maximum health.
-     */
-    Hitpoints: number;
-    /**
-     * Attack level. Impacts melee accuracy.
-     */
-    Attack: number;
-    /**
-     * Strength level. Impacts melee max hit.
-     */
-    Strength: number;
-    /**
-     * Defence level. Impacts evasion ratings.
-     */
-    Defence: number;
-    /**
-     * Ranged level. Impacts ranged accuracy and max hit.
-     */
-    Ranged: number;
-    /**
-     * Magic level. Impacts magic accuracy, max hit and evasion rating
-     */
-    Magic: number;
-    /**
-     * Optional. Corruption level. Allows this monster to use the Corruption mechanic
-     */
-    Corruption?: number;
-  };
-  /**
-   * Equipment stats of the Monster. Used to calculate its stats.
-   */
-  equipmentStats: AnyEquipStatData[];
-  /**
-   * If true, this monster does not count for Completion.
-   */
-  ignoreCompletion: boolean;
-  /**
-   * The combat style the monster should use. random specifies the monster chose a random style at the start of combat
-   */
-  attackType: AttackType | "random";
-  /**
-   * Array of Special Attack IDs that the monster can use
-   */
-  specialAttacks: SpecialAttackID[];
-  /**
-   * Optional. If present, overrides the default chances of the special attacks this monster can use. Length must be identical to the length of specialAttacks.
-   */
-  overrideSpecialChances?: number[];
-  /**
-   * Optional. CombatEffects applied via the enemy at the specified times
-   *
-   * @minItems 1
-   */
-  combatEffects?: TriggeredCombatEffectApplicatorData[];
-  /**
-   * Array of Combat Passive IDs that monster has
-   */
-  passives: CombatPassiveID[];
-  /**
-   * Percent chance that this monster should drop an item from its loot table.
-   */
-  lootChance: number;
-  /**
-   * Defines the items that should drop from this monster
-   */
-  lootTable: DropTableData[];
-  /**
-   * Optional. Defines the currencies that drop from this monster. Currencies always drop.
-   */
-  currencyDrops?: {
-    /**
-     * The ID of the currency to drop
-     */
-    currencyID: CurrencyID;
-    /**
-     * The minimum amount of the currency to drop
-     */
-    min: number;
-    /**
-     * The minimum amount of the currency to drop
-     */
-    max: number;
-  }[];
-  /**
-   * @deprecated
-   * Determines how much GP can drop from this monster
-   */
-  gpDrops?: {
-    min: number;
-    max: number;
-  };
-  /**
-   * Optional. If present, the monster will always drop the specified item, outside of dungeons
-   */
-  bones?: {
-    /**
-     * The id of the item to drop
-     */
-    itemID?: AnyItemID;
-    /**
-     * The quantity of the item to drop
-     */
-    quantity?: number;
-  };
-  /**
-   * Determines if the monster is Eligible to be a slayer task
-   */
-  canSlayer: boolean;
-  /**
-   * Determines if the monster is a boss
-   */
-  isBoss: boolean;
-  /**
-   * The ID of the Attack Spell this monster uses
-   */
-  selectedSpell: AttackSpellID;
-  /**
-   * Optional. Defines a pet that will be dropped upon the specified quantity of monster kills.
-   */
-  pet?: {
-    /**
-     * The ID of the pet to drop
-     */
-    id: PetID;
-    /**
-     * The number of this monster that must be killed for the pet
-     */
-    quantity: number;
-  };
-  /**
-   * Optional. If present, the monster starts with Barrier equal to this percent of its max hitpoints.
-   */
-  barrierPercent?: number;
-  /**
-   * Optional. The ID of the damage type this Monster deals. Defaults to Normal.
-   */
-  damageType?: DamageTypeID;
-} & {
   /**
    * Display name of the Monster
    */
@@ -20342,19 +18924,6 @@ export type CombatAreaCategoryData = IDData & {
    * The IDs of the CombatAreas that belong to this category
    */
   areas: CombatAreaID[];
-} & {
-  /**
-   * The display name of the category
-   */
-  name: string;
-  /**
-   * A URI for the category's image
-   */
-  media: string;
-  /**
-   * The IDs of the CombatAreas that belong to this category
-   */
-  areas: CombatAreaID[];
 };
 export type CombatAreaID =
   | ValidID
@@ -20517,222 +19086,11 @@ export type CombatAreaData = RealmedObjectData & {
    * Optional. Set which gamemode IDs this area will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-} & {
-  /**
-   * The display name of the area
-   */
-  name: string;
-  /**
-   * A URI for the area's image
-   */
-  media: string;
-  /**
-   * An array of Monster IDs that can be fought in the area
-   *
-   * @minItems 1
-   */
-  monsterIDs: MonsterID[];
-  /**
-   * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
-   *
-   * @minItems 1
-   * @maxItems 2
-   */
-  difficulty: number[];
-  /**
-   * An array of requirements that the player must meet to enter the area
-   */
-  entryRequirements: AnyRequirementData[];
-  /**
-   * Optional. Additional array of requirements that the player must meet to enter the area for specific gamemodes
-   */
-  gamemodeEntryRequirements?: {
-    /**
-     * The ID of the gamemode to roll for
-     */
-    gamemodeID: GamemodeID;
-    /**
-     * An array of requirements that the player must meet to enter the area
-     */
-    entryRequirements: AnyRequirementData[];
-  }[];
-  /**
-   * The ID of the combat triangle set to use while in this area. Defaults to Normal.
-   */
-  combatTriangleSet?: CombatTriangleSetID;
-  /**
-   * Optional. Sets damage types that the player is allowed to use in this area. Unset allows all damage types
-   *
-   * @minItems 1
-   */
-  allowedDamageTypeIDs?: DamageTypeID[];
-  /**
-   * Optional. If set, this will override the damage types of all Monsters in the area with the set damage type.
-   */
-  overrideDamageType?: DamageTypeID;
-  /**
-   * Optional. Set which gamemode IDs this area will display for. If empty, it will show for all gamemodes.
-   */
-  allowedGamemodeIDs?: GamemodeID[];
-} & {
-  /**
-   * The display name of the area
-   */
-  name: string;
-  /**
-   * A URI for the area's image
-   */
-  media: string;
-  /**
-   * An array of Monster IDs that can be fought in the area
-   *
-   * @minItems 1
-   */
-  monsterIDs: MonsterID[];
-  /**
-   * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
-   *
-   * @minItems 1
-   * @maxItems 2
-   */
-  difficulty: number[];
-  /**
-   * An array of requirements that the player must meet to enter the area
-   */
-  entryRequirements: AnyRequirementData[];
-  /**
-   * Optional. Additional array of requirements that the player must meet to enter the area for specific gamemodes
-   */
-  gamemodeEntryRequirements?: {
-    /**
-     * The ID of the gamemode to roll for
-     */
-    gamemodeID: GamemodeID;
-    /**
-     * An array of requirements that the player must meet to enter the area
-     */
-    entryRequirements: AnyRequirementData[];
-  }[];
-  /**
-   * The ID of the combat triangle set to use while in this area. Defaults to Normal.
-   */
-  combatTriangleSet?: CombatTriangleSetID;
-  /**
-   * Optional. Sets damage types that the player is allowed to use in this area. Unset allows all damage types
-   *
-   * @minItems 1
-   */
-  allowedDamageTypeIDs?: DamageTypeID[];
-  /**
-   * Optional. If set, this will override the damage types of all Monsters in the area with the set damage type.
-   */
-  overrideDamageType?: DamageTypeID;
-  /**
-   * Optional. Set which gamemode IDs this area will display for. If empty, it will show for all gamemodes.
-   */
-  allowedGamemodeIDs?: GamemodeID[];
-} & {
-  /**
-   * The display name of the area
-   */
-  name: string;
-  /**
-   * A URI for the area's image
-   */
-  media: string;
-  /**
-   * An array of Monster IDs that can be fought in the area
-   *
-   * @minItems 1
-   */
-  monsterIDs: MonsterID[];
-  /**
-   * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
-   *
-   * @minItems 1
-   * @maxItems 2
-   */
-  difficulty: number[];
-  /**
-   * An array of requirements that the player must meet to enter the area
-   */
-  entryRequirements: AnyRequirementData[];
-  /**
-   * Optional. Additional array of requirements that the player must meet to enter the area for specific gamemodes
-   */
-  gamemodeEntryRequirements?: {
-    /**
-     * The ID of the gamemode to roll for
-     */
-    gamemodeID: GamemodeID;
-    /**
-     * An array of requirements that the player must meet to enter the area
-     */
-    entryRequirements: AnyRequirementData[];
-  }[];
-  /**
-   * The ID of the combat triangle set to use while in this area. Defaults to Normal.
-   */
-  combatTriangleSet?: CombatTriangleSetID;
-  /**
-   * Optional. Sets damage types that the player is allowed to use in this area. Unset allows all damage types
-   *
-   * @minItems 1
-   */
-  allowedDamageTypeIDs?: DamageTypeID[];
-  /**
-   * Optional. If set, this will override the damage types of all Monsters in the area with the set damage type.
-   */
-  overrideDamageType?: DamageTypeID;
-  /**
-   * Optional. Set which gamemode IDs this area will display for. If empty, it will show for all gamemodes.
-   */
-  allowedGamemodeIDs?: GamemodeID[];
 };
 /**
  * Data for constructing a RealmedObject object
  */
 export type RealmedObjectData = IDData & {
-  /**
-   * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
-   */
-  realm?: RealmID;
-} & {
-  /**
-   * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
-   */
-  realm?: RealmID;
-} & {
-  /**
-   * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
-   */
-  realm?: RealmID;
-} & {
-  /**
-   * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
-   */
-  realm?: RealmID;
-} & {
-  /**
-   * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
-   */
-  realm?: RealmID;
-} & {
-  /**
-   * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
-   */
-  realm?: RealmID;
-} & {
-  /**
-   * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
-   */
-  realm?: RealmID;
-} & {
-  /**
-   * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
-   */
-  realm?: RealmID;
-} & {
   /**
    * Optional. The ID of the realm this object belongs to. Defaults to melvorD:Melvor
    */
@@ -20760,19 +19118,6 @@ export type CombatTriangleSetID =
  * Data for constructing a SlayerArea object
  */
 export type SlayerAreaData = CombatAreaData & {
-  /**
-   * Describes the slayer area's effect. Templated by
-   */
-  areaEffectDescription?: string;
-  /**
-   * Optional. If present the area will provide the given modifiers/effect applicators to the player or enemy
-   */
-  areaEffect?: CombatAreaEffectData;
-  /**
-   * Optional. If present, killing monsters in the area has a chance to drop a pet
-   */
-  pet?: PetChanceData;
-} & {
   /**
    * Describes the slayer area's effect. Templated by
    */
@@ -21165,7 +19510,6 @@ export type ModifierAlias =
       | "increasedResistancePer30Defence"
       | "increasedDamageReductionWithActivePrayer"
       | "increasedResistanceWithActivePrayer"
-      | "increasedMeleeStrengthBonusPer10EnemyDR"
       | "increasedMeleeStrengthBonusPer10EnemyResistance"
       | "increasedMeleeDefenceBonusBasedOnResistance"
       | "increasedRangedDefenceBonusBasedOnResistance"
@@ -21231,7 +19575,6 @@ export type ModifierAlias =
       | "increasedCurrencyPerRangedDamage"
       | "increasedGPPerMagicDamage"
       | "increasedCurrencyPerMagicDamage"
-      | "increasedSlayerCoinsPerMagicDamageSlayerTask"
       | "increasedCurrencyPerMagicDamageOnSlayerTask"
       | "increasedGPFromSlayerTaskMonsters"
       | "increasedCurrencyFromSlayerTaskMonsterDrops"
@@ -21834,232 +20177,12 @@ export type DungeonData = CombatAreaData & {
    * Optional. Whether to hide the dungeon element if it is locked. Defaults to false.
    */
   hideIfLocked?: boolean;
-} & {
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed
-   */
-  rewardItemIDs: AnyItemID[];
-  /**
-   * Optional. If present this item will be rewarded upon the first completion of the dungeon
-   */
-  oneTimeRewardID?: AnyItemID;
-  /**
-   * If Monsters inside this dungeon should be allowed to drop their bone items
-   */
-  dropBones: boolean;
-  /**
-   * Optional. If present the dungeon's progres will visually display as completing different floors. Each element represents the number of monsters per floor.
-   *
-   * @minItems 1
-   */
-  floors?: number[];
-  /**
-   * Optional. ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour.
-   */
-  eventID?: CombatEventID;
-  /**
-   * Optional. If present, this dungeon will require the requirements specified to be met first before it can be accessed
-   *
-   * @minItems 1
-   */
-  unlockRequirement?: AnyRequirementData[];
-  /**
-   * Optional. Adds a Pet that is rolled for upon completing the dungeon
-   */
-  pet?: PetChanceData;
-  /**
-   * If true, the dungeons pet will be awarded when the dungeon has been completed a number of times equal to the weight property of the pet property, instead of rolling randomly
-   */
-  fixedPetClears: boolean;
-  /**
-   * If combat should pause before each Boss monster in the dungeon
-   */
-  pauseOnBosses: boolean;
-  /**
-   * Optional. If present the Combat Passives with the IDs given will be given to all non-boss monsters in the dungeon
-   *
-   * @minItems 1
-   */
-  nonBossPassives?: CombatPassiveID[];
-  /**
-   * Optional. If present the Combat Passives with the IDs given will be given to all isBoss = true monsters in the dungeon
-   *
-   * @minItems 1
-   */
-  bossOnlyPassives?: CombatPassiveID[];
-  /**
-   * Optional. An array of item IDs that will be rewarded when the dungeon is completed for the respective gamemode
-   */
-  gamemodeRewardItemIDs?: GamemodeRewardItemIDData[];
-  /**
-   * Optional. Whether to show the unlock requirements of the dungeon. Defaults to true.
-   */
-  showUnlockRequirements?: boolean;
-  /**
-   * Optional. Whether to hide the dungeon element if it is locked. Defaults to false.
-   */
-  hideIfLocked?: boolean;
-} & {
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed
-   */
-  rewardItemIDs: AnyItemID[];
-  /**
-   * Optional. If present this item will be rewarded upon the first completion of the dungeon
-   */
-  oneTimeRewardID?: AnyItemID;
-  /**
-   * If Monsters inside this dungeon should be allowed to drop their bone items
-   */
-  dropBones: boolean;
-  /**
-   * Optional. If present the dungeon's progres will visually display as completing different floors. Each element represents the number of monsters per floor.
-   *
-   * @minItems 1
-   */
-  floors?: number[];
-  /**
-   * Optional. ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour.
-   */
-  eventID?: CombatEventID;
-  /**
-   * Optional. If present, this dungeon will require the requirements specified to be met first before it can be accessed
-   *
-   * @minItems 1
-   */
-  unlockRequirement?: AnyRequirementData[];
-  /**
-   * Optional. Adds a Pet that is rolled for upon completing the dungeon
-   */
-  pet?: PetChanceData;
-  /**
-   * If true, the dungeons pet will be awarded when the dungeon has been completed a number of times equal to the weight property of the pet property, instead of rolling randomly
-   */
-  fixedPetClears: boolean;
-  /**
-   * If combat should pause before each Boss monster in the dungeon
-   */
-  pauseOnBosses: boolean;
-  /**
-   * Optional. If present the Combat Passives with the IDs given will be given to all non-boss monsters in the dungeon
-   *
-   * @minItems 1
-   */
-  nonBossPassives?: CombatPassiveID[];
-  /**
-   * Optional. If present the Combat Passives with the IDs given will be given to all isBoss = true monsters in the dungeon
-   *
-   * @minItems 1
-   */
-  bossOnlyPassives?: CombatPassiveID[];
-  /**
-   * Optional. An array of item IDs that will be rewarded when the dungeon is completed for the respective gamemode
-   */
-  gamemodeRewardItemIDs?: GamemodeRewardItemIDData[];
-  /**
-   * Optional. Whether to show the unlock requirements of the dungeon. Defaults to true.
-   */
-  showUnlockRequirements?: boolean;
-  /**
-   * Optional. Whether to hide the dungeon element if it is locked. Defaults to false.
-   */
-  hideIfLocked?: boolean;
-} & {
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed
-   */
-  rewardItemIDs: AnyItemID[];
-  /**
-   * Optional. If present this item will be rewarded upon the first completion of the dungeon
-   */
-  oneTimeRewardID?: AnyItemID;
-  /**
-   * If Monsters inside this dungeon should be allowed to drop their bone items
-   */
-  dropBones: boolean;
-  /**
-   * Optional. If present the dungeon's progres will visually display as completing different floors. Each element represents the number of monsters per floor.
-   *
-   * @minItems 1
-   */
-  floors?: number[];
-  /**
-   * Optional. ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour.
-   */
-  eventID?: CombatEventID;
-  /**
-   * Optional. If present, this dungeon will require the requirements specified to be met first before it can be accessed
-   *
-   * @minItems 1
-   */
-  unlockRequirement?: AnyRequirementData[];
-  /**
-   * Optional. Adds a Pet that is rolled for upon completing the dungeon
-   */
-  pet?: PetChanceData;
-  /**
-   * If true, the dungeons pet will be awarded when the dungeon has been completed a number of times equal to the weight property of the pet property, instead of rolling randomly
-   */
-  fixedPetClears: boolean;
-  /**
-   * If combat should pause before each Boss monster in the dungeon
-   */
-  pauseOnBosses: boolean;
-  /**
-   * Optional. If present the Combat Passives with the IDs given will be given to all non-boss monsters in the dungeon
-   *
-   * @minItems 1
-   */
-  nonBossPassives?: CombatPassiveID[];
-  /**
-   * Optional. If present the Combat Passives with the IDs given will be given to all isBoss = true monsters in the dungeon
-   *
-   * @minItems 1
-   */
-  bossOnlyPassives?: CombatPassiveID[];
-  /**
-   * Optional. An array of item IDs that will be rewarded when the dungeon is completed for the respective gamemode
-   */
-  gamemodeRewardItemIDs?: GamemodeRewardItemIDData[];
-  /**
-   * Optional. Whether to show the unlock requirements of the dungeon. Defaults to true.
-   */
-  showUnlockRequirements?: boolean;
-  /**
-   * Optional. Whether to hide the dungeon element if it is locked. Defaults to false.
-   */
-  hideIfLocked?: boolean;
 };
 export type CombatEventID = ValidID | "melvorF:ImpendingDarkness";
 /**
  * Data for constructing a Stronghold object
  */
 export type StrongholdData = CombatAreaData & {
-  tiers: {
-    /**
-     * Determines the requirements and rewards for the normal version of this stronghold
-     */
-    Standard: StrongholdTierData;
-    /**
-     * Determines the requirements and rewards for the augmented version of this stronghold
-     */
-    Augmented: StrongholdTierData;
-    /**
-     * Determines the requirements and rewards for the superior version of this stronghold
-     */
-    Superior: StrongholdTierData;
-  };
-  /**
-   * Optional. Defines a pet that can drop on Stronghold completion
-   */
-  pet?: PetChanceData;
-  /**
-   * Optional. If present the Combat Passives with the IDs given will be given to all isBoss = true monsters in the stronghold
-   *
-   * @minItems 1
-   */
-  bossOnlyPassives?: CombatPassiveID[];
-} & {
   tiers: {
     /**
      * Determines the requirements and rewards for the normal version of this stronghold
@@ -22095,14 +20218,7 @@ export type CombatEventData = IDData & {
    * @minItems 5
    * @maxItems 5
    */
-  itemRewardIDs: [
-    AnyItemID,
-    AnyItemID,
-    AnyItemID,
-    AnyItemID,
-    AnyItemID,
-    ...AnyItemID[],
-  ];
+  itemRewardIDs: AnyItemID[];
   /**
    * The ID of the pet rewarded upon completion of the event
    */
@@ -22118,74 +20234,7 @@ export type CombatEventData = IDData & {
    *
    * @minItems 8
    */
-  passiveSelectionIDs: [
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    ...CombatPassiveID[],
-  ];
-  /**
-   * The IDs of the combat passives that are given to the monsters in the Slayer Areas during the event. Does not apply to the first/final boss monster of this event
-   */
-  enemyPassives: CombatPassiveID[];
-  /**
-   * The IDs of the combat passives that are given to the last monster from the Slayer Area during the event. Does not apply to the first/final boss monster of this event
-   */
-  bossPassives: CombatPassiveID[];
-  /**
-   * The ID of the monster that serves as the boss for the first 4 stages of the event
-   */
-  firstBossMonster: MonsterID;
-  /**
-   * The ID of the monster that serves as the boss for 5th and last stage of the event
-   */
-  finalBossMonster: MonsterID;
-} & {
-  /**
-   * The IDs of the items that are rewarded at the end of a stage of the event
-   *
-   * @minItems 5
-   * @maxItems 5
-   */
-  itemRewardIDs: [
-    AnyItemID,
-    AnyItemID,
-    AnyItemID,
-    AnyItemID,
-    AnyItemID,
-    ...AnyItemID[],
-  ];
-  /**
-   * The ID of the pet rewarded upon completion of the event
-   */
-  petID: PetID;
-  /**
-   * The IDs of the slayer areas that must be completed each stage of the event
-   *
-   * @minItems 1
-   */
-  slayerAreaIDs: ValidID[];
-  /**
-   * The IDs of the combat passives that the player can select from between stages of the event
-   *
-   * @minItems 8
-   */
-  passiveSelectionIDs: [
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    CombatPassiveID,
-    ...CombatPassiveID[],
-  ];
+  passiveSelectionIDs: CombatPassiveID[];
   /**
    * The IDs of the combat passives that are given to the monsters in the Slayer Areas during the event. Does not apply to the first/final boss monster of this event
    */
@@ -22207,72 +20256,6 @@ export type CombatEventData = IDData & {
  * Data for constructing a SlayerTaskCategory object
  */
 export type SlayerTaskCategoryData = RealmedObjectData & {
-  /**
-   * The display name of the category
-   */
-  name: string;
-  /**
-   * The error message displayed when attempting to perform an action that requires task completions in this category
-   */
-  reqToast: string;
-  /**
-   * The requires text to display for requirements that require task completions in this category
-   */
-  reqText: string;
-  /**
-   * The unlock text to display for requirements that require task completions in this category
-   */
-  unlockText: string;
-  /**
-   * The text to display in the offline modal for completing a task in this category
-   */
-  completionText: string;
-  /**
-   * The currency costs to reroll or select a task in this category
-   */
-  rollCost: CurrencyQuantity[];
-  /**
-   * The currency costs to extend a task in this category
-   */
-  extensionCost: CurrencyQuantity[];
-  /**
-   * Multiplier to the number of monsters given on task extension
-   */
-  extensionMultiplier: number;
-  /**
-   * The Slayer level required to select a task in this category
-   */
-  level: number;
-  /**
-   * Optional. The Abyssal Slayer Level required to select a task in this category. Also flags this category as abyssal
-   */
-  abyssalLevel?: number;
-  /**
-   * Defines the currencies awarded upon killing a monster from this category.
-   */
-  currencyRewards: {
-    /**
-     * The ID of the currency to award
-     */
-    id: CurrencyID;
-    /**
-     * The percent of the enemies max hitpoints (in Standard Game mode) to award
-     */
-    percent: number;
-  }[];
-  /**
-   * Determines the monsters that can be selected for this category
-   */
-  monsterSelection: AnySlayerTaskMonsterSelectionData;
-  /**
-   * Determines the base quantity of monsters that must be killed in a task
-   */
-  baseTaskLength: number;
-  /**
-   * Optional. The ID of the category previous to this one. Used to count the number of tasks completions for this category and below.
-   */
-  previousCategory?: SlayerTaskCategoryID;
-} & {
   /**
    * The display name of the category
    */
@@ -22389,93 +20372,11 @@ export type PrayerData = IDData &
      * @minItems 1
      */
     allowedDamageTypeIDs?: DamageTypeID[];
-  } & {
-    /**
-     * The Prayer level required to use the prayer
-     */
-    level: number;
-    /**
-     * The display name of the prayer
-     */
-    name: string;
-    /**
-     * A URI for the prayer's image
-     */
-    media: string;
-    /**
-     * The base number of prayer points to use when the Player makes an attack
-     */
-    pointsPerPlayer: number;
-    /**
-     * The base number of prayer points to use when the Enemy makes an attack
-     */
-    pointsPerEnemy: number;
-    /**
-     * The base number of prayer points to use when the Player regenerates hitpoints
-     */
-    pointsPerRegen: number;
-    /**
-     * Optional. Flags this prayer as Unholy, augmenting it from default mechanics. Defaults to false.
-     */
-    isUnholy?: boolean;
-    /**
-     * Optional. Flags this prayer as Abyssal, using Soul Points instead of Prayer Points. Defaults to false.
-     */
-    isAbyssal?: boolean;
-    /**
-     * Optional. The Prayer Abyssal level required to use the prayer
-     */
-    abyssalLevel?: number;
-    /**
-     * Optional. The IDs of Damage Types this prayer can be used with. Unset means it can be used with all damage types.
-     *
-     * @minItems 1
-     */
-    allowedDamageTypeIDs?: DamageTypeID[];
   };
 /**
  * Data for constructing an AttackSpellbook object
  */
 export type AttackSpellbookData = IDData & {
-  /**
-   * Display name of the spellbook
-   */
-  name: string;
-  /**
-   * Optional. Language string ID to use for the name property
-   */
-  nameLang?: string;
-  /**
-   * URI of the spellbooks icon
-   */
-  media: string;
-  /**
-   * Optional. Prefix used for the language string IDs of spell names in this book
-   */
-  spellNameLangPrefix?: string;
-  /**
-   * Optional. If Curse spells can be used alongside spells from this book. Defaults to true
-   */
-  allowCurses?: boolean;
-  /**
-   * Optional. If Aurora spells can be used alongside spells from this book. Defaults to true
-   */
-  allowAuroras?: boolean;
-  /**
-   * Optional. If the max hit from this spell can benefit from damage modifiers. Defaults to true
-   */
-  allowDamageModifiers?: boolean;
-  /**
-   * Optional. If special attacks can be used with spells from this book. Defaults to true
-   */
-  allowSpecialAttacks?: boolean;
-  /**
-   * Optional. If present, spells from this book will only be allowed to be used with the given damage types
-   *
-   * @minItems 1
-   */
-  allowedDamageTypeIDs?: DamageTypeID[];
-} & {
   /**
    * Display name of the spellbook
    */
@@ -22535,40 +20436,6 @@ export type AttackSpellData = CombatSpellData & {
    * The ID of the spellbook this spell belongs to
    */
   spellbook: AttackSpellbookID;
-} & {
-  /**
-   * Optional. The base maximum hit used to calculate the player's max hit. 1/10th of the desired damage in Standard mode. Defaults to 0
-   */
-  maxHit?: number;
-  /**
-   * Optional. The ID of a special attack. If present, the player's special attack list will be replaced with this attack when using this spell.
-   */
-  specialAttackID?: SpecialAttackID;
-  /**
-   * Optional. Combat effect applicators that will be merged with the player when using the spell
-   */
-  combatEffects?: TriggeredCombatEffectApplicatorData[];
-  /**
-   * The ID of the spellbook this spell belongs to
-   */
-  spellbook: AttackSpellbookID;
-} & {
-  /**
-   * Optional. The base maximum hit used to calculate the player's max hit. 1/10th of the desired damage in Standard mode. Defaults to 0
-   */
-  maxHit?: number;
-  /**
-   * Optional. The ID of a special attack. If present, the player's special attack list will be replaced with this attack when using this spell.
-   */
-  specialAttackID?: SpecialAttackID;
-  /**
-   * Optional. Combat effect applicators that will be merged with the player when using the spell
-   */
-  combatEffects?: TriggeredCombatEffectApplicatorData[];
-  /**
-   * The ID of the spellbook this spell belongs to
-   */
-  spellbook: AttackSpellbookID;
 };
 /**
  * Data for constructing a CombatSpell object
@@ -22588,70 +20455,11 @@ export type CombatSpellData = BaseSpellData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: DamageTypeID[];
-} & {
-  /**
-   * Optional. If present, the player must have the specified EquipmentItem equipped to use the spell
-   */
-  requiredItemID?: EquipmentItemID;
-  /**
-   * Requirements the player must meet to use this spell
-   */
-  requirements?: AnyRequirementData[];
-  /**
-   * Optional. The IDs of Damage Types this spell can be used with. Unset means it can be used with all damage types.
-   *
-   * @minItems 1
-   */
-  allowedDamageTypeIDs?: DamageTypeID[];
-} & {
-  /**
-   * Optional. If present, the player must have the specified EquipmentItem equipped to use the spell
-   */
-  requiredItemID?: EquipmentItemID;
-  /**
-   * Requirements the player must meet to use this spell
-   */
-  requirements?: AnyRequirementData[];
-  /**
-   * Optional. The IDs of Damage Types this spell can be used with. Unset means it can be used with all damage types.
-   *
-   * @minItems 1
-   */
-  allowedDamageTypeIDs?: DamageTypeID[];
 };
 /**
  * Data for constructing a BaseSpell object
  */
 export type BaseSpellData = IDData & {
-  /**
-   * The display name of the spell
-   */
-  name: string;
-  /**
-   * URI for the spell's image
-   */
-  media: string;
-  /**
-   * The Magic level required to use the spell
-   */
-  level: number;
-  /**
-   * The base rune costs required to cast the spell
-   */
-  runesRequired: RuneQuantity[];
-  /**
-   * Optional. Specifies the rune costs for the spell when using combination runes. If unset, the runesRequired property will be used
-   */
-  runesRequiredAlt?: RuneQuantity[];
-  /**
-   * Optional. The Abyssal Magic Level required to use the spell. Defaults to 0
-   */
-  abyssalLevel?: number;
-  /**
-   * Optional. The ids of spell categories the spell belongs to
-   */
-  categories?: SpellCategoryID[];
-} & {
   /**
    * The display name of the spell
    */
@@ -22724,11 +20532,6 @@ export type CurseSpellData = CombatSpellData & {
    * The ID of the CombatEffect that is applied when the curse is cast
    */
   effectID: CombatEffectID;
-} & {
-  /**
-   * The ID of the CombatEffect that is applied when the curse is cast
-   */
-  effectID: CombatEffectID;
 };
 /**
  * Data for constructing a AuroraSpell object
@@ -22739,57 +20542,6 @@ export type AuroraSpellData = CombatSpellData & IStatObjectData;
  */
 export type PetData = IDData &
   IStatObjectData & {
-    /**
-     * The display name of the Pet
-     */
-    name: string;
-    /**
-     * URI for the pet's image
-     */
-    media: string;
-    /**
-     * Optional. If present, this will displayed as the hint for obtaining the pet instead of the autogenerated one.
-     */
-    hint?: string;
-    /**
-     * Optional. Language string ID for the hint property
-     */
-    langHint?: string;
-    /**
-     * Optional. The ID of the skill that this pet is obtained from.
-     */
-    skillID?: SkillID;
-    /**
-     * Determines if the chance to receive the pet should scale with the skill's mastery pool progress
-     */
-    scaleChanceWithMasteryPool: boolean;
-    /**
-     * If the pet should not count towards pet completion
-     */
-    ignoreCompletion: boolean;
-    /**
-     * If true, this pets bonuses will only apply in golbin raid
-     */
-    activeInRaid: boolean;
-    /**
-     * Optional. Specifies the name of the patreon who created this pet. Has no effect for modded pets.
-     */
-    patreonName?: string;
-    /**
-     * Optional. Specifies a custom description that should be appended to the end of the pet's tooltip
-     */
-    customDescription?: string;
-    /**
-     * Optional. Language string ID for the customDescription property
-     */
-    langCustomDescription?: string;
-    /**
-     * Optional. Realms this pet can drop in. Unset means all realms.
-     *
-     * @minItems 1
-     */
-    realms?: RealmID[];
-  } & {
     /**
      * The display name of the Pet
      */
@@ -22861,100 +20613,11 @@ export type ShopCategoryData = IDData & {
    * Optional. Set which gamemode IDs this shop category will display for. If empty, it will show for all gamemodes.
    */
   allowedGamemodeIDs?: GamemodeID[];
-} & {
-  /**
-   * The display name of the category
-   */
-  name: string;
-  /**
-   * URI of the categories image in the shop
-   */
-  media: string;
-  /**
-   * Optional. If set to true, this categories upgrades will only apply to golbin raid. Will also only show when accessing the raid shop. Defaults to false.
-   */
-  isGolbinRaid?: boolean;
-  /**
-   * Optional. Set which gamemode IDs this shop category will display for. If empty, it will show for all gamemodes.
-   */
-  allowedGamemodeIDs?: GamemodeID[];
 };
 /**
  * Data for constructing a ShopPurchase object
  */
 export type ShopPurchaseData = IDData & {
-  /**
-   * Optional. Custom name for the purchase. Overrides the name generated by the purchase contents.
-   */
-  customName?: string;
-  /**
-   * Optional. Custom description for the purchase. Overrides the description generated by the purchase contents. Is automatically templated.
-   */
-  customDescription?: string;
-  /**
-   * URI of the purchases image in the shop
-   */
-  media: string;
-  /**
-   * The id of the category in the shop this purchase belongs to
-   */
-  category: ShopCategoryID;
-  /**
-   * Determines what should be given to the player when the purchase is bought
-   */
-  contains: IStatObjectData;
-  /**
-   * Determines the cost of purchasing this
-   */
-  cost: ShopCost;
-  /**
-   * If the player is allowed to purchase multiple of this purchase at once
-   */
-  allowQuantityPurchase: boolean;
-  /**
-   * Previous shop purchases that must be made before the item shows in the shop
-   */
-  unlockRequirements: ShopPurchaseRequirementData[];
-  /**
-   * Requirements the player must meet to purchase this item
-   */
-  purchaseRequirements: AnyRequirementData[];
-  /**
-   * The default limit to the number of times the player may purchase this. If set to 0, the player may purchase it unlimited times
-   */
-  defaultBuyLimit: number;
-  /**
-   * Defines gamemode specific overrides to the defaultBuyLimit
-   */
-  buyLimitOverrides: {
-    /**
-     * The ID of the gamemode that should override the defaultBuyLimit
-     */
-    gamemodeID: GamemodeID;
-    /**
-     * The buy limit for the purchase for the specified gamemode. If set to 0, the player max purchase it unlimited times
-     */
-    maximum: number;
-  }[];
-  /**
-   * Determines if the shop purchase should still show in the shop when at its buy limit.
-   */
-  showBuyLimit: boolean;
-  /**
-   * Optional. Utilized for purchases that have modifiers, displays a summary of the first modifier's value formatted according to this value.
-   */
-  currentDescription?:
-    | "PercentIncrease"
-    | "PercentDecrease"
-    | "Increase"
-    | "Decrease"
-    | "SecondsIncrease"
-    | "SecondsDecrease";
-  /**
-   * Optional. Set which gamemode IDs this shop item will display for. If empty, it will show for all gamemodes.
-   */
-  allowedGamemodeIDs?: GamemodeID[];
-} & {
   /**
    * Optional. Custom name for the purchase. Overrides the name generated by the purchase contents.
    */
@@ -23086,96 +20749,11 @@ export type ShopUpgradeChainData = IDData & {
    * Optional. Language string ID to use for the defaultDescription property
    */
   descriptionLang?: string;
-} & {
-  /**
-   * The ID of the highest shop purchase in the chain
-   */
-  rootUpgradeID: ShopPurchaseID;
-  /**
-   * The display name of the upgrade chain
-   */
-  chainName: string;
-  /**
-   * The name of the shop upgrade shown when none in the chain are owned
-   */
-  defaultName: string;
-  /**
-   * The media of the shop upgrade shown when none in the chain are owned
-   */
-  defaultMedia?: string;
-  /**
-   * The description of the shop upgrade shown when none in the chain are owned
-   */
-  defaultDescription: string;
-  /**
-   * Optional. Language string ID to use for the chainName property
-   */
-  chainNameLang?: string;
-  /**
-   * Optional. Language string ID to use for the defaultName property
-   */
-  defaultNameLang?: string;
-  /**
-   * Optional. Language string ID to use for the defaultDescription property
-   */
-  descriptionLang?: string;
 };
 /**
  * Data for constructing a TutorialStage object
  */
 export type TutorialStageData = IDData & {
-  /**
-   * The display name of the stage
-   */
-  name: string;
-  /**
-   * The displayed description of the stage
-   */
-  description: string;
-  /**
-   * The tasks that must be completed to complete the stage
-   *
-   * @minItems 1
-   */
-  tasks: TutorialTaskData[];
-  /**
-   * The ID of the page that the task is completed on
-   */
-  taskPage: PageID;
-  /**
-   * The IDs of the skills that are unlocked with the stage
-   */
-  skillUnlocks: SkillID[];
-  /**
-   * Rewards that are given upon completion of the stage
-   */
-  rewards: {
-    /**
-     * Currencies given upon stage completion
-     */
-    currencies: CurrencyQuantity[];
-    /**
-     * Items given upon stage completion
-     */
-    items: AnyItemQuantity[];
-  };
-  /**
-   * ShopPurchases that the player is allowed to make during the stage
-   */
-  allowedShopPurchases: ShopPurchaseID[];
-  /**
-   * Monsters that the player is allowed to fight during the stage
-   */
-  allowedMonsters: MonsterID[];
-  /**
-   * Items that the player is not allowed to sell during the stage
-   */
-  bannedItemSales: AnyItemID[];
-  /**
-   * If the player is allowed to use combat during the stage
-   */
-  allowCombat: boolean;
-} & {
   /**
    * The display name of the stage
    */
@@ -23725,430 +21303,8 @@ export type MasterySkillData = BaseSkillData & {
    * @minItems 1
    */
   masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
-} & {
-  /**
-   * Optional. Data for mastery level unlocks for this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelUnlocks?: MasteryLevelUnlockData[];
-  /**
-   * Optional. Defines mastery level bonuses that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryLevelBonuses?: MasteryLevelBonusData[];
-  /**
-   * Optional. Defines mastery pool bonuses (checkpoints) that are provided by this skill
-   *
-   * @minItems 1
-   */
-  masteryPoolBonuses?: MasteryPoolBonusData[];
 };
 export type SkillSubcategoryData = IDData & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
-  /**
-   * The display name of the subcategory
-   */
-  name: string;
-  /**
-   * Optional. The id of a language string to use instead of the name
-   */
-  nameLang?: string;
-} & {
   /**
    * The display name of the subcategory
    */
@@ -24163,61 +21319,6 @@ export type SkillSubcategoryData = IDData & {
  */
 export type AltMagicSpellData = BaseSpellData &
   RealmedObjectData & {
-    /**
-     * The displayed description for the spell. Automatically templated.
-     */
-    description: string;
-    /**
-     * The base experience earned per cast of the spell
-     */
-    baseExperience: number;
-    /**
-     * Optional. The base abyssal experience earned per cast of the spell
-     */
-    baseAbyssalExperience?: number;
-    /**
-     * Optional. The abyssal level required
-     */
-    abyssalLevel?: number;
-    /**
-     * Optional. Defines item costs for the spell that do not change
-     *
-     * @minItems 1
-     */
-    fixedItemCosts?: AnyItemQuantity[];
-    /**
-     * Defines the special costs for the spell.
-     */
-    specialCost: {
-      /**
-       * The types of item(s) that should be consumed
-       */
-      type:
-        | "AnyItem"
-        | "JunkItem"
-        | "BarIngredientsWithCoal"
-        | "BarIngredientsWithoutCoal"
-        | "None"
-        | "AnySuperiorGem"
-        | "AnyNormalFood";
-      /**
-       * Optional. If present, only items that sell for this currency can be consumed
-       */
-      currency?: CurrencyID;
-      /**
-       * The quantity of the item(s) that should be consumed
-       */
-      quantity: number;
-    };
-    /**
-     * Defines what the spell produces. Can either be a special production, or a set itemID.
-     */
-    produces: AnyItemID | AltMagicProduction;
-    /**
-     * Determines the quantity of resources produces by the spell. Effect depends on the produces property.
-     */
-    productionRatio: number;
-  } & {
     /**
      * The displayed description for the spell. Automatically templated.
      */
@@ -24326,27 +21427,6 @@ export type WoodcuttingTreeData = SingleProductRecipeData & {
    * Optional. If present, these requirements must also be met to cut to tree, in addition to Woodcutting level.
    */
   requirements?: AnyRequirementData[];
-} & {
-  /**
-   * Display name of the tree
-   */
-  name: string;
-  /**
-   * URI of the trees image
-   */
-  media: string;
-  /**
-   * The base time it takes to cut the tree in [ms]
-   */
-  baseInterval: number;
-  /**
-   * Optional. Determines which random products can drop from this tree. Defaults to skill defaults
-   */
-  randomProducts?: AnyItemID[];
-  /**
-   * Optional. If present, these requirements must also be met to cut to tree, in addition to Woodcutting level.
-   */
-  requirements?: AnyRequirementData[];
 };
 /**
  * Data for constructing a SingleProductRecipe object
@@ -24356,133 +21436,11 @@ export type SingleProductRecipeData = BasicSkillRecipeData & {
    * The ID of the item that is produced
    */
   productId: AnyItemID;
-} & {
-  /**
-   * The ID of the item that is produced
-   */
-  productId: AnyItemID;
-} & {
-  /**
-   * The ID of the item that is produced
-   */
-  productId: AnyItemID;
-} & {
-  /**
-   * The ID of the item that is produced
-   */
-  productId: AnyItemID;
-} & {
-  /**
-   * The ID of the item that is produced
-   */
-  productId: AnyItemID;
 };
 /**
  * Data for constructing a BasicSkillRecipe object
  */
 export type BasicSkillRecipeData = RealmedObjectData & {
-  /**
-   * The base experience rewarded per action
-   */
-  baseExperience: number;
-  /**
-   * The skill level required to perform the action
-   */
-  level: number;
-  /**
-   * Optional. The base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. The abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
-  /**
-   * The base experience rewarded per action
-   */
-  baseExperience: number;
-  /**
-   * The skill level required to perform the action
-   */
-  level: number;
-  /**
-   * Optional. The base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. The abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
-  /**
-   * The base experience rewarded per action
-   */
-  baseExperience: number;
-  /**
-   * The skill level required to perform the action
-   */
-  level: number;
-  /**
-   * Optional. The base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. The abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
-  /**
-   * The base experience rewarded per action
-   */
-  baseExperience: number;
-  /**
-   * The skill level required to perform the action
-   */
-  level: number;
-  /**
-   * Optional. The base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. The abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
-  /**
-   * The base experience rewarded per action
-   */
-  baseExperience: number;
-  /**
-   * The skill level required to perform the action
-   */
-  level: number;
-  /**
-   * Optional. The base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. The abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
-  /**
-   * The base experience rewarded per action
-   */
-  baseExperience: number;
-  /**
-   * The skill level required to perform the action
-   */
-  level: number;
-  /**
-   * Optional. The base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. The abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
   /**
    * The base experience rewarded per action
    */
@@ -24527,32 +21485,18 @@ export type FishingSkillData = MasterySkillData & {
    *
    * @minItems 1
    */
-  specialItems?: [
-    {
-      /**
-       * The ID of the realm these special items should drop from
-       */
-      realmID: RealmID;
-      /**
-       * The drops to add to the table
-       *
-       * @minItems 1
-       */
-      drops: DropTableData[];
-    },
-    ...{
-      /**
-       * The ID of the realm these special items should drop from
-       */
-      realmID: RealmID;
-      /**
-       * The drops to add to the table
-       *
-       * @minItems 1
-       */
-      drops: DropTableData[];
-    }[],
-  ];
+  specialItems?: {
+    /**
+     * The ID of the realm these special items should drop from
+     */
+    realmID: RealmID;
+    /**
+     * The drops to add to the table
+     *
+     * @minItems 1
+     */
+    drops: DropTableData[];
+  }[];
   easterEgg?: {
     originalID: AnyItemID;
     equippedID: EquipmentItemID;
@@ -24581,63 +21525,11 @@ export type FishData = SingleProductRecipeData & {
    * The base maximum interval to catch the fish in [ms]
    */
   baseMaxInterval: number;
-} & {
-  /**
-   * Base strength skill experience earned on a successful catch
-   */
-  strengthXP: number;
-  /**
-   * The base minimum interval to catch the fish in [ms]
-   */
-  baseMinInterval: number;
-  /**
-   * The base maximum interval to catch the fish in [ms]
-   */
-  baseMaxInterval: number;
 };
 /**
  * Data for constructing a FishingArea object
  */
 export type FishingAreaData = RealmedObjectData & {
-  /**
-   * Display name of the area
-   */
-  name: string;
-  /**
-   * Optional. Flavour text description of the area.
-   */
-  description?: string;
-  /**
-   * The base fish chance
-   */
-  fishChance: number;
-  /**
-   * The base junk chance
-   */
-  junkChance: number;
-  /**
-   * The base special chance
-   */
-  specialChance: number;
-  /**
-   * The ids of fish that can be caught in this area
-   *
-   * @minItems 1
-   */
-  fishIDs: FishingActionID[];
-  /**
-   * Optional. If present this item must be equipped to fish in the area
-   */
-  requiredItemID?: EquipmentItemID;
-  /**
-   * Optional. If present, the player must have read the Message in a bottle to fish in the area
-   */
-  isSecret?: boolean;
-  /**
-   * Optional. If present the Cartography Point of Interest requirement must be met to access the area
-   */
-  poiRequirement?: CartographyPOIDiscoveryRequirementData;
-} & {
   /**
    * Display name of the area
    */
@@ -24744,35 +21636,6 @@ export type FiremakingLogData = BasicSkillRecipeData & {
    * Optional. The percent bonus to abyssal firemaking XP that a bonfire provides. Also re-themes the bonfire to abyssal, and makes normal bonuses that effect bonfires non-functional.
    */
   bonfireAXPBonus?: number;
-} & {
-  /**
-   * The Item ID of the log that should be burnt
-   */
-  logID: AnyItemID;
-  /**
-   * The base interval to burn a log in [ms]
-   */
-  baseInterval: number;
-  /**
-   * Optional. Defines which primary product items can be gained from this log. Defaults to skill data defaults
-   */
-  primaryProducts?: AnyItemID[];
-  /**
-   * Optional. Defines which secondary product items can be gained from this log. Defaults to skill data defaults
-   */
-  secondaryProducts?: AnyItemID[];
-  /**
-   * The base interval that a bonfire lasts for in [ms]
-   */
-  baseBonfireInterval: number;
-  /**
-   * The percent bonus to firemaking XP that a bonfire provides
-   */
-  bonfireXPBonus: number;
-  /**
-   * Optional. The percent bonus to abyssal firemaking XP that a bonfire provides. Also re-themes the bonfire to abyssal, and makes normal bonuses that effect bonfires non-functional.
-   */
-  bonfireAXPBonus?: number;
 };
 /**
  * Data for the Cooking Skill
@@ -24817,23 +21680,6 @@ export type CookingCategoryData = SkillCategoryData & {
    * If an upgrade must be purchased to cook items in this category
    */
   upgradeRequired: boolean;
-} & {
-  /**
-   * The name of this category as it appears in modifiers
-   */
-  modifierName: string;
-  /**
-   * Optional. Language string ID to use for modifierName
-   */
-  modifierNameLang?: string;
-  /**
-   * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade.
-   */
-  shopUpgradeIDs: ShopPurchaseID[];
-  /**
-   * If an upgrade must be purchased to cook items in this category
-   */
-  upgradeRequired: boolean;
 };
 /**
  * Data for constructing a SkillCategory object
@@ -24847,97 +21693,11 @@ export type SkillCategoryData = RealmedObjectData & {
    * Display name for the category
    */
   name: string;
-} & {
-  /**
-   * URI for the categories image
-   */
-  media: string;
-  /**
-   * Display name for the category
-   */
-  name: string;
-} & {
-  /**
-   * URI for the categories image
-   */
-  media: string;
-  /**
-   * Display name for the category
-   */
-  name: string;
-} & {
-  /**
-   * URI for the categories image
-   */
-  media: string;
-  /**
-   * Display name for the category
-   */
-  name: string;
-} & {
-  /**
-   * URI for the categories image
-   */
-  media: string;
-  /**
-   * Display name for the category
-   */
-  name: string;
-} & {
-  /**
-   * URI for the categories image
-   */
-  media: string;
-  /**
-   * Display name for the category
-   */
-  name: string;
-} & {
-  /**
-   * URI for the categories image
-   */
-  media: string;
-  /**
-   * Display name for the category
-   */
-  name: string;
-} & {
-  /**
-   * URI for the categories image
-   */
-  media: string;
-  /**
-   * Display name for the category
-   */
-  name: string;
 };
 /**
  * Data for constructing a CookingRecipe object
  */
 export type CookingRecipeData = SingleProductArtisanSkillRecipeData & {
-  /**
-   * The Item ID of the perfect version of the product
-   */
-  perfectCookID: AnyItemID;
-  /**
-   * The base interval to perform the action in [ms]
-   */
-  baseInterval: number;
-  /**
-   * Optional. The ID of a subcategory for this recipe
-   */
-  subcategoryID?: ValidID;
-  /**
-   * Optional. Flags the recipe as not participating in the mastery system.
-   */
-  noMastery?: boolean;
-  /**
-   * Optional. An array of Item IDs that player has to have found first, before being able to cook this recipe
-   *
-   * @minItems 1
-   */
-  discoveredItems?: AnyItemID[];
-} & {
   /**
    * The Item ID of the perfect version of the product
    */
@@ -24974,61 +21734,11 @@ export type SingleProductArtisanSkillRecipeData =
      * The base quantity of the item produced
      */
     baseQuantity: number;
-  } & {
-    /**
-     * ID of the item produced by this recipe
-     */
-    productID: AnyItemID;
-    /**
-     * The base quantity of the item produced
-     */
-    baseQuantity: number;
-  } & {
-    /**
-     * ID of the item produced by this recipe
-     */
-    productID: AnyItemID;
-    /**
-     * The base quantity of the item produced
-     */
-    baseQuantity: number;
-  } & {
-    /**
-     * ID of the item produced by this recipe
-     */
-    productID: AnyItemID;
-    /**
-     * The base quantity of the item produced
-     */
-    baseQuantity: number;
-  } & {
-    /**
-     * ID of the item produced by this recipe
-     */
-    productID: AnyItemID;
-    /**
-     * The base quantity of the item produced
-     */
-    baseQuantity: number;
-  } & {
-    /**
-     * ID of the item produced by this recipe
-     */
-    productID: AnyItemID;
-    /**
-     * The base quantity of the item produced
-     */
-    baseQuantity: number;
   };
 /**
  * Data for constructing a CategorizedArtisanRecipeData object
  */
 export type CategorizedArtisanRecipeData = ArtisanSkillRecipeData & {
-  /**
-   * ID of the category this recipe belongs to
-   */
-  categoryID: ValidID;
-} & {
   /**
    * ID of the category this recipe belongs to
    */
@@ -25102,90 +21812,11 @@ export type MiningCategoryData = IDData & {
    * Optional. If rocks in this category should roll for abyssal gem veins when mined. Defaults to false.
    */
   givesAbyssalGemVeins?: boolean;
-} & {
-  /**
-   * The display name of this category
-   */
-  name: string;
-  /**
-   * The css class to apply to the mining rock menus category display
-   */
-  badgeClass: string;
-  /**
-   * Optional. If rocks in this category should roll for gem veins when mined. Defaults to false.
-   */
-  givesGemVeins?: boolean;
-  /**
-   * Optional. If rocks in this category should roll for abyssal gem veins when mined. Defaults to false.
-   */
-  givesAbyssalGemVeins?: boolean;
 };
 /**
  * Data For constructing a MiningRock object
  */
 export type MiningRockData = SingleProductRecipeData & {
-  /**
-   * Display name of the rock
-   */
-  name: string;
-  /**
-   * URI of the rocks image
-   */
-  media: string;
-  /**
-   * The base time it takes for the rock to respawn in [ms]
-   */
-  baseRespawnInterval: number;
-  /**
-   * The base quantity of items received per action
-   */
-  baseQuantity: number;
-  /**
-   * Optional. If present the player required a total mastery level for mining greater than or equal to this to mine it.
-   */
-  totalMasteryRequired?: number;
-  /**
-   * Determines if the rock should respawn when depleted and have passive HP regeneration
-   */
-  hasPassiveRegen: boolean;
-  /**
-   * If the rock can benefit from modifiers that increase the chance to obtain gems
-   */
-  giveGems: boolean;
-  /**
-   * Optional. The base % chance to give a superior gem. If undefined, the rock cannot give a superior gem.
-   */
-  superiorGemChance?: number;
-  /**
-   * Optional. The ID of a ShopPurchase that is required to mine this rock
-   */
-  shopItemPurchased?: ShopPurchaseID;
-  /**
-   * Optional. If present, fixes the maximum HP of this mining node to the specified value.
-   */
-  fixedMaxHP?: number;
-  /**
-   * @deprecated
-   * Deprecated. Use category instead. The type of rock this mining node is.
-   */
-  type?: MiningRockType;
-  /**
-   * The id of the category this mining node belongs to
-   */
-  category: MiningCategoryID;
-  /**
-   * Optional. If present, this rock is eligible to be rolled as a gem vein and have it's HP increase. Higher weight indicates a higher chance to be selected.
-   */
-  gemVeinWeight?: number;
-  /**
-   * Optional. The base % chance to give an abyssal gem. If undefined, the rock cannot give an abyssal gem.
-   */
-  abyssalGemChance?: number;
-  /**
-   * Optional. If present, this rock is eligible to be rolled as an abyssal gem vein and have it's HP increase. Higher weight indicates a higher chance to be selected.
-   */
-  abyssalGemVeinWeight?: number;
-} & {
   /**
    * Display name of the rock
    */
@@ -25359,66 +21990,11 @@ export type ThievingNPCData = BasicSkillRecipeData & {
    * @minItems 1
    */
   allowedDamageTypeIDs?: DamageTypeID[];
-} & {
-  /**
-   * Display name of the NPC
-   */
-  name: string;
-  /**
-   * URI of the NPC's image
-   */
-  media: string;
-  /**
-   * Value of the NPCs perception stat. Higher values indicate a more difficult target to steal from
-   */
-  perception: number;
-  /**
-   * The maximum damage the NPC hits the player for when they fail a pickpocket attempt. 1/10th of the damage value in Normal Mode.
-   */
-  maxHit: number;
-  /**
-   * @deprecated
-   * Deprecated, use currencyDrops instead. The base maximum GP that the NPC can drop
-   */
-  maxGP?: number;
-  /**
-   * Determines the maximum amounts of currencies that can drop from this NPC
-   */
-  currencyDrops: CurrencyQuantity[];
-  /**
-   * Optional. Defines an item that rarely drops from this NPC
-   */
-  uniqueDrop?: AnyItemQuantity;
-  /**
-   * Defines the common drops of this NPC
-   */
-  lootTable: DropTableData[];
-  /**
-   * Optional. If present, pickpocketing will only be allowed to be used with the given damage types
-   *
-   * @minItems 1
-   */
-  allowedDamageTypeIDs?: DamageTypeID[];
 };
 /**
  * Data For constructing a ThievingArea object
  */
 export type ThievingAreaData = RealmedObjectData & {
-  /**
-   * The display name of this area
-   */
-  name: string;
-  /**
-   * The IDs of Thieving NPCs that are located in this area
-   *
-   * @minItems 1
-   */
-  npcIDs: ThievingActionID[];
-  /**
-   * Defines the area unique drops that can be obtained from npcs in this area
-   */
-  uniqueDrops: AnyItemQuantity[];
-} & {
   /**
    * The display name of this area
    */
@@ -25493,39 +22069,6 @@ export type FarmingCategoryData = SkillCategoryData & {
    * Singular form of the display name of this category. e.g. Herb
    */
   singularName: string;
-} & {
-  /**
-   * If actions in this category should have a chance to return seeds on harvest
-   */
-  returnSeeds: boolean;
-  /**
-   * If the xp gained from harvesting crops in the category should scale with the quantity of items harvested
-   */
-  scaleXPWithQuantity: boolean;
-  /**
-   * Multiplier to the quantity of items gained when harvesting for recipes in this category
-   */
-  harvestMultiplier: number;
-  /**
-   * Divisor applied to the mastery XP gained when harvesting crops in this category.
-   */
-  masteryXPDivider: number;
-  /**
-   * If experience should be granted when planting a recipe in this category
-   */
-  giveXPOnPlant: boolean;
-  /**
-   * Flavour text displayed on the category button
-   */
-  description: string;
-  /**
-   * Text displayed regarding the seed cost to plant recipes in this category. Shown when selecting a seed to plant.
-   */
-  seedNotice: string;
-  /**
-   * Singular form of the display name of this category. e.g. Herb
-   */
-  singularName: string;
 };
 /**
  * Data for constructing a FarmingRecipe object
@@ -25559,70 +22102,11 @@ export type FarmingRecipeData = SingleProductRecipeData & {
    * Optional. The base quantity produced. Defaults to 5
    */
   baseQuantity?: number;
-} & {
-  /**
-   * The base time that it takes for the crop to grow in [ms]
-   */
-  baseInterval: number;
-  /**
-   * The ID of the Farming category this recipe belongs to
-   */
-  categoryID: FarmingCategoryID;
-  /**
-   * The seeds required to plant this recipe
-   */
-  seedCost: AnyItemQuantity;
-  /**
-   * Optional. URI of image to display when the crop is fully grown
-   */
-  grownMedia?: string;
-  /**
-   * Optional. Overrides the display name of the grown crop from this recipe's product's name
-   */
-  grownName?: string;
-  /**
-   * Optional. Language string Id to use for the grownName property
-   */
-  grownNameLang?: string;
-  /**
-   * Optional. The base quantity produced. Defaults to 5
-   */
-  baseQuantity?: number;
 };
 /**
  * Data for constructing a FarmingPlot object
  */
 export type FarmingPlotData = IDData & {
-  /**
-   * The ID of the farming category of seeds that can be planted in this plot
-   */
-  categoryID: FarmingCategoryID;
-  /**
-   * The farming skill level required to unlock this plot
-   */
-  level: number;
-  /**
-   * @deprecated
-   * The GP cost required to purchase this plot. If this is set to 0 and itemCosts are undefined, the plot will automatically be unlocked when the level requirement is met.
-   */
-  gpCost?: number;
-  /**
-   * Optional. If present, defines currencies requred to purchase this plot. If this and itemCosts are undefined the plot will automatically be unlocked when the level requirement is met.
-   *
-   * @minItems 1
-   */
-  currencyCosts?: CurrencyQuantity[];
-  /**
-   * Optional. If present, defines items requred to purchase this plot. If this and currencyCosts are undefined the plot will automatically be unlocked when the level requirement is met.
-   *
-   * @minItems 1
-   */
-  itemCosts?: AnyItemQuantity[];
-  /**
-   * Optional. The abyssal farming level required to unlock this plot
-   */
-  abyssalLevel?: number;
-} & {
   /**
    * The ID of the farming category of seeds that can be planted in this plot
    */
@@ -25689,92 +22173,18 @@ export type FletchingRecipeData = SingleProductArtisanSkillRecipeData & {
    *
    * @minItems 2
    */
-  alternativeCosts?: [
-    {
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    },
-    {
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    },
-    ...{
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    }[],
-  ];
-} & {
-  /**
-   * Optional. Manually sets a subcategory for this recipe. Will be overridden by automatic assignment if applicable
-   */
-  subcategoryID?: ValidID;
-  /**
-   * Optional. Defines additional costs for the recipe that the player must select one of
-   *
-   * @minItems 2
-   */
-  alternativeCosts?: [
-    {
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    },
-    {
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    },
-    ...{
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    }[],
-  ];
+  alternativeCosts?: {
+    /**
+     * The additional items required
+     *
+     * @minItems 1
+     */
+    itemCosts: AnyItemQuantity[];
+    /**
+     * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
+     */
+    quantityMultiplier: number;
+  }[];
 };
 /**
  * Data for the Crafting Skill
@@ -25803,11 +22213,6 @@ export type CraftingSkillData = MasterySkillData & {
  * Data for constructing a CraftingRecipe object
  */
 export type CraftingRecipeData = SingleProductArtisanSkillRecipeData & {
-  /**
-   * Optional. Manually sets a subcategory for this recipe. Will be overridden by automatic assignment if applicable
-   */
-  subcategoryID?: ValidID;
-} & {
   /**
    * Optional. Manually sets a subcategory for this recipe. Will be overridden by automatic assignment if applicable
    */
@@ -25884,31 +22289,7 @@ export type HerbloreRecipeData = CategorizedArtisanRecipeData & {
    * @minItems 4
    * @maxItems 4
    */
-  potionIDs: [
-    PotionItemID,
-    PotionItemID,
-    PotionItemID,
-    PotionItemID,
-    ...PotionItemID[],
-  ];
-  /**
-   * The display name of the potion
-   */
-  name: string;
-} & {
-  /**
-   * The IDs of potion items that can be obtained at each tier
-   *
-   * @minItems 4
-   * @maxItems 4
-   */
-  potionIDs: [
-    PotionItemID,
-    PotionItemID,
-    PotionItemID,
-    PotionItemID,
-    ...PotionItemID[],
-  ];
+  potionIDs: PotionItemID[];
   /**
    * The display name of the potion
    */
@@ -25959,11 +22340,6 @@ export type AgilityPillarData = BaseAgilityObjectData & {
    * The index of the slot that the pillar belongs to. 0 indexed.
    */
   slot: number;
-} & {
-  /**
-   * The index of the slot that the pillar belongs to. 0 indexed.
-   */
-  slot: number;
 };
 /**
  * Data for constructing a BaseAgilityObject object
@@ -26005,94 +22381,11 @@ export type BaseAgilityObjectData = RealmedObjectData & {
    * Optional. Modifiers provided to the enemy when this obstacle/pillar is active
    */
   enemyModifiers?: EnemyModifierValuesRecordData;
-} & {
-  /**
-   * Display name of the obstacle or pillar
-   */
-  name: string;
-  /**
-   * Items required to build the obstacle/pillar
-   */
-  itemCosts: AnyItemQuantity[];
-  /**
-   * Optional. Currencies required to build the obstacle/pillar
-   */
-  currencyCosts?: CurrencyQuantity[];
-  /**
-   * @deprecated
-   * Deprecated. GP required to build the obstacle/pillar
-   */
-  gpCost?: number;
-  /**
-   * @deprecated
-   * Deprecated. Slayer coins required to build the obstacle/pillar
-   */
-  scCost?: number;
-  /**
-   * Modifiers provided to the player by the obstacle/pillar
-   */
-  modifiers: ModifierValuesRecordData;
-  /**
-   * Optional. Effect Applicators merged with the player when this obstacle/pillar is active
-   *
-   * @minItems 1
-   */
-  combatEffects?: TriggeredCombatEffectApplicatorData[];
-  /**
-   * Optional. Modifiers provided to the enemy when this obstacle/pillar is active
-   */
-  enemyModifiers?: EnemyModifierValuesRecordData;
 };
 /**
  * Data for constructing a AgilityObstacle object
  */
 export type AgilityObstacleData = BaseAgilityObjectData & {
-  /**
-   * URI of the obstacles image
-   */
-  media: string;
-  /**
-   * The tier of the agility obstacle. 0 indexed.
-   */
-  category: number;
-  /**
-   * The base time it takes to complete the obstacle in [ms]
-   */
-  baseInterval: number;
-  /**
-   * Non-Agility Skill levels the player is required to have before building this obstacle
-   */
-  skillRequirements: (
-    | SkillLevelRequirementData
-    | AbyssalLevelRequirementData
-  )[];
-  /**
-   * The base Agility experience granted when completing the obstacle
-   */
-  baseExperience: number;
-  /**
-   * Optional. Currencies granted when completing the obstacle
-   */
-  currencyRewards?: CurrencyQuantity[];
-  /**
-   * @deprecated
-   * The base GP granted when completing the obstacle
-   */
-  gpReward?: number;
-  /**
-   * @deprecated
-   * The base slayer coins granted when completing the obstacle
-   */
-  scReward?: number;
-  /**
-   * Items granted when completing the obstacle
-   */
-  itemRewards: AnyItemQuantity[];
-  /**
-   * Optional. The base Agility abyssal experience granted when completing the obstacle
-   */
-  baseAbyssalExperience?: number;
-} & {
   /**
    * URI of the obstacles image
    */
@@ -26195,27 +22488,6 @@ export type SummoningRecipeData = SingleProductArtisanSkillRecipeData & {
    * Optional. Defines the maximum Summoning Mark level this familiar can reach. Defaults to 6.
    */
   maxMarkLevel?: number;
-} & {
-  /**
-   * URI of the Summoning marks media shown on the Marks tab
-   */
-  markMedia: string;
-  /**
-   * The IDs of non shard items that are options to make the Summoning Tablet. Quantity required is determined by the item's sale price. If left empty, the recipe has no non-shard item cost.
-   */
-  nonShardItemCosts: AnyItemID[];
-  /**
-   * The tier of the summoning mark
-   */
-  tier: number;
-  /**
-   * The IDs of skills that this mark can be obtained from
-   */
-  skillIDs: SkillID[];
-  /**
-   * Optional. Defines the maximum Summoning Mark level this familiar can reach. Defaults to 6.
-   */
-  maxMarkLevel?: number;
 };
 /**
  * Data for the Summoning Skill
@@ -26287,91 +22559,11 @@ export type AstrologyRecipeData = BasicSkillRecipeData & {
    * Optional. The key of an mastery XP modifier that depends on the number of max level modifiers
    */
   masteryXPModifier?: ModifierID;
-} & {
-  /**
-   * The display name of the constellation
-   */
-  name: string;
-  /**
-   * The URI of the constellations image
-   */
-  media: string;
-  /**
-   * The skills associated with this constellation
-   */
-  skillIDs: SkillID[];
-  /**
-   * Optional. Specifies the random items that can be received from this constellation. Defaults to startdust + golden stardust
-   */
-  randomItems?: AnyItemID[];
-  /**
-   * Optional. Whether this constellation can locate Meteorites. Defaults to true.
-   */
-  canLocateMeteorites?: boolean;
-  /**
-   * Optional. Whether this constellation can locate Starfalls. Defaults to false.
-   */
-  canLocateStarfalls?: boolean;
-  /**
-   * The standard modifiers of this constellation
-   *
-   * @minItems 0
-   * @maxItems 3
-   */
-  standardModifiers: AstrologyModifierData[];
-  /**
-   * The unique modifiers of this constellation
-   *
-   * @minItems 0
-   * @maxItems 3
-   */
-  uniqueModifiers: AstrologyModifierData[];
-  /**
-   * Optional. The abyssal modifiers of this constellation
-   *
-   * @minItems 0
-   * @maxItems 4
-   */
-  abyssalModifiers?: AstrologyModifierData[];
-  /**
-   * Optional. The key of an mastery XP modifier that depends on the number of max level modifiers
-   */
-  masteryXPModifier?: ModifierID;
 };
 /**
  * Data for constructing a AstrologyModifier object
  */
 export type AstrologyModifierData = IStatObjectData & {
-  /**
-   * The maximum number of times this modifier can be bought
-   */
-  maxCount: number;
-  /**
-   * The quantity of stardust required to buy each level of the modifier. Must have a length of at least maxCount
-   *
-   * @minItems 1
-   */
-  costs: number[];
-  /**
-   * Optional. Requirements the player must meet before being able to use study this constellation
-   */
-  unlockRequirements?: AnyRequirementData[];
-} & {
-  /**
-   * The maximum number of times this modifier can be bought
-   */
-  maxCount: number;
-  /**
-   * The quantity of stardust required to buy each level of the modifier. Must have a length of at least maxCount
-   *
-   * @minItems 1
-   */
-  costs: number[];
-  /**
-   * Optional. Requirements the player must meet before being able to use study this constellation
-   */
-  unlockRequirements?: AnyRequirementData[];
-} & {
   /**
    * The maximum number of times this modifier can be bought
    */
@@ -26480,55 +22672,11 @@ export type TownshipResourceData = IDData & {
    * Optional. The storage this resources uses. Defaults to Normal.
    */
   storageType?: "Normal" | "Soul";
-} & {
-  /**
-   * Display name of the resource
-   */
-  name: string;
-  /**
-   * URI of the resources image
-   */
-  media: string;
-  /**
-   * The type of the resource. Currency for GP. Raw otherwise.
-   */
-  type: "Currency" | "Raw";
-  /**
-   * The amount of this resource the player starts with
-   */
-  startingAmount: number;
-  /**
-   * Optional. The storage this resources uses. Defaults to Normal.
-   */
-  storageType?: "Normal" | "Soul";
 };
 /**
  * Data for constructing a TownshipBiome object
  */
 export type TownshipBiomeData = IDData & {
-  /**
-   * The display name of the biome
-   */
-  name: string;
-  /**
-   * URI of the biomes image
-   */
-  media: string;
-  /**
-   * The Tier of Biome. Determines Population and level requirements to build in it.
-   */
-  tier: number;
-  /**
-   * Optional. The Abyssal Tier of the Biome. Determines Fortification and Abyssal Level requirements to build in it.
-   */
-  abyssalTier?: number;
-  /**
-   * The requirements that must be met to construct inside this biome
-   *
-   * @minItems 1
-   */
-  requirements?: AnyRequirementData[];
-} & {
   /**
    * The display name of the biome
    */
@@ -26557,55 +22705,6 @@ export type TownshipBiomeData = IDData & {
  */
 export type TownshipBuildingData = IDData &
   IStatObjectData & {
-    /**
-     * The display name of the building
-     */
-    name: string;
-    /**
-     * URI of the buildings image
-     */
-    media: string;
-    /**
-     * The tier of the building. Determines Township Level and population requirements.
-     */
-    tier: number;
-    /**
-     * Optional. The ID of the TownshipBuilding this upgrades from
-     */
-    upgradesFrom?: TownshipBuildingID;
-    /**
-     * The township resource costs to build the building per biome
-     */
-    cost: TownshipBuildingCostData[];
-    /**
-     * The stats that this building provides to the town
-     */
-    provides: TownshipBuildingProvidesData[];
-    /**
-     * The IDs of TownshipBiomes that this building can be built in
-     *
-     * @minItems 1
-     */
-    biomes: TownshipBiomeID[];
-    /**
-     * The maximum number of times this building can be upgraded
-     */
-    maxUpgrades: number;
-    /**
-     * Optional. Whether the building degrades over time
-     */
-    canDegrade?: boolean;
-    /**
-     * Optional. The Abyssal Tier of the Building. Determines Fortification and Abyssal Level requirements to build this building
-     */
-    abyssalTier?: number;
-    /**
-     * The requirements that must be met to construct this building
-     *
-     * @minItems 1
-     */
-    requirements?: AnyRequirementData[];
-  } & {
     /**
      * The display name of the building
      */
@@ -26724,62 +22823,7 @@ export type TownshipWorshipData = IDData & {
    * @minItems 5
    * @maxItems 5
    */
-  checkpoints: [
-    ModifierValuesRecordData,
-    ModifierValuesRecordData,
-    ModifierValuesRecordData,
-    ModifierValuesRecordData,
-    ModifierValuesRecordData,
-    ...ModifierValuesRecordData[],
-  ];
-  /**
-   * Requirements the player must meet before being able to use this worship
-   */
-  unlockRequirements: AnyRequirementData[];
-  /**
-   * The display name of the statue building when this worship is selected
-   */
-  statueName: string;
-  /**
-   * The URI of the statue buildings image when this worship is selected
-   */
-  statueMedia: string;
-  /**
-   * Defines seasons where the positive modifiers of this worship are multiplied by a value
-   */
-  seasonMultiplier: TownshipWorshipSeasonMultiplierData[];
-} & {
-  /**
-   * Display name of the worship
-   */
-  name: string;
-  description: string;
-  /**
-   * URI of the worships image
-   */
-  media: string;
-  /**
-   * Modifiers that are always provided by this worship
-   */
-  modifiers: ModifierValuesRecordData;
-  /**
-   * If this worship should be hidden from the player
-   */
-  isHidden: boolean;
-  /**
-   * Modifiers that are provided as each worship checkpoint is reached
-   *
-   * @minItems 5
-   * @maxItems 5
-   */
-  checkpoints: [
-    ModifierValuesRecordData,
-    ModifierValuesRecordData,
-    ModifierValuesRecordData,
-    ModifierValuesRecordData,
-    ModifierValuesRecordData,
-    ...ModifierValuesRecordData[],
-  ];
+  checkpoints: ModifierValuesRecordData[];
   /**
    * Requirements the player must meet before being able to use this worship
    */
@@ -26829,23 +22873,6 @@ export type TownshipTaskCategoryData = IDData & {
    * CSS class used for the background colour of task menus
    */
   bgClass: string;
-} & {
-  /**
-   * Display name of the category
-   */
-  name: string;
-  /**
-   * Optional. ID of language string to use for the name property
-   */
-  nameLang?: string;
-  /**
-   * URI of the categories icon
-   */
-  media: string;
-  /**
-   * CSS class used for the background colour of task menus
-   */
-  bgClass: string;
 };
 /**
  * Data for constructing a TownshipTask object
@@ -26856,23 +22883,11 @@ export type TownshipTaskData = BaseTownshipTaskData &
      * The category of the task. This is used to group tasks together
      */
     category: TownshipTaskCategoryID;
-  } & {
-    /**
-     * The category of the task. This is used to group tasks together
-     */
-    category: TownshipTaskCategoryID;
   };
 /**
  * Data for constructing a BaseTownshipTask object
  */
 export type BaseTownshipTaskData = IDData & {
-  /**
-   * Optional. A description of the task
-   */
-  description?: string;
-  goals: TownshipTaskGoalsData;
-  rewards: TownshipTaskRewardsData;
-} & {
   /**
    * Optional. A description of the task
    */
@@ -26901,38 +22916,12 @@ export type TownshipCasualTaskData = BaseTownshipTaskData & {
    * Requirements the player must meet before starting the task
    */
   requirements: AnyRequirementData[];
-} & {
-  /**
-   * Requirements the player must meet before starting the task
-   */
-  requirements: AnyRequirementData[];
 };
 /**
  * Data for constructing a TownshipSeason object
  */
 export type TownshipSeasonData = IDData &
   IStatObjectData & {
-    /**
-     * The display name of the season
-     */
-    name: string;
-    /**
-     * The URI of the seasons image
-     */
-    media: string;
-    /**
-     * Determines the order in which this season occurs
-     */
-    order: number;
-    /**
-     * The number of Township Ticks (1 hour) that the season lasts
-     */
-    seasonLength: number;
-    /**
-     * If the player should be unable to change their current worship while the season is active
-     */
-    disableWorshipChange: boolean;
-  } & {
     /**
      * The display name of the season
      */
@@ -26997,68 +22986,6 @@ export type CartographySkillData = BaseSkillData & {
  * Data for constructing a WorldMap object
  */
 export type WorldMapData = IDData & {
-  /**
-   * Display name of the World Map
-   */
-  name: string;
-  /**
-   * Determines the images that will be used as tiles for the map background
-   */
-  bgTiles: {
-    /**
-     * Defines the number of tiles in the x and y direction
-     */
-    dimensions: PointData;
-    /**
-     * The size in pixels of an individual tile
-     */
-    tileSize: PointData;
-    /**
-     * The path to the root folder that contains each map tile texture. High quality files should be tile_${i}_${j}@1x.png, Medium should be tile_${i}_${j}@1x.basis and Low should be tile_${i}_${j}@0.5x.basis
-     */
-    tilePath: string;
-  };
-  /**
-   * Height and Width of the world in pixels
-   */
-  worldSize: PointData;
-  /**
-   * Height and Width scaling of hexes in the map. Scales the height and width of a unit hexagon.
-   */
-  hexScale: PointData;
-  /**
-   * The hex colour representation that is used for hex borders
-   */
-  hexBorderColour: HexColour;
-  /**
-   * The hex colour representation that is used for the border of hexes with active points of interest
-   */
-  activePOIBorderColour: HexColour;
-  /**
-   * Determines the origin of the map that hex coordinates are computed relative to.
-   */
-  origin: PointData;
-  /**
-   * Determines the players starting location on the map
-   */
-  startingLocation: HexCoordData;
-  /**
-   * Registers FastTravelGroups for this map
-   */
-  fastTravelGroups: FastTravelGroupData[];
-  /**
-   * Registers PointsOfInterest for this map
-   */
-  pointsOfInterest: AnyPoiData[];
-  /**
-   * Data for Hex objects for this map
-   */
-  hexes: HexData[];
-  /**
-   * Data for WorldMapMasteryBonus objects for this map
-   */
-  masteryBonuses: WorldMapMasteryBonusData[];
-} & {
   /**
    * Display name of the World Map
    */
@@ -27210,210 +23137,6 @@ export type PointOfInterestData = IDData & {
      */
     showMarker: boolean;
   };
-} & {
-  /**
-   * Axial Hex Coordinates of POIs location
-   */
-  coords: HexCoordData;
-  /**
-   * English display name of POI
-   */
-  name: string;
-  /**
-   * English description of POI
-   */
-  description: string;
-  /**
-   * URI of POIs image to be displayed in the hex overview
-   */
-  media: string;
-  /**
-   * Optional. Stats provided to the player if they are located at the point of interest
-   */
-  activeStats?: IStatObjectData;
-  /**
-   * Optional. If present allows fast travel between this POI and other POIs that share the same group
-   */
-  fastTravel?: {
-    /**
-     * ID of the FastTravelGroup this poi belongs to
-     */
-    groupID: string;
-    /**
-     * Optional. One time costs to unlock fast traveling to this poi
-     */
-    unlockCosts?: FixedCostsData;
-  };
-  /**
-   * Optional. GP, Slayer Coins or Items given when the POI is discovered
-   */
-  discoveryRewards?: FixedCostsData;
-  /**
-   * Optional. Temporary modifiers given to the player, that last a number of moves on the world map, when the POI is discovered
-   */
-  discoveryModifiers?: {
-    /**
-     * The number of moves on the world map the player must make until these modifiers expire
-     */
-    moves: number;
-    /**
-     * The modifiers that are temporarily given to the player
-     */
-    modifiers: ModifierValuesRecordData;
-  };
-  /**
-   * Optional. If present, the POI will be hidden from the player until they meet the requirements and are located at the hex and are wearing the specified items.
-   */
-  hidden?: {
-    /**
-     * Requirements the player must meet before discovering this hidden POI
-     */
-    requirements: AnyRequirementData[];
-    /**
-     * IDs of the equipment items the player must wear to discover this hidden POI
-     */
-    itemsWorn: EquipmentItemID[];
-    /**
-     * If a marker should be shown on the map when the requirements are met
-     */
-    showMarker: boolean;
-  };
-} & {
-  /**
-   * Axial Hex Coordinates of POIs location
-   */
-  coords: HexCoordData;
-  /**
-   * English display name of POI
-   */
-  name: string;
-  /**
-   * English description of POI
-   */
-  description: string;
-  /**
-   * URI of POIs image to be displayed in the hex overview
-   */
-  media: string;
-  /**
-   * Optional. Stats provided to the player if they are located at the point of interest
-   */
-  activeStats?: IStatObjectData;
-  /**
-   * Optional. If present allows fast travel between this POI and other POIs that share the same group
-   */
-  fastTravel?: {
-    /**
-     * ID of the FastTravelGroup this poi belongs to
-     */
-    groupID: string;
-    /**
-     * Optional. One time costs to unlock fast traveling to this poi
-     */
-    unlockCosts?: FixedCostsData;
-  };
-  /**
-   * Optional. GP, Slayer Coins or Items given when the POI is discovered
-   */
-  discoveryRewards?: FixedCostsData;
-  /**
-   * Optional. Temporary modifiers given to the player, that last a number of moves on the world map, when the POI is discovered
-   */
-  discoveryModifiers?: {
-    /**
-     * The number of moves on the world map the player must make until these modifiers expire
-     */
-    moves: number;
-    /**
-     * The modifiers that are temporarily given to the player
-     */
-    modifiers: ModifierValuesRecordData;
-  };
-  /**
-   * Optional. If present, the POI will be hidden from the player until they meet the requirements and are located at the hex and are wearing the specified items.
-   */
-  hidden?: {
-    /**
-     * Requirements the player must meet before discovering this hidden POI
-     */
-    requirements: AnyRequirementData[];
-    /**
-     * IDs of the equipment items the player must wear to discover this hidden POI
-     */
-    itemsWorn: EquipmentItemID[];
-    /**
-     * If a marker should be shown on the map when the requirements are met
-     */
-    showMarker: boolean;
-  };
-} & {
-  /**
-   * Axial Hex Coordinates of POIs location
-   */
-  coords: HexCoordData;
-  /**
-   * English display name of POI
-   */
-  name: string;
-  /**
-   * English description of POI
-   */
-  description: string;
-  /**
-   * URI of POIs image to be displayed in the hex overview
-   */
-  media: string;
-  /**
-   * Optional. Stats provided to the player if they are located at the point of interest
-   */
-  activeStats?: IStatObjectData;
-  /**
-   * Optional. If present allows fast travel between this POI and other POIs that share the same group
-   */
-  fastTravel?: {
-    /**
-     * ID of the FastTravelGroup this poi belongs to
-     */
-    groupID: string;
-    /**
-     * Optional. One time costs to unlock fast traveling to this poi
-     */
-    unlockCosts?: FixedCostsData;
-  };
-  /**
-   * Optional. GP, Slayer Coins or Items given when the POI is discovered
-   */
-  discoveryRewards?: FixedCostsData;
-  /**
-   * Optional. Temporary modifiers given to the player, that last a number of moves on the world map, when the POI is discovered
-   */
-  discoveryModifiers?: {
-    /**
-     * The number of moves on the world map the player must make until these modifiers expire
-     */
-    moves: number;
-    /**
-     * The modifiers that are temporarily given to the player
-     */
-    modifiers: ModifierValuesRecordData;
-  };
-  /**
-   * Optional. If present, the POI will be hidden from the player until they meet the requirements and are located at the hex and are wearing the specified items.
-   */
-  hidden?: {
-    /**
-     * Requirements the player must meet before discovering this hidden POI
-     */
-    requirements: AnyRequirementData[];
-    /**
-     * IDs of the equipment items the player must wear to discover this hidden POI
-     */
-    itemsWorn: EquipmentItemID[];
-    /**
-     * If a marker should be shown on the map when the requirements are met
-     */
-    showMarker: boolean;
-  };
 };
 export type DigSitePOIData = PointOfInterestData & {
   type: "DigSite";
@@ -27472,11 +23195,6 @@ export type PortalPOIData = PointOfInterestData & {
    * ID of the World Map that this portal resides in
    */
   originWorldMap: WorldMapID;
-} & {
-  /**
-   * ID of the World Map that this portal resides in
-   */
-  originWorldMap: WorldMapID;
 };
 /**
  * Data for constructing a RandomTravelEvent object
@@ -27504,43 +23222,11 @@ export type RandomTravelEventData = IDData & {
    * Temporary modifiers given to the player when the event triggers. Modifiers are removed when the player moves to a new hex.
    */
   tempBonuses?: ModifierValuesRecordData;
-} & {
-  /**
-   * Weight of event occuring relative to other events
-   */
-  weight: number;
-  /**
-   * English description to display to the player of event
-   */
-  description: string;
-  /**
-   * Optional rewards to give to the player if the event is rolled
-   */
-  rewards?: FixedCostsDataZero;
-  /**
-   * Items that the player must have in the bank for the event to trigger. Items are consumed when the event triggers.
-   *
-   * @minItems 1
-   */
-  itemsRequired?: AnyItemQuantity[];
-  /**
-   * Temporary modifiers given to the player when the event triggers. Modifiers are removed when the player moves to a new hex.
-   */
-  tempBonuses?: ModifierValuesRecordData;
 };
 /**
  * Data for constructing a PaperMakingRecipe object
  */
 export type PaperMakingRecipeData = SingleProductRecipeData & {
-  /**
-   * Base quantity of paper to make
-   */
-  baseQuantity: number;
-  /**
-   * Base costs to make this paper recipe
-   */
-  costs: FixedCostsData;
-} & {
   /**
    * Base quantity of paper to make
    */
@@ -27604,45 +23290,7 @@ export type ArchaeologyDigSiteData = BasicSkillRecipeData & {
    * @minItems 3
    * @maxItems 3
    */
-  mapUpgradeCost: [
-    FixedCostsData,
-    FixedCostsData,
-    FixedCostsData,
-    ...FixedCostsData[],
-  ];
-  /**
-   * If this Dig Site contains an item required to locate a different one
-   */
-  containsDigSiteRequirement: boolean;
-} & {
-  /**
-   * Display name of the Dig Site
-   */
-  name: string;
-  /**
-   * URI for the dig site's image in archaeology
-   */
-  media: string;
-  /**
-   * Defines the drops from the digsite when digging for different types of artefact
-   */
-  artefacts: DigSiteArtefactData;
-  /**
-   * Determines the cost to create a map of this dig site in Cartography
-   */
-  mapCreationCost: FixedCostsData;
-  /**
-   * Determines the costs to upgrade a map of this dig site in Cartography for each tier of map
-   *
-   * @minItems 3
-   * @maxItems 3
-   */
-  mapUpgradeCost: [
-    FixedCostsData,
-    FixedCostsData,
-    FixedCostsData,
-    ...FixedCostsData[],
-  ];
+  mapUpgradeCost: FixedCostsData[];
   /**
    * If this Dig Site contains an item required to locate a different one
    */
@@ -27652,27 +23300,6 @@ export type ArchaeologyDigSiteData = BasicSkillRecipeData & {
  * Data for constructing an ArchaeologyDigSite object
  */
 export type ArchaeologyToolData = IDData & {
-  /**
-   * Display name of the tool
-   */
-  name: string;
-  /**
-   * Currently unused description of the tool
-   */
-  description: string;
-  /**
-   * URI of the tools image
-   */
-  media: string;
-  /**
-   * Determines the type of artefact that is found when using this tool
-   */
-  artefactType: ArtefactType;
-  /**
-   * The ID of the ShopUpgradeChain associated with this tool. Used to determine display name and description.
-   */
-  upgradeChainID: ShopUpgradeChainID;
-} & {
   /**
    * Display name of the tool
    */
@@ -27854,77 +23481,11 @@ export type PageData = IDData & {
    * Optional. CSS class that is added/removed when the page container is shown/hidden. Useful for using d-flex on a container
    */
   displayClass?: string;
-} & {
-  /**
-   * Optional. Specifies a custom name for the page to be used instead of the first skill name
-   */
-  customName?: string;
-  /**
-   * URI of the page's icon.
-   */
-  media: string;
-  /**
-   * The HTMLElement-id of the page's container in the DOM
-   */
-  containerID: string;
-  /**
-   * The CSS class that is applied to the header of the game. Used to determine its background colour
-   */
-  headerBgClass: string;
-  /**
-   * If the page has a corresponding game guide that can be shown by clicking its icon in the header
-   */
-  hasGameGuide: boolean;
-  /**
-   * If the page can be set as a default page on load in the settings
-   */
-  canBeDefault: boolean;
-  /**
-   * Optional. An action that is associated with the page.
-   */
-  action?: ActionID;
-  /**
-   * Optional. Skills that are associated with the page.
-   *
-   * @minItems 1
-   */
-  skills?: SkillID[];
-  /**
-   * Optional. If present this page will generate an item in the sidebar to change to it
-   */
-  sidebarItem?: PageSideBarItemOptions;
-  /**
-   * Optional. If present this page will generate subitems in the sidebar to change to it
-   *
-   * @minItems 1
-   */
-  sidebarSubItems?: PageSideBarSubItemOptions[];
-  /**
-   * The sidebar category ID to place associated skills' sidebar item under
-   */
-  skillSidebarCategoryID?: string;
-  /**
-   * Optional. CSS class that is added/removed when the page container is shown/hidden. Useful for using d-flex on a container
-   */
-  displayClass?: string;
 };
 /**
  * Data for constructing a LoreBook object
  */
 export type LoreBookData = IDData & {
-  /**
-   * The displayed title of the book
-   */
-  title: string;
-  /**
-   * URI of The displayed icon for the book
-   */
-  media: string;
-  /**
-   * Requirements the player must meet to read the book
-   */
-  unlockRequirements: AnyRequirementData[];
-} & {
   /**
    * The displayed title of the book
    */
@@ -27955,42 +23516,8 @@ export type AncientRelicData = IDData &
      * The number of the ancient relic.
      */
     number?: number;
-  } & {
-    /**
-     * The display name of the Ancient Relic
-     */
-    name: string;
-    /**
-     * The skill associated with the Ancient Relic
-     */
-    skillID?: SkillID;
-    /**
-     * The number of the ancient relic.
-     */
-    number?: number;
   };
 export type CombatTriangleSetData = IDData & {
-  /**
-   * Display name of the triangle set
-   */
-  name: string;
-  /**
-   * URI of icon to display for this triangle set
-   */
-  media: string;
-  /**
-   * Determines the combat triangle when playing Gamemodes that use the Standard Triangle
-   */
-  Standard: CombatTriangleData;
-  /**
-   * Determines the combat triangle when playing Gamemodes that use the Hardcore Triangle
-   */
-  Hardcore: CombatTriangleData;
-  /**
-   * Determines the combat triangle when playing Gamemodes that use the Inverted Hardcore Triangle
-   */
-  InvertedHardcore: CombatTriangleData;
-} & {
   /**
    * Display name of the triangle set
    */
@@ -28041,35 +23568,6 @@ export type EquipmentSlotData = IDData & {
    * Optional. Requirements the player must meet to use this slot. Ignored in Golbin Raid.
    */
   requirements?: AnyRequirementData[];
-} & {
-  /**
-   * If this slot allows a quantity of an item to be equipped to it
-   */
-  allowQuantity: boolean;
-  /**
-   * The icon to display when the slot is empty
-   */
-  emptyMedia: string;
-  /**
-   * The name to show when the slot is empty
-   */
-  emptyName: string;
-  /**
-   * If items equipped in this slot provide equipment stats
-   */
-  providesEquipStats: boolean;
-  /**
-   * Determines the position of this slot in the equipment grid
-   */
-  gridPosition: EquipmentGridPosition;
-  /**
-   * Optional. Alternative positions to place this slot in if the initial grid position is already used.
-   */
-  alternativePositions?: EquipmentGridPosition[];
-  /**
-   * Optional. Requirements the player must meet to use this slot. Ignored in Golbin Raid.
-   */
-  requirements?: AnyRequirementData[];
 };
 export type RealmsData = IDData & {
   /**
@@ -28092,58 +23590,8 @@ export type RealmsData = IDData & {
    * Optional. Whether mastery actions ignore completion. Defaults to false.
    */
   ignoreCompletion?: boolean;
-} & {
-  /**
-   * The name of the Realm
-   */
-  name: string;
-  /**
-   * The icon that is displayed for the Realm
-   */
-  media: string;
-  /**
-   * These requirements must be met to unlock the Realm.
-   */
-  unlockRequirements: AnyRequirementData[];
-  /**
-   * Optional. Whether to display this Realm at all if locked. Defaults to true.
-   */
-  showIfLocked?: boolean;
-  /**
-   * Optional. Whether mastery actions ignore completion. Defaults to false.
-   */
-  ignoreCompletion?: boolean;
 };
 export type DamageTypeData = IDData & {
-  /**
-   * The name of the damage type
-   */
-  name: string;
-  /**
-   * The icon that is displayed for the damage type and resistance
-   */
-  media: string;
-  /**
-   * Custom name for the resistance to this damage type
-   */
-  resistanceName: string;
-  /**
-   * The max allowed resistance from gear and stats
-   */
-  resistanceCap: number;
-  /**
-   * List of damage type IDs that this damage type is immune to
-   */
-  immuneTo?: DamageTypeID[];
-  /**
-   * The class that is used for damage type text spans
-   */
-  spanClass?: string;
-  /**
-   * Optional. If this damage type should only be displayed to the player if using.
-   */
-  onlyShowIfUsing?: boolean;
-} & {
   /**
    * The name of the damage type
    */
@@ -28204,57 +23652,11 @@ export type ModifierData = IDData & {
    * @minItems 1
    */
   allowedScopes: ModifierScopingData[];
-} & {
-  /**
-   * Optional. If negative values of this modifier should be treated as positive and vice versa. Defaults to false.
-   */
-  inverted?: boolean;
-  /**
-   * Optional. If this modifier is allowed to have positive values. Defaults to true.
-   */
-  allowPositive?: boolean;
-  /**
-   * Optional. If this modifier is allowed to have negative values. Defaults to true.
-   */
-  allowNegative?: boolean;
-  /**
-   * Optional. If this modifier causes a change in combat stats when changed. Defaults to false.
-   */
-  isCombat?: boolean;
-  /**
-   * Optional. If this modifier can be applied to enemies in combat. Defaults to false.
-   */
-  allowEnemy?: boolean;
-  /**
-   * Optional. An expression that is applied to the modifier's value before it is described
-   */
-  modifyValue?: boolean & string;
-  /**
-   * Determines which scopes this modifier can belong to
-   *
-   * @minItems 1
-   */
-  allowedScopes: ModifierScopingData[];
 };
 export type ModifierScopeSourceID =
   | SkillID
   | ("melvorD:AttackSpell" | "melvorD:CombatArea");
 export type ModifierAliasData = ModifierScopeData & {
-  /**
-   * The old modifier key that is an alias for this modifier
-   */
-  key: string;
-} & {
-  /**
-   * The old modifier key that is an alias for this modifier
-   */
-  key: string;
-} & {
-  /**
-   * The old modifier key that is an alias for this modifier
-   */
-  key: string;
-} & {
   /**
    * The old modifier key that is an alias for this modifier
    */
@@ -28309,121 +23711,8 @@ export type CombatAreaModificationData = ModificationIDData & {
     add?: DamageTypeID[];
     remove?: DamageTypeID[];
   };
-} & {
-  /**
-   * An array of Monster IDs that can be fought in the area
-   */
-  monsters?: {
-    add?: {
-      monsterID: MonsterID;
-      insertAt?: number;
-    }[];
-    remove?: {
-      monsterID: MonsterID;
-      removeAt?: number;
-    }[];
-  };
-  /**
-   * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
-   *
-   * @minItems 1
-   * @maxItems 2
-   */
-  difficulty?: number[];
-  /**
-   * An array of requirements that the player must meet to enter the area
-   */
-  entryRequirements?: {
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * An array of requirements that the player must meet to enter the area for specific gamemodes.
-   */
-  gamemodeEntryRequirements?: {
-    /**
-     * The ID of the gamemode.
-     */
-    gamemodeID: GamemodeID;
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * An array of damage types that the player can use in the area
-   */
-  allowedDamageTypeIDs?: {
-    add?: DamageTypeID[];
-    remove?: DamageTypeID[];
-  };
-} & {
-  /**
-   * An array of Monster IDs that can be fought in the area
-   */
-  monsters?: {
-    add?: {
-      monsterID: MonsterID;
-      insertAt?: number;
-    }[];
-    remove?: {
-      monsterID: MonsterID;
-      removeAt?: number;
-    }[];
-  };
-  /**
-   * Determines the difficulty badges that display on the area. A single entry will show only that badge, while 2 will show a range of difficulty between the two entries.
-   *
-   * @minItems 1
-   * @maxItems 2
-   */
-  difficulty?: number[];
-  /**
-   * An array of requirements that the player must meet to enter the area
-   */
-  entryRequirements?: {
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * An array of requirements that the player must meet to enter the area for specific gamemodes.
-   */
-  gamemodeEntryRequirements?: {
-    /**
-     * The ID of the gamemode.
-     */
-    gamemodeID: GamemodeID;
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * An array of damage types that the player can use in the area
-   */
-  allowedDamageTypeIDs?: {
-    add?: DamageTypeID[];
-    remove?: DamageTypeID[];
-  };
 };
 export type CookingCategoryModificationData = ModificationIDData & {
-  /**
-   * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
-   *
-   * @minItems 1
-   */
-  shopUpgradeIDs: ShopPurchaseID[];
-} & {
-  /**
-   * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
-   *
-   * @minItems 1
-   */
-  shopUpgradeIDs: ShopPurchaseID[];
-} & {
-  /**
-   * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
-   *
-   * @minItems 1
-   */
-  shopUpgradeIDs: ShopPurchaseID[];
-} & {
   /**
    * Shop upgrades that improve the cooking for this category. Used to change the display of the category. Should be in order of highest to lowest tier upgrade. Objects are prepended to the shopUpgrades array.
    *
@@ -28511,201 +23800,6 @@ export type DungeonModificationData = CombatAreaModificationData & {
   gamemodeRewardItemIDs?: {
     add?: GamemodeRewardItemIDData[];
   };
-} & {
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed
-   */
-  rewardItemIDs?: {
-    add?: AnyItemID[];
-    remove?: AnyItemID[];
-  };
-  /**
-   * This item will be rewarded upon the first completion of the dungeon. Set to null to remove the one time reward.
-   */
-  oneTimeRewardID?: AnyItemID | null;
-  /**
-   * If Monsters inside this dungeon should be allowed to drop their bone items
-   */
-  dropBones?: boolean;
-  /**
-   * The dungeon's progres will visually display as completing different floors. Each element represents the number of monsters per floor. Set to null to remove the floors.
-   *
-   * @minItems 1
-   */
-  floors?: number[];
-  /**
-   * ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour. Set to null to unassociate the dungeon from events.
-   */
-  eventID?: CombatEventID | null;
-  /**
-   * This dungeon will require the requirements specified to be completed first before it can be accessed
-   */
-  unlockRequirement?: {
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * An array of requirements that the player must meet to enter the area
-   */
-  entryRequirements?: {
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * Determines the Pet that is rolled for upon completing the dungeon
-   */
-  pet?: PetChanceData;
-  /**
-   * If true, the dungeons pet will be awarded when the dungeon has been completed a number of times equal to the weight property of the pet property, instead of rolling randomly
-   */
-  fixedPetClears?: boolean;
-  /**
-   * If combat should pause before each Boss monster in the dungeon
-   */
-  pauseOnBosses?: boolean;
-  /**
-   * Add or remove Combat Passives by ID to be given to all non-boss monsters in the dungeon
-   */
-  nonBossPassives?: {
-    add?: CombatPassiveID[];
-    remove?: CombatPassiveID[];
-  };
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed for the specified gamemode
-   */
-  gamemodeRewardItemIDs?: {
-    add?: GamemodeRewardItemIDData[];
-  };
-} & {
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed
-   */
-  rewardItemIDs?: {
-    add?: AnyItemID[];
-    remove?: AnyItemID[];
-  };
-  /**
-   * This item will be rewarded upon the first completion of the dungeon. Set to null to remove the one time reward.
-   */
-  oneTimeRewardID?: AnyItemID | null;
-  /**
-   * If Monsters inside this dungeon should be allowed to drop their bone items
-   */
-  dropBones?: boolean;
-  /**
-   * The dungeon's progres will visually display as completing different floors. Each element represents the number of monsters per floor. Set to null to remove the floors.
-   *
-   * @minItems 1
-   */
-  floors?: number[];
-  /**
-   * ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour. Set to null to unassociate the dungeon from events.
-   */
-  eventID?: CombatEventID | null;
-  /**
-   * This dungeon will require the requirements specified to be completed first before it can be accessed
-   */
-  unlockRequirement?: {
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * An array of requirements that the player must meet to enter the area
-   */
-  entryRequirements?: {
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * Determines the Pet that is rolled for upon completing the dungeon
-   */
-  pet?: PetChanceData;
-  /**
-   * If true, the dungeons pet will be awarded when the dungeon has been completed a number of times equal to the weight property of the pet property, instead of rolling randomly
-   */
-  fixedPetClears?: boolean;
-  /**
-   * If combat should pause before each Boss monster in the dungeon
-   */
-  pauseOnBosses?: boolean;
-  /**
-   * Add or remove Combat Passives by ID to be given to all non-boss monsters in the dungeon
-   */
-  nonBossPassives?: {
-    add?: CombatPassiveID[];
-    remove?: CombatPassiveID[];
-  };
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed for the specified gamemode
-   */
-  gamemodeRewardItemIDs?: {
-    add?: GamemodeRewardItemIDData[];
-  };
-} & {
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed
-   */
-  rewardItemIDs?: {
-    add?: AnyItemID[];
-    remove?: AnyItemID[];
-  };
-  /**
-   * This item will be rewarded upon the first completion of the dungeon. Set to null to remove the one time reward.
-   */
-  oneTimeRewardID?: AnyItemID | null;
-  /**
-   * If Monsters inside this dungeon should be allowed to drop their bone items
-   */
-  dropBones?: boolean;
-  /**
-   * The dungeon's progres will visually display as completing different floors. Each element represents the number of monsters per floor. Set to null to remove the floors.
-   *
-   * @minItems 1
-   */
-  floors?: number[];
-  /**
-   * ID of a Combat Event. If present, this dungeon will instead start the corresponding Combat Event instead of the standard behaviour. Set to null to unassociate the dungeon from events.
-   */
-  eventID?: CombatEventID | null;
-  /**
-   * This dungeon will require the requirements specified to be completed first before it can be accessed
-   */
-  unlockRequirement?: {
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * An array of requirements that the player must meet to enter the area
-   */
-  entryRequirements?: {
-    add?: AnyRequirementData[];
-    remove?: string[];
-  };
-  /**
-   * Determines the Pet that is rolled for upon completing the dungeon
-   */
-  pet?: PetChanceData;
-  /**
-   * If true, the dungeons pet will be awarded when the dungeon has been completed a number of times equal to the weight property of the pet property, instead of rolling randomly
-   */
-  fixedPetClears?: boolean;
-  /**
-   * If combat should pause before each Boss monster in the dungeon
-   */
-  pauseOnBosses?: boolean;
-  /**
-   * Add or remove Combat Passives by ID to be given to all non-boss monsters in the dungeon
-   */
-  nonBossPassives?: {
-    add?: CombatPassiveID[];
-    remove?: CombatPassiveID[];
-  };
-  /**
-   * An array of item IDs that will be rewarded when the dungeon is completed for the specified gamemode
-   */
-  gamemodeRewardItemIDs?: {
-    add?: GamemodeRewardItemIDData[];
-  };
 };
 export type AnyItemModificationData =
   | BaseItemModificationData
@@ -28720,74 +23814,6 @@ export type AnyItemModificationData =
   | SoulItemModificationData;
 export type BaseEquipmentItemModificationData = BaseItemModificationData &
   IStatObjectModificationData & {
-    /**
-     * Classification for the tier of item. Currently only effects which items can be converted to Clothing in township
-     */
-    tier?: string;
-    /**
-     * The valid equipment slots that this item can be equipped to.
-     */
-    validSlots?: {
-      add?: EquipmentSlotID[];
-      remove?: EquipmentSlotID[];
-    };
-    /**
-     * Equipment slots that will also be occupied by this item, in addition to one of the validSlots. Typical usecase is to make a weapon 2-Handed
-     */
-    occupiesSlots?: {
-      add?: EquipmentSlotID[];
-      remove?: EquipmentSlotID[];
-    };
-    /**
-     * Requirements that are needed to be met in order to equip this item
-     */
-    equipRequirements?: {
-      add?: AnyRequirementData[];
-      remove?: string[];
-    };
-    /**
-     * Equipment stats that are provided by this item. Do not apply if item is in the Passive slot.
-     */
-    equipmentStats?: EquipStatsModificationData;
-    /**
-     * Special Attack IDs that are provided when the item is equipped.
-     */
-    specialAttacks?: {
-      add?: SpecialAttackID[];
-      remove?: SpecialAttackID[];
-    };
-    /**
-     * If present with the specialAttacks property, overrides their default chances to happen. Must be the same length as specialAttacks. Set to null to use default special attack chances.
-     *
-     * @minItems 1
-     */
-    overrideSpecialChances?: number[] | null;
-    /**
-     * Runes that are provided by this item.
-     */
-    providedRunes?: AnyItemQuantitiesModificationData;
-    /**
-     * Only required if one of the validSlots for this item is Quiver. Specifies the types of weapons this item can supply with ammunition. Set to null to remove ammoType.
-     */
-    ammoType?: AmmoType | null;
-    /**
-     * Optional. Adds/Removes from an array of GameEventMatchers, which on a successful match will consume one of the equipped item. Best utilized for the Quiver, Summon1, Summon2, and Consumable slots.
-     */
-    consumesOn?: {
-      /**
-       * Adds new ways this item can be consumed
-       *
-       * @minItems 1
-       */
-      add?: GameEventMatcherData[];
-      /**
-       * Removes all ways this item can be consumed of the given type of GameEventMatcher
-       *
-       * @minItems 1
-       */
-      remove?: string[];
-    };
-  } & {
     /**
      * Classification for the tier of item. Currently only effects which items can be converted to Clothing in township
      */
@@ -28954,66 +23980,6 @@ export type FletchingRecipeModificationData =
        */
       quantityMultiplier: number;
     }[];
-  } & {
-    /**
-     * Optional. Changes the subcategory for this recipe
-     */
-    subcategoryID?: ValidID;
-    /**
-     * Optional. Defines new additional costs for the recipe that the player must select one of
-     */
-    alternativeCosts?: {
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    }[];
-  } & {
-    /**
-     * Optional. Changes the subcategory for this recipe
-     */
-    subcategoryID?: ValidID;
-    /**
-     * Optional. Defines new additional costs for the recipe that the player must select one of
-     */
-    alternativeCosts?: {
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    }[];
-  } & {
-    /**
-     * Optional. Changes the subcategory for this recipe
-     */
-    subcategoryID?: ValidID;
-    /**
-     * Optional. Defines new additional costs for the recipe that the player must select one of
-     */
-    alternativeCosts?: {
-      /**
-       * The additional items required
-       *
-       * @minItems 1
-       */
-      itemCosts: AnyItemQuantity[];
-      /**
-       * Provides a multiplier to the base quantity of items made when crafting the recipe with these costs
-       */
-      quantityMultiplier: number;
-    }[];
   };
 /**
  * Data for modifying a SingleProductArtisanSkillRecipe object
@@ -29028,62 +23994,12 @@ export type SingleProductArtisanSkillRecipeModificationData =
      * Optional. Changes the base quantity of the item produced
      */
     baseQuantity?: number;
-  } & {
-    /**
-     * Optional. Changes the item produced by this recipe
-     */
-    productID?: AnyItemID;
-    /**
-     * Optional. Changes the base quantity of the item produced
-     */
-    baseQuantity?: number;
-  } & {
-    /**
-     * Optional. Changes the item produced by this recipe
-     */
-    productID?: AnyItemID;
-    /**
-     * Optional. Changes the base quantity of the item produced
-     */
-    baseQuantity?: number;
-  } & {
-    /**
-     * Optional. Changes the item produced by this recipe
-     */
-    productID?: AnyItemID;
-    /**
-     * Optional. Changes the base quantity of the item produced
-     */
-    baseQuantity?: number;
-  } & {
-    /**
-     * Optional. Changes the item produced by this recipe
-     */
-    productID?: AnyItemID;
-    /**
-     * Optional. Changes the base quantity of the item produced
-     */
-    baseQuantity?: number;
-  } & {
-    /**
-     * Optional. Changes the item produced by this recipe
-     */
-    productID?: AnyItemID;
-    /**
-     * Optional. Changes the base quantity of the item produced
-     */
-    baseQuantity?: number;
   };
 /**
  * Data for modifying a CategorizedArtisanRecipeData object
  */
 export type CategorizedArtisanRecipeModificationData =
   ArtisanSkillRecipeModificationData & {
-    /**
-     * Optional. Changes the category this recipe belongs to
-     */
-    categoryID?: ValidID;
-  } & {
     /**
      * Optional. Changes the category this recipe belongs to
      */
@@ -29107,74 +24023,6 @@ export type ArtisanSkillRecipeModificationData =
  * Data for modifying a BasicSkillRecipe object
  */
 export type BasicSkillRecipeModificationData = ModificationIDData & {
-  /**
-   * Optional. Changes the base experience rewarded per action
-   */
-  baseExperience?: number;
-  /**
-   * Optional. Changes the skill level required to perform the action
-   */
-  level?: number;
-  /**
-   * Optional. Changes the base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. Changes the abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
-  /**
-   * Optional. Changes the base experience rewarded per action
-   */
-  baseExperience?: number;
-  /**
-   * Optional. Changes the skill level required to perform the action
-   */
-  level?: number;
-  /**
-   * Optional. Changes the base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. Changes the abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
-  /**
-   * Optional. Changes the base experience rewarded per action
-   */
-  baseExperience?: number;
-  /**
-   * Optional. Changes the skill level required to perform the action
-   */
-  level?: number;
-  /**
-   * Optional. Changes the base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. Changes the abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
-  /**
-   * Optional. Changes the base experience rewarded per action
-   */
-  baseExperience?: number;
-  /**
-   * Optional. Changes the skill level required to perform the action
-   */
-  level?: number;
-  /**
-   * Optional. Changes the base abyssal experience rewarded per action
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. Changes the abyssal skill level required to perform the action
-   */
-  abyssalLevel?: number;
-} & {
   /**
    * Optional. Changes the base experience rewarded per action
    */
@@ -29232,53 +24080,8 @@ export type ShopPurchaseModificationData = ModificationIDData & {
      */
     newCosts: ShopCost;
   }[];
-} & {
-  /**
-   * Optional. Defines additional gamemode specific overrides to the defaultBuyLimit
-   */
-  buyLimitOverrides?: {
-    /**
-     * The ID of the gamemode that should override the defaultBuyLimit
-     */
-    gamemodeID: GamemodeID;
-    /**
-     * The buy limit for the purchase for the specified gamemode. If set to 0, the player max purchase it unlimited times
-     */
-    maximum: number;
-  }[];
-  /**
-   * Optional. Defines new gamemode specific overrides to the purchaseRequirements. Overwrites existing purchase requirements.
-   */
-  purchaseRequirements?: {
-    /**
-     * The ID of the gamemode that should override the defaultBuyLimit
-     */
-    gamemodeID: GamemodeID;
-    /**
-     * Requirements the player must meet to purchase this item
-     */
-    newRequirements: AnyRequirementData[];
-  }[];
-  /**
-   * Optional. Defines new gamemode specific overrides to the costs.
-   */
-  cost?: {
-    /**
-     * The ID of the gamemode that should override the defaultBuyLimit
-     */
-    gamemodeID: GamemodeID;
-    /**
-     * Adds to the cost of purchasing the shop item
-     */
-    newCosts: ShopCost;
-  }[];
 };
 export type ShopUpgradeChainModificationData = ModificationIDData & {
-  /**
-   * Optional. Overwrites the highest shop purchase in the chain with the purchase with this ID.
-   */
-  rootUpgradeID?: ShopPurchaseID;
-} & {
   /**
    * Optional. Overwrites the highest shop purchase in the chain with the purchase with this ID.
    */
@@ -29300,31 +24103,11 @@ export type SlayerAreaModificationData = CombatAreaModificationData & {
    * Killing monsters in the area has a chance to drop a pet. Set to null to remove the pet drop.
    */
   pet?: PetChanceData | null;
-} & {
-  /**
-   * Describes the slayer area's effect. Set to null to clear the area's description.
-   */
-  areaEffectDescription?: string | null;
-  /**
-   * If present the area will provide the given modifiers/applicator to the player or enemy. Set to null to clear the area's effect.
-   */
-  areaEffect?: CombatAreaEffectData | null;
-  /**
-   * Killing monsters in the area has a chance to drop a pet. Set to null to remove the pet drop.
-   */
-  pet?: PetChanceData | null;
 };
 /**
  * Data for modifying a Modifier instance
  */
 export type ModifierModificationData = ModificationIDData & {
-  /**
-   * Adds or modifies an existing scopes belonging to this modifier
-   *
-   * @minItems 1
-   */
-  allowedScopes?: ModifierScopingModificationData[];
-} & {
   /**
    * Adds or modifies an existing scopes belonging to this modifier
    *
@@ -29533,7 +24316,7 @@ export type AnySkillModificationData =
       /**
        * The ID of the skill whose data should be modified
        */
-      skillID: ValidID & string;
+      skillID: ValidID;
       data: BaseSkillModificationData;
     };
 /**
@@ -29551,51 +24334,6 @@ export type MagicModificationData = BaseSkillModificationData & {
  * Data for modifying an AltMagicSpell object
  */
 export type AltMagicSpellModificationData = BaseSpellModificationData & {
-  /**
-   * Optional. Changes the base experience earned per cast of the spell
-   */
-  baseExperience?: number;
-  /**
-   * Optional. Changes the base abyssal experience earned per cast of the spell
-   */
-  baseAbyssalExperience?: number;
-  /**
-   * Optional. Adds/Removes item costs for the spell that do not change
-   */
-  fixedItemCosts?: AnyItemQuantitiesModificationData;
-  /**
-   * Optional. Modifies the special costs for the spell.
-   */
-  specialCost?: {
-    /**
-     * Optional. Changes the type of item(s) that should be consumed
-     */
-    type?:
-      | "AnyItem"
-      | "JunkItem"
-      | "BarIngredientsWithCoal"
-      | "BarIngredientsWithoutCoal"
-      | "None"
-      | "AnySuperiorGem"
-      | "AnyNormalFood";
-    /**
-     * Optional. Sets the currency that items must sell for in order to be consumed
-     */
-    currency?: CurrencyID;
-    /**
-     * Optional. Changes the quantity of the item(s) that should be consumed
-     */
-    quantity?: number;
-  };
-  /**
-   * Optional. Changes what the spell produces. Can either be a special production, or a set itemID.
-   */
-  produces?: AnyItemID | AltMagicProduction;
-  /**
-   * Optional. Changes the quantity of resources produces by the spell. Effect depends on the produces property.
-   */
-  productionRatio?: number;
-} & {
   /**
    * Optional. Changes the base experience earned per cast of the spell
    */
@@ -29683,29 +24421,12 @@ export type WoodcuttingModificationData = MasterySkillModificationData & {
 /**
  * Data modifications shared between all Mastery skills
  */
-export type MasterySkillModificationData =
-  BaseSkillModificationData & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {} & {};
+export type MasterySkillModificationData = BaseSkillModificationData;
 /**
  * Data For modifying a WoodcuttingTree object
  */
 export type WoodcuttingTreeModificationData =
   SingleProductRecipeModificationData & {
-    /**
-     * Optional. Changes the base time it takes to cut the tree in [ms]
-     */
-    baseInterval?: number;
-    /**
-     * Optional. Adds or removes random products that can drop from this tree
-     */
-    randomProducts?: {
-      add?: AnyItemID[];
-      remove?: AnyItemID[];
-    };
-    /**
-     * Optional. Adds or removes requirements needed to cut this tree
-     */
-    requirements?: RequirementsModificationData;
-  } & {
     /**
      * Optional. Changes the base time it takes to cut the tree in [ms]
      */
@@ -29727,16 +24448,6 @@ export type WoodcuttingTreeModificationData =
  */
 export type SingleProductRecipeModificationData =
   BasicSkillRecipeModificationData & {
-    /**
-     * Optional. Changes the item that is produced by the recipe
-     */
-    productId?: AnyItemID;
-  } & {
-    /**
-     * Optional. Changes the item that is produced by the recipe
-     */
-    productId?: AnyItemID;
-  } & {
     /**
      * Optional. Changes the item that is produced by the recipe
      */
@@ -29769,19 +24480,6 @@ export type FishModificationData = SingleProductRecipeModificationData & {
    * Optional. Changes the base maximum interval to catch the fish in [ms]
    */
   baseMaxInterval?: number;
-} & {
-  /**
-   * Optional. Changes the base strength skill experience earned on a successful catch
-   */
-  strengthXP?: number;
-  /**
-   * Optional. Changes the base minimum interval to catch the fish in [ms]
-   */
-  baseMinInterval?: number;
-  /**
-   * Optional. Changes the base maximum interval to catch the fish in [ms]
-   */
-  baseMaxInterval?: number;
 };
 /**
  * Data modifications for the Firemaking Skill
@@ -29798,41 +24496,6 @@ export type FiremakingModificationData = MasterySkillModificationData & {
  * Data for modifying a FiremakingLog object
  */
 export type FiremakingLogModificationData = BasicSkillRecipeModificationData & {
-  /**
-   * Optional. Changes the log that should be burnt
-   */
-  logID?: AnyItemID;
-  /**
-   * Optional. Changes the base interval to burn a log in [ms]
-   */
-  baseInterval?: number;
-  /**
-   * Optional. Adds or removes primary products that can be gained from this log.
-   */
-  primaryProducts?: {
-    add?: AnyItemID[];
-    remove?: AnyItemID[];
-  };
-  /**
-   * Optional. Adds or removes secondary products that can be gained from this log.
-   */
-  secondaryProducts?: {
-    add?: AnyItemID[];
-    remove?: AnyItemID[];
-  };
-  /**
-   * Optional. Changes the base interval that a bonfire lasts for in [ms]
-   */
-  baseBonfireInterval?: number;
-  /**
-   * Optional. Changes the percent bonus to firemaking XP that a bonfire provides
-   */
-  bonfireXPBonus?: number;
-  /**
-   * Optional. Changes the percent bonus to abyssal firemaking XP that a bonfire provides
-   */
-  bonfireAXPBonus?: number;
-} & {
   /**
    * Optional. Changes the log that should be burnt
    */
@@ -29902,19 +24565,6 @@ export type CookingRecipeModificationData =
      * Optional. Changes the subcategory for this recipe
      */
     subcategoryID?: ValidID;
-  } & {
-    /**
-     * Optional. Changes the Perfect Item for this recipe
-     */
-    perfectCookID?: AnyItemID;
-    /**
-     * Optional. Changes the base interval to perform the action in [ms]
-     */
-    baseInterval?: number;
-    /**
-     * Optional. Changes the subcategory for this recipe
-     */
-    subcategoryID?: ValidID;
   };
 /**
  * Data modifications for the Mining Skill
@@ -29931,55 +24581,6 @@ export type MiningModificationData = MasterySkillModificationData & {
  * Data For modifying a MiningRock object
  */
 export type MiningRockModificationData = SingleProductRecipeModificationData & {
-  /**
-   * Optional. Changes the base time it takes for the rock to respawn in [ms]
-   */
-  baseRespawnInterval?: number;
-  /**
-   * Optional. Changes the base quantity of items received per action
-   */
-  baseQuantity?: number;
-  /**
-   * Optional. Sets the total mining mastery level required to mine this rock
-   */
-  totalMasteryRequired?: number;
-  /**
-   * Optional. Sets whether the rock should respawn when depleted and have passive HP regeneration
-   */
-  hasPassiveRegen?: boolean;
-  /**
-   * Optional. Sets if the rock can benefit from modifiers that increase the chance to obtain gems
-   */
-  giveGems?: boolean;
-  /**
-   * Optional. Sets The base % chance to give a superior gem.
-   */
-  superiorGemChance?: number;
-  /**
-   * Optional. Sets the ShopPurchase that is required to mine this rock
-   */
-  shopItemPurchased?: ShopPurchaseID;
-  /**
-   * Optional. Sets a fixed maximum HP for this rock
-   */
-  fixedMaxHP?: number;
-  /**
-   * Optional. Changes the category this mining node belongs to
-   */
-  category?: MiningCategoryID;
-  /**
-   * Optional. Sets the weight of rolling this rock as a gem vein. Higher weight indicates a higher chance to be selected.
-   */
-  gemVeinWeight?: number;
-  /**
-   * Optional. Sets the base % chance to gain an abyssal gem from this rock
-   */
-  abyssalGemChance?: number;
-  /**
-   * Optional. Sets the weight of rolling this rock as an abyssal gem vein. Higher weight indicates a higher chance to be selected.
-   */
-  abyssalGemVeinWeight?: number;
-} & {
   /**
    * Optional. Changes the base time it takes for the rock to respawn in [ms]
    */
@@ -30093,37 +24694,6 @@ export type ThievingNPCModificationData = BasicSkillRecipeModificationData & {
     add?: DamageTypeID[];
     remove?: AnyItemID[];
   };
-} & {
-  /**
-   * Optional. Changes the value of the NPCs perception stat. Higher values indicate a more difficult target to steal from
-   */
-  perception: number;
-  /**
-   * Optional. Changes the maximum damage the NPC hits the player for when they fail a pickpocket attempt. 1/10th of the damage value in Normal Mode.
-   */
-  maxHit: number;
-  /**
-   * Adds or removes currencies that can drop from the NPC
-   */
-  currencyDrops: CurrencyQuantitiesModificationData;
-  /**
-   * Optional. Changes the Unique item dropped from the NPC
-   */
-  uniqueDrop?: AnyItemQuantity;
-  /**
-   * Optional. Adds or removes items from the NPCs common drop table
-   */
-  lootTable: {
-    add?: DropTableData[];
-    remove?: AnyItemID[];
-  };
-  /**
-   * Optional. Adds or removes allowed damage types from NPCs
-   */
-  allowedDamageTypeIDs?: {
-    add?: DamageTypeID[];
-    remove?: AnyItemID[];
-  };
 };
 /**
  * Data modifications for the Farming Skill
@@ -30156,11 +24726,6 @@ export type CraftingModificationData = MasterySkillModificationData & {
  */
 export type CraftingRecipeModificationData =
   SingleProductArtisanSkillRecipeModificationData & {
-    /**
-     * Optional. Changes the subcategory for this recipe
-     */
-    subcategoryID?: ValidID;
-  } & {
     /**
      * Optional. Changes the subcategory for this recipe
      */
@@ -30212,27 +24777,7 @@ export type HerbloreRecipeModificationData =
      * @minItems 4
      * @maxItems 4
      */
-    potionIDs?: [
-      PotionItemID,
-      PotionItemID,
-      PotionItemID,
-      PotionItemID,
-      ...PotionItemID[],
-    ];
-  } & {
-    /**
-     * Changes the potion items obtained at each tier
-     *
-     * @minItems 4
-     * @maxItems 4
-     */
-    potionIDs?: [
-      PotionItemID,
-      PotionItemID,
-      PotionItemID,
-      PotionItemID,
-      ...PotionItemID[],
-    ];
+    potionIDs?: PotionItemID[];
   };
 /**
  * Data modifications for the Agility Skill
@@ -30256,41 +24801,6 @@ export type AgilityModificationData = MasterySkillModificationData & {
  */
 export type AgilityObstacleModificationData =
   BaseAgilityObjectModificationData & {
-    /**
-     * Optional. Changes the tier of the agility obstacle. 0 indexed.
-     */
-    category?: number;
-    /**
-     * Optional. Changes the base time it takes to complete the obstacle in [ms]
-     */
-    baseInterval?: number;
-    /**
-     * Optional. Adds/Removes non-Agility Skill levels the player is required to have before building this obstacle
-     */
-    skillRequirements?: {
-      add?: (SkillLevelRequirementData | AbyssalLevelRequirementData)[];
-      /**
-       * Removes the skill level requirements with a matching skill IDs
-       */
-      remove?: SkillID[];
-    };
-    /**
-     * Optional. Changes the base Agility experience granted when completing the obstacle
-     */
-    baseExperience?: number;
-    /**
-     * Optional. Adds/Removes currencies granted when completing the obstacle
-     */
-    currencyRewards?: CurrencyQuantitiesModificationData;
-    /**
-     * Optional. Adds/Removes items granted when completing the obstacle
-     */
-    itemRewards?: AnyItemQuantitiesModificationData & unknown[];
-    /**
-     * Optional. Changes the base Agility abyssal experience granted when completing the obstacle
-     */
-    baseAbyssalExperience?: number;
-  } & {
     /**
      * Optional. Changes the tier of the agility obstacle. 0 indexed.
      */
@@ -30350,38 +24860,12 @@ export type BaseAgilityObjectModificationData = ModificationIDData & {
    * Optional. Changes the modifiers provided to the enemy when this obstacle/pillar is active
    */
   enemyModifiers?: EnemyModifierValuesModificationData;
-} & {
-  /**
-   * Optional. Adds/removes items required to build the obstacle/pillar
-   */
-  itemCosts?: AnyItemQuantitiesModificationData;
-  /**
-   * Optional. Adds/removes currencies required to build the obstacle/pillar
-   */
-  currencyCosts?: CurrencyQuantitiesModificationData;
-  /**
-   * Optional. Changes the modifiers provided to the player by the obstacle/pillar
-   */
-  modifiers?: ModifierValuesModificationData;
-  /**
-   * Optional. Changes the effect Applicators merged with the player when this obstacle/pillar is active
-   */
-  combatEffects?: CombatEffectApplicatorModificationData;
-  /**
-   * Optional. Changes the modifiers provided to the enemy when this obstacle/pillar is active
-   */
-  enemyModifiers?: EnemyModifierValuesModificationData;
 };
 /**
  * Data for modifying an AgilityPillar object
  */
 export type AgilityPillarModificationData =
   BaseAgilityObjectModificationData & {
-    /**
-     * Optional. Changes the index of the slot that the pillar belongs to. 0 indexed.
-     */
-    slot?: number;
-  } & {
     /**
      * Optional. Changes the index of the slot that the pillar belongs to. 0 indexed.
      */
@@ -30403,29 +24887,6 @@ export type SummoningModificationData = MasterySkillModificationData & {
  */
 export type SummoningRecipeModificationData =
   SingleProductArtisanSkillRecipeModificationData & {
-    /**
-     * Optional. Adds/Removes the non shard items that are options to make the Summoning Tablet
-     */
-    nonShardItemCosts?: {
-      add?: AnyItemID[];
-      remove?: AnyItemID[];
-    };
-    /**
-     * Optional. Changes the tier of the summoning mark
-     */
-    tier?: number;
-    /**
-     * Optional. Adds/Removes skills that this mark can be obtained from
-     */
-    skillIDs?: {
-      add?: SkillID[];
-      remove?: SkillID[];
-    };
-    /**
-     * Optional. Changes the maximum Summoning Mark level this familiar can reach
-     */
-    maxMarkLevel?: number;
-  } & {
     /**
      * Optional. Adds/Removes the non shard items that are options to make the Summoning Tablet
      */
@@ -30503,120 +24964,11 @@ export type AstrologyRecipeModificationData =
      * Optional. Sets the mastery XP modifier that depends on the number of max level modifiers in this constellation
      */
     masteryXPModifier?: ModifierID;
-  } & {
-    /**
-     * Optional. Adds/Removes skills associated with this constellation
-     */
-    skillIDs?: {
-      add?: SkillID[];
-      remove?: SkillID[];
-    };
-    /**
-     * Optional. Adds/Removes random items that can be received from this constellation. Defaults to startdust + golden stardust
-     */
-    randomItems?: {
-      add?: AnyItemID[];
-      remove?: AnyItemID[];
-    };
-    /**
-     * Optional. Sets whether this constellation can locate Meteorites.
-     */
-    canLocateMeteorites?: boolean;
-    /**
-     * Optional. Sets whether this constellation can locate Starfalls.
-     */
-    canLocateStarfalls?: boolean;
-    /**
-     * Optional. Modifies the standard modifiers of this constellation
-     */
-    standardModifiers?: AstrologyModifierModificationData[];
-    /**
-     * Optional. Modifies the unique modifiers of this constellation
-     */
-    uniqueModifiers?: AstrologyModifierModificationData[];
-    /**
-     * Optional. Modifies the abyssal modifiers of this constellation
-     */
-    abyssalModifiers?: AstrologyModifierModificationData[];
-    /**
-     * Optional. Sets the mastery XP modifier that depends on the number of max level modifiers in this constellation
-     */
-    masteryXPModifier?: ModifierID;
   };
 /**
  * Data for modifying an AstrologyModifier object
  */
 export type AstrologyModifierModificationData = IStatObjectModificationData & {
-  /**
-   * The index of the modifier to modify
-   */
-  index: number;
-  /**
-   * Optional. Sets the maximum number of times this modifier can be bought
-   */
-  maxCount?: number;
-  /**
-   * Optional. Modifies/Adds the quantity of stardust required to buy each level of the modifier.
-   */
-  costs?: {
-    /**
-     * Modifies the quantity of stardust required to buy a level of the modifier
-     */
-    modify?: {
-      index: number;
-      value: number;
-    };
-    /**
-     * Adds new costs to buy a level of the modifier
-     */
-    add?: number[];
-  };
-  /**
-   * Optional. Adds/removes requirements the player must meet before being able to study this constellation
-   */
-  unlockRequirements?: {
-    add?: AnyRequirementData[];
-    /**
-     * Removes all requirements of the given types
-     */
-    remove?: string[];
-  };
-} & {
-  /**
-   * The index of the modifier to modify
-   */
-  index: number;
-  /**
-   * Optional. Sets the maximum number of times this modifier can be bought
-   */
-  maxCount?: number;
-  /**
-   * Optional. Modifies/Adds the quantity of stardust required to buy each level of the modifier.
-   */
-  costs?: {
-    /**
-     * Modifies the quantity of stardust required to buy a level of the modifier
-     */
-    modify?: {
-      index: number;
-      value: number;
-    };
-    /**
-     * Adds new costs to buy a level of the modifier
-     */
-    add?: number[];
-  };
-  /**
-   * Optional. Adds/removes requirements the player must meet before being able to study this constellation
-   */
-  unlockRequirements?: {
-    add?: AnyRequirementData[];
-    /**
-     * Removes all requirements of the given types
-     */
-    remove?: string[];
-  };
-} & {
   /**
    * The index of the modifier to modify
    */
@@ -30679,24 +25031,11 @@ export type TownshipSeasonModificationData = ModificationIDData & {
    * Optional. Changes the modifiers provided to the enemy when this season is active
    */
   enemyModifiers?: EnemyModifierValuesModificationData;
-} & {
-  /**
-   * Optional. Changes the modifiers provided to the player by the season
-   */
-  modifiers?: ModifierValuesModificationData;
-  /**
-   * Optional. Changes the effect Applicators merged with the player when this season is active
-   */
-  combatEffects?: CombatEffectApplicatorModificationData;
-  /**
-   * Optional. Changes the modifiers provided to the enemy when this season is active
-   */
-  enemyModifiers?: EnemyModifierValuesModificationData;
 };
 /**
  * Data modifications for the Cartography Skill
  */
-export type CartographyModificationData = BaseSkillModificationData & {};
+export type CartographyModificationData = BaseSkillModificationData;
 /**
  * Data modifications for the Archaeology Skill
  */
@@ -30708,16 +25047,11 @@ export type HarvestingModificationData = MasterySkillModificationData & {};
 /**
  * Data modifications for the Corruption Skill
  */
-export type CorruptionModificationData = BaseSkillModificationData & {};
+export type CorruptionModificationData = BaseSkillModificationData;
 /**
  * Data for modifying a Pet object
  */
 export type PetModificationData = IStatObjectModificationData & {
-  /**
-   * The id of the Pet to modify
-   */
-  id: PetID;
-} & {
   /**
    * The id of the Pet to modify
    */
@@ -30727,28 +25061,6 @@ export type PetModificationData = IStatObjectModificationData & {
  * Data for modifying a Item Upgrades
  */
 export type ItemUpgradeModificationData = ModificationIDData & {
-  /**
-   * An array of Item Costs that are used to upgrade the item
-   */
-  itemCosts?: AnyItemQuantitiesModificationData;
-  /**
-   * An array of Currency Costs that are used to upgrade the item
-   */
-  currencyCosts?: CurrencyQuantitiesModificationData;
-  /**
-   * An array of Root Items that are used to upgrade the item
-   */
-  rootItemIDs?: {
-    /**
-     * @minItems 1
-     */
-    add?: AnyItemID[];
-    /**
-     * @minItems 1
-     */
-    remove?: AnyItemID[];
-  };
-} & {
   /**
    * An array of Item Costs that are used to upgrade the item
    */
@@ -35727,11 +30039,7 @@ export interface ItemSynergyData {
    * @minItems 2
    * @maxItems 15
    */
-  itemIDs: [
-    EquipmentItemID | ("ThrowingWeapon" | "Melee2HWeapon"),
-    EquipmentItemID | ("ThrowingWeapon" | "Melee2HWeapon"),
-    ...(EquipmentItemID | ("ThrowingWeapon" | "Melee2HWeapon"))[],
-  ];
+  itemIDs: (EquipmentItemID | ("ThrowingWeapon" | "Melee2HWeapon"))[];
   /**
    * Optional. Modifiers provided to the player when the synergy is active
    */
@@ -35911,14 +30219,7 @@ export interface BaseSkillData {
    *
    * @minItems 5
    */
-  ancientRelics?: [
-    AncientRelicDropData,
-    AncientRelicDropData,
-    AncientRelicDropData,
-    AncientRelicDropData,
-    AncientRelicDropData,
-    ...AncientRelicDropData[],
-  ];
+  ancientRelics?: AncientRelicDropData[];
   /**
    * @deprecated
    * Optional. The Ancient Relic that is activated when all 5 skill relics are obtained
@@ -36059,14 +30360,7 @@ export interface AncientRelicSetData {
    * @minItems 5
    * @maxItems 5
    */
-  relicDrops: [
-    AncientRelicDropData,
-    AncientRelicDropData,
-    AncientRelicDropData,
-    AncientRelicDropData,
-    AncientRelicDropData,
-    ...AncientRelicDropData[],
-  ];
+  relicDrops: AncientRelicDropData[];
   /**
    * The ID of the relic obtained when all of the relicDrops in this set have been found
    */
@@ -36294,7 +30588,7 @@ export interface SummoningSynergyData {
    * @minItems 2
    * @maxItems 2
    */
-  summonIDs: [SummoningActionID, SummoningActionID, ...SummoningActionID[]];
+  summonIDs: SummoningActionID[];
   /**
    * Displayed description for the synergies effect
    */

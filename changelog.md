@@ -5,6 +5,7 @@
 - Set `additionalProperties` in `getMelvorSchema.cjs` to false
 - Fixed forced aspect ratio of 1 in File Generator Image Preview
 - Added `test assets` to `.gitignore`
+- Switched implementation of removal of `minItems` in `getMelvorSchema.cjs` to a builtin version
 
 # v0.12.0
 

@@ -22,23 +22,16 @@
   const schemaData = await schemaResponse.json();
 
   console.log(`[getMelvorSchema] | Compiling schema`);
-  const result = (
-    await compile(schemaData, "MelvorSchema", {
-      format: false,
-      maxItems: -1,
-      additionalProperties: false,
-      style: {
-        printWidth: Infinity,
-        tabWidth: 0,
-      },
-    })
-  )
-    // removes implementations of minItems
-    // [SomeType, ...(SomeType)] -> SomeType[]
-    .replaceAll(
-      /\[\w+, \.\.\.\(?\w+\)?\[\]\]/g,
-      (substring) => `${substring.slice(1).split(",")[0]}[]`
-    );
+  const result = await compile(schemaData, "MelvorSchema", {
+    format: false,
+    maxItems: -1,
+    additionalProperties: false,
+    ignoreMinAndMaxItems: true,
+    style: {
+      printWidth: Infinity,
+      tabWidth: 0,
+    },
+  });
 
   console.log(
     `[getMelvorSchema] | Writing compiled schema to ${OUTPUT_DIRECTORY}`
