@@ -10,9 +10,6 @@
   export let condition: CombatEffectApplicatorData["condition"];
   export let parentCondition: CombatEffectApplicatorData["condition"] | null =
     null;
-  export let parentlessDelete: (
-    condition: CombatEffectApplicatorData["condition"]
-  ) => void = () => {};
 
   $: comparison =
     condition.operator === "=="
@@ -49,8 +46,6 @@
 
   function deleteSelf(): void {
     if (parentCondition === null) {
-      parentlessDelete(condition);
-
       return;
     }
 
@@ -58,11 +53,16 @@
       parentCondition.conditions.indexOf(condition),
       1
     );
+
+    parentCondition = parentCondition;
   }
 </script>
 
 <p style="margin-bottom: 2px;">Type:</p>
 <Dropdown bind:value={condition.type} caretFillColour="#ffffff">
+  {#if parentCondition === null}
+    <DropdownOption value="None" />
+  {/if}
   <DropdownOption value="Barrier" />
   <DropdownOption value="CharacterValue" />
   <DropdownOption value="CombatEffect" />
@@ -83,7 +83,10 @@
   <ul>
     {#each condition.conditions as subCondition}
       <li>
-        <svelte:self bind:condition={subCondition} />
+        <svelte:self
+          bind:condition={subCondition}
+          bind:parentCondition={condition}
+        />
       </li>
     {/each}
   </ul>
@@ -126,7 +129,7 @@
     must be <strong>{comparison}</strong>
     <strong>{condition.rhValue || "(placeholder)"}</strong>
   </small>
-{:else}
+{:else if condition.type !== "None"}
   Character:
   <Dropdown bind:value={condition.character}>
     <DropdownOption value="Player" />
@@ -254,11 +257,14 @@
       The player must {condition.inverted ? "not be" : "be"} fighting a boss
     </small>
   {/if}
+{:else if condition.type === "None"}
+  No condition selected
 {/if}
 
-<br />
-
-<button class="delete" on:click={deleteSelf}>Delete Effect</button>
+{#if parentCondition !== null}
+  <br />
+  <button class="delete" on:click={deleteSelf}>Delete Effect</button>
+{/if}
 
 <style lang="scss">
   @import "/src/styles/button.scss";

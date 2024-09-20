@@ -36,7 +36,7 @@
   type CombatEffectApplicatorData = {
     chance: number;
     condition: {
-      type: CombatEffectApplicatorConditionData["type"];
+      type: CombatEffectApplicatorConditionData["type"] | "None";
       operator: Comparison;
       rhValue: CharacterNumberExpression;
       lhValue: CharacterNumberExpression;
@@ -69,6 +69,7 @@
 
 <script lang="ts">
   import Interactable from "../Interactable/Interactable.svelte";
+  import ConditionalModifierEditor from "./ConditionalModifierEditor.svelte";
   import ModifierList from "./ModifierList.svelte";
   import TriggeredCombatEffectApplicatorList from "./TriggeredCombatEffectApplicatorList.svelte";
 
@@ -88,6 +89,7 @@
   <h2>Combat Effects</h2>
   <TriggeredCombatEffectApplicatorList bind:effects={values.combatEffects} />
   <h2>Conditional Modifiers</h2>
+  <ConditionalModifierEditor bind:modifiers={values.conditionalModifiers} />
 </Interactable>
 
 <style lang="scss">
