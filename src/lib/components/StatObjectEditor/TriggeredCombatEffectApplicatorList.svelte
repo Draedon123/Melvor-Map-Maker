@@ -1,12 +1,19 @@
+<script lang="ts" context="module">
+  const idGenerator = new Counter();
+</script>
+
 <script lang="ts">
   import { base } from "$app/paths";
-  import type { SingleCombatEffectApplicatorData } from "$lib/melvor/schema";
+  import { Counter } from "$lib/classes/Counter";
   import Dropdown from "../Dropdown/Dropdown.svelte";
   import DropdownOption from "../Dropdown/DropdownOption.svelte";
   import EffectCondition from "./EffectCondition.svelte";
   import type { TriggeredData } from "./StatObjectEditor.svelte";
+  import type { SingleCombatEffectApplicatorData } from "$lib/melvor/schema";
 
   export let effects: TriggeredData[] = [];
+
+  const id = idGenerator.getNext();
 
   function newEffect(): void {
     effects.push({
@@ -79,7 +86,7 @@
 
 <button on:click={newEffect}>New Combat Effect</button>
 <ul>
-  {#each effects as effect}
+  {#each effects as effect, index}
     <li>
       <h3>Type:</h3>
       <div class="dropdown z-index-1">
@@ -122,55 +129,59 @@
       <hr />
 
       <div class="vertical-align">
-        <label for="applyEffectWhenMerged">Apply Effect When Merged</label>
+        <label for="applyEffectWhenMerged_{id}_{index}"
+          >Apply Effect When Merged</label
+        >
         <input
           type="checkbox"
-          id="applyEffectWhenMerged"
-          name="applyEffectWhenMerged"
+          id="applyEffectWhenMerged_{id}_{index}"
+          name="applyEffectWhenMerged_{id}_{index}"
           bind:checked={effect.applyEffectWhenMerged}
         />
       </div>
 
       <hr />
 
-      <label for="effectCustomDescription">Custom Description:</label>
+      <label for="effectCustomDescription_{id}_{index}"
+        >Custom Description:</label
+      >
       <input
         bind:value={effect.customDescription}
-        id="effectCustomDescription"
-        name="effectCustomDescription"
+        id="effectCustomDescription_{id}_{index}"
+        name="effectCustomDescription_{id}_{index}"
       />
 
       <hr />
 
-      <label for="effectDescriptionLanguageID"
+      <label for="effectDescriptionLanguageID_{id}_{index}"
         >Description Language String ID</label
       >
       <input
         bind:value={effect.descriptionLang}
-        id="effectDescriptionLanguageID"
-        name="effectDescriptionLanguageID"
+        id="effectDescriptionLanguageID_{id}_{index}"
+        name="effectDescriptionLanguageID_{id}_{index}"
       />
 
       <hr />
 
       <div class="vertical-align">
-        <label for="effectIsNegative">Is negative</label>
+        <label for="effectIsNegative_{id}_{index}">Is negative</label>
         <input
           type="checkbox"
-          id="effectIsNegative"
-          name="effectIsNegative"
+          id="effectIsNegative_{id}_{index}"
+          name="effectIsNegative_{id}_{index}"
           bind:checked={effect.isNegative}
         />
       </div>
 
       <hr />
 
-      <label for="effectChance">Chance:</label>
+      <label for="effectChance_{id}_{index}">Chance:</label>
       <input
         bind:value={effect.chance}
         type="number"
-        id="effectChance"
-        name="effectChance"
+        id="effectChance_{id}_{index}"
+        name="effectChance_{id}_{index}"
         min="0"
         max="100"
       />
@@ -202,20 +213,24 @@
       <hr />
 
       <div class="vertical-align">
-        <label for="effectBypassBarrier">Bypass Barrier?</label>
+        <label for="effectBypassBarrier_{id}_{index}">Bypass Barrier?</label>
         <input
           type="checkbox"
           bind:value={effect.bypassBarrier}
-          id="effectBypassBarrier"
-          name="effectBypassBarrier"
+          id="effectBypassBarrier_{id}_{index}"
+          name="effectBypassBarrier_{id}_{index}"
         />
       </div>
 
       <hr />
 
       {#if effect.type === "single"}
-        <label for="effectID"> Effect ID </label>
-        <input bind:value={effect.effectID} id="effectID" name="effectID" />
+        <label for="effectID_{id}_{index}"> Effect ID </label>
+        <input
+          bind:value={effect.effectID}
+          id="effectID_{id}_{index}"
+          name="effectID_{id}_{index}"
+        />
 
         <h3>Initial Parameters</h3>
 
@@ -248,11 +263,11 @@
           {/each}
         </ul>
       {:else}
-        <label for="effectTableID">Table ID</label>
+        <label for="effectTableID_{id}_{index}">Table ID</label>
         <input
           bind:value={effect.tableID}
-          id="effectTableID"
-          name="effectTableID"
+          id="effectTableID_{id}_{index}"
+          name="effectTableID_{id}_{index}"
         />
       {/if}
 
