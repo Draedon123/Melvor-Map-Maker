@@ -15,7 +15,7 @@
     modifiers: Modifiers;
     enemyModifiers: Modifiers;
     combatEffects: TriggeredData[];
-    conditionalModifiers: ConditionalModifierData;
+    conditionalModifiers: Required<ConditionalModifierData>[];
   };
 
   type TriggeredData = Required<CombatEffectApplicatorTriggerData> &
@@ -76,16 +76,7 @@
     modifiers: [],
     enemyModifiers: [],
     combatEffects: [],
-    conditionalModifiers: {
-      modifiers: {},
-      enemyModifiers: {},
-      condition: {
-        type: "DamageType",
-        damageType: "melvorD:Normal",
-        character: "Player",
-        inverted: false,
-      },
-    },
+    conditionalModifiers: [],
   };
 </script>
 
