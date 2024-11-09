@@ -7,15 +7,40 @@
     CombatEffectGroupID,
     CombatEffectID,
     Comparison,
-    ConditionalModifierData,
+    ConditionalModifierConditionData,
     DamageTypeID,
+    EquipStatKey,
   } from "$lib/melvor/schema";
 
   type IStatObjectData = {
     modifiers: Modifiers;
     enemyModifiers: Modifiers;
     combatEffects: TriggeredData[];
-    conditionalModifiers: Required<ConditionalModifierData>[];
+    conditionalModifiers: ConditionalModifierData[];
+  };
+
+  type ConditionalModifierData = {
+    condition: {
+      type: ConditionalModifierConditionData["type"] | "None";
+      character: "Player" | "Enemy";
+      itemID: string;
+      value: number;
+      recipeID: string;
+      inverted: boolean;
+      operator: Comparison;
+      statKey: EquipStatKey;
+      damageType: DamageTypeID;
+      thisAttackType: AttackType | "any";
+      targetAttackType: AttackType | "any";
+      groupID: CombatEffectGroupID;
+      effectID: CombatEffectID;
+      conditions: ConditionalModifierData["condition"][];
+    };
+    modifiers: Modifiers;
+    enemyModifiers: Modifiers;
+    isNegative: boolean;
+    description: string;
+    descriptionLang: string;
   };
 
   type TriggeredData = Required<CombatEffectApplicatorTriggerData> &
@@ -64,6 +89,7 @@
     Modifiers,
     TriggeredData,
     CombatEffectApplicatorData,
+    ConditionalModifierData,
   };
 </script>
 
