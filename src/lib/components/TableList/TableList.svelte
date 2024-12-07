@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   type Action = {
     iconSRC: string;
     iconAltText: string;
@@ -7,14 +7,24 @@
 </script>
 
 <script lang="ts">
-  import { base } from "$app/paths";
   import TableListRow from "./TableListRow.svelte";
+  import { base } from "$app/paths";
 
-  export let values: object[] = [];
-  export let keys: string[] | null = null;
-  export let actions: Action[] = [];
-  export let headers: string[];
-  export let itemOnDelete: (item: object) => void = () => {};
+  type Props = {
+    values?: object[];
+    keys?: string[] | null;
+    actions?: Action[];
+    headers: string[];
+    itemOnDelete?: (item: object) => void;
+  };
+
+  let {
+    values = $bindable([]),
+    keys = null,
+    actions = [],
+    headers,
+    itemOnDelete = () => {},
+  }: Props = $props();
 
   function deleteButtonOnClick(value: object): void {
     values.splice(values.indexOf(value), 1);
@@ -25,61 +35,38 @@
 </script>
 
 <table>
-  <tr>
-    {#each headers as header}
-      <th>{header}</th>
-    {/each}
-    <th>Actions</th>
-  </tr>
-
-  {#each values as value}
+  <thead>
     <tr>
-      <TableListRow bind:values={value} {keys} />
-      <td>
-        {#each actions as action}
+      {#each headers as header}
+        <th>{header}</th>
+      {/each}
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {#each values as value, index}
+      <tr>
+        <TableListRow bind:values={values[index]} {keys} />
+        <td>
+          {#each actions as action}
+            <input
+              type="image"
+              src={action.iconSRC}
+              alt={action.iconAltText}
+              onclick={() => {
+                action.onClick(value);
+              }}
+            />
+          {/each}
           <input
             type="image"
-            src={action.iconSRC}
-            alt={action.iconAltText}
-            on:click={() => {
-              action.onClick(value);
-            }}
+            src="{base}/delete.png"
+            alt="A bin"
+            onclick={() => deleteButtonOnClick(value)}
           />
-        {/each}
-        <input
-          type="image"
-          src="{base}/delete.png"
-          alt="A bin"
-          on:click={() => deleteButtonOnClick(value)}
-        />
-      </td>
-    </tr>
-  {/each}
+        </td>
+      </tr>
+    {/each}
+  </tbody>
 </table>
-
-<style lang="scss">
-  table,
-  :global(td),
-  th {
-    border: 2px solid #4f4f4f;
-    border-collapse: collapse;
-  }
-
-  table {
-    text-align: center;
-  }
-
-  :global(td),
-  th {
-    padding: 3px 5px;
-  }
-
-  tr {
-    width: min-content;
-  }
-
-  input[type="image"] {
-    width: 2em;
-    height: 2em;
-  }
-</style>

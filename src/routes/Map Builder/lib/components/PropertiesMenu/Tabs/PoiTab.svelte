@@ -1,13 +1,16 @@
 <script lang="ts">
-  import { base } from "$app/paths";
   import Tab from "../Tab.svelte";
   import Dropdown from "$lib/components/Dropdown/Dropdown.svelte";
   import TableList from "$lib/components/TableList/TableList.svelte";
   import globalStore from "$routes/store";
   import DropdownOption from "$lib/components/Dropdown/DropdownOption.svelte";
   import mapBuilderStore from "$routes/Map Builder/lib/store/store";
+  import { base } from "$app/paths";
 
-  $: activePOI = $mapBuilderStore.propertiesMenu.poiTab.activePOI;
+  let activePOI: StrictPointOfInterestData | null | undefined = $state();
+  $effect(() => {
+    activePOI = $mapBuilderStore.propertiesMenu.poiTab.activePOI;
+  });
 
   function newPOIButtonOnClick(): void {
     const id = Math.random().toFixed(6).slice(2);
@@ -65,7 +68,7 @@
 <Tab imageSRC="{base}/point_of_interest.png" imageAltText="A yellow flag">
   <h1>Points of Interest</h1>
 
-  <button on:click={newPOIButtonOnClick}>Create new POI</button>
+  <button onclick={newPOIButtonOnClick}>Create new POI</button>
 
   <TableList
     headers={["Local ID"]}
@@ -81,7 +84,7 @@
     bind:values={$globalStore.activeProject.worldMapData.pointsOfInterest}
   />
 
-  {#if activePOI !== null}
+  {#if activePOI !== null && activePOI !== undefined}
     <h2>{activePOI.name}</h2>
 
     <label for="poiName"> Name: </label>
@@ -94,7 +97,7 @@
       id="poiID"
       name="poiID"
       bind:value={activePOI.id}
-      on:input={updatePOIs}
+      oninput={updatePOIs}
     />
 
     <br />
@@ -140,7 +143,7 @@
 </Tab>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
+  @use "/src/styles/button.scss";
 
   h1,
   h2 {
@@ -167,7 +170,7 @@
 
   button {
     & {
-      @include button(#659ca7);
+      @include button.button(#659ca7);
     }
 
     & {

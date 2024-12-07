@@ -1,9 +1,13 @@
 <script lang="ts">
-  import type { Comparison } from "$lib/melvor/schema";
   import Dropdown from "../Dropdown/Dropdown.svelte";
   import DropdownOption from "../Dropdown/DropdownOption.svelte";
+  import type { Comparison } from "$lib/melvor/schema";
 
-  export let comparison: Comparison;
+  type Props = {
+    comparison: Comparison;
+  };
+
+  let { comparison = $bindable() }: Props = $props();
 </script>
 
 <Dropdown bind:value={comparison}>

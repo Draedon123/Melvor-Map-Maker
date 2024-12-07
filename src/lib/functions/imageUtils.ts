@@ -5,10 +5,10 @@ import type {
   TranscodingMessageFromWorker,
   ErrorMessageFromWorker,
 } from "../workers/basisTypes";
-import { base } from "$app/paths";
-import type { PointData } from "$lib/melvor/schema";
 import chunkArray from "./chunkArray";
 import workerCodeURL from "../workers/basis?worker&url";
+import { base } from "$app/paths";
+import type { PointData } from "$lib/melvor/schema";
 
 async function toBasis(
   images: { image: HTMLImageElement; name: string }[],
@@ -247,6 +247,11 @@ function resize(
           ? image.height + resizeBy.y
           : resizeBy.y;
 
+    if (image.width === width && image.height === height) {
+      resolve(image);
+      return;
+    }
+
     canvas.width = width;
     canvas.height = height;
 
@@ -374,7 +379,6 @@ async function split(
       );
     }
   }
-
   return await Promise.all(promises);
 }
 

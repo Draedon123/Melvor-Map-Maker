@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   const REQUIREMENT_TYPES = [
     "Abyss Depth Completion",
     "All Skill Levels",
@@ -21,15 +21,19 @@
 </script>
 
 <script lang="ts">
-  import type { AnyRequirementData } from "$lib/melvor/schema";
   import Dropdown from "../Dropdown/Dropdown.svelte";
   import Requirement from "./Requirement.svelte";
   import DropdownOption from "../Dropdown/DropdownOption.svelte";
   import { base } from "$app/paths";
+  import type { AnyRequirementData } from "$lib/melvor/schema";
 
-  export let requirements: AnyRequirementData[] = [];
+  type Props = {
+    requirements?: AnyRequirementData[];
+  };
 
-  let requirementType: AnyRequirementData["type"] | "" = "";
+  let { requirements = $bindable([]) }: Props = $props();
+
+  let requirementType: AnyRequirementData["type"] | "" = $state("");
 
   function addNewRequirement(): void {
     const type = requirementType;
@@ -192,69 +196,32 @@
         >
       {/each}
     </Dropdown>
-    <button on:click={addNewRequirement}>Add!</button>
+    <button onclick={addNewRequirement}>Add!</button>
   </div>
 </div>
 
 <table>
-  <tr>
-    <th> Requirement </th>
-    <th> Actions </th>
-  </tr>
-  {#each requirements as requirement}
+  <thead>
     <tr>
-      <td>
-        <Requirement {requirement} />
-      </td>
-      <td>
-        <input
-          type="image"
-          src="{base}/delete.png"
-          alt="A bin"
-          on:click={() => deleteButtonOnClick(requirement)}
-        />
-      </td>
+      <th> Requirement </th>
+      <th> Actions </th>
     </tr>
-  {/each}
+  </thead>
+  <tbody>
+    {#each requirements as requirement}
+      <tr>
+        <td>
+          <Requirement {requirement} />
+        </td>
+        <td>
+          <input
+            type="image"
+            src="{base}/delete.png"
+            alt="A bin"
+            onclick={() => deleteButtonOnClick(requirement)}
+          />
+        </td>
+      </tr>
+    {/each}
+  </tbody>
 </table>
-
-<style lang="scss">
-  @import "/src/styles/button.scss";
-
-  table,
-  td,
-  th {
-    border: 2px solid #4f4f4f;
-    border-collapse: collapse;
-  }
-
-  table {
-    text-align: center;
-  }
-
-  td,
-  th {
-    padding: 3px 5px;
-  }
-
-  button {
-    & {
-      @include button(#659ca7);
-    }
-
-    & {
-      font-size: medium;
-      margin: 3px 0;
-      width: 100%;
-    }
-  }
-
-  .dropdown-container {
-    width: max-content;
-  }
-
-  input[type="image"] {
-    width: 2em;
-    height: 2em;
-  }
-</style>

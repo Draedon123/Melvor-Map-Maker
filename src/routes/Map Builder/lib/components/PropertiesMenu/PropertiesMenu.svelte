@@ -1,10 +1,14 @@
-<svelte:options accessors />
-
 <script lang="ts">
   import HexTab from "./Tabs/HexTab.svelte";
   import PoiTab from "./Tabs/PoiTab.svelte";
 
-  export let hidden: boolean = false;
+  type Props = {
+    hidden?: boolean;
+  };
+
+  let { hidden = false }: Props = $props();
+
+  export { hidden };
 </script>
 
 <div class="container" class:hidden>
@@ -13,7 +17,7 @@
 </div>
 
 <style lang="scss">
-  @import "/src/styles/scrollbar.scss";
+  @use "/src/styles/scrollbar.scss";
 
   .container {
     height: 100%;
@@ -34,6 +38,8 @@
     display: flex;
     flex-direction: column;
 
-    @include scrollbar();
+    user-select: none;
+
+    @include scrollbar.scrollbar();
   }
 </style>

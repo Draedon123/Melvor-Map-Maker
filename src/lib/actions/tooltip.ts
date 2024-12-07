@@ -1,6 +1,6 @@
-import type { Action } from "svelte/action";
-import type { Props } from "tippy.js";
 import tippy from "tippy.js";
+import type { Props } from "tippy.js";
+import type { Action } from "svelte/action";
 
 function newTooltipAction(
   tooltipOptions: Partial<Props> = {}

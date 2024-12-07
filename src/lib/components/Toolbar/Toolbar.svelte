@@ -1,10 +1,18 @@
+<script lang="ts">
+  type Props = {
+    children: import("svelte").Snippet;
+  };
+
+  let { children }: Props = $props();
+</script>
+
 <aside class="toolbar">
-  <slot />
+  {@render children?.()}
 </aside>
 
 <style lang="scss">
   @use "sass:math";
-  @import "/src/styles/globals.scss";
+  @use "/src/styles/globals.scss";
 
   $toolbar-colour: #1f1f1f;
 
@@ -25,7 +33,7 @@
   }
 
   :global(.toolbar:hover button) {
-    width: 4 * $toolbar-width !important;
+    width: 4 * globals.$toolbar-width !important;
 
     &:hover {
       background-color: #303030;

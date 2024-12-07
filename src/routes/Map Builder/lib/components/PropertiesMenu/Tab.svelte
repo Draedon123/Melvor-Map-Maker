@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   let currentID = 0;
 
   function getNewID(): number {
@@ -9,8 +9,13 @@
 <script lang="ts">
   import store from "../../store/store";
 
-  export let imageSRC: string;
-  export let imageAltText: string;
+  type Props = {
+    imageSRC: string;
+    imageAltText: string;
+    children?: import("svelte").Snippet;
+  };
+
+  let { imageSRC, imageAltText, children }: Props = $props();
 
   export const id = getNewID();
 
@@ -24,10 +29,10 @@
   src={imageSRC}
   alt={imageAltText}
   class:active={id === $store.propertiesMenu.activeTab}
-  on:click={iconOnClick}
+  onclick={iconOnClick}
 />
 <div class:hidden={id !== $store.propertiesMenu.activeTab}>
-  <slot />
+  {@render children?.()}
 </div>
 
 <style lang="scss">

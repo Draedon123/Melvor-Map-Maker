@@ -1,7 +1,7 @@
+import time from "$lib/functions/time";
 import { error } from "$lib/functions/log";
 import { initDevtools } from "@pixi/devtools";
 import type { Application } from "pixi.js";
-import time from "$lib/functions/time";
 
 const LOG_PREFIX = "initialisePIXIDevTools.ts";
 let initialised = false;

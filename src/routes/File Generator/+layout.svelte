@@ -1,18 +1,26 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   const PLACEHOLDER_PREVIEW_IMAGE_SRC = `${base}/black.png`;
 </script>
 
 <script lang="ts">
-  import { base } from "$app/paths";
-  import { toBlob } from "$lib/functions/imageUtils";
   import store from "./store";
   import Dialog from "$lib/components/Dialog/Dialog.svelte";
   import Toolbar from "$lib/components/Toolbar/Toolbar.svelte";
   import ToolbarItem from "$lib/components/Toolbar/ToolbarItem.svelte";
+  import { base } from "$app/paths";
+  import { toBlob } from "$lib/functions/imageUtils";
 
-  let dialog: Dialog;
-  let preview: HTMLImageElement;
-  let previewImageSRC: string = PLACEHOLDER_PREVIEW_IMAGE_SRC;
+  type Props = {
+    children?: import("svelte").Snippet;
+  };
+
+  let { children }: Props = $props();
+
+  let dialog: Dialog | undefined = $state();
+  let lastMapImage: HTMLImageElement | null = null;
+  let isFetchingPreviewImageSRC: boolean = false;
+  let preview: HTMLImageElement | undefined = $state();
+  let previewImageSRC: string = $state(PLACEHOLDER_PREVIEW_IMAGE_SRC);
 
   async function getPreviewImageSrc(
     image: HTMLImageElement | null
@@ -26,8 +34,16 @@
     previewImageSRC = URL.createObjectURL(await toBlob(image));
   }
 
-  store.subscribe((store) => {
-    getPreviewImageSrc(store.mapImage);
+  store.subscribe(($store) => {
+    if ($store.mapImage === lastMapImage || isFetchingPreviewImageSRC) {
+      return;
+    }
+
+    isFetchingPreviewImageSRC = true;
+    getPreviewImageSrc($store.mapImage).then(() => {
+      lastMapImage = $store.mapImage;
+      isFetchingPreviewImageSRC = false;
+    });
   });
 </script>
 
@@ -55,13 +71,13 @@
   </Dialog>
 
   <div class="main">
-    <slot />
+    {@render children?.()}
   </div>
 </div>
 
 <style lang="scss">
   @use "sass:math";
-  @import "/src/styles/globals.scss";
+  @use "/src/styles/globals.scss";
 
   img.preview {
     max-width: 80vh;
@@ -71,10 +87,10 @@
   }
 
   .container {
-    margin-left: calc($toolbar-width + 1ch);
+    margin-left: calc(globals.$toolbar-width + 1ch);
     margin-right: 0;
     position: relative;
-    max-width: calc(100vw - $toolbar-width - 2ch);
-    max-height: calc(100vh - $navigation-bar-height - 1ch);
+    max-width: calc(100vw - globals.$toolbar-width - 2ch);
+    max-height: calc(100vh - globals.$navigation-bar-height - 1ch);
   }
 </style>

@@ -1,16 +1,12 @@
 import time from "$lib/functions/time";
-import { type IViewportTransformState } from "pixi-viewport";
-import {
-  Application,
-  Container,
-  Sprite,
-  type ApplicationOptions,
-} from "pixi.js";
-import { writable } from "svelte/store";
-import type { ViewportOptions } from "../canvas/Viewport";
-import type { PointData } from "$lib/melvor/schema";
 import Viewport from "../canvas/Viewport";
 import HexGridLayer from "../canvas/HexGridLayer";
+import { writable } from "svelte/store";
+import { Application, Container, Sprite } from "pixi.js";
+import type { PointData } from "$lib/melvor/schema";
+import type { ViewportOptions } from "../canvas/Viewport";
+import type { ApplicationOptions } from "pixi.js";
+import type { IViewportTransformState } from "pixi-viewport";
 
 type MapBuilderStore = {
   app: Application | null;

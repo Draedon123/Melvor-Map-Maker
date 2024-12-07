@@ -1,18 +1,31 @@
 <script lang="ts">
   import { error } from "$lib/functions/log";
 
-  export let mimeType: string = "*";
-  export let validFileRegex: RegExp = /.*/;
-  export let multiple: boolean = false;
-  export let onFileUpload: (files: File[]) => void = () => {};
+  type Props = {
+    mimeType?: string;
+    validFileRegex?: RegExp;
+    multiple?: boolean;
+    onFileUpload?: (files: File[]) => void;
+    children?: import("svelte").Snippet;
+  };
+
+  let {
+    mimeType = "*",
+    validFileRegex = /.*/,
+    multiple = false,
+    onFileUpload = () => {},
+    children,
+  }: Props = $props();
 
   const LOG_PREFIX = "DragDropUpload.svelte";
-  let isDragging: boolean = false;
-  let fileUpload: HTMLButtonElement;
-  let fileUploadInput: HTMLInputElement;
+  let isDragging: boolean = $state(false);
+  let fileUploadInput: HTMLInputElement | undefined = $state();
 
   function onFileDrop(event: DragEvent): void {
     const PREFIX = `${LOG_PREFIX} | onFileDrop`;
+
+    event.preventDefault();
+
     if (event.dataTransfer === null) {
       return error(
         `${PREFIX}`,
@@ -37,6 +50,8 @@
   function onFileDragOver(event: DragEvent): void {
     const PREFIX = `${LOG_PREFIX} | onFileDragOver`;
 
+    event.preventDefault();
+
     if (event.dataTransfer === null) {
       return error(
         `${PREFIX}`,
@@ -54,6 +69,10 @@
   }
 
   function onFileUploadClick(): void {
+    if (fileUploadInput === undefined) {
+      return;
+    }
+
     fileUploadInput.click();
   }
 
@@ -68,21 +87,20 @@
 <button
   class="file-upload"
   class:file-upload-dragging={isDragging}
-  on:dragover|preventDefault={onFileDragOver}
-  on:dragleave={onFileDragEnd}
-  on:drop|preventDefault={onFileDrop}
-  on:click={onFileUploadClick}
-  bind:this={fileUpload}
+  ondragover={onFileDragOver}
+  ondragleave={onFileDragEnd}
+  ondrop={onFileDrop}
+  onclick={onFileUploadClick}
 >
-  <slot>
+  {#if children}{@render children()}{:else}
     <p>Drag and drop a files here, or click to upload a file.</p>
-  </slot>
+  {/if}
   <input
     class="file-upload-input"
     type="file"
     accept={mimeType}
     {multiple}
-    on:change={fileUploadOnChange}
+    onchange={fileUploadOnChange}
     bind:this={fileUploadInput}
   />
 </button>

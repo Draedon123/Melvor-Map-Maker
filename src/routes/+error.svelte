@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { page } from "$app/stores";
   import Error404 from "$lib/components/errors/404.svelte";
+  import { page } from "$app/stores";
 </script>
 
 <svelte:head>

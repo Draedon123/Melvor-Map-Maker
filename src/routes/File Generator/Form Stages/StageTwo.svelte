@@ -1,11 +1,16 @@
 <script lang="ts">
+  import store from "../store";
   import FormStage from "../FormStage.svelte";
-  import store, { mapImage } from "../store";
 
-  export let activeStage: number;
-  export let canGoToNextStage: true | string;
+  type Props = {
+    activeStage: number;
+  };
+
+  let { activeStage }: Props = $props();
+  let oldMapImage: HTMLImageElement | null = null;
+
   export function isStageComplete(): true | string {
-    return getErrorMessage($mapImage, tileWidth, tileHeight);
+    return getErrorMessage($store.mapImage, tileWidth, tileHeight);
   }
 
   function getErrorMessage(
@@ -61,38 +66,42 @@
     return 0;
   }
 
-  let tileWidth = 1;
-  let tileHeight = 1;
+  let tileWidth = $state(1);
+  let tileHeight = $state(1);
 
-  $: {
-    const tilesX = ($mapImage?.width ?? 0) / tileWidth;
+  store.subscribe(($store) => {
+    if (oldMapImage === $store.mapImage) {
+      return;
+    }
+
+    oldMapImage = $store.mapImage;
+    tileWidth =
+      $store.mapImage === null ? 1 : getTileDimensions($store.mapImage.width);
+    tileHeight =
+      $store.mapImage === null ? 1 : getTileDimensions($store.mapImage.height);
+
+    const tilesX = ($store.mapImage?.width ?? 0) / tileWidth;
+    const tilesY = ($store.mapImage?.height ?? 0) / tileHeight;
+
+    if ($store.tilesX === tilesX && $store.tilesY === tilesY) {
+      return;
+    }
+
     if (Number.isInteger(tilesX)) {
       $store.tilesX = tilesX;
     }
-  }
 
-  $: {
-    const tilesY = ($mapImage?.height ?? 0) / tileHeight;
     if (Number.isInteger(tilesY)) {
       $store.tilesY = tilesY;
     }
-  }
-
-  $: errorMessage = (() => {
-    const message = getErrorMessage($mapImage, tileWidth, tileHeight);
-    canGoToNextStage = message;
-    return message;
-  })();
-
-  let oldMapImage: HTMLImageElement | null = null;
-  mapImage.subscribe((mapImage) => {
-    if (oldMapImage === mapImage) {
-      return;
-    }
-    oldMapImage = mapImage;
-    tileWidth = mapImage === null ? 1 : getTileDimensions(mapImage.width);
-    tileHeight = mapImage === null ? 1 : getTileDimensions(mapImage.height);
   });
+
+  let errorMessage = $derived(
+    (() => {
+      const message = getErrorMessage($store.mapImage, tileWidth, tileHeight);
+      return message;
+    })()
+  );
 </script>
 
 <FormStage stage={2} currentStage={activeStage}>
@@ -132,7 +141,7 @@
 </FormStage>
 
 <style lang="scss">
-  @import "/src/styles/input.scss";
+  @use "/src/styles/input.scss";
 
   h1 {
     margin: 0;
@@ -154,7 +163,7 @@
   }
 
   label > input {
-    @include input;
+    @include input.input;
 
     & {
       margin: 0.25em 0 0.25em 1ch;

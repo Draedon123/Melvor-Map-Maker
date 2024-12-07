@@ -1,20 +1,25 @@
 <script lang="ts">
-  import { base } from "$app/paths";
   import Hex from "./lib/components/modals/Hex.svelte";
   import Toolbar from "$lib/components/Toolbar/Toolbar.svelte";
   import UploadFile from "./lib/components/modals/UploadFile.svelte";
   import ToolbarItem from "$lib/components/Toolbar/ToolbarItem.svelte";
   import PropertiesMenu from "./lib/components/PropertiesMenu/PropertiesMenu.svelte";
+  import { base } from "$app/paths";
+  type Props = {
+    children?: import("svelte").Snippet;
+  };
 
-  let uploadFileModal: UploadFile;
-  let hexModal: Hex;
+  let { children }: Props = $props();
+
+  let uploadFileModal: UploadFile | undefined = $state();
+  let hexModal: Hex | undefined = $state();
 </script>
 
 <svelte:head>
-  <!-- my browser sometimes get 1px whitespace at the bottom for some reason -->
-  <style>
+  <style lang="scss">
     body {
-      background-color: #000000;
+      margin: auto 0;
+      overflow: hidden;
     }
   </style>
 </svelte:head>
@@ -25,7 +30,7 @@
       imageSRC="{base}/upload.png"
       imageAltText="An upload icon"
       onClick={() => {
-        uploadFileModal.exports.modal?.toggle();
+        uploadFileModal?.exports.modal?.toggle();
       }}
     >
       Upload Map Images
@@ -34,7 +39,7 @@
       imageSRC="{base}/hex_grid.png"
       imageAltText="A honeycomb"
       onClick={() => {
-        hexModal.exports.modal?.toggle();
+        hexModal?.exports.modal?.toggle();
       }}
     >
       Hexes
@@ -45,27 +50,26 @@
   <Hex bind:this={hexModal} />
 
   <div class="main">
-    <slot />
+    {@render children?.()}
     <PropertiesMenu />
   </div>
 </div>
 
 <style lang="scss">
-  @import "/src/styles/globals.scss";
+  @use "/src/styles/globals.scss";
 
   * {
     color: white;
   }
 
   .container {
-    margin-left: $toolbar-width;
     margin-right: 0;
     position: relative;
   }
 
   .main {
     width: 100%;
-    height: calc(100vh - $navigation-bar-height);
+    height: calc(100vh - globals.$navigation-bar-height);
 
     display: flex;
     flex-direction: row;

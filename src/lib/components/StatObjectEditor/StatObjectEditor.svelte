@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   import type {
     AttackType,
     CharacterNumberExpression,
@@ -95,16 +95,16 @@
 
 <script lang="ts">
   import Interactable from "../Interactable/Interactable.svelte";
-  import ConditionalModifierEditor from "./ConditionalModifierEditor.svelte";
   import ModifierList from "./ModifierList.svelte";
+  import ConditionalModifierEditor from "./ConditionalModifierEditor.svelte";
   import TriggeredCombatEffectApplicatorList from "./TriggeredCombatEffectApplicatorList.svelte";
 
-  export const values: Required<IStatObjectData> = {
+  export const values: Required<IStatObjectData> = $state({
     modifiers: [],
     enemyModifiers: [],
     combatEffects: [],
     conditionalModifiers: [],
-  };
+  });
 </script>
 
 <Interactable draggable resizeable style="max-height: 80vh; overflow-y: scroll">

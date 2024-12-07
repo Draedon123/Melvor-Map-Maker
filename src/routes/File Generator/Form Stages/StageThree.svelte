@@ -1,19 +1,20 @@
 <script lang="ts">
-  import { downloadZip } from "client-zip";
   import store from "../store";
   import FormStage from "../FormStage.svelte";
-  import { toBasis, resize, split, toBlob } from "$lib/functions/imageUtils";
   import ProgressBar from "$lib/components/Progress Bar/ProgressBar.svelte";
+  import { downloadZip } from "client-zip";
+  import { toBasis, resize, split, toBlob } from "$lib/functions/imageUtils";
 
-  export let activeStage: number;
+  type Props = {
+    activeStage: number;
+  };
 
-  let progressBar: ProgressBar;
-  let progress: number = 0;
-  let error: string = "";
-  let status: string = "";
-  let zipFileURL: string = "";
+  let { activeStage }: Props = $props();
 
-  $: progressPercent = `${(progress * 100).toFixed(2)}%`;
+  let progressBar: ProgressBar | undefined = $state();
+  let error: string = $state("");
+  let status: string = $state("");
+  let zipFileURL: string = $state("");
 
   const PROGRESS_BREAKPOINTS = {
     RESIZE: 0.05,
@@ -25,6 +26,10 @@
   } as const;
 
   async function convertButtonOnClick(): Promise<void> {
+    if (progressBar === undefined) {
+      return;
+    }
+
     error = "";
     status = "";
     progressBar.set(0);
@@ -53,12 +58,15 @@
       $store.tilesY,
       (progress, convertedCount, totalImages) => {
         status = `Splitting full size map into tiles (${convertedCount} / ${totalImages})`;
-        progressBar.set(
-          progress *
-            (PROGRESS_BREAKPOINTS.SPLIT_FULL_SIZE -
-              PROGRESS_BREAKPOINTS.RESIZE) +
-            PROGRESS_BREAKPOINTS.RESIZE
-        );
+
+        if (progressBar !== undefined) {
+          progressBar.set(
+            progress *
+              (PROGRESS_BREAKPOINTS.SPLIT_FULL_SIZE -
+                PROGRESS_BREAKPOINTS.RESIZE) +
+              PROGRESS_BREAKPOINTS.RESIZE
+          );
+        }
       }
     );
 
@@ -69,12 +77,15 @@
       $store.tilesY,
       (progress, convertedCount, totalImages) => {
         status = `Splitting half size map into tiles (${convertedCount} / ${totalImages})`;
-        progressBar.set(
-          progress *
-            (PROGRESS_BREAKPOINTS.SPLIT_HALF_SIZE -
-              PROGRESS_BREAKPOINTS.SPLIT_FULL_SIZE) +
-            PROGRESS_BREAKPOINTS.SPLIT_FULL_SIZE
-        );
+
+        if (progressBar !== undefined) {
+          progressBar.set(
+            progress *
+              (PROGRESS_BREAKPOINTS.SPLIT_HALF_SIZE -
+                PROGRESS_BREAKPOINTS.SPLIT_FULL_SIZE) +
+              PROGRESS_BREAKPOINTS.SPLIT_FULL_SIZE
+          );
+        }
       }
     );
 
@@ -90,12 +101,15 @@
       2,
       (progress, convertedCount, totalFiles) => {
         status = `Converting full size tiles into .basis files (${convertedCount} / ${totalFiles})`;
-        progressBar.set(
-          progress *
-            (PROGRESS_BREAKPOINTS.CONVERT_FULL_SIZE -
-              PROGRESS_BREAKPOINTS.SPLIT_HALF_SIZE) +
-            PROGRESS_BREAKPOINTS.SPLIT_HALF_SIZE
-        );
+
+        if (progressBar !== undefined) {
+          progressBar.set(
+            progress *
+              (PROGRESS_BREAKPOINTS.CONVERT_FULL_SIZE -
+                PROGRESS_BREAKPOINTS.SPLIT_HALF_SIZE) +
+              PROGRESS_BREAKPOINTS.SPLIT_HALF_SIZE
+          );
+        }
       }
     );
 
@@ -111,12 +125,15 @@
       2,
       (progress, convertedCount, totalFiles) => {
         status = `Converting half size tiles into .basis files (${convertedCount} / ${totalFiles})`;
-        progressBar.set(
-          progress *
-            (PROGRESS_BREAKPOINTS.CONVERT_HALF_SIZE -
-              PROGRESS_BREAKPOINTS.CONVERT_FULL_SIZE) +
-            PROGRESS_BREAKPOINTS.CONVERT_FULL_SIZE
-        );
+
+        if (progressBar !== undefined) {
+          progressBar.set(
+            progress *
+              (PROGRESS_BREAKPOINTS.CONVERT_HALF_SIZE -
+                PROGRESS_BREAKPOINTS.CONVERT_FULL_SIZE) +
+              PROGRESS_BREAKPOINTS.CONVERT_FULL_SIZE
+          );
+        }
       }
     );
 
@@ -177,20 +194,19 @@
   <div class="container">
     <h1>Step 3: Convert and Download Files</h1>
     <p class="progress-bar-status">
-      {progressPercent}
+      {((progressBar?.value ?? 0) * 100).toFixed(2)}%
       <br />
       {status}
     </p>
     <div class="progress-bar">
       <ProgressBar
         bind:this={progressBar}
-        bind:value={progress}
         ariaLabel="File Conversion Progress"
       />
     </div>
     <div>
-      <button on:click={convertButtonOnClick}>Convert</button>
-      <button on:click={downloadZipFile} disabled={zipFileURL === ""}
+      <button onclick={convertButtonOnClick}>Convert</button>
+      <button onclick={downloadZipFile} disabled={zipFileURL === ""}
         >Download</button
       >
     </div>
@@ -201,15 +217,15 @@
 </FormStage>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
+  @use "/src/styles/button.scss";
 
   h1 {
     margin: 0;
   }
 
   button {
-    @include button;
-    @include button-disabled;
+    @include button.button;
+    @include button.button-disabled;
   }
 
   .container {

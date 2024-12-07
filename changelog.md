@@ -6,6 +6,8 @@
 - Fixed forced aspect ratio of 1 in File Generator Image Preview
 - Added `test assets` to `.gitignore`
 - Switched implementation of removal of `minItems` in `getMelvorSchema.cjs` to a builtin version
+- Migrated to Svelte 5
+- Removed Vitest
 
 # v0.12.0
 

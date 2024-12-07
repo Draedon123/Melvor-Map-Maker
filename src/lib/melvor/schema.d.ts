@@ -1499,6 +1499,7 @@ export type EquipmentItemID =
       | "melvorTotH:Slayer_Torch"
       | "melvorTotH:Mystic_Lantern"
       | "melvorTotH:Book_of_the_Ancients"
+      | "melvorTotH:Dark_Blade_Defender"
       | "melvorTotH:Travellers_Compass"
       | "melvorTotH:Blood_Ring"
       | "melvorTotH:Portable_Rations"
@@ -2637,7 +2638,6 @@ export type WeaponItemID =
       | "melvorTotH:Feather_Storm_Crossbow"
       | "melvorTotH:Agile_Wings_Rapier"
       | "melvorTotH:Slicing_Maelstrom_Wand"
-      | "melvorTotH:Dark_Blade_Defender"
       | "melvorTotH:Grappling_Hook"
       | "melvorAoD:Chisel"
       | "melvorAoD:Ancient_Hunting_Bow"
@@ -5376,11 +5376,11 @@ export type ModifierValuesRecordData = BaseEnemyModifierValuesRecordData & {
    */
   damageDealtToSlayerTasks?: number | ScopedModifierValue0[];
   /**
-   * ${value}% Damage to ${categoryName} Monsters
+   * ${value}% Damage to Monsters in ${categoryName}
    */
   "melvorD:damageDealtToMonstersInArea"?: ScopedModifierValue16[];
   /**
-   * ${value}% Damage to ${categoryName} Monsters
+   * ${value}% Damage to Monsters in ${categoryName}
    */
   damageDealtToMonstersInArea?: ScopedModifierValue16[];
   /**
@@ -5639,7 +5639,7 @@ export type ModifierValuesRecordData = BaseEnemyModifierValuesRecordData & {
    */
   decreasedMasteryXP?: ScopedModifierValue1[];
   /**
-   * -${value}% Global Mastery XP
+   * -${value}% Mastery XP in all Skills
    */
   "melvorD:masteryXP"?:
     | number
@@ -5650,7 +5650,7 @@ export type ModifierValuesRecordData = BaseEnemyModifierValuesRecordData & {
         | ScopedModifierValue5
       )[];
   /**
-   * -${value}% Global Mastery XP
+   * -${value}% Mastery XP in all Skills
    */
   masteryXP?:
     | number
@@ -5681,11 +5681,11 @@ export type ModifierValuesRecordData = BaseEnemyModifierValuesRecordData & {
    */
   decreasedSkillXP?: ScopedModifierValue1[];
   /**
-   * -${value}% Global Skill XP
+   * -${value}% Skill XP for all Skills
    */
   "melvorD:skillXP"?: number | (ScopedModifierValue0 | ScopedModifierValue1)[];
   /**
-   * -${value}% Global Skill XP
+   * -${value}% Skill XP for all Skills
    */
   skillXP?: number | (ScopedModifierValue0 | ScopedModifierValue1)[];
   /**
@@ -9023,11 +9023,11 @@ export type ModifierValuesRecordData = BaseEnemyModifierValuesRecordData & {
    */
   woodcuttingAXPAddedAsFiremakingAXP?: number | ScopedModifierValue0[];
   /**
-   * ${value}% chance to receive +1 Abyssal Gem while Mining Abyssal Rock and Outcrops (Cannot be doubled)
+   * ${value}% chance to receive an extra Abyssal Gem when one is found while Mining Abyssal Rock and Outcrop Nodes (Cannot be doubled)
    */
   "melvorD:additionalAbyssalGemChance"?: number | ScopedModifierValue0[];
   /**
-   * ${value}% chance to receive +1 Abyssal Gem while Mining Abyssal Rock and Outcrops (Cannot be doubled)
+   * ${value}% chance to receive an extra Abyssal Gem when one is found while Mining Abyssal Rock and Outcrop Nodes (Cannot be doubled)
    */
   additionalAbyssalGemChance?: number | ScopedModifierValue0[];
   /**
@@ -9038,13 +9038,13 @@ export type ModifierValuesRecordData = BaseEnemyModifierValuesRecordData & {
     | number
     | ScopedModifierValue0[];
   /**
-   * +${value}% chance to receive a random bar when gaining a Common Drop when Thieving in the Withering Ruins
+   * +${value}% chance to receive a random Abyssal Bar when gaining a Common Drop when Thieving in the Withering Ruins
    */
   "melvorD:randomBarThievingWitheringRuinsChance"?:
     | number
     | ScopedModifierValue0[];
   /**
-   * +${value}% chance to receive a random bar when gaining a Common Drop when Thieving in the Withering Ruins
+   * +${value}% chance to receive a random Abyssal Bar when gaining a Common Drop when Thieving in the Withering Ruins
    */
   randomBarThievingWitheringRuinsChance?: number | ScopedModifierValue0[];
   /**
@@ -12740,6 +12740,7 @@ export type CombatEffectID =
       | "melvorItA:Corruption20"
       | "melvorItA:Corruption21"
       | "melvorItA:Corruption22"
+      | "melvorItA:AbyssalSpell"
       | "melvorItA:AbyssalBlast"
       | "melvorItA:AbyssalWave"
       | "melvorItA:AbyssalSurge"
@@ -17088,6 +17089,7 @@ export type SummoningCategoryID =
       | "melvorD:Synergies"
       | "melvorItA:AbyssalMarks"
       | "melvorItA:AbyssalTabletsFamiliars"
+      | "melvorItA:Synergies"
     );
 /**
  * Matches when an Astrology action occurs
@@ -20372,11 +20374,15 @@ export type PrayerData = IDData &
      * @minItems 1
      */
     allowedDamageTypeIDs?: DamageTypeID[];
+    /**
+     * Optional. Prayer is attached to this Realm. Defaults to Melvor Realm.
+     */
+    realm?: RealmID & string;
   };
 /**
  * Data for constructing an AttackSpellbook object
  */
-export type AttackSpellbookData = IDData & {
+export type AttackSpellbookData = RealmedObjectData & {
   /**
    * Display name of the spellbook
    */
@@ -22699,6 +22705,10 @@ export type TownshipBiomeData = IDData & {
    * @minItems 1
    */
   requirements?: AnyRequirementData[];
+  /**
+   * Optional. Attach biome to this Realm. Defaults to Melvor Realm.
+   */
+  realm?: RealmID;
 };
 /**
  * Data for constructing a TownshipBuilding object
@@ -22753,6 +22763,10 @@ export type TownshipBuildingData = IDData &
      * @minItems 1
      */
     requirements?: AnyRequirementData[];
+    /**
+     * Optional. Attach building to this Realm. Defaults to Melvor Realm.
+     */
+    realm?: RealmID;
   };
 export type TownshipBiomeID =
   | ValidID
@@ -23590,6 +23604,14 @@ export type RealmsData = IDData & {
    * Optional. Whether mastery actions ignore completion. Defaults to false.
    */
   ignoreCompletion?: boolean;
+  /**
+   * Optional. The class name applied to the sidebar when inside the realm
+   */
+  sidebarClass?: string;
+  /**
+   * Optional. The class name applied to the Skill's current realm header when inside the realm
+   */
+  realmClass?: string;
 };
 export type DamageTypeData = IDData & {
   /**
@@ -27811,13 +27833,13 @@ export interface BaseEnemyModifierValuesRecordData {
    */
   decreasedAbyssalSlayerAreaEffectNegation?: number | ScopedModifierValue0[];
   /**
-   * -${value}% flat Abyssal Slayer Area effect negation
+   * -${value}% flat Abyssal Slayer Region effect negation
    */
   "melvorD:flatAbyssalSlayerAreaEffectNegation"?:
     | number
     | ScopedModifierValue0[];
   /**
-   * -${value}% flat Abyssal Slayer Area effect negation
+   * -${value}% flat Abyssal Slayer Region effect negation
    */
   flatAbyssalSlayerAreaEffectNegation?: number | ScopedModifierValue0[];
   /**

@@ -1,5 +1,5 @@
-import type { HexCoordData } from "$lib/melvor/schema";
 import type { PointData } from "pixi.js";
+import type { HexCoordData } from "$lib/melvor/schema";
 
 function oddQToAxial(coordinate: PointData): HexCoordData;
 function oddQToAxial(x: number, y: number): HexCoordData;

@@ -1,15 +1,19 @@
 <script lang="ts">
-  import { base } from "$app/paths";
-  import { onMount } from "svelte";
-  import { liveQuery } from "dexie";
   import Project from "$lib/components/Project/Project.svelte";
   import database from "$lib/database/database";
   import HashManager from "$lib/classes/HashManager";
+  import { base } from "$app/paths";
+  import { onMount } from "svelte";
+  import { liveQuery } from "dexie";
 
-  let redirect: HTMLAnchorElement;
+  let redirect: HTMLAnchorElement | undefined = $state();
   let projects = liveQuery(() => database.projects.toArray());
 
   onMount(() => {
+    if (redirect === undefined) {
+      return;
+    }
+
     const hashManager = HashManager.fromWindow();
     const route = hashManager.get("route");
 
@@ -24,9 +28,20 @@
 
 <svelte:head>
   <title>Melvor Map Maker</title>
+
+  <style lang="scss">
+    body {
+      margin: 0;
+      overflow: hidden;
+
+      min-width: 100vw;
+      min-height: 100vh;
+    }
+  </style>
 </svelte:head>
 
 <h1>Melvor Map Maker</h1>
+<!-- svelte-ignore a11y_consider_explicit_label -->
 <a href={base} bind:this={redirect}> </a>
 
 <div class="projects">

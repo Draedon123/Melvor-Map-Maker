@@ -1,5 +1,9 @@
 <script lang="ts">
-  export let value: string | number;
+  type Props = {
+    value: string | number;
+  };
+
+  let { value = $bindable() }: Props = $props();
   const inputType = typeof value === "number" ? "number" : "text";
 
   function numberInputOnChange(event: {
@@ -14,17 +18,17 @@
 </script>
 
 {#if inputType === "number"}
-  <input type="number" bind:value on:change={numberInputOnChange} />
+  <input type="number" bind:value onchange={numberInputOnChange} />
 {:else}
   <input bind:value />
 {/if}
 
 <style lang="scss">
-  @import "/src/styles/input.scss";
+  @use "/src/styles/input.scss";
 
   input {
     & {
-      @include input();
+      @include input.input();
     }
 
     & {

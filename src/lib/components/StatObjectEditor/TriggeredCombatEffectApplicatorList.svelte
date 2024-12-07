@@ -1,17 +1,22 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   const idGenerator = new Counter();
 </script>
 
 <script lang="ts">
-  import { base } from "$app/paths";
-  import { Counter } from "$lib/classes/Counter";
   import Dropdown from "../Dropdown/Dropdown.svelte";
   import DropdownOption from "../Dropdown/DropdownOption.svelte";
   import EffectCondition from "./EffectCondition.svelte";
+  import { base } from "$app/paths";
+  import { Counter } from "$lib/classes/Counter";
   import type { TriggeredData } from "./StatObjectEditor.svelte";
   import type { SingleCombatEffectApplicatorData } from "$lib/melvor/schema";
 
-  export let effects: TriggeredData[] = [];
+  type Props = {
+    effects?: TriggeredData[];
+  };
+
+  let { effects = $bindable([]) }: Props = $props();
+  let effectCondition: EffectCondition | undefined = $state();
 
   const id = idGenerator.getNext();
 
@@ -84,7 +89,7 @@
   }
 </script>
 
-<button on:click={newEffect}>New Combat Effect</button>
+<button onclick={newEffect}>New Combat Effect</button>
 <ul>
   {#each effects as effect, index}
     <li>
@@ -190,7 +195,10 @@
 
       Condition:
       <div class="dropdown">
-        <EffectCondition bind:condition={effect.condition} />
+        <EffectCondition
+          bind:this={effectCondition}
+          condition={effect.condition}
+        />
       </div>
 
       <br />
@@ -216,7 +224,7 @@
         <label for="effectBypassBarrier_{id}_{index}">Bypass Barrier?</label>
         <input
           type="checkbox"
-          bind:value={effect.bypassBarrier}
+          bind:checked={effect.bypassBarrier}
           id="effectBypassBarrier_{id}_{index}"
           name="effectBypassBarrier_{id}_{index}"
         />
@@ -235,7 +243,7 @@
         <h3>Initial Parameters</h3>
 
         <button
-          on:click={() => {
+          onclick={() => {
             newParameter(effect);
           }}>New Parameter</button
         >
@@ -254,7 +262,7 @@
                   type="image"
                   src="{base}/delete.png"
                   alt="A bin"
-                  on:click={() => {
+                  onclick={() => {
                     deleteInitialParameter(effect, parameter);
                   }}
                 />
@@ -275,7 +283,7 @@
 
       <button
         class="red-button"
-        on:click={() => {
+        onclick={() => {
           deleteEffect(effect);
         }}>Delete Effect</button
       >
@@ -284,9 +292,9 @@
 </ul>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
-  @import "/src/styles/input.scss";
-  @import "/src/styles/switch.scss";
+  @use "/src/styles/button.scss";
+  @use "/src/styles/input.scss";
+  @use "/src/styles/switch.scss";
 
   h3 {
     margin: 0;
@@ -294,7 +302,7 @@
 
   button {
     & {
-      @include button(#659ca7);
+      @include button.button(#659ca7);
     }
 
     & {
@@ -304,16 +312,11 @@
   }
 
   button.red-button {
-    @include button(#b60000);
-  }
-
-  :global(.dropdown button) {
-    background-color: #1f1f1f;
-    z-index: 2;
+    @include button.button(#b60000);
   }
 
   input[type="checkbox"] {
-    @include switch();
+    @include switch.switch();
   }
 
   input[type="image"] {
@@ -334,6 +337,6 @@
   }
 
   input:not([type="image"]):not([type="checkbox"]) {
-    @include input();
+    @include input.input();
   }
 </style>

@@ -1,14 +1,18 @@
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
-  import { initialiseApp } from "../store/store";
   import initialisePIXIDevTools from "../canvas/initialisePIXIDevTools";
+  import { initialiseApp } from "../store/store";
+  import { onDestroy, onMount } from "svelte";
   import type { Application } from "pixi.js";
 
-  let container: HTMLDivElement;
-  let canvas: HTMLCanvasElement;
+  let container: HTMLDivElement | undefined = $state();
+  let canvas: HTMLCanvasElement | undefined = $state();
   let app: Application | null = null;
 
   onMount(async () => {
+    if (canvas === undefined) {
+      return;
+    }
+
     app = await initialiseApp({
       canvas,
       appOptions: {
@@ -55,7 +59,7 @@
 </script>
 
 <div bind:this={container} class="container">
-  <canvas bind:this={canvas} />
+  <canvas bind:this={canvas}></canvas>
 </div>
 
 <style lang="scss">

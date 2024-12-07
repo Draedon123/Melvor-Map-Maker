@@ -1,11 +1,19 @@
 <script lang="ts">
-  export let value: string[] = [];
-  export let placeholder: string = "";
+  type Props = {
+    value?: string[];
+    placeholder?: string;
+  };
 
-  let joinedValues = value.join(",");
-  let input: HTMLInputElement;
+  let { value = $bindable([]), placeholder = "" }: Props = $props();
+
+  let joinedValues = $state(value.join(","));
+  let input: HTMLInputElement | undefined = $state();
 
   function inputOnChange(): void {
+    if (input === undefined) {
+      return;
+    }
+
     const values = input.value
       .split(",")
       .map((value) => value.trimStart())
@@ -17,6 +25,6 @@
 <input
   bind:value={joinedValues}
   bind:this={input}
-  on:change={inputOnChange}
+  onchange={inputOnChange}
   {placeholder}
 />

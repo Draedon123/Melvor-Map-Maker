@@ -1,18 +1,26 @@
 <script lang="ts">
+  import store from "$routes/store";
+  import Dialog from "$lib/components/Dialog/Dialog.svelte";
+  import Project from "$lib/classes/Project";
+  import database from "$lib/database/database";
   import { base } from "$app/paths";
   import { fromArrayBuffer } from "$lib/functions/imageUtils";
   import type { Project as IProject } from "$lib/database/database";
-  import Dialog from "$lib/components/Dialog/Dialog.svelte";
-  import database from "$lib/database/database";
-  import store from "$routes/store";
-  import Project from "$lib/classes/Project";
 
-  export let project: IProject;
+  type Props = {
+    project: IProject;
+  };
 
-  let dialog: Dialog;
-  let hasAttemptedDelete: boolean = false;
+  let { project }: Props = $props();
+
+  let dialog: Dialog | undefined = $state();
+  let hasAttemptedDelete: boolean = $state(false);
 
   async function deleteButtonOnClick(): Promise<void> {
+    if (dialog === undefined) {
+      return;
+    }
+
     if (hasAttemptedDelete) {
       dialog.close();
       await database.projects.delete(project.id);
@@ -29,31 +37,36 @@
 
   async function openButtonOnClick(): Promise<void> {
     $store.activeProject = await Project.fromDatabaseProject(project);
-    dialog.close();
+
+    if (dialog !== undefined) {
+      dialog.close();
+    }
   }
 
-  $: image = (() => {
-    if (project.thumbnail !== null) {
-      return fromArrayBuffer(project.thumbnail.buffer);
-    }
+  let image = $derived(
+    (() => {
+      if (project.thumbnail !== null) {
+        return fromArrayBuffer(project.thumbnail.buffer as ArrayBuffer);
+      }
 
-    return new Promise<HTMLImageElement>((resolve) => {
-      const image = new Image();
+      return new Promise<HTMLImageElement>((resolve) => {
+        const image = new Image();
 
-      image.onload = () => {
-        resolve(image);
-      };
+        image.onload = () => {
+          resolve(image);
+        };
 
-      image.src = `${base}/no_image.png`;
-    });
-  })();
+        image.src = `${base}/no_image.png`;
+      });
+    })()
+  );
 </script>
 
 <button
   class="project exclude-global"
   aria-label="Project: {project.name ?? 'Unnamed Project'}"
-  on:click={() => {
-    dialog.open();
+  onclick={() => {
+    dialog?.open();
   }}
 >
   <h3>{project.name ?? "Unnamed Project"}</h3>
@@ -68,20 +81,20 @@
 <Dialog bind:this={dialog} showDefaultCloseButton={false}>
   <div class="dialog">
     <h1>{project.name ?? "Unnamed Project"}</h1>
-    <button on:click={deleteButtonOnClick} class="delete-button">
+    <button onclick={deleteButtonOnClick} class="delete-button">
       {!hasAttemptedDelete ? "Delete" : "Are you sure?"}
     </button>
-    <button on:click={openButtonOnClick}>Open</button>
-    <button on:click={dialog.close}>Close</button>
+    <button onclick={openButtonOnClick}>Open</button>
+    <button onclick={dialog.close}>Close</button>
   </div>
 </Dialog>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
+  @use "/src/styles/button.scss";
   // $footer-height: 2em;
 
   button:not(.exclude-global) {
-    @include button;
+    @include button.button;
   }
 
   .dialog {
@@ -97,7 +110,7 @@
     }
 
     .delete-button {
-      @include button(#ff0000);
+      @include button.button(#ff0000);
     }
   }
 

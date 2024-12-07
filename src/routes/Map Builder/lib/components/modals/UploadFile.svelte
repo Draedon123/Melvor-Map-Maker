@@ -1,23 +1,23 @@
 <script lang="ts">
-  import { Sprite } from "pixi.js";
-  import { onMount } from "svelte";
-  import { fromBasis, toCanvas } from "$lib/functions/imageUtils";
-  import type { PointData } from "$lib/melvor/schema";
   import store from "../../store/store";
   import Dialog from "$lib/components/Dialog/Dialog.svelte";
   import ProgressBar from "$lib/components/Progress Bar/ProgressBar.svelte";
   import DragDropUpload from "$lib/components/File Upload/DragDropUpload.svelte";
+  import { Sprite } from "pixi.js";
+  import { onMount } from "svelte";
+  import { fromBasis, toCanvas } from "$lib/functions/imageUtils";
+  import type { PointData } from "$lib/melvor/schema";
 
   export const exports: { modal: Dialog | null } = {
     modal: null,
   };
 
-  let modal: Dialog;
-  let errorContent: string = "";
-  let transcodingProgress: number = 0;
-  let progressBar: ProgressBar;
+  let modal: Dialog | undefined = $state();
+  let errorContent: string = $state("");
+  let progressBar: ProgressBar | undefined = $state();
 
   const VALID_FILENAME_REGEX = /^tile_\d+_\d+@(1|0.5)x\.basis$/;
+
   async function onFileUpload(files: File[]): Promise<void> {
     errorContent = "";
 
@@ -78,7 +78,7 @@
       }),
       2,
       (progress) => {
-        progressBar.set(progress);
+        progressBar?.set(progress);
       }
     );
 
@@ -99,9 +99,10 @@
       return sprite;
     });
 
-    $store.viewport.children.forEach((container) =>
-      container.removeChildren().forEach((child) => child.destroy)
-    );
+    $store.viewport.children.forEach((container) => {
+      console.log(container, container.removeChildren);
+      container.removeChildren().forEach((child) => child.destroy());
+    });
 
     $store.backgroundLayer.addChild(...sprites);
 
@@ -119,7 +120,9 @@
   }
 
   onMount(() => {
-    exports.modal = modal;
+    if (modal !== undefined) {
+      exports.modal = modal;
+    }
   });
 </script>
 
@@ -137,9 +140,8 @@
       <span class="error">{errorContent}</span>
     </DragDropUpload>
 
-    <div class="progress-bar" class:hidden={transcodingProgress === 0}>
+    <div class="progress-bar" class:hidden={(progressBar?.value ?? 0) === 0}>
       <ProgressBar
-        bind:value={transcodingProgress}
         bind:this={progressBar}
         containerStyles={{
           "border-color": "red",

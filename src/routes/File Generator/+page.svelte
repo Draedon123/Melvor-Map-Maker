@@ -1,21 +1,23 @@
 <script lang="ts">
   import "$lib/database/database";
-  import { onMount } from "svelte";
   import clamp from "$lib/functions/clamp";
   import StageOne from "./Form Stages/StageOne.svelte";
   import StageTwo from "./Form Stages/StageTwo.svelte";
   import StageThree from "./Form Stages/StageThree.svelte";
+  import { onMount } from "svelte";
 
   const STAGE_COMPLETION: Record<number, () => true | string> = {};
 
-  let form: HTMLFormElement;
-  let activeStage: number = 1;
-  let lastStage: number = 1;
-  let disableAdvanceStageButtons: boolean = false;
-  let stageOne: StageOne;
-  let stageTwo: StageTwo;
+  let form: HTMLFormElement | undefined = $state();
+  let activeStage: number = $state(1);
+  let lastStage: number = $state(1);
+  let disableAdvanceStageButtons: boolean = $state(false);
+  let stageOne: StageOne | undefined = $state();
+  let stageTwo: StageTwo | undefined = $state();
 
-  let canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
+  let canGoToNextStage = $state(
+    STAGE_COMPLETION[(() => activeStage)()]?.() ?? true
+  );
 
   function advanceStage(direction: "back" | "forward"): void {
     canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
@@ -32,7 +34,19 @@
     canGoToNextStage = STAGE_COMPLETION[activeStage]?.() ?? true;
   }
 
+  function preventDefault(event: Event) {
+    event.preventDefault();
+  }
+
   onMount(() => {
+    if (
+      form === undefined ||
+      stageOne === undefined ||
+      stageTwo === undefined
+    ) {
+      return;
+    }
+
     const formStages = [...form.children].filter(
       (child) => child.getAttribute("data-form-stage") !== null
     );
@@ -60,16 +74,16 @@
     class="scrolling-form"
     name="fileGeneratorForm"
     id="fileGeneratorForm"
-    on:submit|preventDefault
+    onsubmit={preventDefault}
     bind:this={form}
   >
     <StageOne
-      bind:this={stageOne}
       {activeStage}
+      bind:this={stageOne}
       bind:canGoToNextStage
       bind:disableAdvanceStageButtons
     />
-    <StageTwo bind:this={stageTwo} {activeStage} bind:canGoToNextStage />
+    <StageTwo bind:this={stageTwo} {activeStage} />
     <StageThree {activeStage} />
     <div class="submit">
       <div class="error">
@@ -83,7 +97,8 @@
           disabled={disableAdvanceStageButtons ||
             activeStage === 1 ||
             (typeof canGoToNextStage === "string" && import.meta.env.PROD)}
-          on:click|preventDefault={() => {
+          onclick={(event) => {
+            preventDefault(event);
             advanceStage("back");
           }}>Back</button
         >
@@ -92,7 +107,8 @@
           disabled={disableAdvanceStageButtons ||
             activeStage === lastStage ||
             (typeof canGoToNextStage === "string" && import.meta.env.PROD)}
-          on:click|preventDefault={() => {
+          onclick={(event) => {
+            preventDefault(event);
             advanceStage("forward");
           }}>Next</button
         >
@@ -102,7 +118,7 @@
 </div>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
+  @use "/src/styles/button.scss";
 
   .form-container {
     width: 100%;
@@ -122,8 +138,8 @@
     justify-content: center;
 
     button {
-      @include button;
-      @include button-disabled;
+      @include button.button;
+      @include button.button-disabled;
 
       & {
         width: 10ch;

@@ -1,28 +1,38 @@
 <script lang="ts">
-  import type { PointData } from "$lib/melvor/schema";
   import interact from "interactjs";
   import { onMount } from "svelte";
+  import type { PointData } from "$lib/melvor/schema";
 
-  export let style: string = "";
-  export let draggable: boolean = false;
-  export let resizeable: boolean = false;
-  export let resizeEdges: Interact.EdgeOptions = {
-    top: true,
-    left: true,
-    bottom: true,
-    right: true,
+  type Props = {
+    style?: string;
+    draggable?: boolean;
+    resizeable?: boolean;
+    resizeEdges?: Interact.EdgeOptions;
+    position?: PointData;
+    children?: import("svelte").Snippet;
   };
-  export let position: PointData = { x: 0, y: 0 };
 
-  $: (() => {
-    if (container !== undefined) {
-      container.style.transform = `translate(${position.x}px, ${position.y}px)`;
-    }
-  })();
+  let {
+    style = "",
+    draggable = false,
+    resizeable = false,
+    resizeEdges = {
+      top: true,
+      left: true,
+      bottom: true,
+      right: true,
+    },
+    position = $bindable({ x: 0, y: 0 }),
+    children,
+  }: Props = $props();
 
-  let container: HTMLDivElement;
+  let container: HTMLDivElement | undefined = $state();
 
   onMount(() => {
+    if (container === undefined) {
+      throw new Error("[Interactable] | wtf");
+    }
+
     interact(container)
       .draggable({
         inertia: true,
@@ -60,14 +70,19 @@
         },
       });
   });
+  $effect(() => {
+    if (container !== undefined) {
+      container.style.transform = `translate(${position.x}px, ${position.y}px)`;
+    }
+  });
 </script>
 
 <div bind:this={container} {style}>
-  <slot />
+  {@render children?.()}
 </div>
 
 <style lang="scss">
-  @import "/src/styles/scrollbar.scss";
+  @use "/src/styles/scrollbar.scss";
 
   div {
     width: max-content;

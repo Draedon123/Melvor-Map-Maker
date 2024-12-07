@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   type DropdownContext = {
     setValue: (value: string) => void;
     setTextContext: (textContent: string) => void;
@@ -12,14 +12,29 @@
 <script lang="ts">
   import { setContext } from "svelte";
 
-  export let placeholder: string = "";
-  export let value: string = "";
-  export let caretFillColour: string = "#000000";
-  export let style: string = "";
-  export let showOptions: boolean = false;
-  export let height: number = 10;
-  export let onChange: (value: string) => void = () => {};
-  export let textContent: string = value;
+  type Props = {
+    placeholder?: string;
+    value?: string;
+    caretFillColour?: string;
+    style?: string;
+    showOptions?: boolean;
+    height?: number;
+    onChange?: (value: string) => void;
+    textContent?: string;
+    children?: import("svelte").Snippet;
+  };
+
+  let {
+    placeholder = "",
+    value = $bindable(""),
+    caretFillColour = "#000000",
+    style = "",
+    showOptions = $bindable(false),
+    height = 10,
+    onChange = () => {},
+    textContent = $bindable(value),
+    children,
+  }: Props = $props();
 
   setContext<DropdownContext>("dropdown", {
     hide: () => {
@@ -34,13 +49,14 @@
     onChange,
   });
 
-  function buttonOnClick(): void {
+  function buttonOnClick(event: MouseEvent): void {
+    event.stopPropagation();
     showOptions = !showOptions;
   }
 </script>
 
 <div class="container">
-  <button {style} on:click|stopPropagation={buttonOnClick}>
+  <button {style} onclick={buttonOnClick} class="dropdownButton">
     {textContent ? textContent : placeholder}
     <svg
       viewBox="0 0 48 48"
@@ -61,13 +77,13 @@
     class:hidden={!showOptions}
     style="max-height: {height}em; z-index: 10;"
   >
-    <slot />
+    {@render children?.()}
   </div>
 </div>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
-  @import "/src/styles/scrollbar.scss";
+  @use "/src/styles/button.scss";
+  @use "/src/styles/scrollbar.scss";
 
   .container {
     position: relative;
@@ -75,7 +91,7 @@
   }
 
   button {
-    @include button(#4f4f4f);
+    @include button.button(#4f4f4f);
 
     & {
       height: 1.75em;
@@ -115,6 +131,6 @@
 
     font-size: small;
 
-    @include scrollbar(#4f4f4f, #7f7f7f);
+    @include scrollbar.scrollbar(#4f4f4f, #7f7f7f);
   }
 </style>

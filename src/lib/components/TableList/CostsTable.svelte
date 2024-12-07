@@ -1,21 +1,25 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   const CURRENCIES_TABLE_HEADERS: string[] = ["Currency ID", "Quantity"];
 
   const ITEMS_TABLE_HEADERS: string[] = ["Item ID", "Quantity"];
 </script>
 
 <script lang="ts">
-  import type { FixedCostsData } from "$lib/melvor/schema";
   import TableList from "./TableList.svelte";
+  import type { FixedCostsData } from "$lib/melvor/schema";
 
-  export let costs: Required<Omit<FixedCostsData, "gp" | "sc">> = {
-    currencies: [],
-    items: [],
+  type Props = {
+    costs?: Required<Omit<FixedCostsData, "gp" | "sc">>;
+    headerLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   };
-  export let headerLevel: 1 | 2 | 3 | 4 | 5 | 6 = 6;
 
-  let currenciesList: TableList;
-  let itemsList: TableList;
+  let {
+    costs = $bindable({
+      currencies: [],
+      items: [],
+    }),
+    headerLevel = 6,
+  }: Props = $props();
 
   function addNewCurrency(): void {
     costs.currencies.push({
@@ -37,23 +41,15 @@
 </script>
 
 <svelte:element this={`h${headerLevel}`}>Currencies</svelte:element>
-<button on:click={addNewCurrency}>Add new Currency</button>
-<TableList
-  bind:this={currenciesList}
-  bind:values={costs.currencies}
-  headers={CURRENCIES_TABLE_HEADERS}
-/>
+<button onclick={addNewCurrency}>Add new Currency</button>
+<TableList bind:values={costs.currencies} headers={CURRENCIES_TABLE_HEADERS} />
 
 <svelte:element this={`h${headerLevel}`}>Items</svelte:element>
-<button on:click={addNewItem}>Add new Item</button>
-<TableList
-  bind:this={itemsList}
-  bind:values={costs.items}
-  headers={ITEMS_TABLE_HEADERS}
-/>
+<button onclick={addNewItem}>Add new Item</button>
+<TableList bind:values={costs.items} headers={ITEMS_TABLE_HEADERS} />
 
 <style lang="scss">
-  @import "/src/styles/input.scss";
+  @use "/src/styles/input.scss";
 
   h1,
   h2,
@@ -67,7 +63,7 @@
 
   button {
     & {
-      @include input();
+      @include input.input();
     }
 
     & {

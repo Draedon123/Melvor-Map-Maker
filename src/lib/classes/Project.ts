@@ -1,6 +1,6 @@
+import database from "$lib/database/database";
 import { fromArrayBuffer, toArrayBuffer } from "$lib/functions/imageUtils";
 import type { Tiles, Project as DatabaseProject } from "$lib/database/database";
-import database from "$lib/database/database";
 
 type IProject = {
   id: number;
@@ -79,11 +79,11 @@ class Project {
     const modIcon =
       project.modIcon === null
         ? null
-        : await fromArrayBuffer(project.modIcon.buffer);
+        : await fromArrayBuffer(project.modIcon.buffer as ArrayBuffer);
     const thumbnail =
       project.thumbnail === null
         ? null
-        : await fromArrayBuffer(project.thumbnail.buffer);
+        : await fromArrayBuffer(project.thumbnail.buffer as ArrayBuffer);
 
     return new Project({
       ...project,

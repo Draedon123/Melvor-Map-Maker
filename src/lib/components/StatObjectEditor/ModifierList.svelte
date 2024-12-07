@@ -2,12 +2,16 @@
   import helpTooltipRaw from "./ModifierListtooltip.md?raw";
   import { base } from "$app/paths";
   import { sticky } from "tippy.js";
+  import { marked } from "marked";
   import { newTooltipAction } from "$lib/actions/tooltip";
   import type { Modifiers } from "./StatObjectEditor.svelte";
-  import { marked } from "marked";
 
-  export let modifiers: Modifiers = [];
-  export let showHelpButton: boolean = false;
+  type Props = {
+    modifiers?: Modifiers;
+    showHelpButton?: boolean;
+  };
+
+  let { modifiers = $bindable([]), showHelpButton = false }: Props = $props();
 
   const helpTooltipContent = marked(helpTooltipRaw) as string;
 
@@ -60,7 +64,7 @@
 </script>
 
 <div class="vertical-align">
-  <button on:click={newModifier}>New Modifier</button>
+  <button onclick={newModifier}>New Modifier</button>
   {#if showHelpButton}
     <img
       src="{base}/question_mark.png"
@@ -83,7 +87,7 @@
           type="image"
           src="{base}/delete.png"
           alt="A bin"
-          on:click={() => {
+          onclick={() => {
             deleteModifier(modifier);
           }}
         />
@@ -105,7 +109,7 @@
               type="image"
               src="{base}/delete.png"
               alt="A bin"
-              on:click={() => {
+              onclick={() => {
                 deleteModifierValue(modifier, value);
               }}
             />
@@ -113,7 +117,7 @@
         {/each}
         <li class="no-list-dot">
           <button
-            on:click={() => {
+            onclick={() => {
               newModifierValue(modifier);
             }}>New Modifier Value</button
           >
@@ -124,8 +128,8 @@
 </ul>
 
 <style lang="scss">
-  @import "/src/styles/input.scss";
-  @import "/src/styles/button.scss";
+  @use "/src/styles/input.scss";
+  @use "/src/styles/button.scss";
 
   .no-list-dot {
     list-style: none;
@@ -137,7 +141,7 @@
 
   input:not([type="image"]) {
     & {
-      @include input();
+      @include input.input();
     }
 
     & {
@@ -154,7 +158,7 @@
 
   button {
     & {
-      @include button(#659ca7);
+      @include button.button(#659ca7);
     }
 
     & {

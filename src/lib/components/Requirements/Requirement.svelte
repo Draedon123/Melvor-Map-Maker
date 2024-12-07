@@ -1,8 +1,12 @@
 <script lang="ts">
-  import type { AnyRequirementData } from "$lib/melvor/schema";
   import ListInput from "./ListInput.svelte";
+  import type { AnyRequirementData } from "$lib/melvor/schema";
 
-  export let requirement: AnyRequirementData;
+  type Props = {
+    requirement: AnyRequirementData;
+  };
+
+  let { requirement = $bindable() }: Props = $props();
 </script>
 
 {#if requirement.type === "AbyssDepthCompletion"}
@@ -119,11 +123,11 @@
 {/if}
 
 <style lang="scss">
-  @import "/src/styles/input.scss";
+  @use "/src/styles/input.scss";
 
   :global(input:not([type="checkbox"]):not([type="image"])) {
     & {
-      @include input();
+      @include input.input();
     }
 
     & {

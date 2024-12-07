@@ -1,25 +1,35 @@
 <script lang="ts">
-  export let imageSRC: string;
-  export let imageAltText: string;
-  export let onClick: () => void = () => {};
+  type Props = {
+    imageSRC: string;
+    imageAltText: string;
+    onClick?: () => void;
+    children?: import("svelte").Snippet;
+  };
+
+  let {
+    imageSRC,
+    imageAltText,
+    onClick = () => {},
+    children,
+  }: Props = $props();
 </script>
 
-<button on:click={onClick}>
+<button onclick={onClick}>
   <img src={imageSRC} alt={imageAltText} />
   <span>
-    <slot />
+    {@render children?.()}
   </span>
 </button>
 
 <style lang="scss">
   @use "sass:math";
-  @import "/src/styles/globals.scss";
+  @use "/src/styles/globals.scss";
 
   $toolbar-colour: #1f1f1f;
-  $image-dimensions: 0.9 * $toolbar-width;
+  $image-dimensions: 0.9 * globals.$toolbar-width;
 
   button {
-    width: $toolbar-width;
+    width: globals.$toolbar-width;
 
     position: relative;
     display: flex;
@@ -44,7 +54,7 @@
       user-select: none;
       padding-right: calc(100% - $image-dimensions);
 
-      :focus {
+      &:focus {
         outline: none;
       }
     }

@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { base } from "$app/paths";
-  import { derived } from "svelte/store";
   import Tab from "../Tab.svelte";
   import store from "$routes/Map Builder/lib/store/store";
-  import RequirementsTable from "$lib/components/Requirements/RequirementsTable.svelte";
   import CostsTable from "$lib/components/TableList/CostsTable.svelte";
+  import RequirementsTable from "$lib/components/Requirements/RequirementsTable.svelte";
+  import { base } from "$app/paths";
+  import { derived } from "svelte/store";
 
   const data = derived(store, ($store) => $store.propertiesMenu.hexTab);
 
-  let activeHex: StrictHexData | undefined = undefined;
+  let activeHex: StrictHexData | undefined = $state(undefined);
 
   data.subscribe(() => {
     activeHex = $store.hexGridLayer.children.find(
@@ -67,8 +67,8 @@
 </Tab>
 
 <style lang="scss">
-  @import "/src/styles/input.scss";
-  @import "/src/styles/switch.scss";
+  @use "/src/styles/input.scss";
+  @use "/src/styles/switch.scss";
 
   h3,
   h4 {
@@ -85,11 +85,11 @@
     font-size: medium;
     margin: 2px 0;
 
-    @include input();
+    @include input.input();
   }
 
   input[type="checkbox"] {
-    @include switch();
+    @include switch.switch();
   }
 
   .center {

@@ -1,13 +1,22 @@
 <script lang="ts">
-  import { base } from "$app/paths";
-  import FormStage from "../FormStage.svelte";
   import store from "../store";
-  import { resize } from "$lib/functions/imageUtils";
+  import FormStage from "../FormStage.svelte";
   import DragDropUpload from "$lib/components/File Upload/DragDropUpload.svelte";
+  import { base } from "$app/paths";
+  import { resize } from "$lib/functions/imageUtils";
 
-  export let activeStage: number;
-  export let canGoToNextStage: boolean | string;
-  export let disableAdvanceStageButtons: boolean;
+  type Props = {
+    activeStage: number;
+    canGoToNextStage: boolean | string;
+    disableAdvanceStageButtons: boolean;
+  };
+
+  let {
+    activeStage,
+    canGoToNextStage = $bindable(),
+    disableAdvanceStageButtons = $bindable(),
+  }: Props = $props();
+
   export function isStageComplete(): true | string {
     if (mapImage === null) {
       return "No uploaded image";
@@ -49,11 +58,13 @@
           disableAdvanceStageButtons = false;
           canGoToNextStage = isStageComplete();
         })
-        .catch((error) => {
+        .catch((errorObject) => {
           disableAdvanceStageButtons = false;
           const errorMessage =
-            error instanceof Error ? error.message : "Unspecified error";
-          return error(`${LOG_PREFIX} | uploadMapImage`, errorMessage);
+            errorObject instanceof Error
+              ? errorObject.message
+              : "Unspecified error";
+          throw new Error(`[${LOG_PREFIX} | uploadMapImage] | ${errorMessage}`);
         });
     };
 

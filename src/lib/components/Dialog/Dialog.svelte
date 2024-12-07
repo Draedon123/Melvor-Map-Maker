@@ -1,15 +1,32 @@
 <script lang="ts">
-  export let showDefaultCloseButton: boolean = true;
+  type Props = {
+    showDefaultCloseButton?: boolean;
+    children?: import("svelte").Snippet;
+  };
+
+  let { showDefaultCloseButton = true, children }: Props = $props();
 
   export function open(): void {
+    if (dialog === undefined) {
+      return;
+    }
+
     dialog.showModal();
   }
 
   export function close(): void {
+    if (dialog === undefined) {
+      return;
+    }
+
     dialog.close();
   }
 
   export function toggle(): void {
+    if (dialog === undefined) {
+      return;
+    }
+
     if (dialog.open) {
       close();
     } else {
@@ -17,19 +34,19 @@
     }
   }
 
-  let dialog: HTMLDialogElement;
+  let dialog: HTMLDialogElement | undefined = $state();
 </script>
 
 <dialog bind:this={dialog}>
-  <slot />
+  {@render children?.()}
   {#if showDefaultCloseButton}
     <br />
-    <button on:click={close}>Close</button>
+    <button onclick={close}>Close</button>
   {/if}
 </dialog>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
+  @use "/src/styles/button.scss";
 
   dialog {
     border: none;
@@ -55,7 +72,7 @@
     }
 
     button {
-      @include button;
+      @include button.button;
     }
   }
 

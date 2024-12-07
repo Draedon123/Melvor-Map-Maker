@@ -1,5 +1,9 @@
 import * as PIXI_Viewport from "pixi-viewport";
+import HexGridLayer from "./HexGridLayer";
+import { get } from "svelte/store";
 import { Application, Container, Sprite } from "pixi.js";
+import type { Writable } from "svelte/store";
+import type { MapBuilderStore } from "../store/store";
 import type {
   IViewportOptions,
   IDragOptions,
@@ -7,9 +11,6 @@ import type {
   IPinchOptions,
   IWheelOptions,
 } from "pixi-viewport";
-import type { MapBuilderStore } from "../store/store";
-import { get, type Writable } from "svelte/store";
-import HexGridLayer from "./HexGridLayer";
 
 type ViewportOptions = {
   constructorOptions?: Omit<Partial<IViewportOptions>, "events">;

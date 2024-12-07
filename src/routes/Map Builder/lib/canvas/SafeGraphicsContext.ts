@@ -1,8 +1,5 @@
-import {
-  GraphicsContext,
-  type TextureDestroyOptions,
-  type TypeOrBool,
-} from "pixi.js";
+import { GraphicsContext } from "pixi.js";
+import type { TextureDestroyOptions, TypeOrBool } from "pixi.js";
 
 class SafeGraphicsContext extends GraphicsContext {
   private destroyed: boolean;

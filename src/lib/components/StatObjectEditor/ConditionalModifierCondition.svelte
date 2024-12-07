@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
   import { Counter } from "$lib/classes/Counter";
 
   const idGenerator = new Counter();
@@ -11,11 +11,14 @@
   import ComparisonDropdown from "./ComparisonDropdown.svelte";
   import type { ConditionalModifierData } from "./StatObjectEditor.svelte";
 
-  export let condition: ConditionalModifierData["condition"];
-  export let parentCondition: ConditionalModifierData["condition"] | null =
-    null;
+  type Props = {
+    condition: ConditionalModifierData["condition"];
+    parentCondition?: ConditionalModifierData["condition"] | null;
+  };
 
-  $: comparison =
+  let { condition = $bindable(), parentCondition = null }: Props = $props();
+
+  let comparison = $derived(
     condition.operator === "=="
       ? "equal to"
       : condition.operator === "!="
@@ -26,31 +29,35 @@
             ? "greater than"
             : condition.operator === "<="
               ? "less than or equal to"
-              : "greater than or equal to";
+              : "greater than or equal to"
+  );
 
   const id = idGenerator.getNext();
 </script>
 
 <p style="margin-bottom: 2px;">Type:</p>
-<Dropdown bind:value={condition.type} caretFillColour="#ffffff">
-  {#if parentCondition === null}
-    <DropdownOption value="None" />
-  {/if}
-  <DropdownOption value="BankItem" />
-  <DropdownOption value="Barrier" />
-  <DropdownOption value="CombatEffect" />
-  <DropdownOption value="CombatEffectGroup" />
-  <DropdownOption value="CombatType" />
-  <DropdownOption value="DamageType" />
-  <DropdownOption value="EquipStatCompare" />
-  <DropdownOption value="Every" />
-  <DropdownOption value="FightingBoss" />
-  <DropdownOption value="FightingSlayerTask" />
-  <DropdownOption value="Hitpoints" />
-  <DropdownOption value="ItemCharge" />
-  <DropdownOption value="PotionUsed" />
-  <DropdownOption value="Some" />
-</Dropdown>
+
+<div class="dropdown">
+  <Dropdown bind:value={condition.type} caretFillColour="#ffffff">
+    {#if parentCondition === null}
+      <DropdownOption value="None" />
+    {/if}
+    <DropdownOption value="BankItem" />
+    <DropdownOption value="Barrier" />
+    <DropdownOption value="CombatEffect" />
+    <DropdownOption value="CombatEffectGroup" />
+    <DropdownOption value="CombatType" />
+    <DropdownOption value="DamageType" />
+    <DropdownOption value="EquipStatCompare" />
+    <DropdownOption value="Every" />
+    <DropdownOption value="FightingBoss" />
+    <DropdownOption value="FightingSlayerTask" />
+    <DropdownOption value="Hitpoints" />
+    <DropdownOption value="ItemCharge" />
+    <DropdownOption value="PotionUsed" />
+    <DropdownOption value="Some" />
+  </Dropdown>
+</div>
 
 {#if condition.type === "BankItem"}
   <label for="conditionalModifierBankItemID_{id}"> Item ID: </label>
@@ -73,8 +80,11 @@
   <br />
 
   <small
-    >The player must have at least <strong>{condition.value}</strong> instances
-    of <strong>{condition.itemID || "(placeholder ID)"}</strong> in their bank</small
+    >The player must have at least <strong
+      >{condition.value || `(placeholder quantity)`}</strong
+    >
+    instances of <strong>{condition.itemID || "(placeholder ID)"}</strong> in their
+    bank</small
   >
 {:else if condition.type === "ItemCharge"}
   <label for="conditionalModifierItemChargeID_{id}"> Item ID: </label>
@@ -97,8 +107,8 @@
   <br />
 
   <small
-    >The item {condition.itemID || "(placeholder)"} must have at least
-    <strong>{condition.value}</strong> charges</small
+    >The item {condition.itemID || "(placeholder ID)"} must have at least
+    <strong>{condition.value || "(placeholder quantity)"}</strong> charges</small
   >
 {:else if condition.type === "PotionUsed"}
   <label for="conditionalModifierPotionsUsedItemID_{id}">Item ID:</label>
@@ -110,6 +120,7 @@
 
   <br />
   <small>Item ID takes priority over Recipe ID</small>
+  <br />
 
   <label for="conditionalModifierPotionsUsedRecipeID_{id}">Recipe ID:</label>
   <input
@@ -134,7 +145,12 @@
 
   <small>
     The player must {condition.inverted ? "not have" : "have"}
-    the potion(s) <strong>{condition.itemID || condition.recipeID}</strong>
+    the potion(s)
+    <strong
+      >{condition.itemID ||
+        condition.recipeID ||
+        "(placeholder recipe ID)"}</strong
+    >
     active
   </small>
 {:else if condition.type === "EquipStatCompare"}
@@ -162,7 +178,8 @@
   <br />
 
   <small>
-    The player's <strong>{condition.statKey || "(placeholder)"}</strong>
+    The player's <strong>{condition.statKey || "(placeholder stat key)"}</strong
+    >
     <strong>
       {condition.damageType === ""
         ? ""
@@ -212,7 +229,7 @@
     <small>
       The <strong>{condition.character}</strong> hitpoints must be
       <strong>{comparison}</strong>
-      {condition.value}
+      {condition.value || "(placeholder hitpoints)"}
     </small>
   {:else if condition.type === "CombatType"}
     {condition.character} Attack Type:
@@ -361,12 +378,17 @@
 {/if}
 
 <style lang="scss">
-  @import "/src/styles/input.scss";
-  @import "/src/styles/switch.scss";
+  @use "/src/styles/input.scss";
+  @use "/src/styles/switch.scss";
+
+  :global(.dropdownButton) {
+    background-color: #1f1f1f !important;
+    z-index: 2;
+  }
 
   input:not([type="checkbox"]) {
     & {
-      @include input();
+      @include input.input();
     }
 
     & {
@@ -376,7 +398,7 @@
   }
 
   input[type="checkbox"] {
-    @include switch();
+    @include switch.switch();
   }
 
   .vertical-align {

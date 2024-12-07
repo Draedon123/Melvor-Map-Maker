@@ -1,10 +1,14 @@
 <script lang="ts">
-  import type { AttackType } from "$lib/melvor/schema";
   import Dropdown from "../Dropdown/Dropdown.svelte";
   import DropdownOption from "../Dropdown/DropdownOption.svelte";
+  import type { AttackType } from "$lib/melvor/schema";
 
-  export let attackType: AttackType | "any";
-  export let allowAny: boolean = false;
+  type Props = {
+    attackType: AttackType | "any";
+    allowAny?: boolean;
+  };
+
+  let { attackType = $bindable(), allowAny = false }: Props = $props();
 </script>
 
 <Dropdown bind:value={attackType}>

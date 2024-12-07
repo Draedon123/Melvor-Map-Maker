@@ -2,7 +2,11 @@
   import ConditionalModifierCondition from "./ConditionalModifierCondition.svelte";
   import type { ConditionalModifierData } from "./StatObjectEditor.svelte";
 
-  export let modifiers: ConditionalModifierData[] = [];
+  type Props = {
+    modifiers?: ConditionalModifierData[];
+  };
+
+  let { modifiers = $bindable([]) }: Props = $props();
 
   function newModifier(): void {
     modifiers.push({
@@ -17,6 +21,10 @@
         statKey: "attackSpeed",
         type: "BankItem",
         value: 0,
+        thisAttackType: "any",
+        targetAttackType: "any",
+        groupID: "",
+        effectID: "",
       },
       description: "",
       descriptionLang: "",
@@ -29,7 +37,7 @@
   }
 </script>
 
-<button on:click={newModifier}>New Conditional Modifier</button>
+<button onclick={newModifier}>New Conditional Modifier</button>
 
 <ul>
   {#each modifiers as modifier}
@@ -42,11 +50,11 @@
 </ul>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
+  @use "/src/styles/button.scss";
 
   button {
     & {
-      @include button(#659ca7);
+      @include button.button(#659ca7);
     }
 
     & {

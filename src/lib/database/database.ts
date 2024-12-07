@@ -1,6 +1,7 @@
-import Dexie, { type EntityTable } from "dexie";
-import { error } from "$lib/functions/log";
+import Dexie from "dexie";
 import { base } from "$app/paths";
+import { error } from "$lib/functions/log";
+import type { EntityTable } from "dexie";
 
 type CachedFile = {
   key: string;

@@ -1,14 +1,22 @@
-<svelte:options accessors />
-
 <script lang="ts">
   import { tweened } from "svelte/motion";
   import { cubicInOut } from "svelte/easing";
 
-  export let value: number = 0;
-  export let containerStyles: CSSObject = {};
-  export let fillStyles: CSSObject = {};
-  export let ariaLabel: string = "";
-  export let easingFunction: (time: number) => number = cubicInOut;
+  type Props = {
+    value?: number;
+    containerStyles?: CSSObject;
+    fillStyles?: CSSObject;
+    ariaLabel?: string;
+    easingFunction?: (time: number) => number;
+  };
+
+  let {
+    value = $bindable(0),
+    containerStyles = {},
+    fillStyles = {},
+    ariaLabel = "",
+    easingFunction = cubicInOut,
+  }: Props = $props();
 
   export function set(value: number) {
     progress.set(value);
@@ -35,18 +43,20 @@
     value = percent;
   });
 
-  $: containerStyleObject = {
+  let containerStyleObject = $derived({
     "border-color": "black",
     ...containerStyles,
-  } as CSSObject;
-  $: fillStyleObject = {
+  } as CSSObject);
+  let fillStyleObject = $derived({
     "background-color": "red",
     width: `${$progress * 100}%`,
     ...fillStyles,
-  } as CSSObject;
+  } as CSSObject);
 
-  $: containerStylesString = objectToCSS(containerStyleObject);
-  $: fillStylesString = objectToCSS(fillStyleObject);
+  let containerStylesString = $derived(objectToCSS(containerStyleObject));
+  let fillStylesString = $derived(objectToCSS(fillStyleObject));
+
+  export { value, containerStyles, fillStyles, ariaLabel, easingFunction };
 </script>
 
 <div
@@ -55,7 +65,7 @@
   style={containerStylesString}
   aria-label={ariaLabel}
 >
-  <div class="fill" style={fillStylesString} />
+  <div class="fill" style={fillStylesString}></div>
 </div>
 
 <style lang="scss">

@@ -2,14 +2,25 @@
   import { getContext } from "svelte";
   import type { DropdownContext } from "./Dropdown.svelte";
 
-  export let value: string;
+  type Props = {
+    value: string;
+    children?: import("svelte").Snippet;
+  };
+
+  let { value, children }: Props = $props();
 
   const context = getContext<DropdownContext>("dropdown");
 
-  let button: HTMLButtonElement;
+  let button: HTMLButtonElement | undefined = $state();
   let textContext: string = value;
 
-  function buttonOnClick(): void {
+  function buttonOnClick(event: MouseEvent): void {
+    event.stopPropagation();
+
+    if (button === undefined) {
+      return;
+    }
+
     context.setValue(value);
     context.setTextContext(textContext || (button.textContent ?? ""));
     context.onChange(value);
@@ -17,16 +28,16 @@
   }
 </script>
 
-<button on:click|stopPropagation={buttonOnClick} bind:this={button}>
-  <slot>{value}</slot>
+<button onclick={buttonOnClick} bind:this={button}>
+  {#if children}{@render children()}{:else}{value}{/if}
 </button>
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
+  @use "/src/styles/button.scss";
 
   button {
     & {
-      @include button(#4f4f4f);
+      @include button.button(#4f4f4f);
     }
 
     & {

@@ -1,13 +1,17 @@
 <script lang="ts">
-  export let stage: number;
-  export let currentStage: number;
+  type Props = {
+    stage: number;
+    currentStage: number;
+    children?: import("svelte").Snippet;
+  };
 
-  let container: HTMLDivElement;
-  $: hidden = stage !== currentStage;
+  let { stage, currentStage, children }: Props = $props();
+
+  let hidden = $derived(stage !== currentStage);
 </script>
 
-<div data-form-stage class:hidden bind:this={container}>
-  <slot />
+<div data-form-stage class:hidden>
+  {@render children?.()}
 </div>
 
 <style lang="scss">

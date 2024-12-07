@@ -1,17 +1,20 @@
-<svelte:options accessors />
-
 <script lang="ts">
   import Dropdown from "../Dropdown/Dropdown.svelte";
   import DropdownOption from "../Dropdown/DropdownOption.svelte";
+  import EffectCondition from "./EffectCondition.svelte";
   import AttackTypeDropdown from "./AttackTypeDropdown.svelte";
   import ComparisonDropdown from "./ComparisonDropdown.svelte";
   import type { CombatEffectApplicatorData } from "./StatObjectEditor.svelte";
 
-  export let condition: CombatEffectApplicatorData["condition"];
-  export let parentCondition: CombatEffectApplicatorData["condition"] | null =
-    null;
+  type Props = {
+    condition: CombatEffectApplicatorData["condition"];
+    parentCondition?: CombatEffectApplicatorData["condition"] | null;
+  };
 
-  $: comparison =
+  let { condition = $bindable(), parentCondition = $bindable(null) }: Props =
+    $props();
+
+  let comparison = $derived(
     condition.operator === "=="
       ? "equal to"
       : condition.operator === "!="
@@ -22,7 +25,8 @@
             ? "greater than"
             : condition.operator === "<="
               ? "less than or equal to"
-              : "greater than or equal to";
+              : "greater than or equal to"
+  );
 
   function newCondition(): void {
     condition.conditions.push({
@@ -56,6 +60,8 @@
 
     parentCondition = parentCondition;
   }
+
+  export { condition, parentCondition };
 </script>
 
 <p style="margin-bottom: 2px;">Type:</p>
@@ -78,13 +84,14 @@
 </Dropdown>
 
 {#if condition.type === "Some" || condition.type === "Every"}
-  <button on:click={newCondition}>New Condition</button>
+  <button onclick={newCondition}>New Condition</button>
 
   <ul>
-    {#each condition.conditions as subCondition}
+    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+    {#each condition.conditions as subCondition, index}
       <li>
-        <svelte:self
-          bind:condition={subCondition}
+        <EffectCondition
+          bind:condition={condition.conditions[index]}
           bind:parentCondition={condition}
         />
       </li>
@@ -263,22 +270,22 @@
 
 {#if parentCondition !== null}
   <br />
-  <button class="delete" on:click={deleteSelf}>Delete Effect</button>
+  <button class="delete" onclick={deleteSelf}>Delete Effect</button>
 {/if}
 
 <style lang="scss">
-  @import "/src/styles/button.scss";
-  @import "/src/styles/input.scss";
-  @import "/src/styles/switch.scss";
+  @use "/src/styles/button.scss";
+  @use "/src/styles/input.scss";
+  @use "/src/styles/switch.scss";
 
   input:not([type="checkbox"]) {
     & {
-      @include input();
+      @include input.input();
     }
   }
 
   input[type="checkbox"] {
-    @include switch();
+    @include switch.switch();
   }
 
   .vertical-align {
@@ -288,7 +295,7 @@
 
   button {
     & {
-      @include button(#659ca7);
+      @include button.button(#659ca7);
     }
 
     & {
@@ -298,6 +305,6 @@
   }
 
   button.delete {
-    @include button(#b60000);
+    @include button.button(#b60000);
   }
 </style>

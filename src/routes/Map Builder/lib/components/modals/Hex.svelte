@@ -1,13 +1,13 @@
 <script lang="ts">
-  import Dialog from "$lib/components/Dialog/Dialog.svelte";
   import store from "../../store/store";
+  import Dialog from "$lib/components/Dialog/Dialog.svelte";
   import { onMount } from "svelte";
 
   export const exports: { modal: Dialog | null } = {
     modal: null,
   };
 
-  let modal: Dialog;
+  let modal: Dialog | undefined = $state();
 
   const lastHexes = {
     x: $store.hexesX,
@@ -34,7 +34,9 @@
   });
 
   onMount(() => {
-    exports.modal = modal;
+    if (modal !== undefined) {
+      exports.modal = modal;
+    }
   });
 </script>
 
@@ -50,7 +52,7 @@
       min={1}
       step={1}
       value={$store.hexesX}
-      on:change={(event) => {
+      onchange={(event) => {
         const value = parseInt(event.currentTarget.value);
         $store.hexesX = isNaN(value) ? 1 : Math.max(Math.floor(value), 1);
       }}
@@ -66,7 +68,7 @@
       min={1}
       step={1}
       value={$store.hexesY}
-      on:change={(event) => {
+      onchange={(event) => {
         const value = parseInt(event.currentTarget.value);
         $store.hexesY = isNaN(value) ? 1 : Math.max(Math.floor(value), 1);
       }}
@@ -75,7 +77,7 @@
 </Dialog>
 
 <style lang="scss">
-  @import "/src/styles/input.scss";
+  @use "/src/styles/input.scss";
 
   * {
     color: white;
@@ -87,7 +89,7 @@
 
   .dialog {
     input {
-      @include input;
+      @include input.input;
 
       & {
         width: 10ch;

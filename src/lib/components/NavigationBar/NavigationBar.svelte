@@ -1,9 +1,17 @@
+<script lang="ts">
+  type Props = {
+    children: import("svelte").Snippet;
+  };
+
+  let { children }: Props = $props();
+</script>
+
 <nav class="navigation">
-  <slot />
+  {@render children?.()}
 </nav>
 
 <style lang="scss">
-  @import "/src/styles/globals.scss";
+  @use "/src/styles/globals.scss";
 
   .navigation {
     position: fixed;
@@ -11,7 +19,7 @@
     left: 0;
 
     width: 100%;
-    height: $navigation-bar-height;
+    height: globals.$navigation-bar-height;
 
     background-color: #1f1f1f;
     color: white;
