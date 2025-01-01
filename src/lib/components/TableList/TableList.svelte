@@ -26,12 +26,18 @@
     itemOnDelete = () => {},
   }: Props = $props();
 
+  const valuesReactive = $state(values);
+
   function deleteButtonOnClick(value: object): void {
     values.splice(values.indexOf(value), 1);
     values = values;
 
     itemOnDelete(value);
   }
+
+  $effect(() => {
+    values = valuesReactive;
+  });
 </script>
 
 <table>
@@ -45,9 +51,9 @@
   </thead>
 
   <tbody>
-    {#each values as value, index}
+    {#each valuesReactive as value, index}
       <tr>
-        <TableListRow bind:values={values[index]} {keys} />
+        <TableListRow bind:values={valuesReactive[index]} {keys} />
         <td>
           {#each actions as action}
             <input
