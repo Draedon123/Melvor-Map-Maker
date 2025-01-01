@@ -12,7 +12,6 @@
   const context = getContext<DropdownContext>("dropdown");
 
   let button: HTMLButtonElement | undefined = $state();
-  let textContext: string = value;
 
   function buttonOnClick(event: MouseEvent): void {
     event.stopPropagation();
@@ -22,14 +21,18 @@
     }
 
     context.setValue(value);
-    context.setTextContext(textContext || (button.textContent ?? ""));
+    context.setTextContext(button.textContent ?? "");
     context.onChange(value);
     context.hide();
   }
 </script>
 
 <button onclick={buttonOnClick} bind:this={button}>
-  {#if children}{@render children()}{:else}{value}{/if}
+  {#if children}
+    {@render children()}
+  {:else}
+    {value}
+  {/if}
 </button>
 
 <style lang="scss">

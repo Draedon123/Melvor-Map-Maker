@@ -51,6 +51,7 @@
         <td>
           {#each actions as action}
             <input
+              class="icon"
               type="image"
               src={action.iconSRC}
               alt={action.iconAltText}
@@ -60,6 +61,7 @@
             />
           {/each}
           <input
+            class="icon"
             type="image"
             src="{base}/delete.png"
             alt="A bin"
@@ -70,3 +72,10 @@
     {/each}
   </tbody>
 </table>
+
+<style lang="scss">
+  .icon {
+    width: 2em;
+    aspect-ratio: 1;
+  }
+</style>

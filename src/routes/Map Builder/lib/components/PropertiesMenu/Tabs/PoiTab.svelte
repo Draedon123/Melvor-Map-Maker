@@ -70,19 +70,24 @@
 
   <button onclick={newPOIButtonOnClick}>Create new POI</button>
 
-  <TableList
-    headers={["Local ID"]}
-    keys={["id"]}
-    itemOnDelete={onPOIDelete}
-    actions={[
-      {
-        iconSRC: `${base}/edit.png`,
-        iconAltText: "A pen",
-        onClick: selectPOI,
-      },
-    ]}
-    bind:values={$globalStore.activeProject.worldMapData.pointsOfInterest}
-  />
+  <div
+    class:hidden={$globalStore.activeProject.worldMapData.pointsOfInterest
+      .length === 0}
+  >
+    <TableList
+      headers={["Local ID"]}
+      keys={["id"]}
+      itemOnDelete={onPOIDelete}
+      actions={[
+        {
+          iconSRC: `${base}/edit.png`,
+          iconAltText: "A pen",
+          onClick: selectPOI,
+        },
+      ]}
+      bind:values={$globalStore.activeProject.worldMapData.pointsOfInterest}
+    />
+  </div>
 
   {#if activePOI !== null && activePOI !== undefined}
     <h2>{activePOI.name}</h2>
