@@ -214,12 +214,15 @@
           <Requirement {requirement} />
         </td>
         <td>
-          <input
-            type="image"
-            src="{base}/delete.png"
-            alt="A bin"
-            onclick={() => deleteButtonOnClick(requirement)}
-          />
+          <div class="actions">
+            <input
+              class="icon"
+              type="image"
+              src="{base}/delete.png"
+              alt="A bin"
+              onclick={() => deleteButtonOnClick(requirement)}
+            />
+          </div>
         </td>
       </tr>
     {/each}
@@ -233,5 +236,31 @@
     @include button.button(#659ca7);
 
     width: 100%;
+  }
+
+  .icon {
+    width: 2em;
+    aspect-ratio: 1;
+  }
+
+  table,
+  tr,
+  th,
+  td {
+    border: 1px solid white;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+
+  .actions {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
   }
 </style>
