@@ -24,3 +24,14 @@
     </td>
   {/if}
 {/each}
+
+<style lang="scss">
+  td {
+    border: 1px solid white;
+    border-collapse: collapse;
+  }
+
+  td {
+    padding: 5px;
+  }
+</style>

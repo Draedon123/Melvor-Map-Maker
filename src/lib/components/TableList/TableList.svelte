@@ -55,24 +55,26 @@
       <tr>
         <TableListRow bind:values={valuesReactive[index]} {keys} />
         <td>
-          {#each actions as action}
+          <div class="actions">
+            {#each actions as action}
+              <input
+                class="icon"
+                type="image"
+                src={action.iconSRC}
+                alt={action.iconAltText}
+                onclick={() => {
+                  action.onClick(value);
+                }}
+              />
+            {/each}
             <input
               class="icon"
               type="image"
-              src={action.iconSRC}
-              alt={action.iconAltText}
-              onclick={() => {
-                action.onClick(value);
-              }}
+              src="{base}/delete.png"
+              alt="A bin"
+              onclick={() => deleteButtonOnClick(value)}
             />
-          {/each}
-          <input
-            class="icon"
-            type="image"
-            src="{base}/delete.png"
-            alt="A bin"
-            onclick={() => deleteButtonOnClick(value)}
-          />
+          </div>
         </td>
       </tr>
     {/each}
@@ -83,5 +85,26 @@
   .icon {
     width: 2em;
     aspect-ratio: 1;
+  }
+
+  table,
+  tr,
+  th,
+  td {
+    border: 1px solid white;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+
+  .actions {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
   }
 </style>
