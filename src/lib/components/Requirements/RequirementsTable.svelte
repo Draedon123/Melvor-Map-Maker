@@ -196,7 +196,7 @@
         >
       {/each}
     </Dropdown>
-    <button onclick={addNewRequirement}>Add!</button>
+    <button onclick={addNewRequirement} class="addRequirement">Add!</button>
   </div>
 </div>
 
@@ -225,3 +225,13 @@
     {/each}
   </tbody>
 </table>
+
+<style lang="scss">
+  @use "/src/styles/button.scss";
+
+  .addRequirement {
+    @include button.button(#659ca7);
+
+    width: 100%;
+  }
+</style>
