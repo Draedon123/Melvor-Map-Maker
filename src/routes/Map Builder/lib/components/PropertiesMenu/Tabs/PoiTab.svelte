@@ -134,7 +134,14 @@
 
     <br />
     <p>Type:</p>
-    <Dropdown bind:value={activePOI.type}>
+    <Dropdown
+      bind:value={activePOI.type}
+      textContent={activePOI.type === "Other"
+        ? "Standard"
+        : activePOI.type === "DigSite"
+          ? "Dig Site"
+          : "Watchtower"}
+    >
       <DropdownOption value="Other">Standard</DropdownOption>
       <DropdownOption value="DigSite">Dig Site</DropdownOption>
       <DropdownOption value="Watchtower">Watchtower</DropdownOption>
