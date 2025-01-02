@@ -100,7 +100,6 @@
     });
 
     $store.viewport.children.forEach((container) => {
-      console.log(container, container.removeChildren);
       container.removeChildren().forEach((child) => child.destroy());
     });
 
