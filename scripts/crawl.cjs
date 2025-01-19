@@ -32,10 +32,10 @@ function crawl(directory, filters = "both", maxDepth = Infinity) {
     );
 
     const subDirectoryNames = subDirectories.map(
-      (directory) => `${directory.path}${sep}${directory.name}`
+      (directory) => `${directory.parentPath}${sep}${directory.name}`
     );
     const fileNames = directoryFiles.map(
-      (directory) => `${directory.path}${sep}${directory.name}`
+      (directory) => `${directory.parentPath}${sep}${directory.name}`
     );
 
     if (i === 0) {
